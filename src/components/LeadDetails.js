@@ -6,11 +6,11 @@ import EditIcon from '@mui/icons-material/Edit';
 
 const useStyles = makeStyles((theme) => {
   return {
-    page: {
-      background: '#f9f9f9',
-      width: '100%',
-      padding: theme.spacing(3),
-    },
+    // page: {
+    //   background: '#f9f9f9',
+    //   width: '100%',
+    //   padding: theme.spacing(3),
+    // },
     titleLabel: {
       marginTop: 40,
       width: 80,
@@ -38,6 +38,8 @@ export default function LeadDetails({
   id,
   disabled,
 }) {
+  const classes = useStyles();
+
   const updateLead = (keyToUpdate, valueToUpdate) => {
     setLead((prevLead) => ({
       ...prevLead,
@@ -54,7 +56,6 @@ export default function LeadDetails({
       setEditKey(-1);
     }
   };
-  const classes = useStyles();
   return (
     <div>
       {Object.entries(lead).map(([key, value]) => {
