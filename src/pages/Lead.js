@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import InputFieldText from '../components/InputFieldText';
-import TitleLabel from '../components/TitleLabel';
-import { Box, Container, Grid, TextField, makeStyles } from '@material-ui/core';
-import EditIcon from '@mui/icons-material/Edit';
-import { IconButton, Stack } from '@mui/material';
-import { format, getHours } from 'date-fns';
-import ReadMoreText from '../components/ReadMoreText';
+import { Container, Grid, makeStyles } from '@material-ui/core';
 import LeadDetails from '../components/LeadDetails';
 import NoteStack from '../components/NoteStack';
 
@@ -15,17 +9,6 @@ const useStyles = makeStyles((theme) => {
       background: '#f9f9f9',
       width: '100%',
       padding: theme.spacing(3),
-    },
-    titleLabel: {
-      marginTop: 40,
-      width: 80,
-    },
-    editButton: {
-      marginTop: 30,
-    },
-    customCard: {
-      height: '1px',
-      background: '#F00B0B',
     },
   };
 });
