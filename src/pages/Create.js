@@ -63,7 +63,7 @@ export default function Create() {
     // if (name === '') setNameError(true);
     // if (details === '') setDetailsError(true);
     if (name) {
-      fetch('http://localhost:8000/notes', {
+      fetch('http://localhost:8000/leads', {
         method: 'POST',
         headers: { 'Content-type': 'application/json' },
         body: JSON.stringify({

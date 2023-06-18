@@ -1,20 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  IconButton,
-  Paper,
-  Typography,
-  makeStyles,
-} from '@material-ui/core';
-import { Grid, Container } from '@mui/material';
+import { makeStyles } from '@material-ui/core';
 import NoteCard from '../components/NoteCard';
-import Masonry from 'react-masonry-css';
 import Stack from '@mui/material/Stack';
-import { DeleteOutline } from '@mui/icons-material';
 import TitleLabel from '../components/TitleLabel';
-// import Grid from '@mui/material/Grid';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -30,23 +18,23 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-export default function Notes({ idPassUp }) {
+export default function LeadsRender({ idPassUp }) {
   const classes = useStyles();
-  const [notes, setNotes] = useState([]);
+  const [leads, setLeads] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8000/notes')
+    fetch('http://localhost:8000/leads')
       .then((res) => res.json())
-      .then((data) => setNotes(data))
+      .then((data) => setLeads(data))
       .catch((err) => console.log(err));
   }, []);
 
   const handleDelete = async (id) => {
-    await fetch('http://localhost:8000/notes/' + id, {
+    await fetch('http://localhost:8000/leads/' + id, {
       method: 'DELETE',
     });
-    const newNotes = notes.filter((note) => note.id !== id);
-    setNotes(newNotes);
+    const newLeads = leads.filter((note) => note.id !== id);
+    setLeads(newLeads);
   };
 
   const breakpoints = {
@@ -55,8 +43,8 @@ export default function Notes({ idPassUp }) {
     700: 3,
   };
 
-  function leadRenderColumn(notes, stage) {
-    const leadIns = notes.map((note) => {
+  function leadRenderColumn(leads, stage) {
+    const leadIns = leads.map((note) => {
       if (note.stage === stage)
         return (
           <div>
@@ -75,15 +63,15 @@ export default function Notes({ idPassUp }) {
     <Stack direction="row" spacing={1} justifyContent="flex-start">
       <Stack className={classes.background} spacing={1}>
         <TitleLabel variant="h6" className={classes.label} label="Lead In" />
-        {leadRenderColumn(notes, 'leadIn')}
+        {leadRenderColumn(leads, 'leadIn')}
       </Stack>
       <Stack className={classes.background} spacing={1}>
         <TitleLabel variant="h6" className={classes.label} label="No Answer" />
-        {leadRenderColumn(notes, 'noAnswer')}
+        {leadRenderColumn(leads, 'noAnswer')}
       </Stack>
       <Stack className={classes.background} spacing={1}>
         <TitleLabel variant="h6" className={classes.label} label="Call Back" />
-        {leadRenderColumn(notes, 'callBack')}
+        {leadRenderColumn(leads, 'callBack')}
       </Stack>
     </Stack>
   );

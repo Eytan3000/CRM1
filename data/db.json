@@ -1,5 +1,5 @@
 {
-  "notes": [
+  "leads": [
     {
       "title": "eytan ",
       "stage": "callBack",
@@ -345,6 +345,123 @@
         }
       ],
       "id": 21
+    },
+    {
+      "title": "yoel / coockoo ",
+      "stage": "leadIn",
+      "name": "yoel",
+      "phone": "",
+      "email": "",
+      "website": "",
+      "facebook": "",
+      "linkedin": "",
+      "otherLink": "",
+      "companyName": "coockoo",
+      "companyPhone": "",
+      "companyEmail": "",
+      "companyWebsite": "cooock.com",
+      "companyFacebook": "",
+      "companyLinkedin": "",
+      "companyOtherLink": "",
+      "dateCreated": "18.06.2023",
+      "notes": [
+        {
+          "noteId": 1,
+          "noteDate": "18th June 2023 , 10:00 AM",
+          "noteContent": "eytan"
+        },
+        {
+          "noteId": 2,
+          "noteDate": "18th June 2023 , 10:00 AM",
+          "noteContent": "asdf"
+        }
+      ],
+      "id": 22
+    },
+    {
+      "title": "mom / pap ",
+      "stage": "callBack",
+      "name": "mom",
+      "phone": "05050505",
+      "email": "",
+      "website": "",
+      "facebook": "",
+      "linkedin": "",
+      "otherLink": "",
+      "companyName": "pap",
+      "companyPhone": "",
+      "companyEmail": "",
+      "companyWebsite": "",
+      "companyFacebook": "",
+      "companyLinkedin": "",
+      "companyOtherLink": "",
+      "dateCreated": "18.06.2023",
+      "notes": [
+        {
+          "noteId": 1,
+          "noteDate": "18th June 2023 , 10:02 AM",
+          "noteContent": "asdf"
+        },
+        {
+          "noteId": 2,
+          "noteDate": "18th June 2023 , 10:02 AM",
+          "noteContent": "asdf"
+        },
+        {
+          "noteId": 3,
+          "noteDate": "18th June 2023 , 10:02 AM",
+          "noteContent": "asdf"
+        }
+      ],
+      "id": 23
+    },
+    {
+      "title": "asdf / asdf ",
+      "stage": "leadIn",
+      "name": "asdf",
+      "phone": "",
+      "email": "",
+      "website": "",
+      "facebook": "",
+      "linkedin": "",
+      "otherLink": "",
+      "companyName": "asdf",
+      "companyPhone": "",
+      "companyEmail": "",
+      "companyWebsite": "",
+      "companyFacebook": "",
+      "companyLinkedin": "",
+      "companyOtherLink": "",
+      "dateCreated": "18.06.2023",
+      "notes": [],
+      "id": 24
+    },
+    {
+      "title": "test2 / test2 ",
+      "stage": "leadIn",
+      "name": "test2",
+      "phone": "asdf040505",
+      "email": "",
+      "website": "",
+      "facebook": "",
+      "linkedin": "",
+      "otherLink": "",
+      "companyName": "test2",
+      "companyPhone": "",
+      "companyEmail": "",
+      "companyWebsite": "",
+      "companyFacebook": "",
+      "companyLinkedin": "",
+      "companyOtherLink": "",
+      "dateCreated": "18.06.2023",
+      "notes": [
+        {
+          "noteId": 1,
+          "noteDate": "18th June 2023 , 10:05 AM",
+          "noteContent": "adsfasdf"
+        }
+      ],
+      "id": 25
     }
   ]
 }

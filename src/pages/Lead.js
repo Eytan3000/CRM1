@@ -21,7 +21,7 @@ export default function Lead({ id }) {
   const [editKey, setEditKey] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:8000/notes')
+    fetch('http://localhost:8000/leads')
       .then((res) => res.json())
       .then((data) => {
         data.map((lead) => (lead.id === id ? setLead(lead) : null));
@@ -35,7 +35,7 @@ export default function Lead({ id }) {
 
   const updateObjectDB = async (objectId, updatedData) => {
     try {
-      const response = await fetch(`http://localhost:8000/notes/${objectId}`, {
+      const response = await fetch(`http://localhost:8000/leads/${objectId}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

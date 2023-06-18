@@ -1,13 +1,11 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Notes from './pages/Notes';
 import Create from './pages/Create';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { purple } from '@material-ui/core/colors';
 import Layout from './components/Layout';
 import Lead from './pages/Lead';
-import IdContext from './components/IdContext';
 import { useState } from 'react';
-import LeadPageLayout from './components/LeadPageLayout';
+import LeadsRender from './pages/LeadsRender';
 
 const theme = createTheme({
   palette: {
@@ -36,7 +34,7 @@ function App() {
         <Layout>
           <Switch>
             <Route exact path="/">
-              <Notes idPassUp={idPassUp} />
+              <LeadsRender idPassUp={idPassUp} />
             </Route>
             <Route path="/create">
               <Create />
