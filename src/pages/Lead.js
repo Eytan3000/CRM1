@@ -6,6 +6,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { IconButton, Stack } from '@mui/material';
 import { format, getHours } from 'date-fns';
 import ReadMoreText from '../components/ReadMoreText';
+import LeadDetails from '../components/LeadDetails';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -49,13 +50,6 @@ export default function Lead({ id }) {
     updateObjectDB(id, lead);
   }, [lead]);
 
-  const updateLead = (keyToUpdate, valueToUpdate) => {
-    setLead((prevLead) => ({
-      ...prevLead,
-      [keyToUpdate]: valueToUpdate,
-    }));
-  };
-
   const updateNoteContent = (keyToUpdate, valueToUpdate) => {
     setLead((prevLead) => ({
       ...prevLead,
@@ -86,16 +80,6 @@ export default function Lead({ id }) {
         },
       ],
     }));
-  };
-
-  const handleKeyDown = (event) => {
-    if (event.key === 'Enter' && !event.shiftKey) {
-      event.preventDefault();
-      console.log(editKey, event.target.value);
-      updateLead(editKey, event.target.value);
-
-      setEditKey(-1);
-    }
   };
 
   const handleNoteKeyDown = (event) => {
@@ -138,12 +122,6 @@ export default function Lead({ id }) {
     }
   };
 
-  function convertCamelCaseToSpaces(str) {
-    const result = str.replace(/([A-Z])/g, ' $1');
-    return result.charAt(0).toUpperCase() + result.slice(1);
-  }
-  console.log('eytan');
-
   return (
     <div className={classes.page}>
       <Container maxWidth="sm">
@@ -153,48 +131,14 @@ export default function Lead({ id }) {
           justifyContent="space-between"
           alignItems="flex-start">
           <Grid>
-            {Object.entries(lead).map(([key, value]) => {
-              if (key !== 'notes') {
-                return (
-                  <div>
-                    <Grid container spacing={1}>
-                      <Grid className={classes.titleLabel}>
-                        <TitleLabel
-                          variant="body1"
-                          // className={classes.titleLabel}
-                          label={convertCamelCaseToSpaces(key)}
-                        />
-                      </Grid>
-                      <Grid item xs={12} md={6}>
-                        {key === editKey ? (
-                          <InputFieldText
-                            onKeyDown={handleKeyDown}
-                            className={classes.customCard}
-                            fullWidth
-                            disabled={false}
-                            key={id}
-                            defaultValue={value}
-                          />
-                        ) : (
-                          <InputFieldText
-                            className={classes.customCard}
-                            fullWidth
-                            disabled={disabled}
-                            key={id}
-                            defaultValue={value}
-                          />
-                        )}
-                      </Grid>
-                      <Grid>
-                        <IconButton key={id} onClick={() => setEditKey(key)}>
-                          <EditIcon className={classes.editButton} />
-                        </IconButton>
-                      </Grid>
-                    </Grid>
-                  </div>
-                );
-              }
-            })}
+            <LeadDetails
+              lead={lead}
+              editKey={editKey}
+              setEditKey={(newEditKey) => setEditKey(newEditKey)}
+              setLead={(newLead) => setLead(newLead)}
+              id={id}
+              disabled={disabled}
+            />
           </Grid>
           <Grid>
             <Stack
