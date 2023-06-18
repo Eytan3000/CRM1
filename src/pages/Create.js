@@ -84,6 +84,7 @@ export default function Create() {
           companyLinkedin: linkedinC,
           companyOtherLink: otherLinkC,
           dateCreated: format(new Date(), 'dd.MM.Y'),
+          notes: [],
         }),
       }).then(() => history.push('/'));
     }

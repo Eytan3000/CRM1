@@ -12,6 +12,7 @@ import {
 import EditIcon from '@mui/icons-material/Edit';
 import { IconButton, Stack } from '@mui/material';
 import IdContext from '../components/IdContext';
+import { format } from 'date-fns';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -61,11 +62,61 @@ export default function Lead({ id }) {
     }));
   };
 
+  const updateNoteContent = (keyToUpdate, valueToUpdate) => {
+    setLead((prevLead) => ({
+      ...prevLead,
+      notes: prevLead.notes.map((note) => {
+        if (note.noteId === keyToUpdate) {
+          return {
+            ...note,
+            noteContent: valueToUpdate,
+          };
+        }
+        return note;
+      }),
+    }));
+  };
+
+  const updateNewNoteContent = (valueToUpdate) => {
+    setLead((prevLead) => ({
+      ...prevLead,
+      notes: [
+        ...prevLead.notes,
+        {
+          noteId: prevLead.notes.length + 1,
+          noteDate: format(new Date(), 'do MMMM Y'),
+          noteContent: valueToUpdate,
+        },
+      ],
+    }));
+  };
+
   const handleKeyDown = (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' && !event.shiftKey) {
       event.preventDefault();
+      console.log(editKey, event.target.value);
       updateLead(editKey, event.target.value);
+
       setEditKey(-1);
+    }
+  };
+
+  const handleNoteKeyDown = (event) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      updateNoteContent(editKey, event.target.value);
+      setEditKey(-1);
+    }
+  };
+
+  const handleNewNoteKeyDown = (event) => {
+    if (
+      event.key === 'Enter' &&
+      !event.shiftKey &&
+      event.target.value.trim() !== ''
+    ) {
+      event.preventDefault();
+      updateNewNoteContent(event.target.value);
     }
   };
 
@@ -103,53 +154,46 @@ export default function Lead({ id }) {
         alignItems="flex-start">
         <Grid>
           {Object.entries(lead).map(([key, value]) => {
-            return (
-              <div>
-                <Grid container spacing={1}>
-                  <Grid className={classes.titleLabel}>
-                    <TitleLabel
-                      variant="body1"
-                      // className={classes.titleLabel}
-                      label={convertCamelCaseToSpaces(key)}
-                    />
-                  </Grid>
-                  <Grid item xs={12} md={6}>
-                    {key === editKey ? (
-                      <InputFieldText
-                        onKeyDown={handleKeyDown}
-                        // onChange={onChange}
-                        className={classes.customCard}
-                        // label={value}
-                        // variant={variant}
-                        fullWidth
-                        // error={error}
-                        disabled={false}
-                        key={id}
-                        defaultValue={value}
+            if (key !== 'notes') {
+              return (
+                <div>
+                  <Grid container spacing={1}>
+                    <Grid className={classes.titleLabel}>
+                      <TitleLabel
+                        variant="body1"
+                        // className={classes.titleLabel}
+                        label={convertCamelCaseToSpaces(key)}
                       />
-                    ) : (
-                      <InputFieldText
-                        // onChange={onChange}
-                        className={classes.customCard}
-                        // label={value}
-                        // label="sdfsdfsd"
-                        // variant={variant}
-                        fullWidth
-                        // error={error}
-                        disabled={disabled}
-                        key={id}
-                        defaultValue={value}
-                      />
-                    )}
+                    </Grid>
+                    <Grid item xs={12} md={6}>
+                      {key === editKey ? (
+                        <InputFieldText
+                          onKeyDown={handleKeyDown}
+                          className={classes.customCard}
+                          fullWidth
+                          disabled={false}
+                          key={id}
+                          defaultValue={value}
+                        />
+                      ) : (
+                        <InputFieldText
+                          className={classes.customCard}
+                          fullWidth
+                          disabled={disabled}
+                          key={id}
+                          defaultValue={value}
+                        />
+                      )}
+                    </Grid>
+                    <Grid>
+                      <IconButton key={id} onClick={() => setEditKey(key)}>
+                        <EditIcon className={classes.editButton} />
+                      </IconButton>
+                    </Grid>
                   </Grid>
-                  <Grid>
-                    <IconButton key={id} onClick={() => setEditKey(key)}>
-                      <EditIcon className={classes.editButton} />
-                    </IconButton>
-                  </Grid>
-                </Grid>
-              </div>
-            );
+                </div>
+              );
+            }
           })}
         </Grid>
         <Grid>
@@ -158,24 +202,64 @@ export default function Lead({ id }) {
             justifyContent="flex-end"
             alignItems="center"
             spacing={1}>
+            {Object.entries(lead).map(([key, value]) => {
+              if (key === 'notes') {
+                return value.map((note) => {
+                  return (
+                    <Grid
+                      container
+                      direction="row"
+                      justifyContent="space-between"
+                      alignItems="flex-start">
+                      <Grid>
+                        {note.noteId === editKey ? (
+                          <TextField
+                            id="filled-multiline-static"
+                            key={`noteId_${note.id}`}
+                            multiline
+                            minRows={4}
+                            placeholder="Note"
+                            // value={note.noteContent}
+                            variant="filled"
+                            fullWidth
+                            disabled={false}
+                            onKeyDown={handleNoteKeyDown}
+                          />
+                        ) : (
+                          <TextField
+                            id="filled-multiline-static"
+                            key={`noteId_${note.id}`}
+                            multiline
+                            minRows={4}
+                            // maxRows={6}
+                            placeholder="Note"
+                            value={note.noteContent}
+                            variant="filled"
+                            fullWidth
+                            disabled={disabled}
+                            label={note.noteDate}
+                          />
+                        )}
+                      </Grid>
+                      <Grid>
+                        <IconButton
+                          key={note.noteId}
+                          onClick={() => setEditKey(note.noteId)}>
+                          <EditIcon className={classes.editButton} />
+                        </IconButton>
+                      </Grid>
+                    </Grid>
+                  );
+                });
+              }
+            })}
+            {/* New Note */}
             <TextField
-              id="filled-multiline-static"
-              // label="Multiline"
-              multiline
-              minRows={4}
-              placeholder="Note"
-              value="value1"
-              variant="filled"
-              fullWidth
-              disabled={true}
-            />
-
-            <TextField
+              onKeyDown={handleNewNoteKeyDown}
               id="new note"
-              // label="Multiline"
               multiline
               minRows={4}
-              placeholder="Note"
+              placeholder="New note"
               variant="filled"
               fullWidth
             />
