@@ -1,23 +1,8 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
-
-import {
-  Typography,
-  Button,
-  Container,
-  TextField,
-  Radio,
-  RadioGroup,
-  makeStyles,
-  FormControlLabel,
-  FormLabel,
-  FormControl,
-} from '@material-ui/core';
+import { Typography, Button, Container, makeStyles } from '@material-ui/core';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-
-import InputFieldText from '../components/InputFieldText';
 import LeftColumn from '../components/LeftColumn';
 import RightColumn from '../components/RightColumn';
 import { format } from 'date-fns';

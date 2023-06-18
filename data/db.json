@@ -1,4 +1,18 @@
 {
+  "stages": [
+    {
+      "id": 1,
+      "name": "leadIn"
+    },
+    {
+      "id": 2,
+      "name": "noAnswer"
+    },
+    {
+      "id": 3,
+      "name": "callBack"
+    }
+  ],
   "leads": [
     {
       "title": "eytan ",
