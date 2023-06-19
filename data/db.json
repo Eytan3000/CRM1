@@ -524,27 +524,6 @@
       "id": 26
     },
     {
-      "title": "ttttt ",
-      "stage": "leadIn",
-      "name": "ttttt",
-      "phone": "",
-      "email": "",
-      "website": "",
-      "facebook": "",
-      "linkedin": "",
-      "otherLink": "",
-      "companyName": "",
-      "companyPhone": "",
-      "companyEmail": "",
-      "companyWebsite": "",
-      "companyFacebook": "",
-      "companyLinkedin": "",
-      "companyOtherLink": "",
-      "dateCreated": "18.06.2023",
-      "notes": [],
-      "id": 27
-    },
-    {
       "title": "Yair Petch / Kricherer Company Ltd. ",
       "stage": "leadIn",
       "name": "Yair Petch",
@@ -570,33 +549,6 @@
         }
       ],
       "id": 28
-    },
-    {
-      "title": "aaaaaa ",
-      "stage": "noAnswer",
-      "name": "aaaaaa",
-      "phone": "",
-      "email": "",
-      "website": "",
-      "facebook": "",
-      "linkedin": "",
-      "otherLink": "",
-      "companyName": "",
-      "companyPhone": "",
-      "companyEmail": "",
-      "companyWebsite": "",
-      "companyFacebook": "",
-      "companyLinkedin": "",
-      "companyOtherLink": "",
-      "dateCreated": "19.06.2023",
-      "notes": [
-        {
-          "noteId": 1,
-          "noteDate": "19th June 2023 , 3:54 PM",
-          "noteContent": "asdf"
-        }
-      ],
-      "id": 29
     }
   ]
 }

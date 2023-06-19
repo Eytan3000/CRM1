@@ -97,6 +97,7 @@ export default function Create() {
               setFacebook={(e) => setFacebook(e.target.value)}
               setLinkedin={(e) => setLinkedin(e.target.value)}
               setOtherLink={(e) => setOtherLink(e.target.value)}
+              handleSubmit={handleSubmit}
             />
           </Grid>
           <Grid item xs={12} md={6}>
