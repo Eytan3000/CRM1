@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
+
 import { Typography, Button, Container, makeStyles } from '@material-ui/core';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import Grid from '@mui/material/Grid';
 import LeftColumn from '../components/LeftColumn';
 import RightColumn from '../components/RightColumn';
 import { format } from 'date-fns';
+import SubmitButton from '../components/SubmitButton';
 const useStyles = makeStyles({
   field: {
     marginTop: 20,
@@ -114,13 +115,7 @@ export default function Create() {
             />
           </Grid>
         </Grid>
-        <Button
-          type="submit"
-          color="secondary"
-          variant="contained"
-          endIcon={<KeyboardArrowRightOutlinedIcon />}>
-          Submit
-        </Button>
+        <SubmitButton />
       </form>
     </Container>
   );

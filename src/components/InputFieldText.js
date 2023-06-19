@@ -21,6 +21,9 @@ export default function InputFieldText({
   onKeyDown,
   type,
   defaultValue,
+  onMouseEnter,
+  onMouseLeave,
+  InputProps,
 }) {
   const classes = useStyles();
   //   const [title, setTitle] = useState('');
@@ -41,6 +44,9 @@ export default function InputFieldText({
         key={key}
         type={type}
         defaultValue={defaultValue}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+        InputProps={InputProps}
       />
     </form>
   );

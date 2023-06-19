@@ -3,7 +3,7 @@ import TitleLabel from './TitleLabel';
 import InputFieldText from './InputFieldText';
 import { Grid, IconButton, makeStyles } from '@material-ui/core';
 import EditIcon from '@mui/icons-material/Edit';
-
+import { convertCamelCaseToSpaces } from '../helpers/helpers';
 const useStyles = makeStyles((theme) => {
   return {
     // page: {
@@ -25,11 +25,6 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-function convertCamelCaseToSpaces(str) {
-  const result = str.replace(/([A-Z])/g, ' $1');
-  return result.charAt(0).toUpperCase() + result.slice(1);
-}
-
 export default function LeadDetails({
   lead,
   editKey,
@@ -50,7 +45,6 @@ export default function LeadDetails({
   const handleKeyDown = (event) => {
     if (event.key === 'Enter' && !event.shiftKey) {
       event.preventDefault();
-      console.log(editKey, event.target.value);
       updateLead(editKey, event.target.value);
 
       setEditKey(-1);
