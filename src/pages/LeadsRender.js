@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-export default function LeadsRender({ idPassUp }) {
+export default function LeadsRender({ idPassUp, stagesPassUp }) {
   const classes = useStyles();
   const [leads, setLeads] = useState([]);
   const [stages, setStages] = useState([]);
@@ -51,7 +51,10 @@ export default function LeadsRender({ idPassUp }) {
   useEffect(() => {
     fetch('http://localhost:8000/stages')
       .then((res) => res.json())
-      .then((data) => setStages(data))
+      .then((data) => {
+        setStages(data);
+        stagesPassUp(data);
+      })
       .catch((err) => console.log(err));
   }, []);
 

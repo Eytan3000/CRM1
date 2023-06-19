@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-export default function Lead({ id }) {
+export default function Lead({ id, stages }) {
   const classes = useStyles();
 
   const [lead, setLead] = useState([]);
@@ -52,7 +52,6 @@ export default function Lead({ id }) {
       console.error('Error:', error);
     }
   };
-
   return (
     <div className={classes.page}>
       <Container>
@@ -69,6 +68,7 @@ export default function Lead({ id }) {
               setLead={(newLead) => setLead(newLead)}
               id={id}
               disabled={disabled}
+              stages={stages}
             />
           </Grid>
           <Grid>

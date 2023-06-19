@@ -25,8 +25,10 @@ const theme = createTheme({
 
 function App() {
   const [leadId, setLeadId] = useState('');
+  const [stages, setStages] = useState('');
 
   const idPassUp = (id) => setLeadId(id);
+  const stagesPassUp = (stage) => setStages(stage);
 
   return (
     <ThemeProvider theme={theme}>
@@ -34,13 +36,13 @@ function App() {
         <Layout>
           <Switch>
             <Route exact path="/">
-              <LeadsRender idPassUp={idPassUp} />
+              <LeadsRender idPassUp={idPassUp} stagesPassUp={stagesPassUp} />
             </Route>
             <Route path="/create">
               <Create />
             </Route>
             <Route path="/lead">
-              <Lead id={leadId} />
+              <Lead id={leadId} stages={stages} />
             </Route>
           </Switch>
         </Layout>

@@ -11,26 +11,6 @@
     {
       "id": 3,
       "name": "callBack"
-    },
-    {
-      "name": "eytan",
-      "id": 4
-    },
-    {
-      "name": "karen",
-      "id": 5
-    },
-    {
-      "name": "eytann",
-      "id": 6
-    },
-    {
-      "name": "eytannnn",
-      "id": 7
-    },
-    {
-      "name": "sdfds",
-      "id": 8
     }
   ],
   "leads": [
@@ -57,11 +37,11 @@
     },
     {
       "title": "eytan2 / Krief2 ",
-      "stage": "leadIn",
+      "stage": "noAnswer",
       "name": "eytan2",
-      "phone": "",
-      "email": "",
-      "website": "",
+      "phone": "050505051",
+      "email": "sdfddd",
+      "website": "wwwwww",
       "facebook": "",
       "linkedin": "",
       "otherLink": "",
@@ -133,6 +113,16 @@
           "noteId": 12,
           "noteDate": "18th June 2023 , 10:29 AM",
           "noteContent": "kjghkjhkjhkjhkjhkjhk"
+        },
+        {
+          "noteId": 13,
+          "noteDate": "19th June 2023 , 1:30 PM",
+          "noteContent": "sdf"
+        },
+        {
+          "noteId": 14,
+          "noteDate": "19th June 2023 , 2:22 PM",
+          "noteContent": "asdfasdf"
         }
       ],
       "id": 17
@@ -355,7 +345,7 @@
     },
     {
       "title": "Yair / Petch Company ",
-      "stage": "leadIn",
+      "stage": "callBack",
       "name": "Yair",
       "phone": "",
       "email": "",
@@ -381,13 +371,18 @@
           "noteId": 2,
           "noteDate": "18th June 2023 , 9:50 AM",
           "noteContent": "no answer"
+        },
+        {
+          "noteId": 3,
+          "noteDate": "19th June 2023 , 2:46 PM",
+          "noteContent": "שדכגג"
         }
       ],
       "id": 21
     },
     {
       "title": "yoel / coockoo ",
-      "stage": "leadIn",
+      "stage": "Yair",
       "name": "yoel",
       "phone": "",
       "email": "",
@@ -498,13 +493,18 @@
           "noteId": 1,
           "noteDate": "18th June 2023 , 10:05 AM",
           "noteContent": "adsfasdf"
+        },
+        {
+          "noteId": 2,
+          "noteDate": "19th June 2023 , 1:13 PM",
+          "noteContent": "kjh"
         }
       ],
       "id": 25
     },
     {
       "title": "kara lane ",
-      "stage": "eytan",
+      "stage": "callBack",
       "name": "kara lane",
       "phone": "",
       "email": "",
@@ -543,6 +543,60 @@
       "dateCreated": "18.06.2023",
       "notes": [],
       "id": 27
+    },
+    {
+      "title": "Yair Petch / Kricherer Company Ltd. ",
+      "stage": "leadIn",
+      "name": "Yair Petch",
+      "phone": "050505050505",
+      "email": "petch@gmail.com",
+      "website": "",
+      "facebook": "",
+      "linkedin": "",
+      "otherLink": "",
+      "companyName": "Kricherer Company Ltd.",
+      "companyPhone": "",
+      "companyEmail": "",
+      "companyWebsite": "",
+      "companyFacebook": "",
+      "companyLinkedin": "",
+      "companyOtherLink": "",
+      "dateCreated": "19.06.2023",
+      "notes": [
+        {
+          "noteId": 1,
+          "noteDate": "19th June 2023 , 2:46 PM",
+          "noteContent": "בן זונה לא ענה לי"
+        }
+      ],
+      "id": 28
+    },
+    {
+      "title": "aaaaaa ",
+      "stage": "noAnswer",
+      "name": "aaaaaa",
+      "phone": "",
+      "email": "",
+      "website": "",
+      "facebook": "",
+      "linkedin": "",
+      "otherLink": "",
+      "companyName": "",
+      "companyPhone": "",
+      "companyEmail": "",
+      "companyWebsite": "",
+      "companyFacebook": "",
+      "companyLinkedin": "",
+      "companyOtherLink": "",
+      "dateCreated": "19.06.2023",
+      "notes": [
+        {
+          "noteId": 1,
+          "noteDate": "19th June 2023 , 3:54 PM",
+          "noteContent": "asdf"
+        }
+      ],
+      "id": 29
     }
   ]
 }

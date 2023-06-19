@@ -4,6 +4,7 @@ import InputFieldText from './InputFieldText';
 import { Grid, IconButton, makeStyles } from '@material-ui/core';
 import EditIcon from '@mui/icons-material/Edit';
 import { convertCamelCaseToSpaces } from '../helpers/helpers';
+import SelectStage from './SelectStage';
 const useStyles = makeStyles((theme) => {
   return {
     // page: {
@@ -32,6 +33,7 @@ export default function LeadDetails({
   setLead,
   id,
   disabled,
+  stages,
 }) {
   const classes = useStyles();
 
@@ -50,6 +52,41 @@ export default function LeadDetails({
       setEditKey(-1);
     }
   };
+
+  const renderEditingField = (key, value) => {
+    if (key === editKey) {
+      if (editKey === 'stage')
+        return (
+          <SelectStage
+            optionsArr={stages}
+            updateLead={updateLead}
+            currentStage={value}
+          />
+        );
+      //stages Selection
+      else
+        return (
+          <InputFieldText // editing
+            onKeyDown={handleKeyDown}
+            className={classes.customCard}
+            fullWidth
+            disabled={false}
+            key={id}
+            defaultValue={value}
+          />
+        );
+    } else
+      return (
+        <InputFieldText // render regular disabled
+          className={classes.customCard}
+          fullWidth
+          disabled={disabled}
+          key={id}
+          defaultValue={value}
+        />
+      );
+  };
+
   return (
     <div>
       {Object.entries(lead).map(([key, value]) => {
@@ -65,24 +102,7 @@ export default function LeadDetails({
                   />
                 </Grid>
                 <Grid item xs={12} md={6}>
-                  {key === editKey ? (
-                    <InputFieldText
-                      onKeyDown={handleKeyDown}
-                      className={classes.customCard}
-                      fullWidth
-                      disabled={false}
-                      key={id}
-                      defaultValue={value}
-                    />
-                  ) : (
-                    <InputFieldText
-                      className={classes.customCard}
-                      fullWidth
-                      disabled={disabled}
-                      key={id}
-                      defaultValue={value}
-                    />
-                  )}
+                  {renderEditingField(key, value)}
                 </Grid>
                 <Grid>
                   <IconButton key={id} onClick={() => setEditKey(key)}>
