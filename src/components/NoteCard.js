@@ -76,20 +76,21 @@ export default function NoteCard({ key, note, handleDelete, idPassUp }) {
             handleClick();
           }}>
           {note.phone}
-        </Typography>
-        <Popover
-          id={id}
-          open={open}
-          anchorEl={anchorEl}
-          onClose={handleClose}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
-          }}>
-          Phone Copied
-        </Popover>
-        {isHovered ? (
-          // <Popover
+
+          <Popover
+            id={id}
+            open={open}
+            anchorEl={anchorEl}
+            onClose={handleClose}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}>
+            Phone Copied
+          </Popover>
+          {isHovered ? (
+            <div>Copy</div>
+          ) : // <Popover
           //   // id={id}
           //   // open={open}
           //   // anchorEl={anchorEl}
@@ -100,8 +101,8 @@ export default function NoteCard({ key, note, handleDelete, idPassUp }) {
           //   }}>
           //   Copy
           // </Popover>
-          <div>asdfasdfd</div>
-        ) : null}
+          null}
+        </Typography>
       </CardContent>
     </Card>
   );
