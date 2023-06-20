@@ -16,6 +16,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import LeadCard from '../components/LeadCard';
 
 import NewLeadModal from '../components/NewLeadModal';
+import AddStagePopper from '../components/AddStagePopper';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -39,10 +40,10 @@ export default function LeadsRender({ idPassUp, stagesPassUp }) {
   const classes = useStyles();
   const [leads, setLeads] = useState([]);
   const [stages, setStages] = useState([]);
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [popupValue, setPopupValue] = React.useState('');
-  const [isHovered, setIsHovered] = useState(false);
-  const [inputValue, setInputValue] = useState('');
+  // const [anchorEl, setAnchorEl] = React.useState(null);
+  // const [popupValue, setPopupValue] = React.useState('');
+  // const [isHovered, setIsHovered] = useState(false);
+  // const [inputValue, setInputValue] = useState('');
   const [reRender, setRerender] = useState(true);
 
   useEffect(() => {
@@ -109,38 +110,38 @@ export default function LeadsRender({ idPassUp, stagesPassUp }) {
     return leadIns;
   }
 
-  const handlePopperClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+  // const handlePopperClick = (event) => {
+  //   setAnchorEl(event.currentTarget);
+  // };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  // const handleClose = () => {
+  //   setAnchorEl(null);
+  // };
 
-  const handleKeyDown = (event) => {
-    if (event.key === 'Enter' && !event.shiftKey) {
-      event.preventDefault();
-      event.target.value !== '' && updateStage(event.target.value);
-      setPopupValue('');
-      handleClose();
-      handleMouseLeave();
-      // event.currentTarget.blur(); // Blur the button to remove focus
-    }
-  };
+  // const handleKeyDown = (event) => {
+  //   if (event.key === 'Enter' && !event.shiftKey) {
+  //     event.preventDefault();
+  //     event.target.value !== '' && updateStage(event.target.value);
+  //     setPopupValue('');
+  //     handleClose();
+  //     handleMouseLeave();
+  //     // event.currentTarget.blur(); // Blur the button to remove focus
+  //   }
+  // };
 
-  const open = Boolean(anchorEl);
-  const id = open ? 'simple-popover' : undefined;
+  // const open = Boolean(anchorEl);
+  // const id = open ? 'simple-popover' : undefined;
 
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-  };
+  // const handleMouseEnter = () => {
+  //   setIsHovered(true);
+  // };
 
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-  };
+  // const handleMouseLeave = () => {
+  //   setIsHovered(false);
+  // };
   return (
     <div>
-      <Button variant="contained" onClick={handlePopperClick}>
+      {/* <Button variant="contained" onClick={handlePopperClick}>
         Add Stage
       </Button>
       <Popover
@@ -174,7 +175,8 @@ export default function LeadsRender({ idPassUp, stagesPassUp }) {
             ),
           }}
         />
-      </Popover>
+      </Popover> */}
+      <AddStagePopper updateStage={updateStage} />
       <NewLeadModal setRerender={() => setRerender(!reRender)} />
       <Stack direction="row" spacing={1} justifyContent="flex-start">
         {stages.map((stage) => {
