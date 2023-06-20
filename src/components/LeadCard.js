@@ -23,7 +23,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function NoteCard({ key, note, handleDelete, idPassUp }) {
+export default function LeadCard({ key, lead, handleDelete, idPassUp }) {
   const classes = useStyles();
   const history = useHistory();
 
@@ -32,7 +32,7 @@ export default function NoteCard({ key, note, handleDelete, idPassUp }) {
   const [isHovered, setIsHovered] = useState(false);
   const open = anchorEl;
   const id = open ? 'simple-popover' : undefined;
-  const handleClick = (event) => {
+  const handleClick = () => {
     setAnchorEl(true);
   };
   const handleClose = () => {
@@ -50,18 +50,18 @@ export default function NoteCard({ key, note, handleDelete, idPassUp }) {
     <Card key={key} className={classes.card} elevation={1}>
       <CardActionArea
         onClick={(e) => {
-          idPassUp(note.id);
+          idPassUp(lead.id);
           history.push('/lead');
         }}>
         <CardHeader
           className={classes.header}
           action={
-            <IconButton onClick={() => handleDelete(note.id)}>
+            <IconButton onClick={() => handleDelete(lead.id)}>
               <DeleteOutline />
             </IconButton>
           }
-          title={note.title}
-          // subheader={note.phone}
+          title={lead.title}
+          // subheader={lead.phone}
         />
       </CardActionArea>
       <CardContent>
@@ -72,10 +72,10 @@ export default function NoteCard({ key, note, handleDelete, idPassUp }) {
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           onClick={() => {
-            navigator.clipboard.writeText(note.phone);
+            navigator.clipboard.writeText(lead.phone);
             handleClick();
           }}>
-          {note.phone}
+          {lead.phone}
 
           <Popover
             id={id}

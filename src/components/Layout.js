@@ -64,11 +64,6 @@ export default function Layout({ children }) {
       icon: <SubjectOutlined color="secondary" />,
       path: '/',
     },
-    {
-      text: 'Create Note',
-      icon: <AddCircleOutline color="secondary" />,
-      path: '/create',
-    },
   ];
 
   return (

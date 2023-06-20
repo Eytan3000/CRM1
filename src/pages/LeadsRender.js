@@ -6,13 +6,16 @@ import {
   Popover,
   makeStyles,
 } from '@material-ui/core';
-import NoteCard from '../components/NoteCard';
+
 import Stack from '@mui/material/Stack';
 import TitleLabel from '../components/TitleLabel';
 import { convertCamelCaseToSpaces } from '../helpers/helpers';
 import InputFieldText from '../components/InputFieldText';
 
 import EditIcon from '@mui/icons-material/Edit';
+import LeadCard from '../components/LeadCard';
+
+import NewLeadModal from '../components/NewLeadModal';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -40,13 +43,14 @@ export default function LeadsRender({ idPassUp, stagesPassUp }) {
   const [popupValue, setPopupValue] = React.useState('');
   const [isHovered, setIsHovered] = useState(false);
   const [inputValue, setInputValue] = useState('');
+  const [reRender, setRerender] = useState(true);
 
   useEffect(() => {
     fetch('http://localhost:8000/leads')
       .then((res) => res.json())
       .then((data) => setLeads(data))
       .catch((err) => console.log(err));
-  }, []);
+  }, [reRender]);
 
   useEffect(() => {
     fetch('http://localhost:8000/stages')
@@ -79,7 +83,7 @@ export default function LeadsRender({ idPassUp, stagesPassUp }) {
     await fetch('http://localhost:8000/leads/' + id, {
       method: 'DELETE',
     });
-    const newLeads = leads.filter((note) => note.id !== id);
+    const newLeads = leads.filter((lead) => lead.id !== id);
     setLeads(newLeads);
   };
 
@@ -90,12 +94,12 @@ export default function LeadsRender({ idPassUp, stagesPassUp }) {
   };
 
   function leadRenderColumn(leads, stage) {
-    const leadIns = leads.map((note) => {
-      if (note.stage === stage)
+    const leadIns = leads.map((lead) => {
+      if (lead.stage === stage)
         return (
           <div>
-            <NoteCard
-              note={note}
+            <LeadCard
+              lead={lead}
               handleDelete={handleDelete}
               idPassUp={idPassUp}
             />
@@ -105,7 +109,7 @@ export default function LeadsRender({ idPassUp, stagesPassUp }) {
     return leadIns;
   }
 
-  const handleClick = (event) => {
+  const handlePopperClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -136,7 +140,7 @@ export default function LeadsRender({ idPassUp, stagesPassUp }) {
   };
   return (
     <div>
-      <Button variant="contained" onClick={handleClick}>
+      <Button variant="contained" onClick={handlePopperClick}>
         Add Stage
       </Button>
       <Popover
@@ -171,6 +175,7 @@ export default function LeadsRender({ idPassUp, stagesPassUp }) {
           }}
         />
       </Popover>
+      <NewLeadModal setRerender={() => setRerender(!reRender)} />
       <Stack direction="row" spacing={1} justifyContent="flex-start">
         {stages.map((stage) => {
           return (

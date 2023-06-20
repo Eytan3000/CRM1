@@ -11,6 +11,18 @@
     {
       "id": 3,
       "name": "callBack"
+    },
+    {
+      "name": "Call in a month",
+      "id": 4
+    },
+    {
+      "name": "More Details",
+      "id": 5
+    },
+    {
+      "name": "yoyo",
+      "id": 6
     }
   ],
   "leads": [
@@ -549,6 +561,118 @@
         }
       ],
       "id": 28
+    },
+    {
+      "title": "Eytan ve Karen / Yaya ",
+      "stage": "leadIn",
+      "name": "Eytan ve Karen",
+      "phone": "090909090909",
+      "email": "Eytan ve Karen",
+      "website": "Eytan ve Karen",
+      "facebook": "Eytan ve Karen",
+      "linkedin": "Eytan ve Karen",
+      "otherLink": "Eytan ve Karen",
+      "companyName": "Yaya",
+      "companyPhone": "Yaya",
+      "companyEmail": "Yaya",
+      "companyWebsite": "Yaya",
+      "companyFacebook": "",
+      "companyLinkedin": "",
+      "companyOtherLink": "",
+      "dateCreated": "19.06.2023",
+      "notes": [
+        {
+          "noteId": 1,
+          "noteDate": "19th June 2023 , 4:15 PM",
+          "noteContent": "note1"
+        },
+        {
+          "noteId": 2,
+          "noteDate": "19th June 2023 , 4:15 PM",
+          "noteContent": "note2"
+        }
+      ],
+      "id": 31
+    },
+    {
+      "title": "Yair ",
+      "stage": "noAnswer",
+      "name": "Yair",
+      "phone": "0547670033",
+      "email": "yair@gmail.com",
+      "website": "afasdf",
+      "facebook": "",
+      "linkedin": "",
+      "otherLink": "",
+      "companyName": "",
+      "companyPhone": "",
+      "companyEmail": "",
+      "companyWebsite": "",
+      "companyFacebook": "",
+      "companyLinkedin": "",
+      "companyOtherLink": "",
+      "dateCreated": "19.06.2023",
+      "notes": [
+        {
+          "noteId": 1,
+          "noteDate": "19th June 2023 , 4:20 PM",
+          "noteContent": "note"
+        },
+        {
+          "noteId": 2,
+          "noteDate": "19th June 2023 , 4:20 PM",
+          "noteContent": "note2"
+        }
+      ],
+      "id": 32
+    },
+    {
+      "title": "Karen Ronen / Karnina Nails ",
+      "stage": "More Details",
+      "name": "Karen Ronen",
+      "phone": "0547670033",
+      "email": "karenRonen3@gmail.com",
+      "website": "",
+      "facebook": "",
+      "linkedin": "",
+      "otherLink": "",
+      "companyName": "Karnina Nails",
+      "companyPhone": "",
+      "companyEmail": "",
+      "companyWebsite": "",
+      "companyFacebook": "",
+      "companyLinkedin": "",
+      "companyOtherLink": "",
+      "dateCreated": "19.06.2023",
+      "notes": [
+        {
+          "noteId": 1,
+          "noteDate": "19th June 2023 , 9:32 PM",
+          "noteContent": "דיברתי איתה, די מעצבנת אבל עושה ציפורניים יפות. לדבר איתה עוד חודש"
+        }
+      ],
+      "id": 33
+    },
+    {
+      "title": "ttttttt / rrrrrrr ",
+      "stage": "Call in a month",
+      "name": "ttttttt",
+      "phone": "060606060",
+      "email": "",
+      "website": "",
+      "facebook": "",
+      "linkedin": "",
+      "otherLink": "",
+      "companyName": "rrrrrrr",
+      "companyPhone": "",
+      "companyEmail": "",
+      "companyWebsite": "",
+      "companyFacebook": "",
+      "companyLinkedin": "",
+      "companyOtherLink": "",
+      "dateCreated": "20.06.2023",
+      "notes": [],
+      "id": 34
     }
   ]
 }

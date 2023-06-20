@@ -7,22 +7,20 @@ import LeftColumn from '../components/LeftColumn';
 import RightColumn from '../components/RightColumn';
 import { format } from 'date-fns';
 import SubmitButton from '../components/SubmitButton';
+import { Box } from '@mui/material';
 
 const useStyles = makeStyles({
   field: {
     marginTop: 20,
     marginBottom: 20,
-    display: 'block',
   },
 });
 
-export default function Create() {
+export default function Create({ onClose }) {
   const classes = useStyles();
   const history = useHistory();
 
   const [isDisabled, setIsDisabled] = useState(true);
-
-  const [titleError, setTitleError] = useState(false);
 
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
@@ -44,8 +42,6 @@ export default function Create() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    setTitleError(false);
 
     // if (name === '') setNameError(true);
     // if (details === '') setDetailsError(true);
@@ -73,12 +69,14 @@ export default function Create() {
           dateCreated: format(new Date(), 'dd.MM.Y'),
           notes: [],
         }),
-      }).then(() => history.push('/'));
+      }).then(onClose());
+      // .then(() => history.push('/'));
     }
   };
 
   return (
-    <Container>
+    <Box>
+      {/* <Container className={classes.field}> */}
       <Typography
         variant="h6"
         color="textSecondary"
@@ -119,6 +117,7 @@ export default function Create() {
         </Grid>
         <SubmitButton />
       </form>
-    </Container>
+      {/* </Container> */}
+    </Box>
   );
 }
