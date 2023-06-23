@@ -19,18 +19,6 @@
     {
       "name": "More Details",
       "id": 5
-    },
-    {
-      "name": "yoyo",
-      "id": 6
-    },
-    {
-      "name": "karen",
-      "id": 7
-    },
-    {
-      "name": "yoel",
-      "id": 8
     }
   ],
   "leads": [
@@ -681,6 +669,27 @@
       "dateCreated": "20.06.2023",
       "notes": [],
       "id": 34
+    },
+    {
+      "title": "Oryan / Climbing ",
+      "stage": "More Details",
+      "name": "Oryan",
+      "phone": "06846325243",
+      "email": "oryan@gmail.com",
+      "website": "",
+      "facebook": "",
+      "linkedin": "",
+      "otherLink": "",
+      "companyName": "Climbing",
+      "companyPhone": "",
+      "companyEmail": "",
+      "companyWebsite": "",
+      "companyFacebook": "",
+      "companyLinkedin": "",
+      "companyOtherLink": "",
+      "dateCreated": "22.06.2023",
+      "notes": [],
+      "id": 35
     }
   ]
 }

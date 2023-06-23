@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useRef, useState } from 'react';
 import {
   Button,
   IconButton,
@@ -36,6 +36,8 @@ export default function AddStagePopper({ updateStage }) {
   const [inputValue, setInputValue] = useState('');
   const [anchorEl, setAnchorEl] = React.useState(null);
 
+  const buttonRef = useRef(null);
+
   // const updateStage = (newStage) => {
   //   fetch('http://localhost:8000/stages', {
   //     method: 'POST',
@@ -54,6 +56,7 @@ export default function AddStagePopper({ updateStage }) {
 
   const handlePopperClick = (event) => {
     setAnchorEl(event.currentTarget);
+    buttonRef.current.blur();
   };
 
   const handleClose = () => {
@@ -63,11 +66,14 @@ export default function AddStagePopper({ updateStage }) {
   const handleKeyDown = (event) => {
     if (event.key === 'Enter' && !event.shiftKey) {
       event.preventDefault();
-      event.target.value !== '' && updateStage(event.target.value);
-      setPopupValue('');
-      handleClose();
-      handleMouseLeave();
-      // event.currentTarget.blur(); // Blur the button to remove focus
+
+      if (inputValue.trim().length !== 0) {
+        updateStage(event.target.value.trim());
+        setPopupValue('');
+        handleClose();
+        handleMouseLeave();
+        setInputValue('');
+      }
     }
   };
 
@@ -84,7 +90,7 @@ export default function AddStagePopper({ updateStage }) {
 
   return (
     <Fragment>
-      <Button variant="contained" onClick={handlePopperClick}>
+      <Button ref={buttonRef} variant="contained" onClick={handlePopperClick}>
         Add Stage
       </Button>
       <Popover

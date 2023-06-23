@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Create from '../pages/Create';
+import { useRef } from 'react';
 
 const style = {
   position: 'absolute',
@@ -19,7 +20,13 @@ const style = {
 
 export default function NewLeadModal({ setRerender }) {
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+
+  const buttonRef = useRef(null);
+
+  const handleOpen = () => {
+    setOpen(true);
+    buttonRef.current.blur();
+  };
   const handleClose = () => {
     setOpen(false);
     setRerender();
@@ -27,7 +34,9 @@ export default function NewLeadModal({ setRerender }) {
 
   return (
     <div>
-      <Button onClick={handleOpen}>New Lead</Button>
+      <Button ref={buttonRef} onClick={handleOpen}>
+        New Lead
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
