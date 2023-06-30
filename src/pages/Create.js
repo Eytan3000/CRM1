@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 import { Typography, Container, makeStyles } from '@material-ui/core';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
@@ -9,6 +9,9 @@ import { format } from 'date-fns';
 import SubmitButton from '../components/SubmitButton';
 import { Box } from '@mui/material';
 
+import { insertNewLead } from '../helpers/dbFunctions';
+import { addLeadToDBContext } from '../App';
+
 const useStyles = makeStyles({
   field: {
     marginTop: 20,
@@ -17,6 +20,8 @@ const useStyles = makeStyles({
 });
 
 export default function Create({ onClose }) {
+  const addLeadToDBCtx = useContext(addLeadToDBContext);
+
   const classes = useStyles();
   const history = useHistory();
 
@@ -43,32 +48,55 @@ export default function Create({ onClose }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // if (name) {
+    //   fetch('http://localhost:8000/leads', {
+    //     method: 'POST',
+    //     headers: { 'Content-type': 'application/json' },
+    //     body: JSON.stringify({
+    //       title: `${name}${nameC ? ' / ' + nameC : ''} `,
+    //       stage: 'leadIn',
+    //       name,
+    //       phone,
+    //       email,
+    //       website,
+    //       facebook,
+    //       linkedin,
+    //       otherLink,
+    //       companyName: nameC,
+    //       companyPhone: phoneC,
+    //       companyEmail: emailC,
+    //       companyWebsite: websiteC,
+    //       companyFacebook: facebookC,
+    //       companyLinkedin: linkedinC,
+    //       companyOtherLink: otherLinkC,
+    //       dateCreated: format(new Date(), 'dd.MM.Y'),
+    //       notes: [],
+    //     }),
+    //   }).then(onClose());
+    //   // .then(() => history.push('/'));
+    // }
     if (name) {
-      fetch('http://localhost:8000/leads', {
-        method: 'POST',
-        headers: { 'Content-type': 'application/json' },
-        body: JSON.stringify({
-          title: `${name}${nameC ? ' / ' + nameC : ''} `,
-          stage: 'leadIn',
-          name,
-          phone,
-          email,
-          website,
-          facebook,
-          linkedin,
-          otherLink,
-          companyName: nameC,
-          companyPhone: phoneC,
-          companyEmail: emailC,
-          companyWebsite: websiteC,
-          companyFacebook: facebookC,
-          companyLinkedin: linkedinC,
-          companyOtherLink: otherLinkC,
-          dateCreated: format(new Date(), 'dd.MM.Y'),
-          notes: [],
-        }),
-      }).then(onClose());
-      // .then(() => history.push('/'));
+      addLeadToDBCtx({
+        title: `${name}${nameC ? ' / ' + nameC : ''} `,
+        stage: 'leadIn',
+        name,
+        phone,
+        email,
+        website,
+        facebook,
+        linkedin,
+        otherLink,
+        companyName: nameC,
+        companyPhone: phoneC,
+        companyEmail: emailC,
+        companyWebsite: websiteC,
+        companyFacebook: facebookC,
+        companyLinkedin: linkedinC,
+        companyOtherLink: otherLinkC,
+        dateCreated: format(new Date(), 'dd.MM.Y'),
+        notes: [],
+      });
+      onClose();
     }
   };
 

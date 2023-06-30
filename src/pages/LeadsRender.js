@@ -17,6 +17,7 @@ import LeadCard from '../components/LeadCard';
 
 import NewLeadModal from '../components/NewLeadModal';
 import AddStagePopper from '../components/AddStagePopper';
+import { loadAllLeadsCards } from '../helpers/dbFunctions';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -47,8 +48,7 @@ export default function LeadsRender({ idPassUp, stagesPassUp }) {
   const [reRender, setRerender] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:8000/leads')
-      .then((res) => res.json())
+    loadAllLeadsCards()
       .then((data) => setLeads(data))
       .catch((err) => console.log(err));
   }, [reRender]);
