@@ -43,8 +43,6 @@ export default function Create({ onClose }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // if (name === '') setNameError(true);
-    // if (details === '') setDetailsError(true);
     if (name) {
       fetch('http://localhost:8000/leads', {
         method: 'POST',
