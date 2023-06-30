@@ -9,8 +9,7 @@ import { format } from 'date-fns';
 import SubmitButton from '../components/SubmitButton';
 import { Box } from '@mui/material';
 
-import { insertNewLead } from '../helpers/dbFunctions';
-import { addLeadToDBContext } from '../App';
+import { addLeadToDBContext } from '../contexts/DbFunctionsContext';
 
 const useStyles = makeStyles({
   field: {
@@ -43,38 +42,9 @@ export default function Create({ onClose }) {
   const [linkedinC, setLinkedinC] = useState('');
   const [otherLinkC, setOtherLinkC] = useState('');
 
-  // const [dateAdded, setDateAdded] = useState('');
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // if (name) {
-    //   fetch('http://localhost:8000/leads', {
-    //     method: 'POST',
-    //     headers: { 'Content-type': 'application/json' },
-    //     body: JSON.stringify({
-    //       title: `${name}${nameC ? ' / ' + nameC : ''} `,
-    //       stage: 'leadIn',
-    //       name,
-    //       phone,
-    //       email,
-    //       website,
-    //       facebook,
-    //       linkedin,
-    //       otherLink,
-    //       companyName: nameC,
-    //       companyPhone: phoneC,
-    //       companyEmail: emailC,
-    //       companyWebsite: websiteC,
-    //       companyFacebook: facebookC,
-    //       companyLinkedin: linkedinC,
-    //       companyOtherLink: otherLinkC,
-    //       dateCreated: format(new Date(), 'dd.MM.Y'),
-    //       notes: [],
-    //     }),
-    //   }).then(onClose());
-    //   // .then(() => history.push('/'));
-    // }
     if (name) {
       addLeadToDBCtx({
         title: `${name}${nameC ? ' / ' + nameC : ''} `,
@@ -102,7 +72,6 @@ export default function Create({ onClose }) {
 
   return (
     <Box>
-      {/* <Container className={classes.field}> */}
       <Typography
         variant="h6"
         color="textSecondary"
@@ -143,7 +112,6 @@ export default function Create({ onClose }) {
         </Grid>
         <SubmitButton />
       </form>
-      {/* </Container> */}
     </Box>
   );
 }

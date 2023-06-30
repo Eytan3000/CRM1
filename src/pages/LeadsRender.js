@@ -1,18 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Button,
-  IconButton,
-  InputAdornment,
-  Popover,
-  makeStyles,
-} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 
 import Stack from '@mui/material/Stack';
 import TitleLabel from '../components/TitleLabel';
 import { convertCamelCaseToSpaces } from '../helpers/helpers';
-import InputFieldText from '../components/InputFieldText';
 
-import EditIcon from '@mui/icons-material/Edit';
 import LeadCard from '../components/LeadCard';
 
 import NewLeadModal from '../components/NewLeadModal';
@@ -41,10 +33,6 @@ export default function LeadsRender({ idPassUp, stagesPassUp }) {
   const classes = useStyles();
   const [leads, setLeads] = useState([]);
   const [stages, setStages] = useState([]);
-  // const [anchorEl, setAnchorEl] = React.useState(null);
-  // const [popupValue, setPopupValue] = React.useState('');
-  // const [isHovered, setIsHovered] = useState(false);
-  // const [inputValue, setInputValue] = useState('');
   const [reRender, setRerender] = useState(true);
 
   useEffect(() => {
@@ -110,72 +98,8 @@ export default function LeadsRender({ idPassUp, stagesPassUp }) {
     return leadIns;
   }
 
-  // const handlePopperClick = (event) => {
-  //   setAnchorEl(event.currentTarget);
-  // };
-
-  // const handleClose = () => {
-  //   setAnchorEl(null);
-  // };
-
-  // const handleKeyDown = (event) => {
-  //   if (event.key === 'Enter' && !event.shiftKey) {
-  //     event.preventDefault();
-  //     event.target.value !== '' && updateStage(event.target.value);
-  //     setPopupValue('');
-  //     handleClose();
-  //     handleMouseLeave();
-  //     // event.currentTarget.blur(); // Blur the button to remove focus
-  //   }
-  // };
-
-  // const open = Boolean(anchorEl);
-  // const id = open ? 'simple-popover' : undefined;
-
-  // const handleMouseEnter = () => {
-  //   setIsHovered(true);
-  // };
-
-  // const handleMouseLeave = () => {
-  //   setIsHovered(false);
-  // };
   return (
     <div>
-      {/* <Button variant="contained" onClick={handlePopperClick}>
-        Add Stage
-      </Button>
-      <Popover
-        id={id}
-        open={open}
-        anchorEl={anchorEl}
-        onClose={handleClose}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}>
-        <InputFieldText
-          onKeyDown={handleKeyDown}
-          className={classes.customCard}
-          fullWidth
-          key={id}
-          label="Stage Name"
-          value={popupValue}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          onChange={(event) => setInputValue(event.target.value)}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="start">
-                {isHovered || inputValue !== '' ? (
-                  <IconButton aria-label="Edit" size="small">
-                    <EditIcon />
-                  </IconButton>
-                ) : null}
-              </InputAdornment>
-            ),
-          }}
-        />
-      </Popover> */}
       <AddStagePopper updateStage={updateStage} />
       <NewLeadModal setRerender={() => setRerender(!reRender)} />
       <Stack direction="row" spacing={1} justifyContent="flex-start">

@@ -8,8 +8,7 @@ import Layout from './components/Layout';
 import Lead from './pages/Lead';
 import { useState } from 'react';
 import LeadsRender from './pages/LeadsRender';
-import { insertNewLead } from './helpers/dbFunctions';
-
+import { DbFunctionsProvider } from './contexts/DbFunctionsContext';
 const theme = createTheme({
   palette: {
     primary: {
@@ -26,12 +25,6 @@ const theme = createTheme({
   },
 });
 
-export const addLeadToDBContext = React.createContext();
-
-function addLeadToDB(lead) {
-  insertNewLead(lead);
-}
-
 function App() {
   const [leadId, setLeadId] = useState('');
   const [stages, setStages] = useState('');
@@ -41,7 +34,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <addLeadToDBContext.Provider value={addLeadToDB}>
+      <DbFunctionsProvider>
         <Router>
           <Layout>
             <Switch>
@@ -57,7 +50,7 @@ function App() {
             </Switch>
           </Layout>
         </Router>
-      </addLeadToDBContext.Provider>
+      </DbFunctionsProvider>
     </ThemeProvider>
   );
 }
