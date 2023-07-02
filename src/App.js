@@ -9,10 +9,7 @@ import Lead from './pages/Lead';
 import { useState } from 'react';
 import LeadsRender from './pages/LeadsRender';
 import { DbFunctionsProvider } from './contexts/DbFunctionsContext';
-import {
-  loadAllLeadsCards,
-  loadLeadsTitleAndPhone,
-} from './helpers/dbFunctions';
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -20,19 +17,18 @@ const theme = createTheme({
     },
     secondary: purple,
   },
-  typography: {
-    fontFamily: 'Quicksand',
-    fontWeightLight: 400,
-    fontWeightRegular: 500,
-    fontWeightMedium: 600,
-    fontWeightBold: 700,
-  },
+  // typography: {
+  //   fontFamily: 'Quicksand',
+  //   fontWeightLight: 400,
+  //   fontWeightRegular: 500,
+  //   fontWeightMedium: 600,
+  //   fontWeightBold: 700,
+  // },
 });
 
 function App() {
   const [leadId, setLeadId] = useState('');
   const [stages, setStages] = useState('');
-  const [leadsCards, setLeadsCards] = useState([]);
 
   const idPassUp = (id) => setLeadId(id);
   const stagesPassUp = (stage) => setStages(stage);

@@ -56,21 +56,6 @@ export default function LeadsRender({ idPassUp, stagesPassUp }) {
     })();
   }, []);
 
-  // const updateStage = (newStage) => {
-  //   fetch('http://localhost:8000/stages', {
-  //     method: 'POST',
-  //     headers: { 'Content-type': 'application/json' },
-  //     body: JSON.stringify({
-  //       name: newStage,
-  //     }),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setStages((prevStage) => [...prevStage, { ...data }]);
-  //     })
-
-  //     .catch((err) => console.error(err));
-  // };
   const updateStage = (newStage) => {
     updateStageToDb(newStage)
       .then((data) => {
@@ -78,7 +63,7 @@ export default function LeadsRender({ idPassUp, stagesPassUp }) {
       })
       .catch((err) => console.error(err));
   };
-  //////////////////////////////////////////////
+
   const handleDelete = async (id) => {
     await deleteLeadFromDb(id);
   };
