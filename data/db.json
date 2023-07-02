@@ -31,6 +31,10 @@
     {
       "name": "kjjj",
       "id": 8
+    },
+    {
+      "name": "orororor",
+      "id": 9
     }
   ],
   "leads": [
@@ -571,16 +575,16 @@
       "id": 28
     },
     {
-      "title": "Yair ",
+      "title": "Yair PetchPetch",
       "stage": "noAnswer",
-      "name": "Yair",
+      "name": "Yair kor",
       "phone": "0547670033",
       "email": "yair@gmail.com",
       "website": "afasdf",
       "facebook": "",
       "linkedin": "",
       "otherLink": "",
-      "companyName": "",
+      "companyName": "KriCher",
       "companyPhone": "",
       "companyEmail": "",
       "companyWebsite": "",

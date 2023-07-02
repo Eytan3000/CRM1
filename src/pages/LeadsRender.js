@@ -11,7 +11,7 @@ import NewLeadModal from '../components/NewLeadModal';
 import AddStagePopper from '../components/AddStagePopper';
 import { loadCards, loadStagesContext } from '../contexts/DbFunctionsContext';
 
-import { deleteLeadFromDb } from '../helpers/dbFunctions';
+import { deleteLeadFromDb, updateStageToDb } from '../helpers/dbFunctions';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -48,7 +48,6 @@ export default function LeadsRender({ idPassUp, stagesPassUp }) {
   }, [reRender]);
 
   //load Stages
-
   useEffect(() => {
     (async () => {
       const arr = await loadStagesCtx();
@@ -57,19 +56,26 @@ export default function LeadsRender({ idPassUp, stagesPassUp }) {
     })();
   }, []);
 
+  // const updateStage = (newStage) => {
+  //   fetch('http://localhost:8000/stages', {
+  //     method: 'POST',
+  //     headers: { 'Content-type': 'application/json' },
+  //     body: JSON.stringify({
+  //       name: newStage,
+  //     }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setStages((prevStage) => [...prevStage, { ...data }]);
+  //     })
+
+  //     .catch((err) => console.error(err));
+  // };
   const updateStage = (newStage) => {
-    fetch('http://localhost:8000/stages', {
-      method: 'POST',
-      headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify({
-        name: newStage,
-      }),
-    })
-      .then((res) => res.json())
+    updateStageToDb(newStage)
       .then((data) => {
         setStages((prevStage) => [...prevStage, { ...data }]);
       })
-
       .catch((err) => console.error(err));
   };
   //////////////////////////////////////////////

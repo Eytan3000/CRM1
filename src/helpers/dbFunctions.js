@@ -17,4 +17,13 @@ export function deleteLeadFromDb(id) {
 export function loadStagesFromDb() {
   return fetch('http://localhost:8000/stages').then((res) => res.json());
 }
-// export function loadLead(lead) {}
+
+export function updateStageToDb(newStage) {
+  return fetch('http://localhost:8000/stages', {
+    method: 'POST',
+    headers: { 'Content-type': 'application/json' },
+    body: JSON.stringify({
+      name: newStage,
+    }),
+  }).then((res) => res.json());
+}

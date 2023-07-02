@@ -3,6 +3,7 @@ import {
   insertNewLead,
   loadAllLeadsCards,
   loadStagesFromDb,
+  updateStageToDb,
 } from '../helpers/dbFunctions';
 
 export const addLeadToDBContext = React.createContext();

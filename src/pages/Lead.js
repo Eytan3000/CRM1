@@ -23,15 +23,6 @@ export default function Lead({ id, stages }) {
   const [disabled, setDisabled] = useState(true);
   const [editKey, setEditKey] = useState('');
 
-  // useEffect(() => {
-  //   fetch('http://localhost:8000/leads')
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       data.map((lead) => lead.id === id && setLead(lead));
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, [id]);
-
   // Find lead in database and set it to page
   useEffect(() => {
     (async () => {
