@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Container, Grid, makeStyles } from '@material-ui/core';
 import LeadDetails from '../components/LeadDetails';
 import NoteStack from '../components/NoteStack';
+import { loadLeadContext } from '../contexts/DbFunctionsContext';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -16,17 +17,27 @@ const useStyles = makeStyles((theme) => {
 export default function Lead({ id, stages }) {
   const classes = useStyles();
 
+  const loadLeadCtx = useContext(loadLeadContext);
+
   const [lead, setLead] = useState([]);
   const [disabled, setDisabled] = useState(true);
   const [editKey, setEditKey] = useState('');
 
+  // useEffect(() => {
+  //   fetch('http://localhost:8000/leads')
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       data.map((lead) => lead.id === id && setLead(lead));
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, [id]);
+
+  // Find lead in database and set it to page
   useEffect(() => {
-    fetch('http://localhost:8000/leads')
-      .then((res) => res.json())
-      .then((data) => {
-        data.map((lead) => (lead.id === id ? setLead(lead) : null));
-      })
-      .catch((err) => console.log(err));
+    (async () => {
+      const x = await loadLeadCtx(id);
+      setLead(x);
+    })();
   }, [id]);
 
   useEffect(() => {
@@ -52,6 +63,7 @@ export default function Lead({ id, stages }) {
       console.error('Error:', error);
     }
   };
+
   return (
     <div className={classes.page}>
       <Container>

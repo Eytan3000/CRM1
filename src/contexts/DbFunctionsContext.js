@@ -8,6 +8,7 @@ import {
 export const addLeadToDBContext = React.createContext();
 export const loadCards = React.createContext();
 export const loadStagesContext = React.createContext();
+export const loadLeadContext = React.createContext();
 
 export function DbFunctionsProvider({ children }) {
   // const [leadsCards, setLeadsCards] = useState([]);
@@ -55,11 +56,23 @@ export function DbFunctionsProvider({ children }) {
     }
   }
 
+  async function loadLead(LeadId) {
+    try {
+      const data = await loadAllLeadsCards();
+      const lead = data.find((lead) => lead.id === LeadId); //returns only the lead with the right id.
+      return lead;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   return (
     <addLeadToDBContext.Provider value={addLeadToDB}>
       <loadCards.Provider value={loadCardsContent}>
         <loadStagesContext.Provider value={loadStages}>
-          {children}
+          <loadLeadContext.Provider value={loadLead}>
+            {children}
+          </loadLeadContext.Provider>
         </loadStagesContext.Provider>
       </loadCards.Provider>
     </addLeadToDBContext.Provider>

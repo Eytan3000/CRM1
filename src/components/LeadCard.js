@@ -23,7 +23,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function LeadCard({ key, lead, handleDelete, idPassUp }) {
+export default function LeadCard({ keyVal, lead, handleDelete, idPassUp }) {
   const classes = useStyles();
   const history = useHistory();
 
@@ -47,7 +47,7 @@ export default function LeadCard({ key, lead, handleDelete, idPassUp }) {
   //
 
   return (
-    <Card key={key} className={classes.card} elevation={1}>
+    <Card key={keyVal} className={classes.card} elevation={1}>
       <CardActionArea
         onClick={(e) => {
           idPassUp(lead.id);

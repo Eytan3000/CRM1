@@ -83,7 +83,7 @@ export default function LeadsRender({ idPassUp, stagesPassUp }) {
         return (
           <div key={lead.id}>
             <LeadCard
-              // key={lead.id}
+              keyVal={lead.id}
               lead={lead}
               handleDelete={handleDelete}
               idPassUp={idPassUp}

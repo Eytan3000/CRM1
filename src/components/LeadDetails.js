@@ -71,7 +71,7 @@ export default function LeadDetails({
             className={classes.customCard}
             fullWidth
             disabled={false}
-            key={id}
+            keyVal={key}
             defaultValue={value}
           />
         );
@@ -81,7 +81,7 @@ export default function LeadDetails({
           className={classes.customCard}
           fullWidth
           disabled={disabled}
-          key={id}
+          keyVal={key}
           defaultValue={value}
         />
       );
@@ -89,23 +89,23 @@ export default function LeadDetails({
 
   return (
     <div>
-      {Object.entries(lead).map(([key, value]) => {
-        if (key !== 'notes') {
+      {Object.entries(lead).map(([keyVal, value]) => {
+        if (keyVal !== 'notes') {
           return (
-            <div>
+            <div key={keyVal}>
               <Grid container spacing={1}>
                 <Grid className={classes.titleLabel}>
                   <TitleLabel
                     variant="body1"
                     // className={classes.titleLabel}
-                    label={convertCamelCaseToSpaces(key)}
+                    label={convertCamelCaseToSpaces(keyVal)}
                   />
                 </Grid>
                 <Grid item xs={12} md={6}>
-                  {renderEditingField(key, value)}
+                  {renderEditingField(keyVal, value)}
                 </Grid>
                 <Grid>
-                  <IconButton key={id} onClick={() => setEditKey(key)}>
+                  <IconButton key={id} onClick={() => setEditKey(keyVal)}>
                     <EditIcon className={classes.editButton} />
                   </IconButton>
                 </Grid>

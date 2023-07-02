@@ -27,6 +27,10 @@
     {
       "name": "kkk",
       "id": 7
+    },
+    {
+      "name": "kjjj",
+      "id": 8
     }
   ],
   "leads": [
@@ -147,7 +151,7 @@
       "title": "eytan / krief ",
       "stage": "leadIn",
       "name": "eytan",
-      "phone": "",
+      "phone": "55555",
       "email": "",
       "website": "",
       "facebook": "",
@@ -543,9 +547,9 @@
       "title": "Yair Petch / Kricherer Company Ltd. ",
       "stage": "leadIn",
       "name": "Yair Petch",
-      "phone": "050505050505",
+      "phone": "66666",
       "email": "petch@gmail.com",
-      "website": "",
+      "website": "kriecherer.com",
       "facebook": "",
       "linkedin": "",
       "otherLink": "",
@@ -629,7 +633,7 @@
       "title": "Oryan / Climbing ",
       "stage": "More Details",
       "name": "Oryan",
-      "phone": "06846325243",
+      "phone": "1111111",
       "email": "oryan@gmail.com",
       "website": "",
       "facebook": "",
