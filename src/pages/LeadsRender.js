@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 
 import Stack from '@mui/material/Stack';
@@ -9,7 +9,9 @@ import LeadCard from '../components/LeadCard';
 
 import NewLeadModal from '../components/NewLeadModal';
 import AddStagePopper from '../components/AddStagePopper';
-import { loadAllLeadsCards } from '../helpers/dbFunctions';
+import { loadCards, loadStagesContext } from '../contexts/DbFunctionsContext';
+
+import { deleteLeadFromDb } from '../helpers/dbFunctions';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -30,28 +32,41 @@ const useStyles = makeStyles((theme) => {
 });
 
 export default function LeadsRender({ idPassUp, stagesPassUp }) {
+  const loadCardsContentCtx = useContext(loadCards);
+  const loadStagesCtx = useContext(loadStagesContext);
+
   const classes = useStyles();
   const [leads, setLeads] = useState([]);
   const [stages, setStages] = useState([]);
   const [reRender, setRerender] = useState(true);
 
   useEffect(() => {
-    loadAllLeadsCards()
-      .then((data) => setLeads(data))
-      .catch((err) => console.log(err));
+    (async () => {
+      const arr = await loadCardsContentCtx();
+      setLeads(arr);
+    })();
   }, [reRender]);
 
+  // useEffect(() => {
+  //   fetch('http://localhost:8000/stages')
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setStages(data);
+  //       stagesPassUp(data);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, []);
+
+  //load Stages
+
   useEffect(() => {
-    fetch('http://localhost:8000/stages')
-      .then((res) => res.json())
-      .then((data) => {
-        setStages(data);
-        stagesPassUp(data);
-      })
-      .catch((err) => console.log(err));
+    (async () => {
+      const arr = await loadStagesCtx();
+      setStages(arr);
+      stagesPassUp(arr);
+    })();
   }, []);
 
-  //////////////////////////////////////////////
   const updateStage = (newStage) => {
     fetch('http://localhost:8000/stages', {
       method: 'POST',
@@ -69,17 +84,7 @@ export default function LeadsRender({ idPassUp, stagesPassUp }) {
   };
   //////////////////////////////////////////////
   const handleDelete = async (id) => {
-    await fetch('http://localhost:8000/leads/' + id, {
-      method: 'DELETE',
-    });
-    const newLeads = leads.filter((lead) => lead.id !== id);
-    setLeads(newLeads);
-  };
-
-  const breakpoints = {
-    default: 3,
-    1100: 2,
-    700: 3,
+    await deleteLeadFromDb(id);
   };
 
   function leadRenderColumn(leads, stage) {

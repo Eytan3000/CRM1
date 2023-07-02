@@ -8,7 +8,13 @@ export function insertNewLead(lead) {
 export function loadAllLeadsCards() {
   return fetch('http://localhost:8000/leads').then((res) => res.json());
 }
-export function loadStages() {
-  return fetch('http://localhost:8000/leads').then((res) => res.json());
+
+export function deleteLeadFromDb(id) {
+  fetch('http://localhost:8000/leads/' + id, {
+    method: 'DELETE',
+  });
 }
-export function loadLead(lead) {}
+export function loadStagesFromDb() {
+  return fetch('http://localhost:8000/stages').then((res) => res.json());
+}
+// export function loadLead(lead) {}

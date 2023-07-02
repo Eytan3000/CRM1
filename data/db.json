@@ -23,6 +23,10 @@
     {
       "name": "new ssss",
       "id": 6
+    },
+    {
+      "name": "kkk",
+      "id": 7
     }
   ],
   "leads": [
@@ -654,27 +658,6 @@
       "id": 33
     },
     {
-      "title": "ttttttt / rrrrrrr ",
-      "stage": "Call in a month",
-      "name": "ttttttt",
-      "phone": "060606060",
-      "email": "",
-      "website": "",
-      "facebook": "",
-      "linkedin": "",
-      "otherLink": "",
-      "companyName": "rrrrrrr",
-      "companyPhone": "",
-      "companyEmail": "",
-      "companyWebsite": "",
-      "companyFacebook": "",
-      "companyLinkedin": "",
-      "companyOtherLink": "",
-      "dateCreated": "20.06.2023",
-      "notes": [],
-      "id": 34
-    },
-    {
       "title": "Oryan / Climbing ",
       "stage": "More Details",
       "name": "Oryan",
@@ -694,48 +677,6 @@
       "dateCreated": "22.06.2023",
       "notes": [],
       "id": 35
-    },
-    {
-      "title": "Guily / Krief ",
-      "stage": "leadIn",
-      "name": "Guily",
-      "phone": "",
-      "email": "",
-      "website": "",
-      "facebook": "",
-      "linkedin": "",
-      "otherLink": "",
-      "companyName": "Krief",
-      "companyPhone": "",
-      "companyEmail": "",
-      "companyWebsite": "",
-      "companyFacebook": "",
-      "companyLinkedin": "",
-      "companyOtherLink": "",
-      "dateCreated": "30.06.2023",
-      "notes": [],
-      "id": 36
-    },
-    {
-      "title": "guily2 / krief 2 ",
-      "stage": "leadIn",
-      "name": "guily2",
-      "phone": "",
-      "email": "",
-      "website": "",
-      "facebook": "",
-      "linkedin": "",
-      "otherLink": "",
-      "companyName": "krief 2",
-      "companyPhone": "",
-      "companyEmail": "",
-      "companyWebsite": "",
-      "companyFacebook": "",
-      "companyLinkedin": "",
-      "companyOtherLink": "",
-      "dateCreated": "30.06.2023",
-      "notes": [],
-      "id": 37
     },
     {
       "title": "moti stein / CallApp ",
@@ -759,23 +700,23 @@
       "id": 39
     },
     {
-      "title": "Bar Grige / Investing ",
-      "stage": "Call in a month",
-      "name": "Bar Grige",
-      "phone": "696948484",
+      "title": "karenRon / Karnina ",
+      "stage": "leadIn",
+      "name": "karenRon",
+      "phone": "060606060",
       "email": "",
       "website": "",
       "facebook": "",
       "linkedin": "",
       "otherLink": "",
-      "companyName": "Investing",
+      "companyName": "Karnina",
       "companyPhone": "",
       "companyEmail": "",
       "companyWebsite": "",
       "companyFacebook": "",
       "companyLinkedin": "",
       "companyOtherLink": "",
-      "dateCreated": "30.06.2023",
+      "dateCreated": "01.07.2023",
       "notes": [],
       "id": 40
     }

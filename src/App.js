@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Create from './pages/Create';
@@ -9,6 +9,10 @@ import Lead from './pages/Lead';
 import { useState } from 'react';
 import LeadsRender from './pages/LeadsRender';
 import { DbFunctionsProvider } from './contexts/DbFunctionsContext';
+import {
+  loadAllLeadsCards,
+  loadLeadsTitleAndPhone,
+} from './helpers/dbFunctions';
 const theme = createTheme({
   palette: {
     primary: {
@@ -28,6 +32,7 @@ const theme = createTheme({
 function App() {
   const [leadId, setLeadId] = useState('');
   const [stages, setStages] = useState('');
+  const [leadsCards, setLeadsCards] = useState([]);
 
   const idPassUp = (id) => setLeadId(id);
   const stagesPassUp = (stage) => setStages(stage);
