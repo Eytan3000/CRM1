@@ -47,16 +47,6 @@ export default function LeadsRender({ idPassUp, stagesPassUp }) {
     })();
   }, [reRender]);
 
-  // useEffect(() => {
-  //   fetch('http://localhost:8000/stages')
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setStages(data);
-  //       stagesPassUp(data);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, []);
-
   //load Stages
 
   useEffect(() => {
@@ -91,8 +81,9 @@ export default function LeadsRender({ idPassUp, stagesPassUp }) {
     const leadIns = leads.map((lead) => {
       if (lead.stage === stage)
         return (
-          <div>
+          <div key={lead.id}>
             <LeadCard
+              // key={lead.id}
               lead={lead}
               handleDelete={handleDelete}
               idPassUp={idPassUp}
@@ -110,7 +101,7 @@ export default function LeadsRender({ idPassUp, stagesPassUp }) {
       <Stack direction="row" spacing={1} justifyContent="flex-start">
         {stages.map((stage) => {
           return (
-            <Stack className={classes.background} spacing={1}>
+            <Stack key={stage.id} className={classes.background} spacing={1}>
               <TitleLabel
                 variant="h6"
                 className={classes.label}

@@ -468,7 +468,7 @@
     {
       "title": "asdf / asdf ",
       "stage": "leadIn",
-      "name": "asdf",
+      "name": "Koral",
       "phone": "",
       "email": "",
       "website": "",
@@ -561,42 +561,10 @@
         {
           "noteId": 1,
           "noteDate": "19th June 2023 , 2:46 PM",
-          "noteContent": "בן זונה לא ענה לי"
+          "noteContent": "לא עונה"
         }
       ],
       "id": 28
-    },
-    {
-      "title": "Eytan ve Karen / Yaya ",
-      "stage": "leadIn",
-      "name": "Eytan ve Karen",
-      "phone": "090909090909",
-      "email": "Eytan ve Karen",
-      "website": "Eytan ve Karen",
-      "facebook": "Eytan ve Karen",
-      "linkedin": "Eytan ve Karen",
-      "otherLink": "Eytan ve Karen",
-      "companyName": "Yaya",
-      "companyPhone": "Yaya",
-      "companyEmail": "Yaya",
-      "companyWebsite": "Yaya",
-      "companyFacebook": "",
-      "companyLinkedin": "",
-      "companyOtherLink": "",
-      "dateCreated": "19.06.2023",
-      "notes": [
-        {
-          "noteId": 1,
-          "noteDate": "19th June 2023 , 4:15 PM",
-          "noteContent": "note1"
-        },
-        {
-          "noteId": 2,
-          "noteDate": "19th June 2023 , 4:15 PM",
-          "noteContent": "note2"
-        }
-      ],
-      "id": 31
     },
     {
       "title": "Yair ",
@@ -677,48 +645,6 @@
       "dateCreated": "22.06.2023",
       "notes": [],
       "id": 35
-    },
-    {
-      "title": "moti stein / CallApp ",
-      "stage": "noAnswer",
-      "name": "moti stein",
-      "phone": "0505050505444",
-      "email": "",
-      "website": "",
-      "facebook": "",
-      "linkedin": "",
-      "otherLink": "",
-      "companyName": "CallApp",
-      "companyPhone": "",
-      "companyEmail": "",
-      "companyWebsite": "",
-      "companyFacebook": "",
-      "companyLinkedin": "",
-      "companyOtherLink": "",
-      "dateCreated": "30.06.2023",
-      "notes": [],
-      "id": 39
-    },
-    {
-      "title": "karenRon / Karnina ",
-      "stage": "leadIn",
-      "name": "karenRon",
-      "phone": "060606060",
-      "email": "",
-      "website": "",
-      "facebook": "",
-      "linkedin": "",
-      "otherLink": "",
-      "companyName": "Karnina",
-      "companyPhone": "",
-      "companyEmail": "",
-      "companyWebsite": "",
-      "companyFacebook": "",
-      "companyLinkedin": "",
-      "companyOtherLink": "",
-      "dateCreated": "01.07.2023",
-      "notes": [],
-      "id": 40
     }
   ]
 }

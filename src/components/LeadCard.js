@@ -4,7 +4,7 @@ import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import { IconButton, Typography } from '@mui/material';
 import { DeleteOutline } from '@mui/icons-material';
-import { CardActionArea, Popover, makeStyles } from '@material-ui/core';
+import { CardActionArea, Icon, Popover, makeStyles } from '@material-ui/core';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const useStyles = makeStyles({
@@ -56,9 +56,9 @@ export default function LeadCard({ key, lead, handleDelete, idPassUp }) {
         <CardHeader
           className={classes.header}
           action={
-            <IconButton onClick={() => handleDelete(lead.id)}>
+            <Icon onClick={() => handleDelete(lead.id)}>
               <DeleteOutline />
-            </IconButton>
+            </Icon>
           }
           title={lead.title}
           // subheader={lead.phone}
@@ -88,20 +88,7 @@ export default function LeadCard({ key, lead, handleDelete, idPassUp }) {
             }}>
             Phone Copied
           </Popover>
-          {isHovered ? (
-            <div>Copy</div>
-          ) : // <Popover
-          //   // id={id}
-          //   // open={open}
-          //   // anchorEl={anchorEl}
-          //   // onClose={handleClose}
-          //   anchorOrigin={{
-          //     vertical: 'bottom',
-          //     horizontal: 'left',
-          //   }}>
-          //   Copy
-          // </Popover>
-          null}
+          {isHovered ? <span>Copy</span> : null}
         </Typography>
       </CardContent>
     </Card>

@@ -92,7 +92,7 @@ export default function Layout({ children }) {
         {/* List */}
         <List>
           {menuItems.map((item) => (
-            <ListItemButton>
+            <ListItemButton key={item.text}>
               <ListItem
                 key={item.text}
                 onClick={() => history.push(item.path)}
