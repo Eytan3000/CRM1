@@ -16,7 +16,8 @@ import { deleteLeadFromDb, updateStageToDb } from '../helpers/dbFunctions';
 const useStyles = makeStyles((theme) => {
   return {
     background: {
-      background: '#F2F2F2',
+      // background: '#F2F2F2',
+      background: '#fafafcff',
       width: '100%',
       padding: theme.spacing(2),
     },
@@ -84,6 +85,7 @@ export default function LeadsRender({ idPassUp, stagesPassUp }) {
     });
     return leadIns;
   }
+  console.log(leads);
 
   return (
     <div>
@@ -92,7 +94,11 @@ export default function LeadsRender({ idPassUp, stagesPassUp }) {
       <Stack direction="row" spacing={1} justifyContent="flex-start">
         {stages.map((stage) => {
           return (
-            <Stack key={stage.id} className={classes.background} spacing={1}>
+            <Stack
+              key={stage.id}
+              className={classes.background}
+              spacing={1}
+              minWidth={300}>
               <TitleLabel
                 variant="h6"
                 className={classes.label}

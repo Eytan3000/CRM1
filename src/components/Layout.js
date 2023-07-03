@@ -1,5 +1,6 @@
 import { Drawer, makeStyles, AppBar, Toolbar, Avatar } from '@material-ui/core';
-import { AddCircleOutline, SubjectOutlined } from '@mui/icons-material';
+// import { AddCircleOutline, SubjectOutlined } from '@mui/icons-material';
+import AlignVerticalTopOutlinedIcon from '@mui/icons-material/AlignVerticalTopOutlined';
 import {
   List,
   ListItem,
@@ -61,7 +62,7 @@ export default function Layout({ children }) {
   const menuItems = [
     {
       text: 'Main Pipeline',
-      icon: <SubjectOutlined color="secondary" />,
+      icon: <AlignVerticalTopOutlinedIcon color="primary" />,
       path: '/',
     },
   ];
@@ -74,7 +75,7 @@ export default function Layout({ children }) {
           <Typography className={classes.date}>
             Today is the {format(new Date(), 'do MMMM Y')}
           </Typography>
-          <Typography>Mario</Typography>
+          <Typography>Eytan</Typography>
           <Avatar src="/Mario.png" className={classes.avatar} />
         </Toolbar>
       </AppBar>

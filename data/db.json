@@ -19,22 +19,6 @@
     {
       "name": "More Details",
       "id": 5
-    },
-    {
-      "name": "new ssss",
-      "id": 6
-    },
-    {
-      "name": "kkk",
-      "id": 7
-    },
-    {
-      "name": "kjjj",
-      "id": 8
-    },
-    {
-      "name": "orororor",
-      "id": 9
     }
   ],
   "leads": [
@@ -499,7 +483,7 @@
       "stage": "leadIn",
       "name": "test2",
       "phone": "asdf040505",
-      "email": "",
+      "email": "email@gmail.com",
       "website": "",
       "facebook": "",
       "linkedin": "",

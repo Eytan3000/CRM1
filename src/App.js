@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-
+import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Create from './pages/Create';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
@@ -9,6 +8,7 @@ import Lead from './pages/Lead';
 import { useState } from 'react';
 import LeadsRender from './pages/LeadsRender';
 import { DbFunctionsProvider } from './contexts/DbFunctionsContext';
+//-------------------------------------------------
 
 const theme = createTheme({
   palette: {
@@ -25,6 +25,7 @@ const theme = createTheme({
   //   fontWeightBold: 700,
   // },
 });
+//-------------------------------------------------
 
 function App() {
   const [leadId, setLeadId] = useState('');

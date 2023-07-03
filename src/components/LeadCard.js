@@ -2,15 +2,25 @@ import React, { useState } from 'react';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
-import { IconButton, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { DeleteOutline } from '@mui/icons-material';
-import { CardActionArea, Icon, Popover, makeStyles } from '@material-ui/core';
+import {
+  CardActionArea,
+  Icon,
+  Popover,
+  makeStyles,
+  useTheme,
+} from '@material-ui/core';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+//-------------------------------------------------
 
 const useStyles = makeStyles({
   card: {
     width: '300px',
     // height: '100px',
+    '& .MuiPaper-root': {
+      borderRadius: '2px', // Customize the border radius
+    },
   },
   header: {
     marginBottom: '-20px',
@@ -22,6 +32,7 @@ const useStyles = makeStyles({
     marginTop: '-10px',
   },
 });
+//-------------------------------------------------
 
 export default function LeadCard({ keyVal, lead, handleDelete, idPassUp }) {
   const classes = useStyles();
@@ -45,9 +56,19 @@ export default function LeadCard({ keyVal, lead, handleDelete, idPassUp }) {
     setIsHovered(false);
   };
   //
-
+  const theme = useTheme();
   return (
-    <Card key={keyVal} className={classes.card} elevation={1}>
+    <Card
+      key={keyVal}
+      className={classes.card}
+      elevation={1}
+      // sx={{ borderRadius: '9px', boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.2)' }}>
+      sx={{
+        borderRadius: '9px',
+        boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.2)',
+        // border: '1px solid',
+        // borderColor: theme.palette.grey.A100,
+      }}>
       <CardActionArea
         onClick={(e) => {
           idPassUp(lead.id);
@@ -62,6 +83,7 @@ export default function LeadCard({ keyVal, lead, handleDelete, idPassUp }) {
           }
           title={lead.title}
           // subheader={lead.phone}
+          subheader={lead.company}
         />
       </CardActionArea>
       <CardContent>

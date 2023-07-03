@@ -23,15 +23,16 @@ export function DbFunctionsProvider({ children }) {
     try {
       const data = await loadAllLeadsCards();
       const leadsCardArr = data.map((lead) => {
-        const titleVal =
-          lead.companyName !== ''
-            ? `${lead.name} / ${lead.companyName}`
-            : lead.name;
+        // const titleVal =
+        //   lead.companyName !== ''
+        //     ? `${lead.name} / ${lead.companyName}`
+        //     : lead.name;
         return {
           id: lead.id,
-          title: titleVal,
+          title: lead.name,
           stage: lead.stage,
           phone: lead.phone,
+          company: lead.companyName,
         };
       });
 
