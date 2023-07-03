@@ -10,6 +10,7 @@ import SubmitButton from '../components/SubmitButton';
 import { Box } from '@mui/material';
 
 import { addLeadToDBContext } from '../contexts/DbFunctionsContext';
+import { capitalizeWords } from '../helpers/helpers';
 
 const useStyles = makeStyles({
   field: {
@@ -47,16 +48,16 @@ export default function Create({ onClose }) {
 
     if (name) {
       addLeadToDBCtx({
-        title: `${name}${nameC ? ' / ' + nameC : ''} `,
+        // title: `${name}${nameC ? ' / ' + nameC : ''} `,
         stage: 'leadIn',
-        name,
+        name: capitalizeWords(name),
         phone,
         email,
         website,
         facebook,
         linkedin,
         otherLink,
-        companyName: nameC,
+        companyName: capitalizeWords(nameC),
         companyPhone: phoneC,
         companyEmail: emailC,
         companyWebsite: websiteC,

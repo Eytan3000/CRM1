@@ -323,7 +323,7 @@
       "title": "oryan ",
       "stage": "noAnswer",
       "name": "oryan",
-      "phone": "",
+      "phone": "0508657999",
       "email": "",
       "website": "",
       "facebook": "",
@@ -482,7 +482,7 @@
       "title": "test2 / test2 ",
       "stage": "leadIn",
       "name": "test2",
-      "phone": "asdf040505",
+      "phone": "0508657065",
       "email": "email@gmail.com",
       "website": "",
       "facebook": "",
@@ -535,7 +535,7 @@
       "title": "Yair Petch / Kricherer Company Ltd. ",
       "stage": "leadIn",
       "name": "Yair Petch",
-      "phone": "66666",
+      "phone": "0588657211",
       "email": "petch@gmail.com",
       "website": "kriecherer.com",
       "facebook": "",
@@ -637,6 +637,26 @@
       "dateCreated": "22.06.2023",
       "notes": [],
       "id": 35
+    },
+    {
+      "stage": "leadIn",
+      "name": "Lisa Weil",
+      "phone": "0558795566",
+      "email": "",
+      "website": "",
+      "facebook": "",
+      "linkedin": "https://www.linkedin.com/in/lisa-weil-02839516/",
+      "otherLink": "",
+      "companyName": "Iron Source",
+      "companyPhone": "",
+      "companyEmail": "",
+      "companyWebsite": "",
+      "companyFacebook": "",
+      "companyLinkedin": "",
+      "companyOtherLink": "",
+      "dateCreated": "03.07.2023",
+      "notes": [],
+      "id": 40
     }
   ]
 }

@@ -73,7 +73,8 @@ export default function Layout({ children }) {
       <AppBar className={classes.appbar} elevation={0}>
         <Toolbar>
           <Typography className={classes.date}>
-            Today is the {format(new Date(), 'do MMMM Y')}
+            {/* Today is the {format(new Date(), 'do MMMM Y')} */}
+            {menuItems[0].text}
           </Typography>
           <Typography>Eytan</Typography>
           <Avatar src="/Mario.png" className={classes.avatar} />

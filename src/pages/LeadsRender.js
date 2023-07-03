@@ -17,13 +17,16 @@ const useStyles = makeStyles((theme) => {
   return {
     background: {
       // background: '#F2F2F2',
-      background: '#fafafcff',
+      // background: '#e7ebefff',
+      // background: '#f0f3f7',
+      background: '#f5f7faff',
+      // background: '#fafafcff',
       width: '100%',
       padding: theme.spacing(2),
     },
     label: {
       fontWeight: 'bold',
-      marginBottom: '4px',
+      // marginBottom: '2px',
     },
     customCard: {
       height: '1px',
@@ -85,7 +88,6 @@ export default function LeadsRender({ idPassUp, stagesPassUp }) {
     });
     return leadIns;
   }
-  console.log(leads);
 
   return (
     <div>
@@ -97,8 +99,9 @@ export default function LeadsRender({ idPassUp, stagesPassUp }) {
             <Stack
               key={stage.id}
               className={classes.background}
-              spacing={1}
-              minWidth={300}>
+              spacing={0.5}
+              // minWidth={250}
+            >
               <TitleLabel
                 variant="h6"
                 className={classes.label}
