@@ -81,7 +81,7 @@ export default function LeadCard({ keyVal, lead, handleDelete, idPassUp }) {
           <Typography variant="h6" fontSize={16} component="div">
             {lead.title}
           </Typography>
-          <Typography sx={{ mb: 1.5 }} color="text.secondary">
+          <Typography sx={{ mb: 1.5 }} color="text.secondary" fontSize={13}>
             {lead.company}
           </Typography>
 
