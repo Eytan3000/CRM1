@@ -77,22 +77,23 @@ export default function LeadCard({ keyVal, lead, handleDelete, idPassUp }) {
           idPassUp(lead.id);
           history.push('/lead');
         }}>
-        <CardContent>
+        <CardContent
+          sx={{
+            my: -1,
+          }}>
           <Typography variant="h6" fontSize={16} component="div">
             {lead.title}
           </Typography>
           <Typography sx={{ mb: 1.5 }} color="text.secondary" fontSize={13}>
             {lead.company}
           </Typography>
-
           <Typography
             onClick={handleTypographyClick}
             sx={{ fontSize: 14 }}
             color="text.secondary">
             {' '}
-            {lead.phone}
+            {formatPhoneNumber(lead.phone)}
           </Typography>
-
           {/* <Typography variant="body2">
           well meaning and kindly.
           <br />
@@ -170,6 +171,7 @@ export default function LeadCard({ keyVal, lead, handleDelete, idPassUp }) {
         variant="outlined"
         sx={{
           borderRadius: '6px',
+          // m: -0.2,
         }}>
         {card}{' '}
       </Card>

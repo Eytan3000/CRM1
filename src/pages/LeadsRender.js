@@ -12,6 +12,7 @@ import AddStagePopper from '../components/AddStagePopper';
 import { loadCards, loadStagesContext } from '../contexts/DbFunctionsContext';
 
 import { deleteLeadFromDb, updateStageToDb } from '../helpers/dbFunctions';
+import { Button } from '@mui/material';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -31,6 +32,13 @@ const useStyles = makeStyles((theme) => {
     customCard: {
       height: '1px',
       background: '#F00B0B',
+    },
+    myButton: {
+      opacity: 0,
+      transition: 'opacity 0.3s ease-in-out',
+      '&:hover': {
+        opacity: 1,
+      },
     },
   };
 });
@@ -108,6 +116,14 @@ export default function LeadsRender({ idPassUp, stagesPassUp }) {
                 label={convertCamelCaseToSpaces(stage.name)}
               />
               {leadRenderColumn(leads, stage.name)}
+              <Button
+                className={classes.myButton}
+                color="primary"
+                disabled={false}
+                size="small"
+                variant="text">
+                +
+              </Button>
             </Stack>
           );
         })}
