@@ -82,11 +82,9 @@ export default function LeadRenderColumn({ stage, leads, idPassUp }) {
 
   const handleClick = () => {
     setOpen(true);
-    // buttonRef.current.blur();
   };
   const handleClose = () => {
     setOpen(false);
-    // setRerender();
   };
 
   const handleMouseEnter = () => setHover(true);
