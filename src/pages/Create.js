@@ -19,7 +19,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Create({ onClose }) {
+export default function Create({ onClose, stage }) {
   const addLeadToDBCtx = useContext(addLeadToDBContext);
 
   const classes = useStyles();
@@ -49,7 +49,7 @@ export default function Create({ onClose }) {
     if (name) {
       addLeadToDBCtx({
         // title: `${name}${nameC ? ' / ' + nameC : ''} `,
-        stage: 'leadIn',
+        stage: stage,
         name: capitalizeWords(name),
         phone,
         email,

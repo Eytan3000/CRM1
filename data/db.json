@@ -425,7 +425,7 @@
       "stage": "callBack",
       "name": "mom",
       "phone": "05050505",
-      "email": "",
+      "email": "momPap@gmail.com",
       "website": "",
       "facebook": "",
       "linkedin": "",
@@ -538,7 +538,7 @@
       "phone": "0588657211",
       "email": "petch@gmail.com",
       "website": "kriecherer.com",
-      "facebook": "",
+      "facebook": "https://www.facebook.com/yair.pecherer",
       "linkedin": "",
       "otherLink": "",
       "companyName": "Kricherer Company Ltd.",
@@ -612,7 +612,7 @@
         {
           "noteId": 1,
           "noteDate": "19th June 2023 , 9:32 PM",
-          "noteContent": "דיברתי איתה, די מעצבנת אבל עושה ציפורניים יפות. לדבר איתה עוד חודש"
+          "noteContent": "makes nails"
         }
       ],
       "id": 33
@@ -642,7 +642,7 @@
       "stage": "leadIn",
       "name": "Lisa Weil",
       "phone": "0558795566",
-      "email": "",
+      "email": "email@gmail.com",
       "website": "",
       "facebook": "",
       "linkedin": "https://www.linkedin.com/in/lisa-weil-02839516/",
@@ -655,8 +655,39 @@
       "companyLinkedin": "",
       "companyOtherLink": "",
       "dateCreated": "03.07.2023",
-      "notes": [],
+      "notes": [
+        {
+          "noteId": 1,
+          "noteDate": "5th July 2023 , 7:52 AM",
+          "noteContent": "jjj"
+        },
+        {
+          "noteId": 2,
+          "noteDate": "5th July 2023 , 7:52 AM",
+          "noteContent": "jjjhhh"
+        }
+      ],
       "id": 40
+    },
+    {
+      "stage": "callBack",
+      "name": "Karen Ronen",
+      "phone": "",
+      "email": "",
+      "website": "",
+      "facebook": "",
+      "linkedin": "",
+      "otherLink": "",
+      "companyName": "Nails",
+      "companyPhone": "",
+      "companyEmail": "",
+      "companyWebsite": "",
+      "companyFacebook": "",
+      "companyLinkedin": "",
+      "companyOtherLink": "",
+      "dateCreated": "04.07.2023",
+      "notes": [],
+      "id": 41
     }
   ]
 }

@@ -49,7 +49,7 @@ export default function NewLeadModal({ setRerender }) {
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
           </Typography> */}
-          <Create onClose={handleClose} />
+          <Create onClose={handleClose} stage="leadIn" />
         </Box>
       </Modal>
     </div>

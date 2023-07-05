@@ -26,8 +26,8 @@ export default function Lead({ id, stages }) {
   // Find lead in database and set it to page
   useEffect(() => {
     (async () => {
-      const x = await loadLeadCtx(id);
-      setLead(x);
+      const leadAwait = await loadLeadCtx(id);
+      setLead(leadAwait);
     })();
   }, [id]);
 
