@@ -88,10 +88,11 @@ export default function LeadCard({ keyVal, lead, handleDelete, idPassUp }) {
             {lead.company}
           </Typography>
           <Typography
+            noWrap
             onClick={handleTypographyClick}
             sx={{ fontSize: 14 }}
             color="text.secondary">
-            {' '}
+            {/* {' '} */}
             {formatPhoneNumber(lead.phone)}
           </Typography>
           {/* <Typography variant="body2">
@@ -165,16 +166,14 @@ export default function LeadCard({ keyVal, lead, handleDelete, idPassUp }) {
     //   </CardContent>
     // </Card>
 
-    <Box sx={{ minWidth: 275 }}>
-      <Card
-        key={keyVal}
-        variant="outlined"
-        sx={{
-          borderRadius: '6px',
-          // m: -0.2,
-        }}>
-        {card}{' '}
-      </Card>
-    </Box>
+    <Card
+      key={keyVal}
+      variant="outlined"
+      sx={{
+        borderRadius: '6px',
+        // m: -0.2,
+      }}>
+      {card}{' '}
+    </Card>
   );
 }

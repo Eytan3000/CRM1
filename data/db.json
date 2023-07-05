@@ -19,6 +19,10 @@
     {
       "name": "More Details",
       "id": 5
+    },
+    {
+      "name": "Yael",
+      "id": 6
     }
   ],
   "leads": [
@@ -688,6 +692,46 @@
       "dateCreated": "04.07.2023",
       "notes": [],
       "id": 41
+    },
+    {
+      "stage": "Call in a month",
+      "name": "Rotem Rozenberg",
+      "phone": "0508657400",
+      "email": "",
+      "website": "",
+      "facebook": "",
+      "linkedin": "",
+      "otherLink": "",
+      "companyName": "Rozenberg Prod",
+      "companyPhone": "",
+      "companyEmail": "",
+      "companyWebsite": "",
+      "companyFacebook": "",
+      "companyLinkedin": "",
+      "companyOtherLink": "",
+      "dateCreated": "05.07.2023",
+      "notes": [],
+      "id": 42
+    },
+    {
+      "stage": "Yael",
+      "name": "Koral",
+      "phone": "0508987744",
+      "email": "",
+      "website": "",
+      "facebook": "",
+      "linkedin": "",
+      "otherLink": "",
+      "companyName": "",
+      "companyPhone": "",
+      "companyEmail": "",
+      "companyWebsite": "",
+      "companyFacebook": "",
+      "companyLinkedin": "",
+      "companyOtherLink": "",
+      "dateCreated": "05.07.2023",
+      "notes": [],
+      "id": 43
     }
   ]
 }

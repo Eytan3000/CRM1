@@ -20,11 +20,11 @@ const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => {
   return {
-    // page: {
-    //   background: '#f9f9f9',
-    //   width: '100%',
-    //   padding: theme.spacing(3),
-    // },
+    page: {
+      // background: '#f9f9f9',
+      width: '100%',
+      padding: theme.spacing(3),
+    },
     drawer: {
       width: drawerWidth,
     },

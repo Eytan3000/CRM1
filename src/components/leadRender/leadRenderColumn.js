@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import LeadCard from '../LeadCard';
 import { deleteLeadFromDb } from '../../helpers/dbFunctions';
-import { Box, Button, Modal, Stack } from '@mui/material';
+import { Box, Button, Grid, Modal, Stack } from '@mui/material';
 import TitleLabel from '../TitleLabel';
 import { makeStyles } from '@material-ui/core';
 import { convertCamelCaseToSpaces } from '../../helpers/helpers';

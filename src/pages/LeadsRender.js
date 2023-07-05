@@ -9,6 +9,10 @@ import { loadCards, loadStagesContext } from '../contexts/DbFunctionsContext';
 import { updateStageToDb } from '../helpers/dbFunctions';
 
 import LeadRenderColumn from '../components/leadRender/LeadRenderColumn';
+import { Grid, Paper } from '@mui/material';
+import styled from '@emotion/styled';
+import LeadCard from '../components/LeadCard';
+import { Box, Container } from '@material-ui/core';
 
 //----------------------------------------------------------
 
@@ -44,15 +48,46 @@ export default function LeadsRender({ idPassUp, stagesPassUp }) {
       .catch((err) => console.error(err));
   };
 
+  // return (
+  //   <div>
+  //     <AddStagePopper updateStage={updateStage} />
+  //     <NewLeadModal setRerender={() => setRerender(!reRender)} />
+  //     <Stack direction="row" spacing={5} justifyContent="flex-start">
+  //       {stages.map((stage) => (
+  //         <LeadRenderColumn stage={stage} leads={leads} idPassUp={idPassUp} />
+  //       ))}
+  //     </Stack>
+  //   </div>
+  // );
+
+  // return (
+  //   <Grid container>
+  //     <Grid item xs={12} sm={6} md={3}>
+  //       <Paper>1</Paper>
+  //     </Grid>
+  //     <Grid item xs={12} sm={6} md={3}>
+  //       <Paper>2</Paper>
+  //     </Grid>
+  //     <Grid item xs={12} sm={6} md={3}>
+  //       <Paper>3</Paper>
+  //     </Grid>
+  //     <Grid item xs={12} sm={6} md={3}>
+  //       <Paper>4</Paper>
+  //     </Grid>
+  //   </Grid>
+  // );
+
   return (
     <div>
       <AddStagePopper updateStage={updateStage} />
       <NewLeadModal setRerender={() => setRerender(!reRender)} />
-      <Stack direction="row" spacing={5} justifyContent="flex-start">
+      <Grid container spacing={3}>
         {stages.map((stage) => (
-          <LeadRenderColumn stage={stage} leads={leads} idPassUp={idPassUp} />
+          <Grid item key={stage.id} sm={12} md={12 / stages.length}>
+            <LeadRenderColumn stage={stage} leads={leads} idPassUp={idPassUp} />
+          </Grid>
         ))}
-      </Stack>
+      </Grid>
     </div>
   );
 }
