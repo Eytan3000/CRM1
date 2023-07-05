@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
+import React, { Fragment, useContext, useState } from 'react';
 import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
+
 import CardContent from '@mui/material/CardContent';
-import { Link, Typography } from '@mui/material';
-import { DeleteOutline } from '@mui/icons-material';
+import { Typography } from '@mui/material';
+
 import {
-  Box,
-  Button,
   CardActionArea,
-  CardActions,
-  Icon,
+  IconButton,
+  MenuItem,
   Popover,
   makeStyles,
   useTheme,
 } from '@material-ui/core';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { formatPhoneNumber } from '../helpers/helpers';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { renderContext } from '../contexts/DbFunctionsContext';
 //-------------------------------------------------
 
 const useStyles = makeStyles({
@@ -36,38 +37,54 @@ const useStyles = makeStyles({
     marginTop: '-10px',
   },
 });
+
 //-------------------------------------------------
 
 export default function LeadCard({ keyVal, lead, handleDelete, idPassUp }) {
-  const classes = useStyles();
+  // const classes = useStyles();
   const history = useHistory();
+  // const theme = useTheme();
+
+  // const { setRerender } = useContext(renderContext);
+  const { reRender, setRerender } = useContext(renderContext);
 
   //
-  const [anchorEl, setAnchorEl] = React.useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-  const open = anchorEl;
-  const id = open ? 'simple-popover' : undefined;
-  const handleClick = () => {
-    setAnchorEl(true);
+  // const [anchorEl, setAnchorEl] = React.useState(false);
+  // const [isHovered, setIsHovered] = useState(false);
+  // const open = anchorEl;
+  // const id = open ? 'simple-popover' : undefined;
+  // const handleClick = () => {
+  //   setAnchorEl(true);
+  // };
+  // const handleClose = () => {
+  //   setAnchorEl(false);
+  // };
+  // const handleMouseEnter = () => {
+  //   setIsHovered(true);
+  // };
+  // const handleMouseLeave = () => {
+  //   setIsHovered(false);
+  // };
+
+  const [open, setOpen] = useState(null);
+  const handleOpenMenu = (event) => {
+    setOpen(event.currentTarget);
   };
-  const handleClose = () => {
-    setAnchorEl(false);
+  const handleCloseMenu = () => {
+    setOpen(null);
   };
-  const handleMouseEnter = () => {
-    setIsHovered(true);
+
+  const handleClickPopover = () => {
+    handleCloseMenu();
+    handleDelete(lead.id);
+    setRerender((prevRerender) => !prevRerender);
   };
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-  };
-  //
-  const theme = useTheme();
 
   const handleTypographyClick = (event) => {
-    // Copy the typography text
+    // Copy phone
     event.stopPropagation();
     navigator.clipboard.writeText(event.currentTarget.textContent);
-    // console.log('Copying text:', textToCopy);
-    handleClick();
+    // handleClick();
   };
 
   const card = (
@@ -105,6 +122,9 @@ export default function LeadCard({ keyVal, lead, handleDelete, idPassUp }) {
       {/* <CardActions>
         <Button size="small">{formatPhoneNumber(lead.phone)}</Button>
       </CardActions> */}
+      <IconButton size="small" onClick={handleOpenMenu}>
+        <MoreVertIcon />
+      </IconButton>
     </React.Fragment>
   );
 
@@ -166,14 +186,40 @@ export default function LeadCard({ keyVal, lead, handleDelete, idPassUp }) {
     //   </CardContent>
     // </Card>
 
-    <Card
-      key={keyVal}
-      variant="outlined"
-      sx={{
-        borderRadius: '6px',
-        // m: -0.2,
-      }}>
-      {card}{' '}
-    </Card>
+    <Fragment>
+      <Card
+        key={keyVal}
+        variant="outlined"
+        sx={{
+          borderRadius: '6px',
+          // m: -0.2,
+        }}>
+        {card}{' '}
+      </Card>
+      <Popover
+        open={Boolean(open)}
+        anchorEl={open}
+        onClose={handleCloseMenu}
+        anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+        PaperProps={{
+          sx: {
+            p: 1,
+            width: 140,
+            '& .MuiMenuItem-root': {
+              px: 1,
+              typography: 'body2',
+              borderRadius: 0.75,
+            },
+          },
+        }}>
+        <MenuItem sx={{ color: 'error.main' }} onClick={handleClickPopover}>
+          <DeleteOutlineIcon sx={{ mr: 1 }} fontSize="small" color="error" />
+          <Typography variant="subtitle1" color="error">
+            Delete
+          </Typography>
+        </MenuItem>
+      </Popover>
+    </Fragment>
   );
 }

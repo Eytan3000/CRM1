@@ -8,7 +8,7 @@ import { updateStageToDb } from '../helpers/dbFunctions';
 
 import LeadRenderColumn from '../components/leadRender/LeadRenderColumn';
 import { Grid } from '@mui/material';
-
+import { renderContext } from '../contexts/DbFunctionsContext';
 //----------------------------------------------------------
 
 export default function LeadsRender({ idPassUp, stagesPassUp }) {
@@ -17,7 +17,9 @@ export default function LeadsRender({ idPassUp, stagesPassUp }) {
 
   const [leads, setLeads] = useState([]);
   const [stages, setStages] = useState([]);
-  const [reRender, setRerender] = useState(true);
+
+  // const [reRender, setRerender] = useState(true);
+  const { reRender, setRerender } = useContext(renderContext);
 
   useEffect(() => {
     (async () => {
@@ -46,7 +48,8 @@ export default function LeadsRender({ idPassUp, stagesPassUp }) {
   return (
     <div>
       <AddStagePopper updateStage={updateStage} />
-      <NewLeadModal setRerender={() => setRerender(!reRender)} />
+      {/* <NewLeadModal setRerender={() => setRerender(!reRender)} /> */}
+      <NewLeadModal />
       {/* <Grid container spacing={3}> */}
       <Grid container rowSpacing={2} columnSpacing={5}>
         {stages.map((stage) => (

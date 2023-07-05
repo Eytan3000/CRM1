@@ -1,18 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   insertNewLead,
   loadAllLeadsCards,
   loadStagesFromDb,
-  updateStageToDb,
 } from '../helpers/dbFunctions';
 
 export const addLeadToDBContext = React.createContext();
 export const loadCards = React.createContext();
 export const loadStagesContext = React.createContext();
 export const loadLeadContext = React.createContext();
+export const renderContext = React.createContext();
 
 export function DbFunctionsProvider({ children }) {
   // const [leadsCards, setLeadsCards] = useState([]);
+  const [reRender, setRerender] = useState(true);
 
   function addLeadToDB(lead) {
     insertNewLead(lead);
@@ -73,7 +74,9 @@ export function DbFunctionsProvider({ children }) {
       <loadCards.Provider value={loadCardsContent}>
         <loadStagesContext.Provider value={loadStages}>
           <loadLeadContext.Provider value={loadLead}>
-            {children}
+            <renderContext.Provider value={{ reRender, setRerender }}>
+              {children}
+            </renderContext.Provider>
           </loadLeadContext.Provider>
         </loadStagesContext.Provider>
       </loadCards.Provider>

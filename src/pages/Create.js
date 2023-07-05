@@ -11,6 +11,7 @@ import { Box } from '@mui/material';
 
 import { addLeadToDBContext } from '../contexts/DbFunctionsContext';
 import { capitalizeWords } from '../helpers/helpers';
+import { renderContext } from '../contexts/DbFunctionsContext';
 
 const useStyles = makeStyles({
   field: {
@@ -21,6 +22,7 @@ const useStyles = makeStyles({
 
 export default function Create({ onClose, stage }) {
   const addLeadToDBCtx = useContext(addLeadToDBContext);
+  const { setRerender } = useContext(renderContext);
 
   const classes = useStyles();
   const history = useHistory();
@@ -67,6 +69,7 @@ export default function Create({ onClose, stage }) {
         dateCreated: format(new Date(), 'dd.MM.Y'),
         notes: [],
       });
+      setRerender((prevRerender) => !prevRerender);
       onClose();
     }
   };

@@ -21,12 +21,8 @@
       "id": 5
     },
     {
-      "name": "Yael",
+      "name": "Eytan",
       "id": 6
-    },
-    {
-      "name": "eytan",
-      "id": 7
     }
   ],
   "leads": [
@@ -626,27 +622,6 @@
       "id": 33
     },
     {
-      "title": "Oryan / Climbing ",
-      "stage": "More Details",
-      "name": "Oryan",
-      "phone": "1111111",
-      "email": "oryan@gmail.com",
-      "website": "",
-      "facebook": "",
-      "linkedin": "",
-      "otherLink": "",
-      "companyName": "Climbing",
-      "companyPhone": "",
-      "companyEmail": "",
-      "companyWebsite": "",
-      "companyFacebook": "",
-      "companyLinkedin": "",
-      "companyOtherLink": "",
-      "dateCreated": "22.06.2023",
-      "notes": [],
-      "id": 35
-    },
-    {
       "stage": "leadIn",
       "name": "Lisa Weil",
       "phone": "0558795566",
@@ -716,26 +691,6 @@
       "dateCreated": "05.07.2023",
       "notes": [],
       "id": 42
-    },
-    {
-      "stage": "Yael",
-      "name": "Koral",
-      "phone": "0508987744",
-      "email": "",
-      "website": "",
-      "facebook": "",
-      "linkedin": "",
-      "otherLink": "",
-      "companyName": "",
-      "companyPhone": "",
-      "companyEmail": "",
-      "companyWebsite": "",
-      "companyFacebook": "",
-      "companyLinkedin": "",
-      "companyOtherLink": "",
-      "dateCreated": "05.07.2023",
-      "notes": [],
-      "id": 43
     }
   ]
 }

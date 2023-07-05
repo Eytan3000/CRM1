@@ -18,7 +18,7 @@ const style = {
   p: 4,
 };
 
-export default function NewLeadModal({ setRerender }) {
+export default function NewLeadModal() {
   const [open, setOpen] = React.useState(false);
 
   const buttonRef = useRef(null);
@@ -29,7 +29,7 @@ export default function NewLeadModal({ setRerender }) {
   };
   const handleClose = () => {
     setOpen(false);
-    setRerender();
+    // setRerender();
   };
 
   return (

@@ -51,8 +51,8 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-const handleDelete = async (id) => {
-  await deleteLeadFromDb(id);
+const handleDelete = (id) => {
+  deleteLeadFromDb(id);
 };
 
 function addLeadsCardsInColumn(leads, stageName, idPassUp) {
@@ -119,7 +119,6 @@ export default function LeadRenderColumn({ stage, leads, idPassUp }) {
         <Button
           className={hover ? classes.buttonShow : classes.buttonHide}
           color="primary"
-          disabled={false}
           size="large"
           variant="text"
           onClick={handleClick}>
