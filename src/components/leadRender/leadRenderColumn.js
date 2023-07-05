@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core';
 import { convertCamelCaseToSpaces } from '../../helpers/helpers';
 import NewLeadModal from '../NewLeadModal';
 import Create from '../../pages/Create';
+import LeadPaper from './LeadPaper';
 
 //----------------------------------------------------
 
@@ -71,6 +72,22 @@ function addLeadsCardsInColumn(leads, stageName, idPassUp) {
   });
   return leadIns;
 }
+function addLeadsPapersInColumn(leads, stageName, idPassUp) {
+  const leadIns = leads.map((lead) => {
+    if (lead.stage === stageName)
+      return (
+        <div key={lead.id}>
+          <LeadPaper
+            keyVal={lead.id}
+            lead={lead}
+            handleDelete={handleDelete}
+            idPassUp={idPassUp}
+          />
+        </div>
+      );
+  });
+  return leadIns;
+}
 
 //----------------------------------------------------
 
@@ -115,7 +132,10 @@ export default function LeadRenderColumn({ stage, leads, idPassUp }) {
           className={classes.label}
           label={convertCamelCaseToSpaces(stage.name)}
         />
-        {addLeadsCardsInColumn(leads, stage.name, idPassUp)}
+        {/* {addLeadsCardsInColumn(leads, stage.name, idPassUp)} */}
+
+        {addLeadsPapersInColumn(leads, stage.name, idPassUp)}
+
         <Button
           className={hover ? classes.buttonShow : classes.buttonHide}
           color="primary"
