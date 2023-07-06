@@ -9,6 +9,7 @@ import { updateStageToDb } from '../helpers/dbFunctions';
 import LeadRenderColumn from '../components/leadRender/LeadRenderColumn';
 import { Grid } from '@mui/material';
 import { renderContext } from '../contexts/DbFunctionsContext';
+
 //----------------------------------------------------------
 
 export default function LeadsRender({ idPassUp, stagesPassUp }) {
@@ -51,7 +52,12 @@ export default function LeadsRender({ idPassUp, stagesPassUp }) {
       {/* <NewLeadModal setRerender={() => setRerender(!reRender)} /> */}
       <NewLeadModal />
       {/* <Grid container spacing={3}> */}
-      <Grid container rowSpacing={2} columnSpacing={5}>
+      <Grid
+        container
+        rowSpacing={2}
+        columnSpacing={5}
+        // sx={{ minWidth: '600px' }}
+      >
         {stages.map((stage) => (
           <Grid item key={stage.id} sm={12} md={12 / stages.length}>
             <LeadRenderColumn stage={stage} leads={leads} idPassUp={idPassUp} />

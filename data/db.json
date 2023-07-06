@@ -19,10 +19,6 @@
     {
       "name": "More Details",
       "id": 5
-    },
-    {
-      "name": "Eytan",
-      "id": 6
     }
   ],
   "leads": [
@@ -648,6 +644,16 @@
           "noteId": 2,
           "noteDate": "5th July 2023 , 7:52 AM",
           "noteContent": "jjjhhh"
+        },
+        {
+          "noteId": 3,
+          "noteDate": "6th July 2023 , 5:41 PM",
+          "noteContent": "yoututut"
+        },
+        {
+          "noteId": 4,
+          "noteDate": "6th July 2023 , 5:41 PM",
+          "noteContent": "kekeke"
         }
       ],
       "id": 40
@@ -691,6 +697,37 @@
       "dateCreated": "05.07.2023",
       "notes": [],
       "id": 42
+    },
+    {
+      "stage": "More Details",
+      "name": "Moti Stein",
+      "phone": "05076577888",
+      "email": "",
+      "website": "",
+      "facebook": "",
+      "linkedin": "",
+      "otherLink": "",
+      "companyName": "Callapp",
+      "companyPhone": "",
+      "companyEmail": "",
+      "companyWebsite": "",
+      "companyFacebook": "",
+      "companyLinkedin": "",
+      "companyOtherLink": "",
+      "dateCreated": "06.07.2023",
+      "notes": [
+        {
+          "noteId": 1,
+          "noteDate": "6th July 2023 , 5:42 PM",
+          "noteContent": "adsfasdf"
+        },
+        {
+          "noteId": 2,
+          "noteDate": "6th July 2023 , 5:42 PM",
+          "noteContent": "asdfsdf"
+        }
+      ],
+      "id": 43
     }
   ]
 }
