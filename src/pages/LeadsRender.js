@@ -9,6 +9,7 @@ import { updateStageToDb } from '../helpers/dbFunctions';
 import LeadRenderColumn from '../components/leadRender/LeadRenderColumn';
 import { Grid } from '@mui/material';
 import { renderContext } from '../contexts/DbFunctionsContext';
+import { useMediaQuery } from '@mui/material';
 
 //----------------------------------------------------------
 
@@ -18,6 +19,8 @@ export default function LeadsRender({ idPassUp, stagesPassUp }) {
 
   const [leads, setLeads] = useState([]);
   const [stages, setStages] = useState([]);
+
+  const isDesktop = useMediaQuery('(min-width: 900px) and (max-width: 1300px)');
 
   // const [reRender, setRerender] = useState(true);
   const { reRender, setRerender } = useContext(renderContext);
@@ -56,10 +59,14 @@ export default function LeadsRender({ idPassUp, stagesPassUp }) {
         container
         rowSpacing={2}
         columnSpacing={5}
-        // sx={{ minWidth: '600px' }}
-      >
+        sx={{ flexWrap: isDesktop ? 'nowrap' : 'wrap' }}>
         {stages.map((stage) => (
-          <Grid item key={stage.id} sm={12} md={12 / stages.length}>
+          <Grid
+            item
+            key={stage.id}
+            sm={12}
+            md={12 / stages.length}
+            minWidth={210}>
             <LeadRenderColumn stage={stage} leads={leads} idPassUp={idPassUp} />
           </Grid>
         ))}

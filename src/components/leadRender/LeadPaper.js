@@ -65,6 +65,7 @@ export default function LeadPaper({ keyVal, lead, handleDelete, idPassUp }) {
             margin: 'auto',
             maxWidth: 500,
             flexGrow: 1,
+            paddingRight: '0.3em',
             // backgroundColor: (theme) =>
             //   theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
           }}>
@@ -105,7 +106,7 @@ export default function LeadPaper({ keyVal, lead, handleDelete, idPassUp }) {
               <Grid item>
                 <Typography variant="subtitle1" component="div">
                   <IconButton size="small" onClick={handleOpenMenu}>
-                    <MoreVertIcon />
+                    <MoreVertIcon fontSize="0.5em" />
                   </IconButton>
                 </Typography>
               </Grid>

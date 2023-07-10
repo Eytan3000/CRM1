@@ -22,6 +22,7 @@ import { renderContext } from '../contexts/DbFunctionsContext';
 const useStyles = makeStyles({
   card: {
     width: '300px',
+    // paddingRight: '20px',
     // height: '100px',
     '& .MuiPaper-root': {
       borderRadius: '2px', // Customize the border radius
