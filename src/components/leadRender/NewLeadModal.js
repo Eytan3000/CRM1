@@ -3,8 +3,9 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import Create from '../pages/Create';
+import Create from '../../pages/Create';
 import { useRef } from 'react';
+import AddIcon from '@mui/icons-material/Add';
 
 const style = {
   position: 'absolute',
@@ -34,7 +35,12 @@ export default function NewLeadModal() {
 
   return (
     <div>
-      <Button ref={buttonRef} onClick={handleOpen}>
+      <Button
+        ref={buttonRef}
+        onClick={handleOpen}
+        variant="contained"
+        endIcon={<AddIcon />}
+        sx={{ marginRight: '20px' }}>
         New Lead
       </Button>
       <Modal

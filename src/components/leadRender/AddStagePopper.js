@@ -6,7 +6,7 @@ import {
   Popover,
   makeStyles,
 } from '@material-ui/core';
-import InputFieldText from '../components/InputFieldText';
+import InputFieldText from '../InputFieldText';
 
 import EditIcon from '@mui/icons-material/Edit';
 
@@ -37,22 +37,6 @@ export default function AddStagePopper({ updateStage }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const buttonRef = useRef(null);
-
-  // const updateStage = (newStage) => {
-  //   fetch('http://localhost:8000/stages', {
-  //     method: 'POST',
-  //     headers: { 'Content-type': 'application/json' },
-  //     body: JSON.stringify({
-  //       name: newStage,
-  //     }),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setStages((prevStage) => [...prevStage, { ...data }]);
-  //     })
-
-  //     .catch((err) => console.error(err));
-  // };
 
   const handlePopperClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -90,7 +74,13 @@ export default function AddStagePopper({ updateStage }) {
 
   return (
     <Fragment>
-      <Button ref={buttonRef} variant="contained" onClick={handlePopperClick}>
+      <Button
+        // color="primary"
+        size="medium"
+        // variant="text"
+        ref={buttonRef}
+        variant="contained"
+        onClick={handlePopperClick}>
         Add Stage
       </Button>
       <Popover

@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 
-import NewLeadModal from '../components/NewLeadModal';
-import AddStagePopper from '../components/AddStagePopper';
+import NewLeadModal from '../components/leadRender/NewLeadModal';
+import AddStagePopper from '../components/leadRender/AddStagePopper';
 import { loadCards, loadStagesContext } from '../contexts/DbFunctionsContext';
 
 import { updateStageToDb } from '../helpers/dbFunctions';
 
 import LeadRenderColumn from '../components/leadRender/LeadRenderColumn';
-import { Grid } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import { renderContext } from '../contexts/DbFunctionsContext';
 import { useMediaQuery } from '@mui/material';
 
@@ -19,10 +19,11 @@ export default function LeadsRender({ idPassUp, stagesPassUp }) {
 
   const [leads, setLeads] = useState([]);
   const [stages, setStages] = useState([]);
+  const wrapMaxWidth = (1300 * stages.length) / 5; // when does the window stop squeezing and start pushing
+  const isDesktop = useMediaQuery(
+    `(min-width: 900px) and (max-width: ${wrapMaxWidth}px)`
+  ); // the mediaQuery is affected by the number of stages.
 
-  const isDesktop = useMediaQuery('(min-width: 900px) and (max-width: 1300px)');
-
-  // const [reRender, setRerender] = useState(true);
   const { reRender, setRerender } = useContext(renderContext);
 
   useEffect(() => {
@@ -51,10 +52,11 @@ export default function LeadsRender({ idPassUp, stagesPassUp }) {
 
   return (
     <div>
-      <AddStagePopper updateStage={updateStage} />
-      {/* <NewLeadModal setRerender={() => setRerender(!reRender)} /> */}
-      <NewLeadModal />
-      {/* <Grid container spacing={3}> */}
+      <Box display="flex" paddingBottom={2}>
+        <NewLeadModal />
+        {/* <Grid container spacing={3}> */}
+        <AddStagePopper updateStage={updateStage} />
+      </Box>
       <Grid
         container
         rowSpacing={2}

@@ -5,7 +5,7 @@ import { Box, Button, Grid, Modal, Stack } from '@mui/material';
 import TitleLabel from '../TitleLabel';
 import { makeStyles } from '@material-ui/core';
 import { convertCamelCaseToSpaces } from '../../helpers/helpers';
-import NewLeadModal from '../NewLeadModal';
+import NewLeadModal from './NewLeadModal';
 import Create from '../../pages/Create';
 import LeadPaper from './LeadPaper';
 

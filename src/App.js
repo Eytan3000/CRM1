@@ -13,7 +13,8 @@ import { DbFunctionsProvider } from './contexts/DbFunctionsContext';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#fefefe',
+      // main: '#fefefe',
+      main: '#f5f7fa',
     },
     secondary: purple,
   },
