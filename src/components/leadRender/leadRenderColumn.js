@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import LeadCard from '../LeadCard';
+
 import { deleteLeadFromDb } from '../../helpers/dbFunctions';
 import { Box, Button, Grid, Modal, Stack } from '@mui/material';
 import TitleLabel from '../TitleLabel';
 import { makeStyles } from '@material-ui/core';
 import { convertCamelCaseToSpaces } from '../../helpers/helpers';
-import NewLeadModal from './NewLeadModal';
 import Create from '../../pages/Create';
 import LeadPaper from './LeadPaper';
 
@@ -56,22 +55,6 @@ const handleDelete = (id) => {
   deleteLeadFromDb(id);
 };
 
-function addLeadsCardsInColumn(leads, stageName, idPassUp) {
-  const leadIns = leads.map((lead) => {
-    if (lead.stage === stageName)
-      return (
-        <div key={lead.id}>
-          <LeadCard
-            keyVal={lead.id}
-            lead={lead}
-            handleDelete={handleDelete}
-            idPassUp={idPassUp}
-          />
-        </div>
-      );
-  });
-  return leadIns;
-}
 function addLeadsPapersInColumn(leads, stageName, idPassUp) {
   const leadIns = leads.map((lead) => {
     if (lead.stage === stageName)
