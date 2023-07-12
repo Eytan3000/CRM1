@@ -37,7 +37,7 @@
 
 //   const updateObjectDB = async (objectId, updatedData) => {
 //     try {
-//       const response = await fetch(`http://localhost:8000/leads/${objectId}`, {
+// const response =` await fetch(`http://localhost:8000/leads/${objectId}`, {`
 //         method: 'PATCH',
 //         headers: {
 //           'Content-Type': 'application/json',
@@ -95,8 +95,11 @@ import { Container, Grid, Paper, makeStyles } from '@material-ui/core';
 import LeadDetails from '../components/LeadDetails';
 import NoteStack from '../components/NoteStack';
 import { loadLeadContext } from '../contexts/DbFunctionsContext';
-import { Box, ButtonBase, Typography } from '@mui/material';
+import { Box, ButtonBase, TextField, Typography } from '@mui/material';
 import { convertCamelCaseToSpaces } from '../helpers/helpers';
+import { set } from 'date-fns';
+import { Height } from '@mui/icons-material';
+import EditIcon from '@mui/icons-material/Edit';
 
 // import { createTheme } from '@mui/material/styles';
 
@@ -120,6 +123,17 @@ const useStyles = makeStyles((theme) => {
       // width: '100%',
       padding: theme.spacing(3),
     },
+    customInput: {
+      border: '1px solid rgba(0, 0, 0, 0.23)',
+      borderRadius: theme.shape.borderRadius,
+      padding: theme.spacing(0.5),
+      backgroundColor: theme.palette.background.paper,
+      '&:focus': {
+        outline: 'none',
+        border: '1px solid #80bdff',
+        boxShadow: `0 0 0 2px #80bdff`,
+      },
+    },
   };
 });
 
@@ -131,6 +145,8 @@ export default function Lead({ id, stages }) {
   const [lead, setLead] = useState([]);
   const [disabled, setDisabled] = useState(true);
   const [editKey, setEditKey] = useState('');
+  const [editClicked, setEditClicked] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   const [fLead, setfLead] = useState({
     stage: 'Call in a month',
@@ -185,18 +201,37 @@ export default function Lead({ id, stages }) {
     }
   };
 
+  const handleMouseEnter = (key) => {
+    if (!editClicked) {
+      setIsHovered(true);
+      setEditKey(key);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
+  const handleEditClick = () => {
+    setEditClicked(true);
+    setIsHovered(false);
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      console.log(event.target.value);
+      setEditClicked(false);
+    }
+  };
+
   return (
     <div className={classes.page}>
-      <Grid container spacing={2} justifyContent="space-around">
+      <Grid
+        key="lead_details"
+        container
+        spacing={2}
+        justifyContent="space-around">
         <Grid item md={3} sm={3}>
-          {/* <Paper>
-            <Grid container direction="row" spacing={2}>
-              <Grid item sx={{ marginLeft: '8px' }}>
-                Name:
-              </Grid>
-              <Grid item>Eytan</Grid>
-            </Grid>
-          </Paper> */}
           <Paper
             sx={{
               p: 2,
@@ -207,19 +242,30 @@ export default function Lead({ id, stages }) {
                 theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
             }}>
             <Grid
+              key="lead_details_column"
               container
+              spacing={2}
+
               // direction="column"
-              spacing={2}>
+            >
               {Object.entries(fLead).map(([key, value]) => {
                 return (
-                  <Grid container spacing={0} item flexGrow={1}>
-                    <Grid item xs={true}>
+                  <Grid
+                    key={`${key}_${value}`}
+                    container
+                    spacing={0}
+                    item
+                    flexGrow={1}>
+                    <Grid key={key} item xs={true}>
                       <Container
                         box
                         // sx={{ textAlign: 'center' }}
                       >
                         <Box
-                          sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                          sx={{
+                            display: 'flex',
+                            justifyContent: 'flex-end',
+                          }}>
                           <Typography
                             // paddingTop={2}
                             // gutterBottom
@@ -232,37 +278,70 @@ export default function Lead({ id, stages }) {
                       </Container>
                     </Grid>
 
-                    <Grid item xs={true}>
+                    <Grid key={value} item xs={true}>
                       <Box
+                        onMouseEnter={() => handleMouseEnter(key)}
+                        onMouseLeave={handleMouseLeave}
                         sx={{
-                          // width: 300,
-                          // height: 300,
                           borderRadius: '2px',
                           paddingX: '7px',
-                          // paddingY: '3px',
-                          // marginY: '3px',
-                          backgroundColor: '#e7ebefff',
+                          width: '95%',
                           '&:hover': {
-                            backgroundColor: '#e7ebefff',
-                            opacity: [0.9, 0.8, 0.7],
+                            backgroundColor: isHovered && '#EAEAF0',
+                            opacity: [0.9, 0.8, 0.9],
+                            textDecoration: 'underline',
+                            // cursor: 'text',
+                            cursor: 'pointer',
                           },
                         }}>
-                        <Typography
-                          // gutterBottom
-                          variant="subtitle2"
-                          component="div">
-                          {value}
-                        </Typography>
+                        {editClicked && key === editKey ? (
+                          // <TextField
+                          //   // id="outlined-basic"
+                          //   // label="Outlined"
+                          //   // variant="outlined"
+                          //   // sx={{ height: '1px' }}
+                          //   size="small"
+                          //   // value={value}
+                          //   defaultValue={value}
+                          //   onKeyDown={handleKeyDown}
+                          // />
+                          ////////////////////
+                          <input
+                            className={classes.customInput}
+                            type="text"
+                            defaultValue={value}
+                            onKeyDown={handleKeyDown}
+                          />
+                        ) : (
+                          //////////////////
+                          <Typography
+                            // onClick={() => setValueClicked(true)}
+                            // gutterBottom
+                            variant="subtitle2"
+                            component="div">
+                            {value}
+                          </Typography>
+                        )}
                       </Box>
                     </Grid>
+                    {isHovered && key === editKey && (
+                      <Grid
+                        item
+                        onMouseEnter={() => handleMouseEnter(key)}
+                        onMouseLeave={handleMouseLeave}>
+                        <EditIcon
+                          sx={{ paddingX: '12px' }}
+                          fontSize="small"
+                          onClick={handleEditClick}
+                        />
+                      </Grid>
+                    )}
                   </Grid>
                 );
               })}
             </Grid>
           </Paper>
         </Grid>
-
-        {/* <Grid item xs container direction="column" spacing={2}></Grid> */}
 
         <Grid item md={9} sm={9}>
           <Paper sx={{ minWidth: '200px' }}>
