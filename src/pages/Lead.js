@@ -5,6 +5,9 @@ import { loadLeadContext } from '../contexts/DbFunctionsContext';
 import { Box, TextField, Typography } from '@mui/material';
 import { convertCamelCaseToSpaces } from '../helpers/helpers';
 import NoteStack2 from '../components/leadRender/NoteStack2';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
+import image from './2.jpg';
 
 // import { createTheme } from '@mui/material/styles';
 
@@ -53,6 +56,10 @@ const useStyles = makeStyles((theme) => {
     img: {
       margin: '-75px 0 -75px 0',
     },
+    img2: {
+      height: '200px',
+      margin: '60px 0 20px 0',
+    },
   };
 });
 
@@ -66,27 +73,6 @@ export default function Lead({ id, stages }) {
   const [editKey, setEditKey] = useState('');
   const [editClicked, setEditClicked] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-
-  const [fLead, setfLead] = useState({
-    stage: 'Call in a month',
-    name: 'Rotem Rozenberg',
-    phone: '0508657400',
-    email: '',
-    website: '',
-    facebook: '',
-    linkedin: '',
-    otherLink: '',
-    companyName: 'Rozenberg Prod',
-    companyPhone: '',
-    companyEmail: '',
-    companyWebsite: '',
-    companyFacebook: '',
-    companyLinkedin: '',
-    companyOtherLink: '',
-    dateCreated: '05.07.2023',
-    notes: [],
-    id: 42,
-  });
 
   // Find lead in database and set it to page
   useEffect(() => {
@@ -184,12 +170,20 @@ export default function Lead({ id, stages }) {
               backgroundColor: (theme) =>
                 theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
             }}>
-            <Typography
-              padding={1}
-              // gutterBottom
-              variant="h6">
-              Person
-            </Typography>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                paddingLeft: '12px',
+              }}>
+              <AccountCircleIcon sx={{ color: '#6b6cff' }} />
+              <Typography
+                padding={1}
+                // gutterBottom
+                variant="h6">
+                Person
+              </Typography>
+            </div>
 
             <Container>
               <Grid
@@ -200,84 +194,85 @@ export default function Lead({ id, stages }) {
                 // direction="column"
               >
                 {Object.entries(lead).map(([key, value]) => {
-                  return (
-                    <Grid
-                      key={`${key}_${value}`}
-                      container
-                      spacing={0}
-                      item
-                      flexGrow={1}>
-                      <Grid key={key} item xs={true}>
-                        <Container
-                          box
-                          // sx={{ textAlign: 'center' }}
-                        >
-                          <Box
-                            sx={{
-                              display: 'flex',
-                              justifyContent: 'flex-end',
-                            }}>
-                            <Typography
-                              // paddingTop={2}
-                              // gutterBottom
-                              variant="caption"
-                              fontSize={14}
-                              component="div">
-                              {convertCamelCaseToSpaces(key)}
-                            </Typography>
-                          </Box>
-                        </Container>
-                      </Grid>
-
-                      <Grid key={value} item xs={true}>
-                        <Box
-                          onClick={handleEditClick}
-                          onMouseEnter={() => handleMouseEnter(key)}
-                          onMouseLeave={handleMouseLeave}
-                          sx={{
-                            borderRadius: '2px',
-                            paddingX: '7px',
-                            width: '95%',
-                            '&:hover': {
-                              backgroundColor: isHovered && '#cbe4ff',
-                              opacity: [0.9, 0.8, 0.9],
-                              // textDecoration: 'underline',
-                              cursor: 'text',
-                              // cursor: 'pointer',
-                            },
-                          }}>
-                          {editClicked && key === editKey ? (
-                            // <TextField
-                            //   // id="outlined-basic"
-                            //   // label="Outlined"
-                            //   // variant="outlined"
-                            //   // sx={{ height: '1px' }}
-                            //   size="small"
-                            //   // value={value}
-                            //   defaultValue={value}
-                            //   onKeyDown={handleKeyDown}
-                            // />
-
-                            <input
-                              className={classes.customInput}
-                              type="text"
-                              defaultValue={value}
-                              onKeyDown={handleKeyDown}
-                            />
-                          ) : (
-                            key !== 'notes' && (
+                  if (key !== 'notes')
+                    return (
+                      <Grid
+                        key={`${key}_${value}`}
+                        container
+                        spacing={0}
+                        item
+                        flexGrow={1}>
+                        <Grid key={key} item xs={true}>
+                          <Container
+                            box
+                            // sx={{ textAlign: 'center' }}
+                          >
+                            <Box
+                              sx={{
+                                display: 'flex',
+                                justifyContent: 'flex-end',
+                              }}>
                               <Typography
-                                // onClick={handleEditClick}
+                                // paddingTop={2}
                                 // gutterBottom
-                                variant="subtitle2"
+                                variant="caption"
+                                fontSize={14}
                                 component="div">
-                                {value === '' ? '-' : value}
+                                {convertCamelCaseToSpaces(key)}
                               </Typography>
-                            )
-                          )}
-                        </Box>
-                      </Grid>
-                      {/* {isHovered && key === editKey && (
+                            </Box>
+                          </Container>
+                        </Grid>
+
+                        <Grid key={value} item xs={true}>
+                          <Box
+                            onClick={handleEditClick}
+                            onMouseEnter={() => handleMouseEnter(key)}
+                            onMouseLeave={handleMouseLeave}
+                            sx={{
+                              borderRadius: '2px',
+                              paddingX: '7px',
+                              width: '95%',
+                              '&:hover': {
+                                backgroundColor: isHovered && '#cbe4ff',
+                                opacity: [0.9, 0.8, 0.9],
+                                // textDecoration: 'underline',
+                                cursor: 'text',
+                                // cursor: 'pointer',
+                              },
+                            }}>
+                            {editClicked && key === editKey ? (
+                              // <TextField
+                              //   // id="outlined-basic"
+                              //   // label="Outlined"
+                              //   // variant="outlined"
+                              //   // sx={{ height: '1px' }}
+                              //   size="small"
+                              //   // value={value}
+                              //   defaultValue={value}
+                              //   onKeyDown={handleKeyDown}
+                              // />
+
+                              <input
+                                className={classes.customInput}
+                                type="text"
+                                defaultValue={value}
+                                onKeyDown={handleKeyDown}
+                              />
+                            ) : (
+                              key !== 'notes' && (
+                                <Typography
+                                  // onClick={handleEditClick}
+                                  // gutterBottom
+                                  variant="subtitle2"
+                                  component="div">
+                                  {value === '' ? '-' : value}
+                                </Typography>
+                              )
+                            )}
+                          </Box>
+                        </Grid>
+                        {/* {isHovered && key === editKey && (
                       <Grid
                         item
                         onMouseEnter={() => handleMouseEnter(key)}
@@ -289,8 +284,8 @@ export default function Lead({ id, stages }) {
                         />
                       </Grid>
                     )} */}
-                    </Grid>
-                  );
+                      </Grid>
+                    );
                 })}
               </Grid>
             </Container>
@@ -325,6 +320,11 @@ export default function Lead({ id, stages }) {
                 height="500"
                 className={classes.img}
               />
+              // <img
+              //   src={image}
+              //   alt="Image Description"
+              //   className={classes.img2}
+              // />
             }
             <Typography
               padding={1}
