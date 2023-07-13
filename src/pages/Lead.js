@@ -161,118 +161,126 @@ export default function Lead({ id, stages }) {
         spacing={2}
         justifyContent="space-around">
         <Grid item md={3} sm={2}>
-          <Paper
-            sx={{
-              p: 2,
-              margin: 'auto',
-              maxWidth: 500,
-              flexGrow: 1,
-              backgroundColor: (theme) =>
-                theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+          <Container
+            style={{
+              // display: 'flex',
+              // flexDirection: 'column',
+              // alignItems: 'center',
+              // width: '60%',
+              minWidth: '300px',
             }}>
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                paddingLeft: '12px',
+            <Paper
+              sx={{
+                p: 2,
+                margin: 'auto',
+                maxWidth: 500,
+                flexGrow: 1,
+                backgroundColor: (theme) =>
+                  theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
               }}>
-              <AccountCircleIcon sx={{ color: '#6b6cff' }} />
-              <Typography
-                padding={1}
-                // gutterBottom
-                variant="h6">
-                Person
-              </Typography>
-            </div>
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  paddingLeft: '12px',
+                }}>
+                <AccountCircleIcon sx={{ color: '#6b6cff' }} />
+                <Typography
+                  padding={1}
+                  // gutterBottom
+                  variant="h6">
+                  Person
+                </Typography>
+              </div>
 
-            <Container>
-              <Grid
-                key="lead_details_column"
-                container
-                spacing={2}
+              <Container>
+                <Grid
+                  key="lead_details_column"
+                  container
+                  spacing={2}
 
-                // direction="column"
-              >
-                {Object.entries(lead).map(([key, value]) => {
-                  if (key !== 'notes')
-                    return (
-                      <Grid
-                        key={`${key}_${value}`}
-                        container
-                        spacing={0}
-                        item
-                        flexGrow={1}>
-                        <Grid key={key} item xs={true}>
-                          <Container
-                            box
-                            // sx={{ textAlign: 'center' }}
-                          >
-                            <Box
-                              sx={{
-                                display: 'flex',
-                                justifyContent: 'flex-end',
-                              }}>
-                              <Typography
-                                // paddingTop={2}
-                                // gutterBottom
-                                variant="caption"
-                                fontSize={14}
-                                component="div">
-                                {convertCamelCaseToSpaces(key)}
-                              </Typography>
-                            </Box>
-                          </Container>
-                        </Grid>
-
-                        <Grid key={value} item xs={true}>
-                          <Box
-                            onClick={handleEditClick}
-                            onMouseEnter={() => handleMouseEnter(key)}
-                            onMouseLeave={handleMouseLeave}
-                            sx={{
-                              borderRadius: '2px',
-                              paddingX: '7px',
-                              width: '95%',
-                              '&:hover': {
-                                backgroundColor: isHovered && '#cbe4ff',
-                                opacity: [0.9, 0.8, 0.9],
-                                // textDecoration: 'underline',
-                                cursor: 'text',
-                                // cursor: 'pointer',
-                              },
-                            }}>
-                            {editClicked && key === editKey ? (
-                              // <TextField
-                              //   // id="outlined-basic"
-                              //   // label="Outlined"
-                              //   // variant="outlined"
-                              //   // sx={{ height: '1px' }}
-                              //   size="small"
-                              //   // value={value}
-                              //   defaultValue={value}
-                              //   onKeyDown={handleKeyDown}
-                              // />
-
-                              <input
-                                className={classes.customInput}
-                                type="text"
-                                defaultValue={value}
-                                onKeyDown={handleKeyDown}
-                              />
-                            ) : (
-                              key !== 'notes' && (
+                  // direction="column"
+                >
+                  {Object.entries(lead).map(([key, value]) => {
+                    if (key !== 'notes')
+                      return (
+                        <Grid
+                          key={`${key}_${value}`}
+                          container
+                          spacing={0}
+                          item
+                          flexGrow={1}>
+                          <Grid key={key} item xs={true}>
+                            <Container
+                              box
+                              // sx={{ textAlign: 'center' }}
+                            >
+                              <Box
+                                sx={{
+                                  display: 'flex',
+                                  justifyContent: 'flex-end',
+                                }}>
                                 <Typography
-                                  // onClick={handleEditClick}
+                                  // paddingTop={2}
                                   // gutterBottom
-                                  variant="subtitle2"
+                                  variant="caption"
+                                  fontSize={14}
                                   component="div">
-                                  {value === '' ? '-' : value}
+                                  {convertCamelCaseToSpaces(key)}
                                 </Typography>
-                              )
-                            )}
-                          </Box>
-                        </Grid>
-                        {/* {isHovered && key === editKey && (
+                              </Box>
+                            </Container>
+                          </Grid>
+
+                          <Grid key={value} item xs={true}>
+                            <Box
+                              onClick={handleEditClick}
+                              onMouseEnter={() => handleMouseEnter(key)}
+                              onMouseLeave={handleMouseLeave}
+                              sx={{
+                                borderRadius: '2px',
+                                paddingX: '7px',
+                                width: '95%',
+                                '&:hover': {
+                                  backgroundColor: isHovered && '#cbe4ff',
+                                  opacity: [0.9, 0.8, 0.9],
+                                  // textDecoration: 'underline',
+                                  cursor: 'text',
+                                  // cursor: 'pointer',
+                                },
+                              }}>
+                              {editClicked && key === editKey ? (
+                                // <TextField
+                                //   // id="outlined-basic"
+                                //   // label="Outlined"
+                                //   // variant="outlined"
+                                //   // sx={{ height: '1px' }}
+                                //   size="small"
+                                //   // value={value}
+                                //   defaultValue={value}
+                                //   onKeyDown={handleKeyDown}
+                                // />
+
+                                <input
+                                  className={classes.customInput}
+                                  type="text"
+                                  defaultValue={value}
+                                  onKeyDown={handleKeyDown}
+                                />
+                              ) : (
+                                key !== 'notes' && (
+                                  <Typography
+                                    // onClick={handleEditClick}
+                                    // gutterBottom
+                                    variant="subtitle2"
+                                    component="div">
+                                    {value === '' ? '-' : value}
+                                  </Typography>
+                                )
+                              )}
+                            </Box>
+                          </Grid>
+                          {/* {isHovered && key === editKey && (
                       <Grid
                         item
                         onMouseEnter={() => handleMouseEnter(key)}
@@ -284,12 +292,13 @@ export default function Lead({ id, stages }) {
                         />
                       </Grid>
                     )} */}
-                      </Grid>
-                    );
-                })}
-              </Grid>
-            </Container>
-          </Paper>
+                        </Grid>
+                      );
+                  })}
+                </Grid>
+              </Container>
+            </Paper>
+          </Container>
         </Grid>
 
         <Grid
@@ -311,7 +320,7 @@ export default function Lead({ id, stages }) {
               stages={stages}
             />
 
-            {
+            {/* {
               // eslint-disable-next-line jsx-a11y/img-redundant-alt
               <img
                 src="https://cdn.monday.com/images/pulse-page-empty-state.svg"
@@ -337,7 +346,7 @@ export default function Lead({ id, stages }) {
             <Typography padding={1} variant="subtitle1" textAlign={'center'}>
               You can start by describing how your interaction with this person
               went and when to follow up on him
-            </Typography>
+            </Typography> */}
           </Paper>
         </Grid>
       </Grid>

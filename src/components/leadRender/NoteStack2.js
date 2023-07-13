@@ -4,6 +4,7 @@ import {
   Grid,
   Paper,
   TextField,
+  Typography,
   makeStyles,
 } from '@material-ui/core';
 import { Stack, IconButton } from '@mui/material';
@@ -30,7 +31,7 @@ const useStyles = makeStyles((theme) => {
       background: '#F00B0B',
     },
     textField: {
-      width: '60%',
+      width: '100%',
 
       '& .MuiOutlinedInput-root': {
         '& fieldset': {
@@ -43,6 +44,13 @@ const useStyles = makeStyles((theme) => {
           background: '#dddfec',
         },
       },
+    },
+    img: {
+      margin: '-75px 0 -75px 0',
+    },
+    img2: {
+      height: '200px',
+      margin: '60px 0 20px 0',
     },
   };
 });
@@ -185,16 +193,53 @@ export default function NoteStack2({
       );
     } else {
       return (
-        <TextField
-          elevation={0}
-          onKeyDown={handleNewNoteKeyDown}
-          onChange={(e) => setNoteInputValue(e.target.value)}
-          value={noteInputValue}
-          placeholder="Take a note..."
-          variant="outlined"
-          className={classes.textField}
-          fullWidth
-        />
+        <Container
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            width: '60%',
+            minWidth: '700px',
+          }}>
+          <TextField
+            elevation={0}
+            onKeyDown={handleNewNoteKeyDown}
+            onChange={(e) => setNoteInputValue(e.target.value)}
+            value={noteInputValue}
+            placeholder="Take a note..."
+            variant="outlined"
+            className={classes.textField}
+            fullWidth
+          />
+
+          {
+            // eslint-disable-next-line jsx-a11y/img-redundant-alt
+            <img
+              src="https://cdn.monday.com/images/pulse-page-empty-state.svg"
+              alt="Image Description"
+              width="400"
+              height="500"
+              className={classes.img}
+            />
+            // <img
+            //   src={image}
+            //   alt="Image Description"
+            //   className={classes.img2}
+            // />
+          }
+          <Typography
+            padding={1}
+            variant="h5"
+            textAlign={'center'}
+            // marginTop={20}
+          >
+            No updates yet for this lead
+          </Typography>
+          <Typography padding={1} variant="subtitle1" textAlign={'center'}>
+            You can start by describing how your interaction with this person
+            went and when to follow up on him
+          </Typography>
+        </Container>
       );
     }
   }
