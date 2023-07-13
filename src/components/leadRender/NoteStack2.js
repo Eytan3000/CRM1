@@ -1,9 +1,16 @@
-import { Grid, TextField, makeStyles } from '@material-ui/core';
+import {
+  Box,
+  Container,
+  Grid,
+  Paper,
+  TextField,
+  makeStyles,
+} from '@material-ui/core';
 import { Stack, IconButton } from '@mui/material';
 import React, { useState } from 'react';
 import EditIcon from '@mui/icons-material/Edit';
 import { format } from 'date-fns';
-
+//------------------------------------------------------
 const useStyles = makeStyles((theme) => {
   return {
     page: {
@@ -22,11 +29,26 @@ const useStyles = makeStyles((theme) => {
       height: '1px',
       background: '#F00B0B',
     },
+    textField: {
+      width: '80%',
+
+      '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+          borderColor: '#0472ea',
+        },
+        '&:hover fieldset': {
+          borderColor: '#0472ea',
+        },
+        '&:hover input': {
+          background: '#dddfec',
+        },
+      },
+    },
   };
 });
-
+//------------------------------------------------------
 export default function NoteStack2({
-  lead,
+  notes,
   editKey,
   setEditKey,
   setLead,
@@ -34,69 +56,78 @@ export default function NoteStack2({
 }) {
   const classes = useStyles();
   const [noteInputValue, setNoteInputValue] = useState('');
+  if (!notes) {
+    // Handle the case when lead is empty or undefined
+    return <div>Loading...</div>; // Display a loading indicator or any other message
+  } else {
+    // console.log(lead);
+    // console.log(notes);
+    // console.log(editKey);
+    // console.log(setEditKey);
+    // console.log(setLead);
+    // console.log(disabled);
 
-  const updateNoteContent = (keyToUpdate, valueToUpdate) => {
-    setLead((prevLead) => ({
-      ...prevLead,
-      notes: prevLead.notes.map((note) => {
-        if (note.noteId === keyToUpdate) {
-          return {
-            ...note,
+    const updateNoteContent = (keyToUpdate, valueToUpdate) => {
+      setLead((prevLead) => ({
+        ...prevLead,
+        notes: prevLead.notes.map((note) => {
+          if (note.noteId === keyToUpdate) {
+            return {
+              ...note,
+              noteContent: valueToUpdate,
+            };
+          }
+          return note;
+        }),
+      }));
+    };
+
+    const updateNewNoteContent = (valueToUpdate) => {
+      setLead((prevLead) => ({
+        ...prevLead,
+        notes: [
+          ...prevLead.notes,
+          {
+            noteId: prevLead.notes.length + 1,
+            noteDate: `${format(new Date(), 'do MMMM Y')} , ${format(
+              new Date(),
+              'h:mm a'
+            )}`,
             noteContent: valueToUpdate,
-          };
-        }
-        return note;
-      }),
-    }));
-  };
+          },
+        ],
+      }));
+    };
 
-  const updateNewNoteContent = (valueToUpdate) => {
-    setLead((prevLead) => ({
-      ...prevLead,
-      notes: [
-        ...prevLead.notes,
-        {
-          noteId: prevLead.notes.length + 1,
-          noteDate: `${format(new Date(), 'do MMMM Y')} , ${format(
-            new Date(),
-            'h:mm a'
-          )}`,
-          noteContent: valueToUpdate,
-        },
-      ],
-    }));
-  };
+    const handleNoteKeyDown = (event) => {
+      if (event.key === 'Enter' && !event.shiftKey) {
+        event.preventDefault();
+        updateNoteContent(editKey, event.target.value);
+        setEditKey(-1);
+      }
+    };
 
-  const handleNoteKeyDown = (event) => {
-    if (event.key === 'Enter' && !event.shiftKey) {
-      event.preventDefault();
-      updateNoteContent(editKey, event.target.value);
-      setEditKey(-1);
-    }
-  };
+    const handleNewNoteKeyDown = (event) => {
+      if (
+        event.key === 'Enter' &&
+        !event.shiftKey &&
+        event.target.value.trim() !== ''
+      ) {
+        event.preventDefault();
+        updateNewNoteContent(event.target.value);
+        setNoteInputValue('');
+      }
+    };
 
-  const handleNewNoteKeyDown = (event) => {
-    if (
-      event.key === 'Enter' &&
-      !event.shiftKey &&
-      event.target.value.trim() !== ''
-    ) {
-      event.preventDefault();
-      updateNewNoteContent(event.target.value);
-      setNoteInputValue('');
-    }
-  };
-
-  return (
-    <div>
-      <Stack
-        direction="column-reverse"
-        justifyContent="flex-end"
-        alignItems="center"
-        spacing={1}>
-        {Object.entries(lead).map(([key, value]) => {
-          if (key === 'notes') {
-            return value.map((note) => {
+    if (notes.length > 0) {
+      return (
+        <div>
+          <Stack
+            direction="column-reverse"
+            justifyContent="flex-end"
+            alignItems="center"
+            spacing={1}>
+            {notes.map((note) => {
               return (
                 <Grid
                   container
@@ -107,7 +138,7 @@ export default function NoteStack2({
                     {note.noteId === editKey ? (
                       <TextField
                         id="filled-multiline-static"
-                        key={`noteId_${note.id}`}
+                        key={note.noteId}
                         multiline
                         minRows={4}
                         placeholder="Note"
@@ -120,7 +151,7 @@ export default function NoteStack2({
                     ) : (
                       <TextField
                         id="filled-multiline-static"
-                        key={`noteId_${note.id}`}
+                        key={note.noteId}
                         multiline
                         minRows={4}
                         // maxRows={6}
@@ -142,22 +173,36 @@ export default function NoteStack2({
                   </Grid>
                 </Grid>
               );
-            });
-          }
-        })}
-        {/* New Note */}
+            })}
+            {/* New Note */}
+
+            <TextField
+              onKeyDown={handleNewNoteKeyDown}
+              onChange={(e) => setNoteInputValue(e.target.value)}
+              value={noteInputValue}
+              id="new note"
+              multiline
+              minRows={4}
+              placeholder="New note"
+              variant="filled"
+              fullWidth
+            />
+          </Stack>
+        </div>
+      );
+    } else {
+      return (
         <TextField
+          elevation={0}
           onKeyDown={handleNewNoteKeyDown}
           onChange={(e) => setNoteInputValue(e.target.value)}
           value={noteInputValue}
-          id="new note"
-          multiline
-          minRows={4}
-          placeholder="New note"
-          variant="filled"
+          placeholder="Take a note..."
+          variant="outlined"
+          className={classes.textField}
           fullWidth
         />
-      </Stack>
-    </div>
-  );
+      );
+    }
+  }
 }

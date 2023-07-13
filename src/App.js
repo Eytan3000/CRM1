@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Create from './pages/Create';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import { purple } from '@material-ui/core/colors';
+import { blue, purple } from '@material-ui/core/colors';
 import Layout from './components/Layout';
 import Lead from './pages/Lead';
 import { useState } from 'react';
