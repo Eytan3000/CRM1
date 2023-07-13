@@ -41,12 +41,17 @@ const useStyles = makeStyles((theme) => {
     },
     paper: {
       padding: theme.spacing(3),
-      // display: 'flex',
+      display: 'flex',
+      flexFlow: 'column',
       // justifyContent: 'felx-start',
       // maxWidth: '100%',
       // margin: '0 auto',
       // flexDirection: 'column',
-      // height: '100%',
+      height: '95%',
+      alignItems: 'center',
+    },
+    img: {
+      margin: '-75px 0 -75px 0',
     },
   };
 });
@@ -292,34 +297,47 @@ export default function Lead({ id, stages }) {
           </Paper>
         </Grid>
 
-        <Grid item md={9} sm={10} sx={{ display: 'flex' }}>
+        <Grid
+          item
+          md={9}
+          sm={10}
+          sx={{
+            display: 'flex',
+            direction: 'column',
+          }}>
           <Paper className={classes.paper}>
-            <Container>
-              <NoteStack2
-                notes={lead.notes}
-                editKey={editKey}
-                setEditKey={(newEditKey) => setEditKey(newEditKey)}
-                setLead={(newLead) => setLead(newLead)}
-                id={id}
-                disabled={disabled}
-                stages={stages}
+            <NoteStack2
+              notes={lead.notes}
+              editKey={editKey}
+              setEditKey={(newEditKey) => setEditKey(newEditKey)}
+              setLead={(newLead) => setLead(newLead)}
+              id={id}
+              disabled={disabled}
+              stages={stages}
+            />
+
+            {
+              // eslint-disable-next-line jsx-a11y/img-redundant-alt
+              <img
+                src="https://cdn.monday.com/images/pulse-page-empty-state.svg"
+                alt="Image Description"
+                width="400"
+                height="500"
+                className={classes.img}
               />
-              {
-                // eslint-disable-next-line jsx-a11y/img-redundant-alt
-                <img src="2.jpg" alt="Image Description" />
-              }
-              <Typography
-                padding={1}
-                variant="h5"
-                textAlign={'center'}
-                marginTop={20}>
-                No updates yet for this item
-              </Typography>
-              <Typography padding={1} variant="subtitle1" textAlign={'center'}>
-                Be the first one to update about progress, mention someone or
-                upload files to share with your team members
-              </Typography>
-            </Container>
+            }
+            <Typography
+              padding={1}
+              variant="h5"
+              textAlign={'center'}
+              // marginTop={20}
+            >
+              No updates yet for this lead
+            </Typography>
+            <Typography padding={1} variant="subtitle1" textAlign={'center'}>
+              You can start by describing how your interaction with this person
+              went and when to follow up on him
+            </Typography>
           </Paper>
         </Grid>
       </Grid>

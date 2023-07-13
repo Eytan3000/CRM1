@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => {
       background: '#F00B0B',
     },
     textField: {
-      width: '80%',
+      width: '60%',
 
       '& .MuiOutlinedInput-root': {
         '& fieldset': {
@@ -60,13 +60,6 @@ export default function NoteStack2({
     // Handle the case when lead is empty or undefined
     return <div>Loading...</div>; // Display a loading indicator or any other message
   } else {
-    // console.log(lead);
-    // console.log(notes);
-    // console.log(editKey);
-    // console.log(setEditKey);
-    // console.log(setLead);
-    // console.log(disabled);
-
     const updateNoteContent = (keyToUpdate, valueToUpdate) => {
       setLead((prevLead) => ({
         ...prevLead,
