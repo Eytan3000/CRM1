@@ -1,4 +1,3 @@
-//Erase
 import { Grid, TextField, makeStyles } from '@material-ui/core';
 import { Stack, IconButton } from '@mui/material';
 import React, { useState } from 'react';
@@ -26,7 +25,7 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-export default function NoteStack({
+export default function NoteStack2({
   lead,
   editKey,
   setEditKey,
