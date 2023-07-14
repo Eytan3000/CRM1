@@ -87,17 +87,14 @@ export default function NoteStack2({
   };
 
   function deleteNoteFromLead() {
-    let modifiedNotesArr = [];
-    const index = notes.findIndex((note) => note.noteId === noteIdState);
-
-    if (index !== -1) {
-      modifiedNotesArr = notes.splice(index, 1);
-    }
-
+    const modifiedNotesArr = notes.filter(
+      (note) => note.noteId !== noteIdState
+    );
     setLead((prevLead) => ({
       ...prevLead,
       notes: modifiedNotesArr,
     }));
+    setNoteIdState(null);
   }
 
   const handleClickDelete = () => {
