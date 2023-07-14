@@ -14,6 +14,10 @@ export function deleteLeadFromDb(id) {
     method: 'DELETE',
   });
 }
+export function deleteNoteFromDb(leadId) {
+  // You cant change specific values from within a database object, so that would a function for a real database. for now all you can do is to change the entire lead.
+}
+
 export function loadStagesFromDb() {
   return fetch('http://localhost:8000/stages').then((res) => res.json());
 }
@@ -27,3 +31,23 @@ export function updateStageToDb(newStage) {
     }),
   }).then((res) => res.json());
 }
+
+export const updateObjectDB = async (objectId, updatedData) => {
+  try {
+    const response = await fetch(`http://localhost:8000/leads/${objectId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedData),
+    });
+
+    if (response.ok) {
+      console.log('Object updated successfully');
+    } else {
+      console.error('Failed to update object');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};

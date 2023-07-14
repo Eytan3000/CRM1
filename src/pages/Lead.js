@@ -8,6 +8,7 @@ import NoteStack2 from '../components/leadRender/NoteStack2';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 import image from './2.jpg';
+import { updateObjectDB } from '../helpers/dbFunctions';
 
 // import { createTheme } from '@mui/material/styles';
 
@@ -86,38 +87,27 @@ export default function Lead({ id, stages }) {
     updateObjectDB(id, lead);
   }, [lead]);
 
-  const updateObjectDB = async (objectId, updatedData) => {
-    try {
-      const response = await fetch(`http://localhost:8000/leads/${objectId}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(updatedData),
-      });
+  // const updateObjectDB = async (objectId, updatedData) => {
+  //   try {
+  //     const response = await fetch(`http://localhost:8000/leads/${objectId}`, {
+  //       method: 'PATCH',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify(updatedData),
+  //     });
 
-      if (response.ok) {
-        console.log('Object updated successfully');
-      } else {
-        console.error('Failed to update object');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
-
-  // const updateLead = (keyToUpdate, valueToUpdate) => {
-  //   setLead((prevLead) => ({
-  //     ...prevLead,
-  //     [keyToUpdate]: valueToUpdate,
-  //   }));
+  //     if (response.ok) {
+  //       console.log('Object updated successfully');
+  //     } else {
+  //       console.error('Failed to update object');
+  //     }
+  //   } catch (error) {
+  //     console.error('Error:', error);
+  //   }
   // };
 
   const updateLead = (keyToUpdate, valueToUpdate) => {
-    console.log(lead.keyToUpdate);
-    console.log(keyToUpdate);
-    console.log(lead);
-
     if (valueToUpdate !== lead.keyToUpdate) {
       setLead((prevLead) => ({
         ...prevLead,

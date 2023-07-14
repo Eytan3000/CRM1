@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme) => {
     },
     textField: {
       width: '100%',
+      margin: '0 0 6px 0',
 
       '& .MuiOutlinedInput-root': {
         '& fieldset': {
@@ -60,6 +61,7 @@ const useStyles = makeStyles((theme) => {
 });
 //------------------------------------------------------
 export default function NoteStack2({
+  lead,
   notes,
   editKey,
   setEditKey,
@@ -70,18 +72,37 @@ export default function NoteStack2({
   const [noteInputValue, setNoteInputValue] = useState('');
   const [newNoteClicked, setNewNoteClicked] = useState(false);
 
+  const [noteIdState, setNoteIdState] = useState(null);
+
   const { setRerender } = React.useContext(renderContext);
   const [open, setOpen] = React.useState(null);
-  const handleOpenMenu = (event) => {
-    event.stopPropagation();
+  const handleOpenMenu = (event, noteId) => {
+    // event.stopPropagation();
+
+    setNoteIdState(noteId);
     setOpen(event.currentTarget);
   };
   const handleCloseMenu = () => {
     setOpen(null);
   };
-  const handleClickPopover = () => {
+
+  function deleteNoteFromLead() {
+    let modifiedNotesArr = [];
+    const index = notes.findIndex((note) => note.noteId === noteIdState);
+
+    if (index !== -1) {
+      modifiedNotesArr = notes.splice(index, 1);
+    }
+
+    setLead((prevLead) => ({
+      ...prevLead,
+      notes: modifiedNotesArr,
+    }));
+  }
+
+  const handleClickDelete = () => {
     handleCloseMenu();
-    // handleDelete(lead.id);
+    deleteNoteFromLead();
     setRerender((prevRerender) => !prevRerender);
   };
 
@@ -163,6 +184,7 @@ export default function NoteStack2({
           onKeyDown={handleNewNoteKeyDown}
           onChange={(e) => setNoteInputValue(e.target.value)}
           onFocus={handleNewNoteFocus}
+          onBlur={handleNewNoteBlur}
           multiline={newNoteClicked}
           minRows={4}
           value={noteInputValue}
@@ -173,11 +195,12 @@ export default function NoteStack2({
         />
         {notes.length > 0 ? (
           <Stack
+            width="100%"
             direction="column-reverse"
             justifyContent="flex-end"
             alignItems="center"
             spacing={1}>
-            {notes.map((note) => {
+            {notes.map((note, index) => {
               return (
                 <Grid
                   container
@@ -215,7 +238,7 @@ export default function NoteStack2({
                             <Typography
                               style={{ fontSize: '0.8em', color: 'gray' }}
                               variant="body1">
-                              26 octoer 2023
+                              {note.noteDate}
                             </Typography>
                           </Grid>
                           <Grid item>
@@ -226,7 +249,12 @@ export default function NoteStack2({
                         </Grid>
                         <Grid item>
                           <Typography variant="subtitle1" component="div">
-                            <IconButton size="small" onClick={handleOpenMenu}>
+                            <IconButton
+                              key={note.noteId}
+                              size="small"
+                              onClick={(e) => {
+                                handleOpenMenu(e, note.noteId);
+                              }}>
                               <MoreVertIcon fontSize="0.5em" />
                             </IconButton>
                           </Typography>
@@ -237,12 +265,12 @@ export default function NoteStack2({
                 </Grid>
               );
             })}
-
             <VerticalIconPop
+              // key={note.noteId}
               edit={true}
               open={open}
               handleCloseMenu={() => handleCloseMenu()}
-              handleClickDelete={() => handleClickPopover()}
+              handleClickDelete={() => handleClickDelete()}
             />
           </Stack>
         ) : (
@@ -271,53 +299,5 @@ export default function NoteStack2({
         )}
       </Container>
     );
-    // } else {
-    //   return (
-    //     <Container
-    //       style={{
-    //         display: 'flex',
-    //         flexDirection: 'column',
-    //         alignItems: 'center',
-    //         width: '60%',
-    //         minWidth: '700px',
-    //       }}>
-    //       <TextField
-    //         elevation={0}
-    //         onKeyDown={handleNewNoteKeyDown}
-    //         onChange={(e) => setNoteInputValue(e.target.value)}
-    //         onFocus={handleNewNoteFocus}
-    //         onBlur={handleNewNoteBlur}
-    //         multiline={newNoteClicked}
-    //         minRows={4}
-    //         value={noteInputValue}
-    //         placeholder="Take a note..."
-    //         variant="outlined"
-    //         className={classes.textField}
-    //         fullWidth
-    //       />
-
-    //       <img
-    //         src="https://cdn.monday.com/images/pulse-page-empty-state.svg"
-    //         alt="Image Description"
-    //         width="400"
-    //         height="500"
-    //         className={classes.img}
-    //       />
-
-    //       <Typography
-    //         padding={1}
-    //         variant="h5"
-    //         textAlign={'center'}
-    //         // marginTop={20}
-    //       >
-    //         No updates yet for this lead
-    //       </Typography>
-    //       <Typography padding={1} variant="subtitle1" textAlign={'center'}>
-    //         You can start by describing how your interaction with this person
-    //         went and when to follow up on him
-    //       </Typography>
-    //     </Container>
-    //   );
   }
 }
-// }
