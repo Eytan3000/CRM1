@@ -8,9 +8,13 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import { Stack, IconButton } from '@mui/material';
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import EditIcon from '@mui/icons-material/Edit';
 import { format } from 'date-fns';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import VerticalIconPop from '../auxs/VerticalIconPop';
+import { renderContext } from '../../contexts/DbFunctionsContext';
+
 //------------------------------------------------------
 const useStyles = makeStyles((theme) => {
   return {
@@ -64,6 +68,23 @@ export default function NoteStack2({
 }) {
   const classes = useStyles();
   const [noteInputValue, setNoteInputValue] = useState('');
+  const [newNoteClicked, setNewNoteClicked] = useState(false);
+
+  const { setRerender } = React.useContext(renderContext);
+  const [open, setOpen] = React.useState(null);
+  const handleOpenMenu = (event) => {
+    event.stopPropagation();
+    setOpen(event.currentTarget);
+  };
+  const handleCloseMenu = () => {
+    setOpen(null);
+  };
+  const handleClickPopover = () => {
+    handleCloseMenu();
+    // handleDelete(lead.id);
+    setRerender((prevRerender) => !prevRerender);
+  };
+
   if (!notes) {
     // Handle the case when lead is empty or undefined
     return <div>Loading...</div>; // Display a loading indicator or any other message
@@ -117,12 +138,40 @@ export default function NoteStack2({
         event.preventDefault();
         updateNewNoteContent(event.target.value);
         setNoteInputValue('');
+        setNewNoteClicked(false);
       }
     };
 
-    if (notes.length > 0) {
-      return (
-        <div>
+    const handleNewNoteFocus = () => {
+      setNewNoteClicked(true);
+    };
+    const handleNewNoteBlur = () => {
+      setNewNoteClicked(false);
+    };
+
+    return (
+      <Container
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          width: '60%',
+          minWidth: '700px',
+        }}>
+        <TextField
+          elevation={0}
+          onKeyDown={handleNewNoteKeyDown}
+          onChange={(e) => setNoteInputValue(e.target.value)}
+          onFocus={handleNewNoteFocus}
+          multiline={newNoteClicked}
+          minRows={4}
+          value={noteInputValue}
+          placeholder="Take a note..."
+          variant="outlined"
+          className={classes.textField}
+          fullWidth
+        />
+        {notes.length > 0 ? (
           <Stack
             direction="column-reverse"
             justifyContent="flex-end"
@@ -135,85 +184,69 @@ export default function NoteStack2({
                   direction="row"
                   justifyContent="space-between"
                   alignItems="flex-start">
-                  <Grid>
-                    {note.noteId === editKey ? (
-                      <TextField
-                        id="filled-multiline-static"
-                        key={note.noteId}
-                        multiline
-                        minRows={4}
-                        placeholder="Note"
-                        // value={note.noteContent}
-                        variant="filled"
-                        fullWidth
-                        disabled={false}
-                        onKeyDown={handleNoteKeyDown}
-                      />
-                    ) : (
-                      <TextField
-                        id="filled-multiline-static"
-                        key={note.noteId}
-                        multiline
-                        minRows={4}
-                        // maxRows={6}
-                        placeholder="Note"
-                        value={note.noteContent}
-                        variant="filled"
-                        fullWidth
-                        disabled={disabled}
-                        label={note.noteDate}
-                      />
-                    )}
-                  </Grid>
-                  <Grid>
-                    <IconButton
+                  {note.noteId === editKey ? (
+                    <TextField
+                      id="filled-multiline-static"
                       key={note.noteId}
-                      onClick={() => setEditKey(note.noteId)}>
-                      <EditIcon className={classes.editButton} />
-                    </IconButton>
-                  </Grid>
+                      multiline
+                      minRows={4}
+                      placeholder="Note"
+                      variant="filled"
+                      fullWidth
+                      disabled={false}
+                      onKeyDown={handleNoteKeyDown}
+                    />
+                  ) : (
+                    <Paper
+                      elevation={0}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        minHeight: 120,
+                        border: '1px solid #d0d4e3',
+                      }}>
+                      <Grid
+                        style={{ padding: '5px 10px 5px 10px' }}
+                        xs={12}
+                        sm
+                        container>
+                        <Grid item xs container direction="column" spacing={1}>
+                          <Grid item xs>
+                            <Typography
+                              style={{ fontSize: '0.8em', color: 'gray' }}
+                              variant="body1">
+                              26 octoer 2023
+                            </Typography>
+                          </Grid>
+                          <Grid item>
+                            <Typography variant="body2" color="text.secondary">
+                              {note.noteContent}
+                            </Typography>
+                          </Grid>
+                        </Grid>
+                        <Grid item>
+                          <Typography variant="subtitle1" component="div">
+                            <IconButton size="small" onClick={handleOpenMenu}>
+                              <MoreVertIcon fontSize="0.5em" />
+                            </IconButton>
+                          </Typography>
+                        </Grid>
+                      </Grid>
+                    </Paper>
+                  )}
                 </Grid>
               );
             })}
-            {/* New Note */}
 
-            <TextField
-              onKeyDown={handleNewNoteKeyDown}
-              onChange={(e) => setNoteInputValue(e.target.value)}
-              value={noteInputValue}
-              id="new note"
-              multiline
-              minRows={4}
-              placeholder="New note"
-              variant="filled"
-              fullWidth
+            <VerticalIconPop
+              edit={true}
+              open={open}
+              handleCloseMenu={() => handleCloseMenu()}
+              handleClickDelete={() => handleClickPopover()}
             />
           </Stack>
-        </div>
-      );
-    } else {
-      return (
-        <Container
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            width: '60%',
-            minWidth: '700px',
-          }}>
-          <TextField
-            elevation={0}
-            onKeyDown={handleNewNoteKeyDown}
-            onChange={(e) => setNoteInputValue(e.target.value)}
-            value={noteInputValue}
-            placeholder="Take a note..."
-            variant="outlined"
-            className={classes.textField}
-            fullWidth
-          />
-
-          {
-            // eslint-disable-next-line jsx-a11y/img-redundant-alt
+        ) : (
+          <Fragment>
             <img
               src="https://cdn.monday.com/images/pulse-page-empty-state.svg"
               alt="Image Description"
@@ -221,26 +254,70 @@ export default function NoteStack2({
               height="500"
               className={classes.img}
             />
-            // <img
-            //   src={image}
-            //   alt="Image Description"
-            //   className={classes.img2}
-            // />
-          }
-          <Typography
-            padding={1}
-            variant="h5"
-            textAlign={'center'}
-            // marginTop={20}
-          >
-            No updates yet for this lead
-          </Typography>
-          <Typography padding={1} variant="subtitle1" textAlign={'center'}>
-            You can start by describing how your interaction with this person
-            went and when to follow up on him
-          </Typography>
-        </Container>
-      );
-    }
+
+            <Typography
+              padding={1}
+              variant="h5"
+              textAlign={'center'}
+              // marginTop={20}
+            >
+              No updates yet for this lead
+            </Typography>
+            <Typography padding={1} variant="subtitle1" textAlign={'center'}>
+              You can start by describing how your interaction with this person
+              went and when to follow up on him
+            </Typography>
+          </Fragment>
+        )}
+      </Container>
+    );
+    // } else {
+    //   return (
+    //     <Container
+    //       style={{
+    //         display: 'flex',
+    //         flexDirection: 'column',
+    //         alignItems: 'center',
+    //         width: '60%',
+    //         minWidth: '700px',
+    //       }}>
+    //       <TextField
+    //         elevation={0}
+    //         onKeyDown={handleNewNoteKeyDown}
+    //         onChange={(e) => setNoteInputValue(e.target.value)}
+    //         onFocus={handleNewNoteFocus}
+    //         onBlur={handleNewNoteBlur}
+    //         multiline={newNoteClicked}
+    //         minRows={4}
+    //         value={noteInputValue}
+    //         placeholder="Take a note..."
+    //         variant="outlined"
+    //         className={classes.textField}
+    //         fullWidth
+    //       />
+
+    //       <img
+    //         src="https://cdn.monday.com/images/pulse-page-empty-state.svg"
+    //         alt="Image Description"
+    //         width="400"
+    //         height="500"
+    //         className={classes.img}
+    //       />
+
+    //       <Typography
+    //         padding={1}
+    //         variant="h5"
+    //         textAlign={'center'}
+    //         // marginTop={20}
+    //       >
+    //         No updates yet for this lead
+    //       </Typography>
+    //       <Typography padding={1} variant="subtitle1" textAlign={'center'}>
+    //         You can start by describing how your interaction with this person
+    //         went and when to follow up on him
+    //       </Typography>
+    //     </Container>
+    //   );
   }
 }
+// }

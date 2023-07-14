@@ -10,6 +10,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { renderContext } from '../../contexts/DbFunctionsContext';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import VerticalIconPop from '../auxs/VerticalIconPop';
 
 //---------------------------------------------------------------
 
@@ -115,7 +116,7 @@ export default function LeadPaper({ keyVal, lead, handleDelete, idPassUp }) {
         </Paper>
         {/* </ButtonBase> */}
       </Link>
-      <Popover
+      {/* <Popover
         open={Boolean(open)}
         anchorEl={open}
         onClose={handleCloseMenu}
@@ -138,7 +139,12 @@ export default function LeadPaper({ keyVal, lead, handleDelete, idPassUp }) {
             Delete
           </Typography>
         </MenuItem>
-      </Popover>
+      </Popover> */}
+      <VerticalIconPop
+        open={open}
+        handleCloseMenu={() => handleCloseMenu()}
+        handleClickDelete={() => handleClickPopover()}
+      />
     </React.Fragment>
   );
 }
