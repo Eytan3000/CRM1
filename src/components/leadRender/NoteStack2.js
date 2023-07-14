@@ -1,5 +1,4 @@
 import {
-  Box,
   Container,
   Grid,
   Paper,
@@ -9,7 +8,7 @@ import {
 } from '@material-ui/core';
 import { Stack, IconButton } from '@mui/material';
 import React, { Fragment, useState } from 'react';
-import EditIcon from '@mui/icons-material/Edit';
+
 import { format } from 'date-fns';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import VerticalIconPop from '../auxs/VerticalIconPop';
@@ -63,8 +62,8 @@ const useStyles = makeStyles((theme) => {
 export default function NoteStack2({
   lead,
   notes,
-  editKey,
-  setEditKey,
+  // editKey,
+  // setEditKey,
   setLead,
   disabled,
 }) {
@@ -73,6 +72,7 @@ export default function NoteStack2({
   const [newNoteClicked, setNewNoteClicked] = useState(false);
 
   const [noteIdState, setNoteIdState] = useState(null);
+  const [editKey, setEditKey] = useState(null);
 
   const { setRerender } = React.useContext(renderContext);
   const [open, setOpen] = React.useState(null);
@@ -101,6 +101,11 @@ export default function NoteStack2({
     handleCloseMenu();
     deleteNoteFromLead();
     setRerender((prevRerender) => !prevRerender);
+  };
+
+  const handleClickEdit = () => {
+    handleCloseMenu();
+    setEditKey(noteIdState);
   };
 
   if (!notes) {
@@ -163,6 +168,7 @@ export default function NoteStack2({
     const handleNewNoteFocus = () => {
       setNewNoteClicked(true);
     };
+
     const handleNewNoteBlur = () => {
       setNewNoteClicked(false);
     };
@@ -177,6 +183,7 @@ export default function NoteStack2({
           minWidth: '700px',
         }}>
         <TextField
+          autoFocus={newNoteClicked} // problem with clicking twice, resolve by setting to true after it's clicked for the first time.
           elevation={0}
           onKeyDown={handleNewNoteKeyDown}
           onChange={(e) => setNoteInputValue(e.target.value)}
@@ -197,7 +204,7 @@ export default function NoteStack2({
             justifyContent="flex-end"
             alignItems="center"
             spacing={1}>
-            {notes.map((note, index) => {
+            {notes.map((note) => {
               return (
                 <Grid
                   container
@@ -206,15 +213,15 @@ export default function NoteStack2({
                   alignItems="flex-start">
                   {note.noteId === editKey ? (
                     <TextField
-                      id="filled-multiline-static"
                       key={note.noteId}
                       multiline
                       minRows={4}
-                      placeholder="Note"
-                      variant="filled"
+                      defaultValue={note.noteContent}
                       fullWidth
-                      disabled={false}
                       onKeyDown={handleNoteKeyDown}
+                      elevation={0}
+                      variant="outlined"
+                      className={classes.textField}
                     />
                   ) : (
                     <Paper
@@ -268,6 +275,7 @@ export default function NoteStack2({
               open={open}
               handleCloseMenu={() => handleCloseMenu()}
               handleClickDelete={() => handleClickDelete()}
+              handleClickEdit={() => handleClickEdit()}
             />
           </Stack>
         ) : (
