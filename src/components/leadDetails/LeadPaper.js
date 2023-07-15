@@ -10,7 +10,6 @@ import React, { useState } from 'react';
 import { convertCamelCaseToSpaces } from '../../helpers/helpers';
 import SelectStage from '../SelectStage';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import TitleLabel from '../TitleLabel';
 //---------------------------------------------------------------------------------
 export default function LeadPaper({
   lead,
@@ -21,6 +20,8 @@ export default function LeadPaper({
 }) {
   const [editClicked, setEditClicked] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [isTextHovered, setIsTextHovered] = useState(false);
+  const [link, setLink] = useState(false);
 
   const updateLead = (keyToUpdate, valueToUpdate) => {
     if (valueToUpdate !== lead.keyToUpdate) {
@@ -53,7 +54,6 @@ export default function LeadPaper({
     if (event.key === 'Enter') {
       console.log(event.target.value);
       updateLead(editKey, event.target.value);
-
       setEditClicked(false);
     }
     if (event.key === 'Escape') setEditClicked(false);
@@ -76,7 +76,7 @@ export default function LeadPaper({
           alignItems: 'center',
           paddingLeft: '12px',
         }}>
-        <AccountCircleIcon sx={{ color: '#6b6cff', paddingRight: '1em' }} />
+        <AccountCircleIcon sx={{ color: '#6b6cff', padding: '0.5em' }} />
         <Typography
           padding={1}
           // gutterBottom
@@ -128,11 +128,12 @@ export default function LeadPaper({
                       '&:hover': {
                         backgroundColor: isHovered && '#cbe4ff',
                         opacity: [0.9, 0.8, 0.9],
-                        // textDecoration: 'underline',
                         cursor: 'text',
+                        // textDecoration: 'underline',
                         // cursor: 'pointer',
                       },
                     }}>
+                    {/* Value area */}
                     {editKey === 'stage' && key === editKey ? (
                       <SelectStage
                         optionsArr={stages}
@@ -157,9 +158,47 @@ export default function LeadPaper({
                       />
                     ) : (
                       key !== 'notes' && (
-                        <Typography variant="subtitle2" component="div" noWrap>
-                          {value === '' ? '-' : value}
-                        </Typography>
+                        <div
+                          style={{
+                            display: 'inline-block',
+                            maxWidth: '100%',
+                          }}>
+                          <Typography
+                            variant="subtitle2"
+                            component="div"
+                            noWrap
+                            onMouseEnter={() => {
+                              setIsTextHovered(true);
+                            }}
+                            onMouseLeave={() => {
+                              setIsTextHovered(false);
+                            }}
+                            onClick={() => {
+                              window.open(
+                                'https://support.wwf.org.uk/earth_hour/index.php?type=individual',
+                                '_blank'
+                              );
+                            }}
+                            style={{
+                              whiteSpace: 'nowrap',
+                              overflow: 'hidden',
+                              textOverflow: 'ellipsis',
+                              textDecoration:
+                                isTextHovered && editKey === key && 'underline',
+                              cursor:
+                                isTextHovered && editKey === key && 'pointer',
+                              color:
+                                key === 'email' ||
+                                key === 'website' ||
+                                key === 'facebook' ||
+                                key === 'linkedin' ||
+                                key === 'otherLink'
+                                  ? '#0084be'
+                                  : null,
+                            }}>
+                            {value === '' ? '-' : value}
+                          </Typography>
+                        </div>
                       )
                     )}
                   </Box>
