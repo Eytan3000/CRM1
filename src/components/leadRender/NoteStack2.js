@@ -46,6 +46,7 @@ const useStyles = makeStyles((theme) => {
         },
         '&:hover input': {
           background: '#dddfec',
+          color: '#676879',
         },
       },
     },

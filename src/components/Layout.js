@@ -1,4 +1,11 @@
-import { Drawer, makeStyles, AppBar, Toolbar, Avatar } from '@material-ui/core';
+import {
+  Drawer,
+  makeStyles,
+  AppBar,
+  Toolbar,
+  Avatar,
+  TextField,
+} from '@material-ui/core';
 // import { AddCircleOutline, SubjectOutlined } from '@mui/icons-material';
 import AlignVerticalTopOutlinedIcon from '@mui/icons-material/AlignVerticalTopOutlined';
 import {
@@ -9,13 +16,14 @@ import {
   ListItemText,
   Typography,
 } from '@mui/material';
-import React from 'react';
+import React, { Fragment, useContext, useState } from 'react';
 import {
   useHistory,
   useLocation,
 } from 'react-router-dom/cjs/react-router-dom.min';
 // import { format } from 'date-fns';
-
+import { layoutNameContext } from '../contexts/DbFunctionsContext';
+//----------------------------------------------------------------
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => {
@@ -49,20 +57,40 @@ const useStyles = makeStyles((theme) => {
     date: {
       flexGrow: '1',
     },
+    textField: {
+      // flexGrow: '1',
+      marginRight: '80%',
+    },
     avatar: {
       marginLeft: theme.spacing(2),
     },
   };
 });
-
+//----------------------------------------------------------------
 export default function Layout({ children }) {
+  const { layoutName, setLayoutName } = useContext(layoutNameContext);
+
   const classes = useStyles();
   const history = useHistory();
   const location = useLocation();
 
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleNameClick = () => {
+    setIsClicked(true);
+    console.log('clicked');
+  };
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      setLayoutName(event.target.value); //Need to change this to database query
+      setIsClicked(false);
+    }
+    if (event.key === 'Enter') setIsClicked(false);
+  };
+
   const menuItems = [
     {
-      text: 'Main Pipeline',
+      text: layoutName,
       icon: <AlignVerticalTopOutlinedIcon color="primary" />,
       path: '/',
     },
@@ -73,10 +101,22 @@ export default function Layout({ children }) {
       {/* App bar */}
       <AppBar className={classes.appbar} elevation={0}>
         <Toolbar>
-          <Typography className={classes.date}>
-            {/* Today is the {format(new Date(), 'do MMMM Y')} */}
-            {menuItems[0].text}
-          </Typography>
+          {!isClicked ? (
+            <Typography className={classes.date} onClick={handleNameClick}>
+              {/* Today is the {format(new Date(), 'do MMMM Y')} */}
+              {menuItems[0].text}
+            </Typography>
+          ) : (
+            <Fragment>
+              <TextField
+                variant="outlined"
+                size="small"
+                onKeyDown={handleKeyDown}
+                className={classes.textField}
+                defaultValue={layoutName}
+              />
+            </Fragment>
+          )}
           <Typography>Eytan</Typography>
           <Avatar src="/Mario.png" className={classes.avatar} />
         </Toolbar>

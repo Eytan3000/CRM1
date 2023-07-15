@@ -26,7 +26,7 @@
       "title": "eytan ",
       "stage": "callBack",
       "name": "eytan",
-      "phone": "0508657032",
+      "phone": "0508657033",
       "email": "",
       "website": "",
       "facebook": "",
@@ -136,13 +136,13 @@
       "id": 17
     },
     {
-      "stage": "leadIn",
-      "name": "eytan",
+      "stage": "More Details",
+      "name": "eytanKKKKKK",
       "phone": "5555566677",
       "email": "",
-      "website": "",
+      "website": "sadfee34",
       "facebook": "",
-      "linkedin": "",
+      "linkedin": "https://minimal-kit-react.vercel.app/dashboard/user",
       "otherLink": "",
       "companyName": "krief10",
       "companyPhone": "",
@@ -251,7 +251,7 @@
         {
           "noteId": 20,
           "noteDate": "18th June 2023 , 9:47 AM",
-          "noteContent": "{note.noteContent}44444 sadflkjlkjsdf kjsalfkjfd lkjsdfasdf asdfasd 99999ghj"
+          "noteContent": "{note.noteContent}44444 sadflkjlkjsdf kjsalfkjfd lkjsdfasdf asdfasd 99999ghjf"
         },
         {
           "noteId": 21,
@@ -259,9 +259,14 @@
           "noteContent": "{note.noteContent}sdfsdffsdf 888888"
         },
         {
-          "noteId": 26,
-          "noteDate": "14th July 2023 , 4:31 PM",
-          "noteContent": "sound"
+          "noteId": 22,
+          "noteDate": "14th July 2023 , 4:56 PM",
+          "noteContent": "asdfsdf"
+        },
+        {
+          "noteId": 23,
+          "noteDate": "14th July 2023 , 6:22 PM",
+          "noteContent": "asdf555"
         }
       ],
       "id": 18
@@ -463,7 +468,7 @@
     },
     {
       "title": "asdf / asdf ",
-      "stage": "leadIn",
+      "stage": "callBack",
       "name": "Koral",
       "phone": "0547688833",
       "email": "Koral@gmail.com",
@@ -484,15 +489,15 @@
     },
     {
       "title": "test2 / test2 ",
-      "stage": "leadIn",
-      "name": "test2",
-      "phone": "0508657065",
+      "stage": "callBack",
+      "name": "test23",
+      "phone": "05086570659",
       "email": "email@gmail.com",
       "website": "",
       "facebook": "",
-      "linkedin": "",
-      "otherLink": "",
-      "companyName": "test2",
+      "linkedin": "https://mui.com/material-ui/react-list/",
+      "otherLink": "https://mui.com/material-ui/react-list/",
+      "companyName": "test23",
       "companyPhone": "",
       "companyEmail": "",
       "companyWebsite": "",
@@ -757,6 +762,27 @@
         }
       ],
       "id": 43
+    },
+    {
+      "title": "Hugo  / Kelev",
+      "stage": "leadIn",
+      "name": "Hugo",
+      "phone": "50505050055",
+      "email": "",
+      "website": "",
+      "facebook": "",
+      "linkedin": "",
+      "otherLink": "",
+      "companyName": "Kelev",
+      "companyPhone": "",
+      "companyEmail": "",
+      "companyWebsite": "",
+      "companyFacebook": "",
+      "companyLinkedin": "",
+      "companyOtherLink": "",
+      "dateCreated": "15.07.2023",
+      "notes": [],
+      "id": 46
     }
   ]
 }

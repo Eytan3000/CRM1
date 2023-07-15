@@ -1,6 +1,8 @@
 import { FormControl, MenuItem, Select } from '@material-ui/core';
 import React, { useEffect } from 'react';
 import { convertCamelCaseToSpaces } from '../helpers/helpers';
+//--------------------------------------------------------------
+
 export default function SelectStage({ optionsArr, updateLead, currentStage }) {
   const [value, setValue] = React.useState(currentStage);
 
@@ -20,9 +22,6 @@ export default function SelectStage({ optionsArr, updateLead, currentStage }) {
         onChange={handleChange}
         displayEmpty
         inputProps={{ 'aria-label': 'Without label' }}>
-        <MenuItem value="">
-          <em>None</em>
-        </MenuItem>
         {optionsArr.map((option) => {
           return (
             <MenuItem value={option.name}>

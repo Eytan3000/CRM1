@@ -19,6 +19,7 @@ import VerticalIconPop from '../auxs/VerticalIconPop';
 export default function LeadPaper({ keyVal, lead, handleDelete, idPassUp }) {
   const { setRerender } = React.useContext(renderContext);
   const history = useHistory();
+
   const handleTypographyClick = (event) => {
     // Copy phone
     event.stopPropagation();

@@ -51,6 +51,9 @@ export default function Create({ onClose, stage }) {
     if (name) {
       addLeadToDBCtx({
         // title: `${name}${nameC ? ' / ' + nameC : ''} `,
+        title: `${capitalizeWords(name)} ${
+          nameC ? ' / ' + capitalizeWords(nameC) : ''
+        }`,
         stage: stage,
         name: capitalizeWords(name),
         phone,
@@ -111,6 +114,7 @@ export default function Create({ onClose, stage }) {
               setLinkedin={(e) => setLinkedinC(e.target.value)}
               setOtherLink={(e) => setOtherLinkC(e.target.value)}
               setIsDisabled={isDisabled}
+              handleSubmit={handleSubmit}
             />
           </Grid>
         </Grid>

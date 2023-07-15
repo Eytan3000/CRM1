@@ -10,12 +10,13 @@ import LeadRenderColumn from '../components/leadRender/LeadRenderColumn';
 import { Box, Grid } from '@mui/material';
 import { renderContext } from '../contexts/DbFunctionsContext';
 import { useMediaQuery } from '@mui/material';
-
+import { layoutNameContext } from '../contexts/DbFunctionsContext';
 //----------------------------------------------------------
 
 export default function LeadsRender({ idPassUp, stagesPassUp }) {
   const loadCardsContentCtx = useContext(loadCards);
   const loadStagesCtx = useContext(loadStagesContext);
+  const { setLayoutName } = useContext(layoutNameContext);
 
   const [leads, setLeads] = useState([]);
   const [stages, setStages] = useState([]);
@@ -30,6 +31,7 @@ export default function LeadsRender({ idPassUp, stagesPassUp }) {
     (async () => {
       const arr = await loadCardsContentCtx();
       setLeads(arr);
+      setLayoutName('Main Pipeline');
     })();
   }, [reRender]);
 

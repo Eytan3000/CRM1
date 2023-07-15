@@ -10,10 +10,12 @@ export const loadCards = React.createContext();
 export const loadStagesContext = React.createContext();
 export const loadLeadContext = React.createContext();
 export const renderContext = React.createContext();
+export const layoutNameContext = React.createContext();
 
 export function DbFunctionsProvider({ children }) {
   // const [leadsCards, setLeadsCards] = useState([]);
   const [reRender, setRerender] = useState(true);
+  const [layoutName, setLayoutName] = useState('Main Pipeline');
 
   function addLeadToDB(lead) {
     insertNewLead(lead);
@@ -75,7 +77,9 @@ export function DbFunctionsProvider({ children }) {
         <loadStagesContext.Provider value={loadStages}>
           <loadLeadContext.Provider value={loadLead}>
             <renderContext.Provider value={{ reRender, setRerender }}>
-              {children}
+              <layoutNameContext.Provider value={{ layoutName, setLayoutName }}>
+                {children}
+              </layoutNameContext.Provider>
             </renderContext.Provider>
           </loadLeadContext.Provider>
         </loadStagesContext.Provider>
