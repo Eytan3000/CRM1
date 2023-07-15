@@ -272,73 +272,16 @@
       "id": 18
     },
     {
-      "title": "eytankrief ",
+      "title": "Oryan ",
       "stage": "noAnswer",
-      "name": "eytankrief2",
-      "phone": "",
-      "email": "",
-      "website": "",
-      "facebook": "",
-      "linkedin": "",
-      "otherLink": "",
-      "companyName": "",
-      "companyPhone": "",
-      "companyEmail": "",
-      "companyWebsite": "",
-      "companyFacebook": "",
-      "companyLinkedin": "",
-      "companyOtherLink": "",
-      "dateCreated": "18.06.2023",
-      "notes": [
-        {
-          "noteId": 1,
-          "noteDate": "18th June 2023 , 9:19 AM",
-          "noteContent": "dfg"
-        },
-        {
-          "noteId": 2,
-          "noteDate": "18th June 2023 , 9:21 AM",
-          "noteContent": "sdf"
-        },
-        {
-          "noteId": 3,
-          "noteDate": "18th June 2023 , 9:21 AM",
-          "noteContent": "sdf"
-        },
-        {
-          "noteId": 4,
-          "noteDate": "18th June 2023 , 9:21 AM",
-          "noteContent": "sddddd"
-        },
-        {
-          "noteId": 5,
-          "noteDate": "18th June 2023 , 9:32 AM",
-          "noteContent": "eytannnn"
-        },
-        {
-          "noteId": 6,
-          "noteDate": "18th June 2023 , 9:44 AM",
-          "noteContent": "kkkkkasdf"
-        },
-        {
-          "noteId": 7,
-          "noteDate": "18th June 2023 , 9:45 AM",
-          "noteContent": "575775"
-        }
-      ],
-      "id": 19
-    },
-    {
-      "title": "oryan ",
-      "stage": "noAnswer",
-      "name": "oryan",
+      "name": "Oryan Krief",
       "phone": "0508657999",
       "email": "",
       "website": "",
       "facebook": "",
       "linkedin": "",
       "otherLink": "",
-      "companyName": "",
+      "companyName": "Climbing LTD.",
       "companyPhone": "",
       "companyEmail": "",
       "companyWebsite": "",
@@ -488,69 +431,6 @@
       "id": 24
     },
     {
-      "title": "test2 / test2 ",
-      "stage": "callBack",
-      "name": "test23",
-      "phone": "05086570659",
-      "email": "email@gmail.com",
-      "website": "",
-      "facebook": "",
-      "linkedin": "https://mui.com/material-ui/react-list/",
-      "otherLink": "https://mui.com/material-ui/react-list/",
-      "companyName": "test23",
-      "companyPhone": "",
-      "companyEmail": "",
-      "companyWebsite": "",
-      "companyFacebook": "",
-      "companyLinkedin": "",
-      "companyOtherLink": "",
-      "dateCreated": "18.06.2023",
-      "notes": [
-        {
-          "noteId": 1,
-          "noteDate": "18th June 2023 , 10:05 AM",
-          "noteContent": "adsfasdf"
-        },
-        {
-          "noteId": 2,
-          "noteDate": "14th July 2023 , 3:57 PM",
-          "noteContent": "sdf"
-        },
-        {
-          "noteId": 3,
-          "noteDate": "14th July 2023 , 4:17 PM",
-          "noteContent": "sdf\n"
-        },
-        {
-          "noteId": 4,
-          "noteDate": "14th July 2023 , 4:41 PM",
-          "noteContent": "eytan"
-        }
-      ],
-      "id": 25
-    },
-    {
-      "title": "kara lane ",
-      "stage": "callBack",
-      "name": "kara lane",
-      "phone": "",
-      "email": "",
-      "website": "",
-      "facebook": "",
-      "linkedin": "",
-      "otherLink": "",
-      "companyName": "",
-      "companyPhone": "",
-      "companyEmail": "",
-      "companyWebsite": "",
-      "companyFacebook": "",
-      "companyLinkedin": "",
-      "companyOtherLink": "",
-      "dateCreated": "18.06.2023",
-      "notes": [],
-      "id": 26
-    },
-    {
       "title": "Yair Petch / Kricherer Company Ltd. ",
       "stage": "leadIn",
       "name": "Yair Petch",
@@ -693,26 +573,6 @@
       "id": 40
     },
     {
-      "stage": "callBack",
-      "name": "Karen Ronen",
-      "phone": "",
-      "email": "",
-      "website": "",
-      "facebook": "",
-      "linkedin": "",
-      "otherLink": "",
-      "companyName": "Nails",
-      "companyPhone": "",
-      "companyEmail": "",
-      "companyWebsite": "",
-      "companyFacebook": "",
-      "companyLinkedin": "",
-      "companyOtherLink": "",
-      "dateCreated": "04.07.2023",
-      "notes": [],
-      "id": 41
-    },
-    {
       "stage": "Call in a month",
       "name": "Rotem Rozenberg",
       "phone": "0508657400",
@@ -767,7 +627,7 @@
       "title": "Hugo  / Kelev",
       "stage": "leadIn",
       "name": "Hugo",
-      "phone": "50505050055",
+      "phone": "50505050056",
       "email": "",
       "website": "",
       "facebook": "",
@@ -781,8 +641,41 @@
       "companyLinkedin": "",
       "companyOtherLink": "",
       "dateCreated": "15.07.2023",
-      "notes": [],
+      "notes": [
+        {
+          "noteId": 1,
+          "noteDate": "15th July 2023 , 2:35 PM",
+          "noteContent": "aksdfjlakskjfdadffsdf asdf"
+        }
+      ],
       "id": 46
+    },
+    {
+      "title": "John Shmidt  / Chicetti",
+      "stage": "leadIn",
+      "name": "Eran Tepper",
+      "phone": "06877463552",
+      "email": "shmidt@gmail.com",
+      "website": "www.checetti.co.il",
+      "facebook": "",
+      "linkedin": "",
+      "otherLink": "",
+      "companyName": "Chicetti",
+      "companyPhone": "",
+      "companyEmail": "",
+      "companyWebsite": "",
+      "companyFacebook": "",
+      "companyLinkedin": "",
+      "companyOtherLink": "",
+      "dateCreated": "15.07.2023",
+      "notes": [
+        {
+          "noteId": 1,
+          "noteDate": "15th July 2023 , 2:38 PM",
+          "noteContent": "שפך שתייה על קארן"
+        }
+      ],
+      "id": 47
     }
   ]
 }

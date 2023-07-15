@@ -128,7 +128,11 @@ export default function Layout({ children }) {
         anchor="left"
         classes={{ paper: classes.drawerPaper }}>
         <div>
-          <Typography className={classes.title} variant="h5">
+          <Typography
+            className={classes.title}
+            variant="h5"
+            onClick={() => history.push('/')}
+            style={{ cursor: 'pointer' }}>
             Pipelines
           </Typography>
         </div>
