@@ -2,7 +2,7 @@ import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { Container, Grid, Paper, makeStyles } from '@material-ui/core';
 import { loadLeadContext } from '../contexts/DbFunctionsContext';
 import { Box } from '@mui/material';
-import NoteStack2 from '../components/leadRender/NoteStack2';
+import NoteStack2 from '../components/leadDetails/NoteStack2';
 import image from './2.jpg';
 import { updateObjectDB } from '../helpers/dbFunctions';
 import { layoutNameContext } from '../contexts/DbFunctionsContext';

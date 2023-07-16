@@ -1,6 +1,6 @@
 import { FormControl, MenuItem, Select } from '@material-ui/core';
 import React, { useEffect } from 'react';
-import { convertCamelCaseToSpaces } from '../helpers/helpers';
+import { convertCamelCaseToSpaces } from '../../helpers/helpers';
 //--------------------------------------------------------------
 
 export default function SelectStage({ optionsArr, updateLead, currentStage }) {

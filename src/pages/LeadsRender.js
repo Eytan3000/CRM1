@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 
-import NewLeadModal from '../components/leadRender/NewLeadModal';
-import AddStagePopper from '../components/leadRender/AddStagePopper';
+import NewLeadModal from '../components/leadsRender/NewLeadModal';
+import AddStagePopper from '../components/leadsRender/AddStagePopper';
 import { loadCards, loadStagesContext } from '../contexts/DbFunctionsContext';
 
 import { updateStageToDb } from '../helpers/dbFunctions';
 
-import LeadRenderColumn from '../components/leadRender/LeadRenderColumn';
+import LeadRenderColumn from '../components/leadsRender/LeadRenderColumn';
 import { Box, Grid } from '@mui/material';
 import { renderContext } from '../contexts/DbFunctionsContext';
 import { useMediaQuery } from '@mui/material';

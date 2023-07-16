@@ -1,7 +1,7 @@
 import React from 'react';
-import InputFieldText from './InputFieldText';
+import InputFieldText from '../auxs/InputFieldText';
 
-export default function RightColumn({
+export default function LeftColumn({
   setName,
   setPhone,
   setEmail,
@@ -9,7 +9,6 @@ export default function RightColumn({
   setFacebook,
   setLinkedin,
   setOtherLink,
-  setIsDisabled,
   handleSubmit,
 }) {
   const handleKeyDown = (event) => {
@@ -18,47 +17,42 @@ export default function RightColumn({
       handleSubmit(event); // Call the form submit function, passes the event from the text field to the handleSubmit
     }
   };
+
   return (
     <div>
       <InputFieldText
         onChange={setName}
-        label="Company - Name"
+        label="Name"
         onKeyDown={handleKeyDown}
       />
       <InputFieldText
         onChange={setPhone}
-        label="Company - Phone"
-        disabled={setIsDisabled}
+        label="Phone"
         onKeyDown={handleKeyDown}
       />
       <InputFieldText
         onChange={setEmail}
-        label="Company - Email"
-        disabled={setIsDisabled}
+        label="Email"
         onKeyDown={handleKeyDown}
       />
       <InputFieldText
         onChange={setWebsite}
-        label="Company - Website"
-        disabled={setIsDisabled}
+        label="Website"
         onKeyDown={handleKeyDown}
       />
       <InputFieldText
         onChange={setFacebook}
-        label="Company - Facebook"
-        disabled={setIsDisabled}
+        label="Facebook"
         onKeyDown={handleKeyDown}
       />
       <InputFieldText
         onChange={setLinkedin}
-        label="Company - Linkedin"
-        disabled={setIsDisabled}
+        label="Linkedin"
         onKeyDown={handleKeyDown}
       />
       <InputFieldText
         onChange={setOtherLink}
-        label="Company - Other link"
-        disabled={setIsDisabled}
+        label="Other link"
         onKeyDown={handleKeyDown}
       />
     </div>

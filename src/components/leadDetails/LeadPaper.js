@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core';
 import React, { Fragment, useState } from 'react';
 import { convertCamelCaseToSpaces } from '../../helpers/helpers';
-import SelectStage from '../SelectStage';
+import SelectStage from './SelectStage';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 //---------------------------------------------------------------------------------
 export default function LeadPaper({
@@ -68,24 +68,25 @@ export default function LeadPaper({
     //     backgroundColor: (theme) =>
     //       theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     //   }}>
-    //   {/* Person label */}
-    //   <Container
-    //     style={{
-    //       display: 'flex',
-    //       alignItems: 'center',
-    //       paddingLeft: '12px',
-    //     }}>
-    //     <AccountCircleIcon sx={{ color: '#6b6cff', padding: '0.5em' }} />
-    //     <Typography
-    //       padding={1}
-    //       // gutterBottom
-    //       variant="h6">
-    //       Person
-    //     </Typography>
-    //   </Container>
 
     //   <Box sx={{ padding: '0 0 30px 0' }}>
     <Fragment>
+      {/* Person label */}
+      <Container
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          paddingLeft: '12px',
+        }}>
+        <AccountCircleIcon sx={{ color: '#6b6cff', padding: '0.5em' }} />
+        <Typography
+          padding={1}
+          // gutterBottom
+          variant="h6">
+          Person
+        </Typography>
+      </Container>
+
       {Object.entries(lead).map(([key, value]) => {
         if (key !== 'notes')
           return (

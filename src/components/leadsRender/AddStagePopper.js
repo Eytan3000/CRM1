@@ -6,7 +6,7 @@ import {
   Popover,
   makeStyles,
 } from '@material-ui/core';
-import InputFieldText from '../InputFieldText';
+import InputFieldText from '../auxs/InputFieldText';
 
 import EditIcon from '@mui/icons-material/Edit';
 

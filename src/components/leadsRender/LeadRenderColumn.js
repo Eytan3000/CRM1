@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { deleteLeadFromDb } from '../../helpers/dbFunctions';
 import { Box, Button, Grid, Modal, Stack } from '@mui/material';
-import TitleLabel from '../TitleLabel';
+import TitleLabel from '../auxs/TitleLabel';
 import { makeStyles } from '@material-ui/core';
 import { convertCamelCaseToSpaces } from '../../helpers/helpers';
 import Create from '../../pages/Create';

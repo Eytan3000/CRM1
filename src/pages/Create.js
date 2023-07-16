@@ -3,10 +3,10 @@ import React, { useState, useContext } from 'react';
 import { Typography, Container, makeStyles } from '@material-ui/core';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import Grid from '@mui/material/Grid';
-import LeftColumn from '../components/LeftColumn';
-import RightColumn from '../components/RightColumn';
+import CreateLeftColumn from '../components/createNewLead/CreateLeftColumn';
+import CreateRightColumn from '../components/createNewLead/CreateRightColumn';
 import { format } from 'date-fns';
-import SubmitButton from '../components/SubmitButton';
+import SubmitButton from '../components/auxs/SubmitButton';
 import { Box } from '@mui/material';
 
 import { addLeadToDBContext } from '../contexts/DbFunctionsContext';
@@ -89,7 +89,7 @@ export default function Create({ onClose, stage }) {
       <form noValidate autoComplete="off" onSubmit={handleSubmit}>
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
-            <LeftColumn
+            <CreateLeftColumn
               setName={(e) => setName(e.target.value)}
               setPhone={(e) => setPhone(e.target.value)}
               setEmail={(e) => setEmail(e.target.value)}
@@ -101,7 +101,7 @@ export default function Create({ onClose, stage }) {
             />
           </Grid>
           <Grid item xs={12} md={6}>
-            <RightColumn
+            <CreateRightColumn
               setName={(e) => {
                 setNameC(e.target.value);
                 if (e.target.value === '') setIsDisabled(true);
