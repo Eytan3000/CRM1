@@ -45,20 +45,12 @@ function LeadsRender({ idPassUp, stagesPassUp }) {
     })();
   }, []);
 
-  const updateStage = (newStage) => {
-    updateStageToDb(newStage)
-      .then((data) => {
-        setStages((prevStage) => [...prevStage, { ...data }]);
-      })
-      .catch((err) => console.error(err));
-  };
-
   return (
     <div>
       <Box display="flex" paddingBottom={2}>
         <NewLeadModal />
         {/* <Grid container spacing={3}> */}
-        <AddStagePopper updateStage={updateStage} />
+        <AddStagePopper setStages={setStages} />
       </Box>
       <Grid
         container

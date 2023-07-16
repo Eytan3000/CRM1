@@ -9,6 +9,7 @@ import {
 import InputFieldText from '../auxs/InputFieldText';
 
 import EditIcon from '@mui/icons-material/Edit';
+import { updateStageToDb } from '../../helpers/dbFunctions';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -28,7 +29,7 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-function AddStagePopper({ updateStage }) {
+function AddStagePopper({ setStages }) {
   console.log('addStagePopper run');
 
   const classes = useStyles();
@@ -47,6 +48,14 @@ function AddStagePopper({ updateStage }) {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const updateStage = (newStage) => {
+    updateStageToDb(newStage)
+      .then((data) => {
+        setStages((prevStage) => [...prevStage, { ...data }]);
+      })
+      .catch((err) => console.error(err));
   };
 
   const handleKeyDown = (event) => {
