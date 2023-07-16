@@ -45,7 +45,7 @@
     },
     {
       "title": "eytan2 / Krief2 ",
-      "stage": "noAnswer",
+      "stage": "callBack",
       "name": "eytan2",
       "phone": "050505051",
       "email": "sdfddd",
@@ -305,7 +305,7 @@
     },
     {
       "title": "Yair / Petch Company ",
-      "stage": "callBack",
+      "stage": "Call in a month",
       "name": "Yair",
       "phone": "",
       "email": "",
@@ -374,7 +374,7 @@
     },
     {
       "title": "mom / pap ",
-      "stage": "callBack",
+      "stage": "Call in a month",
       "name": "mom",
       "phone": "05050505",
       "email": "momPap@gmail.com",
@@ -410,13 +410,13 @@
       "id": 23
     },
     {
-      "title": "asdf / asdf ",
-      "stage": "callBack",
+      "title": "Koral",
+      "stage": "More Details",
       "name": "Koral",
       "phone": "0547688833",
-      "email": "Koral@gmail.com",
-      "website": "",
-      "facebook": "",
+      "email": "Koral@gmail.come",
+      "website": "https://www.kriefsound.com/",
+      "facebook": "https://www.facebook.com/",
       "linkedin": "",
       "otherLink": "",
       "companyName": "asdf",
@@ -427,12 +427,23 @@
       "companyLinkedin": "",
       "companyOtherLink": "",
       "dateCreated": "18.06.2023",
-      "notes": [],
+      "notes": [
+        {
+          "noteId": 1,
+          "noteDate": "16th July 2023 , 11:35 AM",
+          "noteContent": "asdf"
+        },
+        {
+          "noteId": 2,
+          "noteDate": "16th July 2023 , 12:33 PM",
+          "noteContent": "asdfsdf\nadfasdf"
+        }
+      ],
       "id": 24
     },
     {
       "title": "Yair Petch / Kricherer Company Ltd. ",
-      "stage": "noAnswer",
+      "stage": "leadIn",
       "name": "Yair Petch",
       "phone": "0588657211",
       "email": "petch@gmail.com",
@@ -459,11 +470,11 @@
     },
     {
       "title": "Yair PetchPetch",
-      "stage": "noAnswer",
+      "stage": "leadIn",
       "name": "Yair kor",
       "phone": "0547670033",
       "email": "yair@gmail.com",
-      "website": "afasdf",
+      "website": "afasdsadf",
       "facebook": "",
       "linkedin": "",
       "otherLink": "",
@@ -593,7 +604,7 @@
       "id": 42
     },
     {
-      "stage": "More Details",
+      "stage": "noAnswer",
       "name": "Moti Stein",
       "phone": "05076577888",
       "email": "",
@@ -625,9 +636,9 @@
     },
     {
       "title": "Hugo  / Kelev",
-      "stage": "leadIn",
+      "stage": "noAnswer",
       "name": "Hugo",
-      "phone": "50505050056",
+      "phone": "5050505005",
       "email": "",
       "website": "",
       "facebook": "",
@@ -652,7 +663,7 @@
     },
     {
       "title": "John Shmidt  / Chicetti",
-      "stage": "leadIn",
+      "stage": "noAnswer",
       "name": "Eran Tepper",
       "phone": "06877463552",
       "email": "shmidt@gmail.com",
@@ -673,9 +684,96 @@
           "noteId": 1,
           "noteDate": "15th July 2023 , 2:38 PM",
           "noteContent": "שפך שתייה על קארן"
+        },
+        {
+          "noteId": 2,
+          "noteDate": "16th July 2023 , 11:18 AM",
+          "noteContent": "ASDFASDF"
+        },
+        {
+          "noteId": 3,
+          "noteDate": "16th July 2023 , 11:18 AM",
+          "noteContent": "ASDFASDF"
+        },
+        {
+          "noteId": 4,
+          "noteDate": "16th July 2023 , 11:18 AM",
+          "noteContent": "ASDFSADFFD"
+        },
+        {
+          "noteId": 5,
+          "noteDate": "16th July 2023 , 11:18 AM",
+          "noteContent": "ASDFASDF"
+        },
+        {
+          "noteId": 6,
+          "noteDate": "16th July 2023 , 11:18 AM",
+          "noteContent": "SADFASDF"
+        },
+        {
+          "noteId": 7,
+          "noteDate": "16th July 2023 , 11:18 AM",
+          "noteContent": "ASDFASDF"
+        },
+        {
+          "noteId": 8,
+          "noteDate": "16th July 2023 , 11:19 AM",
+          "noteContent": "ASDFASDF"
+        },
+        {
+          "noteId": 9,
+          "noteDate": "16th July 2023 , 11:19 AM",
+          "noteContent": "ASDFASDF"
+        },
+        {
+          "noteId": 10,
+          "noteDate": "16th July 2023 , 11:19 AM",
+          "noteContent": "ASDFSDDD"
         }
       ],
       "id": 47
+    },
+    {
+      "title": "Asdf ",
+      "stage": "callBack",
+      "name": "Asdf",
+      "phone": "",
+      "email": "",
+      "website": "",
+      "facebook": "",
+      "linkedin": "",
+      "otherLink": "",
+      "companyName": "",
+      "companyPhone": "",
+      "companyEmail": "",
+      "companyWebsite": "",
+      "companyFacebook": "",
+      "companyLinkedin": "",
+      "companyOtherLink": "",
+      "dateCreated": "16.07.2023",
+      "notes": [],
+      "id": 48
+    },
+    {
+      "title": "Quentin Tarantino ",
+      "stage": "leadIn",
+      "name": "Quentin Tarantino",
+      "phone": "0508659703",
+      "email": "Tarantino@gmail.com",
+      "website": "https://www.instagram.com/tarantinoxx/?hl=en",
+      "facebook": "https://www.instagram.com/tarantinoxx/?hl=en",
+      "linkedin": "https://www.instagram.com/tarantinoxx/?hl=en",
+      "otherLink": "",
+      "companyName": "",
+      "companyPhone": "",
+      "companyEmail": "",
+      "companyWebsite": "",
+      "companyFacebook": "",
+      "companyLinkedin": "",
+      "companyOtherLink": "",
+      "dateCreated": "16.07.2023",
+      "notes": [],
+      "id": 49
     }
   ]
 }

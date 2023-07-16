@@ -2,15 +2,16 @@ import {
   Box,
   Container,
   Grid,
-  Paper,
   TextField,
   Typography,
+  makeStyles,
 } from '@material-ui/core';
 import React, { Fragment, useState } from 'react';
-import { convertCamelCaseToSpaces } from '../../helpers/helpers';
+import { convertCamelCaseToSpaces, isLink } from '../../helpers/helpers';
 import SelectStage from './SelectStage';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 //---------------------------------------------------------------------------------
+//--------------------------------------------------------------
 export default function LeadPaper({
   lead,
   setLead,
@@ -45,7 +46,7 @@ export default function LeadPaper({
   };
 
   const handleEditClick = () => {
-    setEditClicked(true);
+    editKey !== 'stage' && setEditClicked(true);
     setIsHovered(false);
   };
 
@@ -58,18 +59,12 @@ export default function LeadPaper({
     if (event.key === 'Escape') setEditClicked(false);
   };
 
+  const handleValueClick = (event) => {
+    const innerText = event.target.innerText;
+    event.stopPropagation();
+    isLink(innerText) && window.open(innerText, '_blank');
+  };
   return (
-    // <Paper
-    //   sx={{
-    //     p: 2,
-    //     margin: 'auto',
-    //     maxWidth: 500,
-    //     flexGrow: 1,
-    //     backgroundColor: (theme) =>
-    //       theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    //   }}>
-
-    //   <Box sx={{ padding: '0 0 30px 0' }}>
     <Fragment>
       {/* Person label */}
       <Container
@@ -130,17 +125,16 @@ export default function LeadPaper({
                       backgroundColor: isHovered && '#cbe4ff',
                       opacity: [0.9, 0.8, 0.9],
                       cursor: 'text',
-                      // textDecoration: 'underline',
-                      // cursor: 'pointer',
                     },
                   }}>
                   {/* Value area */}
-                  {editKey === 'stage' && key === editKey ? (
+                  {editKey === 'stage' && key === editKey && isHovered ? (
                     <SelectStage
                       optionsArr={stages}
                       updateLead={updateLead}
                       currentStage={value}
-                      onClick={handleKeyDown}
+                      setEditKey={setEditKey}
+                      setEditClicked={setEditClicked}
                     />
                   ) : editClicked && key === editKey ? (
                     // <input
@@ -162,7 +156,7 @@ export default function LeadPaper({
                       <div
                         style={{
                           display: 'inline-block',
-                          maxWidth: '100%',
+                          maxWidth: '80%',
                         }}>
                         <Typography
                           variant="subtitle2"
@@ -174,28 +168,23 @@ export default function LeadPaper({
                           onMouseLeave={() => {
                             setIsTextHovered(false);
                           }}
-                          onClick={() => {
-                            window.open(
-                              'https://support.wwf.org.uk/earth_hour/index.php?type=individual',
-                              '_blank'
-                            );
-                          }}
+                          onClick={handleValueClick}
                           style={{
                             whiteSpace: 'nowrap',
                             overflow: 'hidden',
                             textOverflow: 'ellipsis',
                             textDecoration:
-                              isTextHovered && editKey === key && 'underline',
+                              isTextHovered &&
+                              editKey === key &&
+                              isLink(value) &&
+                              'underline',
                             cursor:
-                              isTextHovered && editKey === key && 'pointer',
-                            color:
-                              key === 'email' ||
-                              key === 'website' ||
-                              key === 'facebook' ||
-                              key === 'linkedin' ||
-                              key === 'otherLink'
-                                ? '#0084be'
-                                : null,
+                              isTextHovered &&
+                              editKey === key &&
+                              isLink(value) &&
+                              'pointer',
+
+                            color: isLink(value) && '#0084be',
                           }}>
                           {value === '' ? '-' : value}
                         </Typography>
@@ -207,8 +196,6 @@ export default function LeadPaper({
             </Grid>
           );
       })}
-      {/* </Box> */}
-      {/* // </Paper> */}
     </Fragment>
   );
 }

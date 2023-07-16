@@ -41,12 +41,6 @@ export default function LeadPaper({ keyVal, lead, handleDelete, idPassUp }) {
   };
   return (
     <React.Fragment>
-      {/* <ButtonBase
-        component="div"
-        onClick={() => {
-          idPassUp(lead.id);
-          history.push('/lead');
-        }}> */}
       <Link
         sx={{
           textDecoration: 'none',
@@ -115,32 +109,8 @@ export default function LeadPaper({ keyVal, lead, handleDelete, idPassUp }) {
             </Grid>
           </Grid>
         </Paper>
-        {/* </ButtonBase> */}
       </Link>
-      {/* <Popover
-        open={Boolean(open)}
-        anchorEl={open}
-        onClose={handleCloseMenu}
-        anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
-        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-        PaperProps={{
-          sx: {
-            p: 1,
-            width: 140,
-            '& .MuiMenuItem-root': {
-              px: 1,
-              typography: 'body2',
-              borderRadius: 0.75,
-            },
-          },
-        }}>
-        <MenuItem sx={{ color: 'error.main' }} onClick={handleClickPopover}>
-          <DeleteOutlineIcon sx={{ mr: 1 }} fontSize="small" color="error" />
-          <Typography variant="subtitle1" color="error">
-            Delete
-          </Typography>
-        </MenuItem>
-      </Popover> */}
+
       <VerticalIconPop
         open={open}
         handleCloseMenu={() => handleCloseMenu()}

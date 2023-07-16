@@ -2,7 +2,7 @@ import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { Container, Grid, Paper, makeStyles } from '@material-ui/core';
 import { loadLeadContext } from '../contexts/DbFunctionsContext';
 import { Box } from '@mui/material';
-import NoteStack2 from '../components/leadDetails/NotesStack';
+import NotesStack from '../components/leadDetails/NotesStack';
 import image from './2.jpg';
 import { updateObjectDB } from '../helpers/dbFunctions';
 import { layoutNameContext } from '../contexts/DbFunctionsContext';
@@ -71,55 +71,60 @@ export default function Lead({ id, stages }) {
   }, [lead]);
 
   return (
-    <Fragment className={classes.page}>
-      <Box style={{ background: '#f5f7faff' }}>
-        <Grid
-          key="lead_details"
-          container
-          spacing={2}
-          wrap="nowrap"
-          justifyContent="space-around">
-          <Grid item md={3} sm={12} xs={12}>
-            <Container
-              style={{
+    <Box style={{ background: '#f5f7faff', paddingRight: '10px' }}>
+      <Grid
+        key="lead_details"
+        container
+        spacing={2}
+        wrap="nowrap"
+        justifyContent="space-around">
+        <Grid item md={2} sm={12} xs={12}>
+          <Container
+            style={
+              {
                 // display: 'flex',
                 // flexDirection: 'column',
                 // alignItems: 'center',
                 // width: '60%',
-                minWidth: '300px',
-              }}>
-              <LeadPaper
-                stages={stages}
-                lead={lead}
-                setLead={setLead}
-                editKey={editKey}
-                setEditKey={setEditKey}
-              />
-            </Container>
-          </Grid>
-
-          <Grid
-            item
-            md={9}
-            sm={12}
-            xs={12}
-            sx={{
-              display: 'flex',
-              direction: 'column',
-            }}>
-            <Paper className={classes.paper}>
-              <NoteStack2
-                notes={lead.notes}
-                editKey={editKey}
-                setEditKey={(newEditKey) => setEditKey(newEditKey)}
-                setLead={(newLead) => setLead(newLead)}
-                id={id}
-                stages={stages}
-              />
-            </Paper>
-          </Grid>
+                // minWidth: '300px',
+              }
+            }>
+            <LeadPaper
+              stages={stages}
+              lead={lead}
+              setLead={setLead}
+              editKey={editKey}
+              setEditKey={setEditKey}
+            />
+          </Container>
         </Grid>
-      </Box>
-    </Fragment>
+
+        <Grid
+          item
+          md={10}
+          sm={12}
+          xs={12}
+          sx={{
+            display: 'flex',
+            direction: 'column',
+          }}>
+          <Box
+            sx={{
+              background: 'white',
+              border: '1px solid #dededeff',
+              height: '100%',
+            }}>
+            <NotesStack
+              notes={lead.notes}
+              editKey={editKey}
+              setEditKey={(newEditKey) => setEditKey(newEditKey)}
+              setLead={(newLead) => setLead(newLead)}
+              id={id}
+              stages={stages}
+            />
+          </Box>
+        </Grid>
+      </Grid>
+    </Box>
   );
 }

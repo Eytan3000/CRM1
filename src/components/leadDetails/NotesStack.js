@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => {
   };
 });
 //------------------------------------------------------
-export default function NoteStack2({
+export default function NotesStack({
   lead,
   notes,
   // editKey,
@@ -181,7 +181,8 @@ export default function NoteStack2({
           flexDirection: 'column',
           alignItems: 'center',
           width: '60%',
-          minWidth: '700px',
+          // minWidth: '700px',
+          padding: '15px',
         }}>
         <TextField
           autoFocus={newNoteClicked} // problem with clicking twice, resolve by setting to true after it's clicked for the first time.

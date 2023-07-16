@@ -27,3 +27,8 @@ export function capitalizeWords(str) {
 
   return capitalizedString;
 }
+
+export function isLink(text) {
+  const urlRegex = /^(https?:\/\/)?([\w.-]+)\.([a-z]{2,})(\/\S*)?$/i;
+  return urlRegex.test(text);
+}
