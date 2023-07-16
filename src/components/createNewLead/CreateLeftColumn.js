@@ -25,6 +25,7 @@ export default function LeftColumn({
         label="Name"
         onKeyDown={handleKeyDown}
       />
+
       <InputFieldText
         onChange={setPhone}
         label="Phone"

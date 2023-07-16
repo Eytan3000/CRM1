@@ -126,5 +126,5 @@ function Create({ onClose, stage }) {
     </Box>
   );
 }
-export default Create;
-// export default React.memo(Create);
+// export default Create;
+export default React.memo(Create);

@@ -74,7 +74,9 @@ function addLeadsPapersInColumn(leads, stageName, idPassUp) {
 
 //----------------------------------------------------
 
-export default function LeadRenderColumn({ stage, leads, idPassUp }) {
+function LeadRenderColumn({ stage, leads, idPassUp }) {
+  console.log('LeadRenderColumn run');
+
   const [hover, setHover] = useState(false);
   const [open, setOpen] = React.useState(false);
 
@@ -131,3 +133,4 @@ export default function LeadRenderColumn({ stage, leads, idPassUp }) {
     </div>
   );
 }
+export default React.memo(LeadRenderColumn);

@@ -139,7 +139,8 @@ export default function LeadPaper({
                     <TextField
                       autoFocus
                       size="small"
-                      variant="outlined"
+                      variant="standard"
+                      // color="secondary"
                       defaultValue={value}
                       onKeyDown={handleKeyDown}
                     />

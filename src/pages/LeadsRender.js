@@ -1,11 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
-
 import NewLeadModal from '../components/leadsRender/NewLeadModal';
 import AddStagePopper from '../components/leadsRender/AddStagePopper';
 import { loadCards, loadStagesContext } from '../contexts/DbFunctionsContext';
-
-import { updateStageToDb } from '../helpers/dbFunctions';
-
 import LeadRenderColumn from '../components/leadsRender/LeadRenderColumn';
 import { Box, Grid } from '@mui/material';
 import { renderContext } from '../contexts/DbFunctionsContext';
@@ -15,18 +11,19 @@ import { layoutNameContext } from '../contexts/DbFunctionsContext';
 //----------------------------------------------------------
 function LeadsRender({ idPassUp, stagesPassUp }) {
   console.log('LeadsRender run');
+
   const loadCardsContentCtx = useContext(loadCards);
   const loadStagesCtx = useContext(loadStagesContext);
+  const { reRender } = useContext(renderContext);
   const { setLayoutName } = useContext(layoutNameContext);
 
   const [leads, setLeads] = useState([]);
   const [stages, setStages] = useState([]);
+
   const wrapMaxWidth = (1300 * stages.length) / 5; // when does the window stop squeezing and start pushing
   const isDesktop = useMediaQuery(
     `(min-width: 900px) and (max-width: ${wrapMaxWidth}px)`
   ); // the mediaQuery is affected by the number of stages.
-
-  const { reRender } = useContext(renderContext);
 
   useEffect(() => {
     (async () => {

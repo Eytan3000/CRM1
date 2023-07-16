@@ -453,8 +453,8 @@
       "otherLink": "",
       "companyName": "Kricherer Company Ltd.",
       "companyPhone": "",
-      "companyEmail": "",
-      "companyWebsite": "",
+      "companyEmail": "eytan",
+      "companyWebsite": "asfd",
       "companyFacebook": "",
       "companyLinkedin": "",
       "companyOtherLink": "",
@@ -464,6 +464,11 @@
           "noteId": 1,
           "noteDate": "19th June 2023 , 2:46 PM",
           "noteContent": "לא עונה"
+        },
+        {
+          "noteId": 2,
+          "noteDate": "16th July 2023 , 6:19 PM",
+          "noteContent": "asdfasdf"
         }
       ],
       "id": 28
@@ -734,27 +739,6 @@
       "id": 47
     },
     {
-      "title": "Asdf ",
-      "stage": "callBack",
-      "name": "Asdf",
-      "phone": "",
-      "email": "",
-      "website": "",
-      "facebook": "",
-      "linkedin": "",
-      "otherLink": "",
-      "companyName": "",
-      "companyPhone": "",
-      "companyEmail": "",
-      "companyWebsite": "",
-      "companyFacebook": "",
-      "companyLinkedin": "",
-      "companyOtherLink": "",
-      "dateCreated": "16.07.2023",
-      "notes": [],
-      "id": 48
-    },
-    {
       "title": "Quentin Tarantino ",
       "stage": "leadIn",
       "name": "Quentin Tarantino",
@@ -803,10 +787,10 @@
       "id": 50
     },
     {
-      "title": "Ddd ",
-      "stage": "leadIn",
-      "name": "Ddd",
-      "phone": "0508657032",
+      "title": "Easdf ",
+      "stage": "6",
+      "name": "Easdf",
+      "phone": "",
       "email": "",
       "website": "",
       "facebook": "",
@@ -820,14 +804,50 @@
       "companyLinkedin": "",
       "companyOtherLink": "",
       "dateCreated": "16.07.2023",
-      "notes": [
-        {
-          "noteId": 1,
-          "noteDate": "16th July 2023 , 3:32 PM",
-          "noteContent": "sadf"
-        }
-      ],
-      "id": 51
+      "notes": [],
+      "id": 52
+    },
+    {
+      "title": "Asdf ",
+      "stage": "6",
+      "name": "Asdf",
+      "phone": "",
+      "email": "",
+      "website": "",
+      "facebook": "",
+      "linkedin": "",
+      "otherLink": "",
+      "companyName": "",
+      "companyPhone": "",
+      "companyEmail": "",
+      "companyWebsite": "",
+      "companyFacebook": "",
+      "companyLinkedin": "",
+      "companyOtherLink": "",
+      "dateCreated": "16.07.2023",
+      "notes": [],
+      "id": 53
+    },
+    {
+      "title": "Sdf ",
+      "stage": "asdf",
+      "name": "Sdf",
+      "phone": "",
+      "email": "",
+      "website": "",
+      "facebook": "",
+      "linkedin": "",
+      "otherLink": "",
+      "companyName": "",
+      "companyPhone": "",
+      "companyEmail": "",
+      "companyWebsite": "",
+      "companyFacebook": "",
+      "companyLinkedin": "",
+      "companyOtherLink": "",
+      "dateCreated": "16.07.2023",
+      "notes": [],
+      "id": 54
     }
   ]
 }

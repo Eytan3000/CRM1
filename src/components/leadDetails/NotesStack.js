@@ -151,6 +151,7 @@ export default function NotesStack({
         updateNoteContent(editKey, event.target.value);
         setEditKey(-1);
       }
+      if (event.key === 'Escape') setEditKey(-1);
     };
 
     const handleNewNoteKeyDown = (event) => {
