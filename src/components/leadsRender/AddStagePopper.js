@@ -28,7 +28,9 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-export default function AddStagePopper({ updateStage }) {
+function AddStagePopper({ updateStage }) {
+  console.log('addStagePopper run');
+
   const classes = useStyles();
 
   const [popupValue, setPopupValue] = React.useState('');
@@ -118,3 +120,4 @@ export default function AddStagePopper({ updateStage }) {
     </Fragment>
   );
 }
+export default React.memo(AddStagePopper);

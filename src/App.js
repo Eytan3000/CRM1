@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Create from './pages/Create';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
@@ -32,8 +32,8 @@ function App() {
   const [leadId, setLeadId] = useState('');
   const [stages, setStages] = useState('');
 
-  const idPassUp = (id) => setLeadId(id);
-  const stagesPassUp = (stage) => setStages(stage);
+  const idPassUp = useCallback((id) => setLeadId(id), []);
+  const stagesPassUp = useCallback((stage) => setStages(stage), []);
 
   return (
     <ThemeProvider theme={theme}>

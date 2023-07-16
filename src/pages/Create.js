@@ -12,6 +12,7 @@ import { Box } from '@mui/material';
 import { addLeadToDBContext } from '../contexts/DbFunctionsContext';
 import { capitalizeWords } from '../helpers/helpers';
 import { renderContext } from '../contexts/DbFunctionsContext';
+//----------------------------------------------------------------------
 
 const useStyles = makeStyles({
   field: {
@@ -19,8 +20,10 @@ const useStyles = makeStyles({
     marginBottom: 20,
   },
 });
+//----------------------------------------------------------------------
 
-export default function Create({ onClose, stage }) {
+function Create({ onClose, stage }) {
+  console.log('Create run');
   const addLeadToDBCtx = useContext(addLeadToDBContext);
   const { setRerender } = useContext(renderContext);
 
@@ -123,3 +126,5 @@ export default function Create({ onClose, stage }) {
     </Box>
   );
 }
+export default Create;
+// export default React.memo(Create);

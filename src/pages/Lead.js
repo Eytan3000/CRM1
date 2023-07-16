@@ -49,7 +49,8 @@ const useStyles = makeStyles((theme) => {
   };
 });
 //--------------------------------------------------------------
-export default function Lead({ id, stages }) {
+function Lead({ id, stages }) {
+  console.log('Lead run');
   const classes = useStyles();
   const { setLayoutName } = useContext(layoutNameContext);
   const loadLeadCtx = useContext(loadLeadContext);
@@ -128,3 +129,5 @@ export default function Lead({ id, stages }) {
     </Box>
   );
 }
+// export default Lead;
+export default React.memo(Lead);

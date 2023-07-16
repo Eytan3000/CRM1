@@ -1,11 +1,4 @@
-import {
-  Box,
-  Container,
-  Grid,
-  TextField,
-  Typography,
-  makeStyles,
-} from '@material-ui/core';
+import { Box, Container, Grid, TextField, Typography } from '@material-ui/core';
 import React, { Fragment, useState } from 'react';
 import { convertCamelCaseToSpaces, isLink } from '../../helpers/helpers';
 import SelectStage from './SelectStage';
@@ -52,7 +45,6 @@ export default function LeadPaper({
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
-      console.log(event.target.value);
       updateLead(editKey, event.target.value);
       setEditClicked(false);
     }

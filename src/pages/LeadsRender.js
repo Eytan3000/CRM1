@@ -12,8 +12,9 @@ import { renderContext } from '../contexts/DbFunctionsContext';
 import { useMediaQuery } from '@mui/material';
 import { layoutNameContext } from '../contexts/DbFunctionsContext';
 //----------------------------------------------------------
-
-export default function LeadsRender({ idPassUp, stagesPassUp }) {
+//----------------------------------------------------------
+function LeadsRender({ idPassUp, stagesPassUp }) {
+  console.log('LeadsRender run');
   const loadCardsContentCtx = useContext(loadCards);
   const loadStagesCtx = useContext(loadStagesContext);
   const { setLayoutName } = useContext(layoutNameContext);
@@ -25,7 +26,7 @@ export default function LeadsRender({ idPassUp, stagesPassUp }) {
     `(min-width: 900px) and (max-width: ${wrapMaxWidth}px)`
   ); // the mediaQuery is affected by the number of stages.
 
-  const { reRender, setRerender } = useContext(renderContext);
+  const { reRender } = useContext(renderContext);
 
   useEffect(() => {
     (async () => {
@@ -78,3 +79,5 @@ export default function LeadsRender({ idPassUp, stagesPassUp }) {
     </div>
   );
 }
+// export default LeadsRender
+export default React.memo(LeadsRender);

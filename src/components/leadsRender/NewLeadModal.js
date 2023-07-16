@@ -19,7 +19,8 @@ const style = {
   p: 4,
 };
 
-export default function NewLeadModal() {
+function NewLeadModal() {
+  console.log('newLeadModal run');
   const [open, setOpen] = React.useState(false);
 
   const buttonRef = useRef(null);
@@ -61,3 +62,5 @@ export default function NewLeadModal() {
     </div>
   );
 }
+
+export default React.memo(NewLeadModal);

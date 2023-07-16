@@ -475,7 +475,7 @@
       "phone": "0547670033",
       "email": "yair@gmail.com",
       "website": "afasdsadf",
-      "facebook": "",
+      "facebook": "www.facebook.com",
       "linkedin": "",
       "otherLink": "",
       "companyName": "KriCher",
@@ -584,7 +584,7 @@
       "id": 40
     },
     {
-      "stage": "Call in a month",
+      "stage": "leadIn",
       "name": "Rotem Rozenberg",
       "phone": "0508657400",
       "email": "",
@@ -774,6 +774,60 @@
       "dateCreated": "16.07.2023",
       "notes": [],
       "id": 49
+    },
+    {
+      "title": "Eytank ",
+      "stage": "noAnswer",
+      "name": "Eytank",
+      "phone": "0508657032",
+      "email": "",
+      "website": "",
+      "facebook": "https://www.facebook.com/",
+      "linkedin": "",
+      "otherLink": "",
+      "companyName": "",
+      "companyPhone": "",
+      "companyEmail": "",
+      "companyWebsite": "",
+      "companyFacebook": "",
+      "companyLinkedin": "",
+      "companyOtherLink": "",
+      "dateCreated": "16.07.2023",
+      "notes": [
+        {
+          "noteId": 1,
+          "noteDate": "16th July 2023 , 1:30 PM",
+          "noteContent": "No answersdf "
+        }
+      ],
+      "id": 50
+    },
+    {
+      "title": "Ddd ",
+      "stage": "leadIn",
+      "name": "Ddd",
+      "phone": "0508657032",
+      "email": "",
+      "website": "",
+      "facebook": "",
+      "linkedin": "",
+      "otherLink": "",
+      "companyName": "",
+      "companyPhone": "",
+      "companyEmail": "",
+      "companyWebsite": "",
+      "companyFacebook": "",
+      "companyLinkedin": "",
+      "companyOtherLink": "",
+      "dateCreated": "16.07.2023",
+      "notes": [
+        {
+          "noteId": 1,
+          "noteDate": "16th July 2023 , 3:32 PM",
+          "noteContent": "sadf"
+        }
+      ],
+      "id": 51
     }
   ]
 }
