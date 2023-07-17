@@ -30,24 +30,24 @@ export default function InputFieldText({
   // const [titleError, setTitleError] = useState(false);
 
   return (
-    <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-      <TextField
-        onKeyDown={onKeyDown}
-        onChange={onChange}
-        className={classes.field}
-        label={label}
-        variant={variant}
-        color={color}
-        fullWidth
-        error={error}
-        disabled={disabled}
-        key={keyVal}
-        type={type}
-        defaultValue={defaultValue}
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
-        InputProps={InputProps}
-      />
-    </form>
+    // <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+    <TextField
+      onKeyDown={onKeyDown}
+      onChange={onChange}
+      className={classes.field}
+      label={label}
+      variant={variant}
+      color={color}
+      fullWidth
+      error={error}
+      disabled={disabled}
+      key={keyVal}
+      type={type}
+      defaultValue={defaultValue}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      InputProps={InputProps}
+    />
+    // </form>
   );
 }

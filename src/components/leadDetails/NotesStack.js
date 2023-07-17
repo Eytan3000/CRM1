@@ -294,12 +294,15 @@ export default function NotesStack({
             <Typography
               padding={1}
               variant="h5"
-              textAlign={'center'}
+              // textAlign={'center'}
               // marginTop={20}
             >
               No updates yet for this lead
             </Typography>
-            <Typography padding={1} variant="subtitle1" textAlign={'center'}>
+            <Typography
+              padding={1}
+              variant="subtitle1"
+              style={{ textAlign: 'center' }}>
               You can start by describing how your interaction with this person
               went and when to follow up on him
             </Typography>

@@ -66,5 +66,5 @@ function LeadsRender({ idPassUp, stagesPassUp }) {
     </div>
   );
 }
-// export default LeadsRender
+// export default LeadsRender;
 export default React.memo(LeadsRender);

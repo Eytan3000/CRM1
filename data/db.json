@@ -45,11 +45,11 @@
     },
     {
       "title": "eytan2 / Krief2 ",
-      "stage": "callBack",
+      "stage": "Call in a month",
       "name": "eytan2",
       "phone": "050505051",
-      "email": "sdfddd",
-      "website": "wwwwww",
+      "email": "sdfdddhj",
+      "website": "wwwwwwsdf",
       "facebook": "",
       "linkedin": "",
       "otherLink": "",
@@ -273,7 +273,7 @@
     },
     {
       "title": "Oryan ",
-      "stage": "noAnswer",
+      "stage": "leadIn",
       "name": "Oryan Krief",
       "phone": "0508657999",
       "email": "",
@@ -491,18 +491,7 @@
       "companyLinkedin": "",
       "companyOtherLink": "",
       "dateCreated": "19.06.2023",
-      "notes": [
-        {
-          "noteId": 1,
-          "noteDate": "19th June 2023 , 4:20 PM",
-          "noteContent": "note"
-        },
-        {
-          "noteId": 2,
-          "noteDate": "19th June 2023 , 4:20 PM",
-          "noteContent": "note2"
-        }
-      ],
+      "notes": [],
       "id": 32
     },
     {
@@ -783,13 +772,7 @@
       "companyLinkedin": "",
       "companyOtherLink": "",
       "dateCreated": "16.07.2023",
-      "notes": [
-        {
-          "noteId": 1,
-          "noteDate": "16th July 2023 , 1:30 PM",
-          "noteContent": "No answersdf "
-        }
-      ],
+      "notes": [],
       "id": 50
     },
     {
@@ -854,6 +837,69 @@
       "dateCreated": "16.07.2023",
       "notes": [],
       "id": 54
+    },
+    {
+      "title": "Eytankri  / Asdfasf",
+      "stage": "leadIn",
+      "name": "Eytankri",
+      "phone": "dsf",
+      "email": "asdfasdf",
+      "website": "dsfasdf",
+      "facebook": "",
+      "linkedin": "",
+      "otherLink": "",
+      "companyName": "Asdfasf",
+      "companyPhone": "asdf",
+      "companyEmail": "",
+      "companyWebsite": "",
+      "companyFacebook": "",
+      "companyLinkedin": "",
+      "companyOtherLink": "",
+      "dateCreated": "17.07.2023",
+      "notes": [],
+      "id": 55
+    },
+    {
+      "title": "Asdfsdf ",
+      "stage": "leadIn",
+      "name": "Asdfsdf",
+      "phone": "asfd",
+      "email": "",
+      "website": "",
+      "facebook": "",
+      "linkedin": "",
+      "otherLink": "",
+      "companyName": "",
+      "companyPhone": "",
+      "companyEmail": "",
+      "companyWebsite": "",
+      "companyFacebook": "",
+      "companyLinkedin": "",
+      "companyOtherLink": "",
+      "dateCreated": "17.07.2023",
+      "notes": [],
+      "id": 56
+    },
+    {
+      "title": "Asdf ",
+      "stage": "leadIn",
+      "name": "Asdf",
+      "phone": "",
+      "email": "",
+      "website": "",
+      "facebook": "",
+      "linkedin": "",
+      "otherLink": "",
+      "companyName": "",
+      "companyPhone": "",
+      "companyEmail": "",
+      "companyWebsite": "",
+      "companyFacebook": "",
+      "companyLinkedin": "",
+      "companyOtherLink": "",
+      "dateCreated": "17.07.2023",
+      "notes": [],
+      "id": 57
     }
   ]
 }
