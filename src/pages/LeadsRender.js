@@ -10,8 +10,6 @@ import { layoutNameContext } from '../contexts/DbFunctionsContext';
 //----------------------------------------------------------
 //----------------------------------------------------------
 function LeadsRender({ idPassUp, stagesPassUp }) {
-  console.log('LeadsRender run');
-
   const loadCardsContentCtx = useContext(loadCards);
   const loadStagesCtx = useContext(loadStagesContext);
   const { reRender } = useContext(renderContext);

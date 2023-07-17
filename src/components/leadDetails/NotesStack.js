@@ -210,13 +210,14 @@ export default function NotesStack({
             {notes.map((note) => {
               return (
                 <Grid
+                  key={note.noteId}
                   container
                   direction="row"
                   justifyContent="space-between"
                   alignItems="flex-start">
                   {note.noteId === editKey ? (
                     <TextField
-                      key={note.noteId}
+                      // key={note.noteId}
                       multiline
                       minRows={4}
                       defaultValue={note.noteContent}
@@ -237,8 +238,8 @@ export default function NotesStack({
                       }}>
                       <Grid
                         style={{ padding: '5px 10px 5px 10px' }}
-                        xs={12}
-                        sm
+                        // xs={12}
+                        // sm
                         container>
                         <Grid item xs container direction="column" spacing={1}>
                           <Grid item xs>
@@ -249,7 +250,7 @@ export default function NotesStack({
                             </Typography>
                           </Grid>
                           <Grid item>
-                            <Typography variant="body2" color="text.secondary">
+                            <Typography variant="body2">
                               {note.noteContent}
                             </Typography>
                           </Grid>
@@ -273,7 +274,6 @@ export default function NotesStack({
               );
             })}
             <VerticalIconPop
-              // key={note.noteId}
               edit={true}
               open={open}
               handleCloseMenu={() => handleCloseMenu()}

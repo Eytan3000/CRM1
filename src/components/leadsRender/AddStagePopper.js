@@ -30,8 +30,6 @@ const useStyles = makeStyles((theme) => {
 });
 
 function AddStagePopper({ setStages }) {
-  console.log('addStagePopper run');
-
   const classes = useStyles();
 
   const [popupValue, setPopupValue] = React.useState('');

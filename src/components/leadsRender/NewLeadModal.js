@@ -20,7 +20,6 @@ const style = {
 };
 
 function NewLeadModal() {
-  console.log('newLeadModal run');
   const [open, setOpen] = React.useState(false);
 
   const buttonRef = useRef(null);

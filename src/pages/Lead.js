@@ -50,7 +50,6 @@ const useStyles = makeStyles((theme) => {
 });
 //--------------------------------------------------------------
 function Lead({ id, stages }) {
-  console.log('Lead run');
   const classes = useStyles();
   const { setLayoutName } = useContext(layoutNameContext);
   const loadLeadCtx = useContext(loadLeadContext);

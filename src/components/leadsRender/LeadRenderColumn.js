@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import { deleteLeadFromDb } from '../../helpers/dbFunctions';
 import { Box, Button, Grid, Modal, Stack } from '@mui/material';
@@ -75,8 +75,6 @@ function addLeadsPapersInColumn(leads, stageName, idPassUp) {
 //----------------------------------------------------
 
 function LeadRenderColumn({ stage, leads, idPassUp }) {
-  console.log('LeadRenderColumn run');
-
   const [hover, setHover] = useState(false);
   const [open, setOpen] = React.useState(false);
 

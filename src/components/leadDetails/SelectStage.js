@@ -31,7 +31,7 @@ export default function SelectStage({
         inputProps={{ 'aria-label': 'Without label' }}>
         {optionsArr.map((option) => {
           return (
-            <MenuItem value={option.name}>
+            <MenuItem value={option.name} key={option.id}>
               {convertCamelCaseToSpaces(option.name)}
             </MenuItem>
           );

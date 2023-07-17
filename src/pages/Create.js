@@ -23,7 +23,6 @@ const useStyles = makeStyles({
 //----------------------------------------------------------------------
 
 function Create({ onClose, stage }) {
-  console.log('Create run');
   const addLeadToDBCtx = useContext(addLeadToDBContext);
   const { setRerender } = useContext(renderContext);
 
