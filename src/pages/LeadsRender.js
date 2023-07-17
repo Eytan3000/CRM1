@@ -44,9 +44,9 @@ function LeadsRender({ idPassUp, stagesPassUp }) {
     <div>
       <Box display="flex" paddingBottom={2}>
         <NewLeadModal />
-        {/* <Grid container spacing={3}> */}
         <AddStagePopper setStages={setStages} />
       </Box>
+
       <Grid
         container
         rowSpacing={2}

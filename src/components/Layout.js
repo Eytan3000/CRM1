@@ -52,6 +52,7 @@ const useStyles = makeStyles((theme) => {
     appbar: {
       width: `calc(100% - ${drawerWidth}px)`,
       // width: '200',
+      border: '1px solid #d0d4e3',
     },
     toolbar: theme.mixins.toolbar,
     date: {
