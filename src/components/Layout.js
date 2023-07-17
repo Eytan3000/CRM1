@@ -17,12 +17,8 @@ import {
   Typography,
 } from '@mui/material';
 import React, { Fragment, useContext, useState } from 'react';
-import {
-  useHistory,
-  useLocation,
-} from 'react-router-dom/cjs/react-router-dom.min';
-// import { format } from 'date-fns';
 import { layoutNameContext } from '../contexts/DbFunctionsContext';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 //----------------------------------------------------------------
 const drawerWidth = 240;
 
@@ -72,7 +68,8 @@ export default function Layout({ children }) {
   const { layoutName, setLayoutName } = useContext(layoutNameContext);
 
   const classes = useStyles();
-  const history = useHistory();
+  // const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
 
   const [isClicked, setIsClicked] = useState(false);
@@ -132,7 +129,8 @@ export default function Layout({ children }) {
           <Typography
             className={classes.title}
             variant="h5"
-            onClick={() => history.push('/')}
+            // onClick={() => history.push('/')}
+            onClick={() => navigate('/')}
             style={{ cursor: 'pointer' }}>
             Pipelines
           </Typography>
@@ -143,7 +141,7 @@ export default function Layout({ children }) {
             <ListItemButton key={item.text}>
               <ListItem
                 key={item.text}
-                onClick={() => history.push(item.path)}
+                onClick={() => navigate(item.path)}
                 className={
                   location.pathname === item.path ? classes.active : null
                 }>
@@ -157,7 +155,8 @@ export default function Layout({ children }) {
 
       <div className={classes.page}>
         <div className={classes.toolbar}></div>
-        {children}
+        {/* {children} */}
+        <Outlet />
       </div>
     </div>
   );

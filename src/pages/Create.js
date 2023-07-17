@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 
 import { Typography, Container, makeStyles } from '@material-ui/core';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+// import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import Grid from '@mui/material/Grid';
 import CreateLeftColumn from '../components/createNewLead/CreateLeftColumn';
 import CreateRightColumn from '../components/createNewLead/CreateRightColumn';
@@ -12,6 +12,7 @@ import { Box } from '@mui/material';
 import { addLeadToDBContext } from '../contexts/DbFunctionsContext';
 import { capitalizeWords } from '../helpers/helpers';
 import { renderContext } from '../contexts/DbFunctionsContext';
+// import { useNavigate } from 'react-router-dom';
 //----------------------------------------------------------------------
 
 const useStyles = makeStyles({
@@ -27,7 +28,8 @@ function Create({ onClose, stage }) {
   const { setRerender } = useContext(renderContext);
 
   const classes = useStyles();
-  const history = useHistory();
+  // const history = useHistory();
+  // const navigate = useNavigate();
 
   const [isDisabled, setIsDisabled] = useState(true);
 

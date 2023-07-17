@@ -9,9 +9,10 @@ import { Box, IconButton, Link, MenuItem, Popover } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { renderContext } from '../../contexts/DbFunctionsContext';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+// import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import VerticalIconPop from '../auxs/VerticalIconPop';
 import { Block } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
 
 //---------------------------------------------------------------
 
@@ -19,7 +20,8 @@ import { Block } from '@mui/icons-material';
 
 export default function LeadPaper({ keyVal, lead, handleDelete, idPassUp }) {
   const { setRerender } = React.useContext(renderContext);
-  const history = useHistory();
+  // const history = useHistory();
+  const navigate = useNavigate();
 
   const handleTypographyClick = (event) => {
     // Copy phone
@@ -130,7 +132,8 @@ export default function LeadPaper({ keyVal, lead, handleDelete, idPassUp }) {
               component="button"
               onClick={() => {
                 idPassUp(lead.id);
-                history.push('/lead');
+                // history.push('/lead');
+                navigate('/lead');
               }}>
               <Grid item>
                 <Typography

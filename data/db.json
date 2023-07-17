@@ -23,255 +23,6 @@
   ],
   "leads": [
     {
-      "title": "eytan ",
-      "stage": "callBack",
-      "name": "eytan",
-      "phone": "0508657033",
-      "email": "",
-      "website": "",
-      "facebook": "",
-      "linkedin": "",
-      "otherLink": "",
-      "companyName": "",
-      "companyPhone": "",
-      "companyEmail": "",
-      "companyWebsite": "",
-      "companyFacebook": "",
-      "companyLinkedin": "",
-      "companyOtherLink": "",
-      "dateCreated": "15.06.2023",
-      "id": 16,
-      "notes": []
-    },
-    {
-      "title": "eytan2 / Krief2 ",
-      "stage": "Call in a month",
-      "name": "eytan2",
-      "phone": "050505051",
-      "email": "sdfdddhj",
-      "website": "wwwwwwsdf",
-      "facebook": "",
-      "linkedin": "",
-      "otherLink": "",
-      "companyName": "Krief2",
-      "companyPhone": "",
-      "companyEmail": "",
-      "companyWebsite": "",
-      "companyFacebook": "jgh",
-      "companyLinkedin": "",
-      "companyOtherLink": "",
-      "dateCreated": "17.06.2023",
-      "notes": [
-        {
-          "noteId": 1,
-          "noteDate": "17th June 2023",
-          "noteContent": "asdf"
-        },
-        {
-          "noteId": 2,
-          "noteDate": "17th June 2023",
-          "noteContent": "asdf\\"
-        },
-        {
-          "noteId": 3,
-          "noteDate": "18th June 2023",
-          "noteContent": "asdf\\jjj"
-        },
-        {
-          "noteId": 4,
-          "noteDate": "18th June 2023",
-          "noteContent": "sadfasdfsdf"
-        },
-        {
-          "noteId": 5,
-          "noteDate": "18th June 2023",
-          "noteContent": "eytanjj"
-        },
-        {
-          "noteId": 6,
-          "noteDate": "18th June 2023",
-          "noteContent": "asdfasdf"
-        },
-        {
-          "noteId": 7,
-          "noteDate": "18th June 2023",
-          "noteContent": "eytan krief"
-        },
-        {
-          "noteId": 8,
-          "noteDate": "18th June 2023",
-          "noteContent": "guily"
-        },
-        {
-          "noteId": 9,
-          "noteDate": "18th June 2023 , 9:20 AM",
-          "noteContent": "jh"
-        },
-        {
-          "noteId": 10,
-          "noteDate": "18th June 2023 , 9:32 AM",
-          "noteContent": "asdf"
-        },
-        {
-          "noteId": 11,
-          "noteDate": "18th June 2023 , 9:32 AM",
-          "noteContent": "eytankrief"
-        },
-        {
-          "noteId": 12,
-          "noteDate": "18th June 2023 , 10:29 AM",
-          "noteContent": "kjghkjhkjhkjhkjhkjhk"
-        },
-        {
-          "noteId": 13,
-          "noteDate": "19th June 2023 , 1:30 PM",
-          "noteContent": "sdf"
-        },
-        {
-          "noteId": 14,
-          "noteDate": "19th June 2023 , 2:22 PM",
-          "noteContent": "asdfasdf"
-        }
-      ],
-      "id": 17
-    },
-    {
-      "stage": "More Details",
-      "name": "eytanKKKKKK",
-      "phone": "5555566677",
-      "email": "",
-      "website": "sadfee34",
-      "facebook": "",
-      "linkedin": "https://minimal-kit-react.vercel.app/dashboard/user",
-      "otherLink": "",
-      "companyName": "krief10",
-      "companyPhone": "",
-      "companyEmail": "",
-      "companyWebsite": "",
-      "companyFacebook": "",
-      "companyLinkedin": "",
-      "companyOtherLink": "",
-      "dateCreated": "18.06.2023",
-      "notes": [
-        {
-          "noteId": 1,
-          "noteDate": "18th June 2023",
-          "noteContent": "eytan"
-        },
-        {
-          "noteId": 2,
-          "noteDate": "18th June 2023",
-          "noteContent": "krief"
-        },
-        {
-          "noteId": 3,
-          "noteDate": "18th June 2023 , 9:46 AM",
-          "noteContent": "dfg"
-        },
-        {
-          "noteId": 4,
-          "noteDate": "18th June 2023 , 9:46 AM",
-          "noteContent": "dfg"
-        },
-        {
-          "noteId": 5,
-          "noteDate": "18th June 2023 , 9:46 AM",
-          "noteContent": "dfg"
-        },
-        {
-          "noteId": 6,
-          "noteDate": "18th June 2023 , 9:46 AM",
-          "noteContent": "dfg"
-        },
-        {
-          "noteId": 7,
-          "noteDate": "18th June 2023 , 9:46 AM",
-          "noteContent": "dfg"
-        },
-        {
-          "noteId": 8,
-          "noteDate": "18th June 2023 , 9:46 AM",
-          "noteContent": "dfg"
-        },
-        {
-          "noteId": 9,
-          "noteDate": "18th June 2023 , 9:46 AM",
-          "noteContent": "dfg"
-        },
-        {
-          "noteId": 10,
-          "noteDate": "18th June 2023 , 9:46 AM",
-          "noteContent": "dfg"
-        },
-        {
-          "noteId": 11,
-          "noteDate": "18th June 2023 , 9:46 AM",
-          "noteContent": "dfg"
-        },
-        {
-          "noteId": 12,
-          "noteDate": "18th June 2023 , 9:46 AM",
-          "noteContent": "dfg"
-        },
-        {
-          "noteId": 13,
-          "noteDate": "18th June 2023 , 9:46 AM",
-          "noteContent": "karen"
-        },
-        {
-          "noteId": 14,
-          "noteDate": "18th June 2023 , 9:47 AM",
-          "noteContent": "asdfsdfsdfkrieffff"
-        },
-        {
-          "noteId": 15,
-          "noteDate": "18th June 2023 , 9:47 AM",
-          "noteContent": "sdf"
-        },
-        {
-          "noteId": 16,
-          "noteDate": "18th June 2023 , 9:47 AM",
-          "noteContent": "sdf"
-        },
-        {
-          "noteId": 17,
-          "noteDate": "18th June 2023 , 9:47 AM",
-          "noteContent": "sdfdgdfg"
-        },
-        {
-          "noteId": 18,
-          "noteDate": "18th June 2023 , 9:47 AM",
-          "noteContent": "sdf2222"
-        },
-        {
-          "noteId": 19,
-          "noteDate": "18th June 2023 , 9:47 AM",
-          "noteContent": "sdfasdfsdf sadfj555sdf"
-        },
-        {
-          "noteId": 20,
-          "noteDate": "18th June 2023 , 9:47 AM",
-          "noteContent": "{note.noteContent}44444 sadflkjlkjsdf kjsalfkjfd lkjsdfasdf asdfasd 99999ghjf"
-        },
-        {
-          "noteId": 21,
-          "noteDate": "18th June 2023 , 9:47 AM",
-          "noteContent": "{note.noteContent}sdfsdffsdf 888888"
-        },
-        {
-          "noteId": 22,
-          "noteDate": "14th July 2023 , 4:56 PM",
-          "noteContent": "asdfsdf"
-        },
-        {
-          "noteId": 23,
-          "noteDate": "14th July 2023 , 6:22 PM",
-          "noteContent": "asdf555"
-        }
-      ],
-      "id": 18
-    },
-    {
       "title": "Oryan ",
       "stage": "leadIn",
       "name": "Oryan Krief",
@@ -302,43 +53,6 @@
         }
       ],
       "id": 20
-    },
-    {
-      "title": "Yair / Petch Company ",
-      "stage": "Call in a month",
-      "name": "Yair",
-      "phone": "",
-      "email": "",
-      "website": "",
-      "facebook": "",
-      "linkedin": "",
-      "otherLink": "",
-      "companyName": "Petch Company",
-      "companyPhone": "",
-      "companyEmail": "",
-      "companyWebsite": "",
-      "companyFacebook": "",
-      "companyLinkedin": "",
-      "companyOtherLink": "",
-      "dateCreated": "18.06.2023",
-      "notes": [
-        {
-          "noteId": 1,
-          "noteDate": "18th June 2023 , 9:50 AM",
-          "noteContent": "jajadsjdfs"
-        },
-        {
-          "noteId": 2,
-          "noteDate": "18th June 2023 , 9:50 AM",
-          "noteContent": "no answer"
-        },
-        {
-          "noteId": 3,
-          "noteDate": "19th June 2023 , 2:46 PM",
-          "noteContent": "שדכגג"
-        }
-      ],
-      "id": 21
     },
     {
       "title": "yoel / coockoo ",
@@ -411,7 +125,7 @@
     },
     {
       "title": "Koral",
-      "stage": "More Details",
+      "stage": "callBack",
       "name": "Koral",
       "phone": "0547688833",
       "email": "Koral@gmail.come",
@@ -419,7 +133,7 @@
       "facebook": "https://www.facebook.com/",
       "linkedin": "",
       "otherLink": "",
-      "companyName": "asdf",
+      "companyName": "",
       "companyPhone": "",
       "companyEmail": "",
       "companyWebsite": "",
@@ -443,7 +157,7 @@
     },
     {
       "title": "Yair Petch / Kricherer Company Ltd. ",
-      "stage": "leadIn",
+      "stage": "Call in a month",
       "name": "Yair Petch",
       "phone": "0588657211",
       "email": "petch@gmail.com",
@@ -474,27 +188,6 @@
       "id": 28
     },
     {
-      "title": "Yair PetchPetch",
-      "stage": "leadIn",
-      "name": "Yair kor",
-      "phone": "0547670033",
-      "email": "yair@gmail.com",
-      "website": "afasdsadf",
-      "facebook": "www.facebook.com",
-      "linkedin": "",
-      "otherLink": "",
-      "companyName": "KriCher",
-      "companyPhone": "",
-      "companyEmail": "",
-      "companyWebsite": "",
-      "companyFacebook": "",
-      "companyLinkedin": "",
-      "companyOtherLink": "",
-      "dateCreated": "19.06.2023",
-      "notes": [],
-      "id": 32
-    },
-    {
       "title": "Karen Ronen / Karnina Nails ",
       "stage": "More Details",
       "name": "Karen Ronen",
@@ -520,62 +213,6 @@
         }
       ],
       "id": 33
-    },
-    {
-      "stage": "leadIn",
-      "name": "Lisa Weil",
-      "phone": "0558795566",
-      "email": "email@gmail.com",
-      "website": "",
-      "facebook": "",
-      "linkedin": "https://www.linkedin.com/in/lisa-weil-02839516/",
-      "otherLink": "",
-      "companyName": "Iron Source",
-      "companyPhone": "",
-      "companyEmail": "",
-      "companyWebsite": "",
-      "companyFacebook": "",
-      "companyLinkedin": "",
-      "companyOtherLink": "sadfasdf",
-      "dateCreated": "03.07.2023",
-      "notes": [
-        {
-          "noteId": 1,
-          "noteDate": "5th July 2023 , 7:52 AM",
-          "noteContent": "jjj"
-        },
-        {
-          "noteId": 3,
-          "noteDate": "6th July 2023 , 5:41 PM",
-          "noteContent": "yoututut"
-        },
-        {
-          "noteId": 5,
-          "noteDate": "13th July 2023 , 8:31 AM",
-          "noteContent": "peoepoe"
-        },
-        {
-          "noteId": 5,
-          "noteDate": "14th July 2023 , 3:52 PM",
-          "noteContent": "kol kah"
-        },
-        {
-          "noteId": 5,
-          "noteDate": "14th July 2023 , 3:53 PM",
-          "noteContent": "kashdflkashf"
-        },
-        {
-          "noteId": 6,
-          "noteDate": "14th July 2023 , 3:53 PM",
-          "noteContent": "asdfasdf"
-        },
-        {
-          "noteId": 7,
-          "noteDate": "14th July 2023 , 3:53 PM",
-          "noteContent": "asdfasdfasdf"
-        }
-      ],
-      "id": 40
     },
     {
       "stage": "leadIn",
@@ -638,7 +275,7 @@
       "facebook": "",
       "linkedin": "",
       "otherLink": "",
-      "companyName": "Kelev",
+      "companyName": "Kelev Corp.",
       "companyPhone": "",
       "companyEmail": "",
       "companyWebsite": "",
@@ -755,27 +392,6 @@
       "id": 49
     },
     {
-      "title": "Eytank ",
-      "stage": "noAnswer",
-      "name": "Eytank",
-      "phone": "0508657032",
-      "email": "",
-      "website": "",
-      "facebook": "https://www.facebook.com/",
-      "linkedin": "",
-      "otherLink": "",
-      "companyName": "",
-      "companyPhone": "",
-      "companyEmail": "",
-      "companyWebsite": "",
-      "companyFacebook": "",
-      "companyLinkedin": "",
-      "companyOtherLink": "",
-      "dateCreated": "16.07.2023",
-      "notes": [],
-      "id": 50
-    },
-    {
       "title": "Easdf ",
       "stage": "6",
       "name": "Easdf",
@@ -879,6 +495,27 @@
       "dateCreated": "17.07.2023",
       "notes": [],
       "id": 56
+    },
+    {
+      "title": "Magic Johnson  / Johnson Basketball",
+      "stage": "noAnswer",
+      "name": "Magic Johnson",
+      "phone": "0508748322",
+      "email": "magicjohnson@gmail.com",
+      "website": "",
+      "facebook": "https://www.instagram.com/magicjohnson/?hl=en",
+      "linkedin": "",
+      "otherLink": "",
+      "companyName": "Johnson Basketball",
+      "companyPhone": "",
+      "companyEmail": "",
+      "companyWebsite": "",
+      "companyFacebook": "",
+      "companyLinkedin": "",
+      "companyOtherLink": "",
+      "dateCreated": "17.07.2023",
+      "notes": [],
+      "id": 57
     }
   ]
 }
