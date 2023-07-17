@@ -667,7 +667,7 @@
       "id": 46
     },
     {
-      "title": "John Shmidt  / Chicetti",
+      "title": "Eran Tepper",
       "stage": "noAnswer",
       "name": "Eran Tepper",
       "phone": "06877463552",
@@ -740,7 +740,7 @@
     },
     {
       "title": "Quentin Tarantino ",
-      "stage": "leadIn",
+      "stage": "noAnswer",
       "name": "Quentin Tarantino",
       "phone": "0508659703",
       "email": "Tarantino@gmail.com",
@@ -756,7 +756,13 @@
       "companyLinkedin": "",
       "companyOtherLink": "",
       "dateCreated": "16.07.2023",
-      "notes": [],
+      "notes": [
+        {
+          "noteId": 1,
+          "noteDate": "17th July 2023 , 8:36 AM",
+          "noteContent": "No answer, call back tomorrow"
+        }
+      ],
       "id": 49
     },
     {

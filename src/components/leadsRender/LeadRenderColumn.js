@@ -117,7 +117,6 @@ function LeadRenderColumn({ stage, leads, idPassUp }) {
           className={classes.label}
           label={convertCamelCaseToSpaces(stage.name)}
         />
-        {/* {addLeadsCardsInColumn(leads, stage.name, idPassUp)} */}
 
         {addLeadsPapersInColumn(leads, stage.name, idPassUp)}
 

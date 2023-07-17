@@ -79,7 +79,7 @@ function Lead({ id, stages }) {
         spacing={2}
         wrap="nowrap"
         justifyContent="space-around">
-        <Grid item md={2} sm={12} xs={12}>
+        <Grid item md={4} sm={12} xs={12}>
           <Container
             style={
               {
@@ -102,7 +102,7 @@ function Lead({ id, stages }) {
 
         <Grid
           item
-          md={10}
+          md={9}
           sm={12}
           xs={12}
           sx={{
