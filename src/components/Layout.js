@@ -68,7 +68,6 @@ export default function Layout({ children }) {
   const { layoutName, setLayoutName } = useContext(layoutNameContext);
 
   const classes = useStyles();
-  // const history = useHistory();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -129,7 +128,6 @@ export default function Layout({ children }) {
           <Typography
             className={classes.title}
             variant="h5"
-            // onClick={() => history.push('/')}
             onClick={() => navigate('/')}
             style={{ cursor: 'pointer' }}>
             Pipelines

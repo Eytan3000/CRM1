@@ -143,14 +143,9 @@
       "dateCreated": "18.06.2023",
       "notes": [
         {
-          "noteId": 1,
-          "noteDate": "16th July 2023 , 11:35 AM",
-          "noteContent": "asdf"
-        },
-        {
           "noteId": 2,
           "noteDate": "16th July 2023 , 12:33 PM",
-          "noteContent": "asdfsdf\nadfasdf"
+          "noteContent": "asdfsdf\nadfasdfasdf "
         }
       ],
       "id": 24
@@ -215,26 +210,6 @@
       "id": 33
     },
     {
-      "stage": "leadIn",
-      "name": "Rotem Rozenberg",
-      "phone": "0508657400",
-      "email": "",
-      "website": "",
-      "facebook": "",
-      "linkedin": "",
-      "otherLink": "",
-      "companyName": "Rozenberg Prod",
-      "companyPhone": "",
-      "companyEmail": "",
-      "companyWebsite": "",
-      "companyFacebook": "",
-      "companyLinkedin": "",
-      "companyOtherLink": "",
-      "dateCreated": "05.07.2023",
-      "notes": [],
-      "id": 42
-    },
-    {
       "stage": "noAnswer",
       "name": "Moti Stein",
       "phone": "05076577888",
@@ -253,14 +228,9 @@
       "dateCreated": "06.07.2023",
       "notes": [
         {
-          "noteId": 1,
-          "noteDate": "6th July 2023 , 5:42 PM",
-          "noteContent": "adsfasdf"
-        },
-        {
           "noteId": 2,
-          "noteDate": "6th July 2023 , 5:42 PM",
-          "noteContent": "asdfsdf"
+          "noteDate": "18th July 2023 , 9:50 AM",
+          "noteContent": "asdfasdf"
         }
       ],
       "id": 43
@@ -516,6 +486,27 @@
       "dateCreated": "17.07.2023",
       "notes": [],
       "id": 57
+    },
+    {
+      "title": "Margot Robbie  / Robbie Prod",
+      "stage": "leadIn",
+      "name": "Margot Robbie",
+      "phone": "0508976544",
+      "email": "Margot@gmail.com",
+      "website": "",
+      "facebook": "",
+      "linkedin": "",
+      "otherLink": "",
+      "companyName": "Robbie Prod",
+      "companyPhone": "",
+      "companyEmail": "",
+      "companyWebsite": "",
+      "companyFacebook": "",
+      "companyLinkedin": "",
+      "companyOtherLink": "",
+      "dateCreated": "18.07.2023",
+      "notes": [],
+      "id": 58
     }
   ]
 }
