@@ -55,17 +55,12 @@ const handleDelete = (id) => {
   deleteLeadFromDb(id);
 };
 
-function addLeadsPapersInColumn(leads, stageName, idPassUp) {
+function addLeadsPapersInColumn(leads, stageName) {
   const leadIns = leads.map((lead) => {
     if (lead.stage === stageName)
       return (
         <div key={lead.id}>
-          <LeadPaper
-            keyVal={lead.id}
-            lead={lead}
-            handleDelete={handleDelete}
-            idPassUp={idPassUp}
-          />
+          <LeadPaper keyVal={lead.id} lead={lead} handleDelete={handleDelete} />
         </div>
       );
   });
@@ -74,7 +69,7 @@ function addLeadsPapersInColumn(leads, stageName, idPassUp) {
 
 //----------------------------------------------------
 
-function LeadRenderColumn({ stage, leads, idPassUp }) {
+function LeadRenderColumn({ stage, leads }) {
   const [hover, setHover] = useState(false);
   const [open, setOpen] = React.useState(false);
 
@@ -116,7 +111,7 @@ function LeadRenderColumn({ stage, leads, idPassUp }) {
           label={convertCamelCaseToSpaces(stage.name)}
         />
 
-        {addLeadsPapersInColumn(leads, stage.name, idPassUp)}
+        {addLeadsPapersInColumn(leads, stage.name)}
 
         <Button
           className={hover ? classes.buttonShow : classes.buttonHide}

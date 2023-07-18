@@ -36,10 +36,8 @@ const theme = createTheme({
 //-------------------------------------------------
 
 function App() {
-  const [leadId, setLeadId] = useState('');
   const [stages, setStages] = useState('');
 
-  const idPassUp = useCallback((id) => setLeadId(id), []);
   const stagesPassUp = useCallback((stage) => setStages(stage), []);
 
   const router = createBrowserRouter([
@@ -50,43 +48,21 @@ function App() {
       children: [
         {
           path: '/',
-          element: (
-            <LeadsRender idPassUp={idPassUp} stagesPassUp={stagesPassUp} />
-          ),
+          element: <LeadsRender stagesPassUp={stagesPassUp} />,
         },
         {
           path: '/create',
           element: <Create />,
         },
         {
-          path: '/lead',
-          element: <Lead id={leadId} stages={stages} />,
+          path: '/lead/:leadId',
+          element: <Lead stages={stages} />,
         },
       ],
     },
   ]);
 
   return (
-    // <ThemeProvider theme={theme}>
-    //   <DbFunctionsProvider>
-    //     <Router>
-    //       <Layout>
-    //         <Switch>
-    //           <Route exact path="/">
-    //             <LeadsRender idPassUp={idPassUp} stagesPassUp={stagesPassUp} />
-    //           </Route>
-    //           <Route path="/create">
-    //             <Create />
-    //           </Route>
-    //           <Route path="/lead">
-    //             <Lead id={leadId} stages={stages} />
-    //           </Route>
-    //         </Switch>
-    //       </Layout>
-    //     </Router>
-    //   </DbFunctionsProvider>
-    // </ThemeProvider>
-    //-----------------------------------
     <ThemeProvider theme={theme}>
       <DbFunctionsProvider>
         <RouterProvider router={router} />

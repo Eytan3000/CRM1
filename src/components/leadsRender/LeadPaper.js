@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 
 //---------------------------------------------------------------
 
-export default function LeadPaper({ keyVal, lead, handleDelete, idPassUp }) {
+export default function LeadPaper({ keyVal, lead, handleDelete }) {
   const { setRerender } = React.useContext(renderContext);
   const navigate = useNavigate();
 
@@ -61,8 +61,7 @@ export default function LeadPaper({ keyVal, lead, handleDelete, idPassUp }) {
               }}
               component="button"
               onClick={() => {
-                idPassUp(lead.id);
-                navigate('/lead');
+                navigate(`/lead/${lead.id}`);
               }}>
               <Grid item>
                 <Typography

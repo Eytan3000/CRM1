@@ -7,6 +7,7 @@ import image from './2.jpg';
 import { updateObjectDB } from '../helpers/dbFunctions';
 import { layoutNameContext } from '../contexts/DbFunctionsContext';
 import LeadPaper from '../components/leadDetails/LeadPaperDetails';
+import { useParams } from 'react-router-dom';
 
 //-----------------------------------------------------------------
 const useStyles = makeStyles((theme) => {
@@ -49,25 +50,27 @@ const useStyles = makeStyles((theme) => {
   };
 });
 //--------------------------------------------------------------
-function Lead({ id, stages }) {
+function Lead({ stages }) {
+  const params = useParams();
+  const newId = +params.leadId; //Get string from param, turns it into number.
+
   const classes = useStyles();
   const { setLayoutName } = useContext(layoutNameContext);
   const loadLeadCtx = useContext(loadLeadContext);
-
   const [lead, setLead] = useState([]);
   const [editKey, setEditKey] = useState('');
 
   // Find lead in database and set it to page
   useEffect(() => {
     (async () => {
-      const leadAwait = await loadLeadCtx(id);
+      const leadAwait = await loadLeadCtx(newId);
       setLead(leadAwait);
       setLayoutName(leadAwait.title);
     })();
-  }, [id]);
+  }, [newId]);
 
   useEffect(() => {
-    updateObjectDB(id, lead);
+    updateObjectDB(newId, lead);
   }, [lead]);
 
   return (
@@ -119,7 +122,7 @@ function Lead({ id, stages }) {
               editKey={editKey}
               setEditKey={(newEditKey) => setEditKey(newEditKey)}
               setLead={(newLead) => setLead(newLead)}
-              id={id}
+              id={newId}
               stages={stages}
             />
           </Box>

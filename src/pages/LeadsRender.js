@@ -9,7 +9,7 @@ import { useMediaQuery } from '@mui/material';
 import { layoutNameContext } from '../contexts/DbFunctionsContext';
 //----------------------------------------------------------
 //----------------------------------------------------------
-function LeadsRender({ idPassUp, stagesPassUp }) {
+function LeadsRender({ stagesPassUp }) {
   const loadCardsContentCtx = useContext(loadCards);
   const loadStagesCtx = useContext(loadStagesContext);
   const { reRender } = useContext(renderContext);
@@ -59,7 +59,7 @@ function LeadsRender({ idPassUp, stagesPassUp }) {
             sm={12}
             md={12 / stages.length}
             minWidth={210}>
-            <LeadRenderColumn stage={stage} leads={leads} idPassUp={idPassUp} />
+            <LeadRenderColumn stage={stage} leads={leads} />
           </Grid>
         ))}
       </Grid>
