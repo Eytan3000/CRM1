@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 
 import { deleteLeadFromDb, deleteStageFromDb } from '../../helpers/dbFunctions';
 import { Box, Button, Grid, Modal, Stack } from '@mui/material';
@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core';
 import { convertCamelCaseToSpaces } from '../../helpers/helpers';
 import Create from '../../pages/Create';
 import LeadPaper from './LeadPaper';
+import { renderContext } from '../../contexts/DbFunctionsContext';
 
 //----------------------------------------------------
 
@@ -74,7 +75,10 @@ function LeadRenderColumn({
   leads,
   setDeleteStageShow,
   deleteStageShow,
+  setStages,
 }) {
+  const { setRerender } = useContext(renderContext);
+
   const [hover, setHover] = useState(false);
   const [open, setOpen] = React.useState(false);
 
@@ -90,10 +94,12 @@ function LeadRenderColumn({
   const handleMouseEnter = () => setHover(true);
   const handleMouseLeave = () => setHover(false);
 
-  function handleDeleteStage(stageKey) {
-    setDeleteStageShow(false);
-
-    deleteStageFromDb(stageKey);
+  async function handleDeleteStage(stageKey) {
+    // console.log('before awaited');
+    await deleteStageFromDb(stageKey);
+    // console.log('awaited');
+    // setDeleteStageShow(false);
+    setRerender((prev) => !prev);
   }
 
   return (

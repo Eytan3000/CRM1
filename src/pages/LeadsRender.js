@@ -3,7 +3,7 @@ import NewLeadModal from '../components/leadsRender/NewLeadModal';
 import AddStagePopper from '../components/leadsRender/AddStagePopper';
 import { loadCards, loadStagesContext } from '../contexts/DbFunctionsContext';
 import LeadRenderColumn from '../components/leadsRender/LeadRenderColumn';
-import { Box, Grid, IconButton } from '@mui/material';
+import { Box, Button, Grid, IconButton } from '@mui/material';
 import { renderContext } from '../contexts/DbFunctionsContext';
 import { useMediaQuery } from '@mui/material';
 import { layoutNameContext } from '../contexts/DbFunctionsContext';
@@ -12,6 +12,8 @@ import VerticalMenuPop from '../components/auxs/VerticalMenuPop';
 //----------------------------------------------------------
 //----------------------------------------------------------
 function LeadsRender() {
+  console.log('LeadsRender');
+
   const loadCardsContentCtx = useContext(loadCards);
   const loadStagesCtx = useContext(loadStagesContext);
   const { reRender } = useContext(renderContext);
@@ -40,9 +42,8 @@ function LeadsRender() {
     (async () => {
       const arr = await loadStagesCtx();
       setStages(arr);
-      // stagesPassUp(arr);
     })();
-  }, []);
+  }, [deleteStageShow, reRender]);
 
   const handleOpenMenu = (event) => {
     setOpen(event.currentTarget);
@@ -56,12 +57,25 @@ function LeadsRender() {
   };
 
   return (
-    <div>
-      <Box display="flex" justifyContent="flex-end" paddingBottom={2}>
+    <>
+      <Box
+        display="flex"
+        justifyContent="flex-end"
+        paddingBottom={2}
+        width="100%">
         <NewLeadModal />
         <AddStagePopper setStages={setStages} />
         {/* <SettingsIcon color="primary" style={{ marginTop: 5 }} /> */}
         <Box marginLeft="auto">
+          {deleteStageShow && (
+            <Button
+              // onClick={setDeleteStageShow(false)}
+              onClick={() => setDeleteStageShow(false)}
+              variant="outlined"
+              style={{ marginRight: 10 }}>
+              Stop Editing
+            </Button>
+          )}
           <IconButton
             // key={note.noteId}
             // size="small"
@@ -97,12 +111,12 @@ function LeadsRender() {
               leads={leads}
               setDeleteStageShow={setDeleteStageShow}
               deleteStageShow={deleteStageShow}
+              setStages={setStages}
             />
           </Grid>
         ))}
       </Grid>
-    </div>
+    </>
   );
 }
-// export default LeadsRender;
 export default React.memo(LeadsRender);

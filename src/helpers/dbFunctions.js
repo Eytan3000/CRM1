@@ -31,6 +31,7 @@ export function updateStageToDb(newStage) {
     }),
   }).then((res) => res.json());
 }
+
 export function deleteStageFromDb(id) {
   fetch('http://localhost:8000/stages/' + id, {
     method: 'DELETE',
