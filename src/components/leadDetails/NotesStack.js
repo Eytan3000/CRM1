@@ -11,8 +11,8 @@ import React, { Fragment, useState } from 'react';
 
 import { format } from 'date-fns';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import VerticalIconPop from '../auxs/VerticalIconPop';
 import { renderContext } from '../../contexts/DbFunctionsContext';
+import VerticalMenuPop from '../auxs/VerticalMenuPop';
 
 //------------------------------------------------------
 const useStyles = makeStyles((theme) => {
@@ -69,10 +69,10 @@ export default function NotesStack({ notes, setLead }) {
   const [editKey, setEditKey] = useState(null);
 
   const { setRerender } = React.useContext(renderContext);
+
   const [open, setOpen] = React.useState(null);
   const handleOpenMenu = (event, noteId) => {
     // event.stopPropagation();
-
     setNoteIdState(noteId);
     setOpen(event.currentTarget);
   };
@@ -266,8 +266,9 @@ export default function NotesStack({ notes, setLead }) {
                 </Grid>
               );
             })}
-            <VerticalIconPop
+            <VerticalMenuPop
               edit={true}
+              del={true}
               open={open}
               handleCloseMenu={() => handleCloseMenu()}
               handleClickDelete={() => handleClickDelete()}

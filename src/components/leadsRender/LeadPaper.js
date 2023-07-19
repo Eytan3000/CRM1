@@ -6,8 +6,8 @@ import { formatPhoneNumber } from '../../helpers/helpers';
 import { IconButton, Link } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { renderContext } from '../../contexts/DbFunctionsContext';
-import VerticalIconPop from '../auxs/VerticalIconPop';
 import { useNavigate } from 'react-router-dom';
+import VerticalMenuPop from '../auxs/VerticalMenuPop';
 
 //---------------------------------------------------------------
 
@@ -98,7 +98,8 @@ export default function LeadPaper({ keyVal, lead, handleDelete }) {
         </Grid>
       </Paper>
 
-      <VerticalIconPop
+      <VerticalMenuPop
+        del={true}
         open={open}
         handleCloseMenu={() => handleCloseMenu()}
         handleClickDelete={() => handleClickPopover()}

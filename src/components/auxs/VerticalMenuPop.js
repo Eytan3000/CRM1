@@ -2,10 +2,10 @@ import { MenuItem, Popover, Typography } from '@material-ui/core';
 import React from 'react';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import EditIcon from '@mui/icons-material/Edit';
-import { Box } from '@mui/material';
 
-export default function VerticalIconPop({
+export default function VerticalMenuPop({
   edit,
+  del,
   open,
   handleCloseMenu,
   handleClickDelete,
@@ -35,12 +35,14 @@ export default function VerticalIconPop({
           <Typography variant="subtitle1">Edit</Typography>
         </MenuItem>
       )}
-      <MenuItem onClick={handleClickDelete}>
-        <DeleteOutlineIcon sx={{ mr: 1 }} fontSize="small" color="error" />
-        <Typography variant="subtitle1" color="error">
-          Delete
-        </Typography>
-      </MenuItem>
+      {del && (
+        <MenuItem onClick={handleClickDelete}>
+          <DeleteOutlineIcon sx={{ mr: 1 }} fontSize="small" color="error" />
+          <Typography variant="subtitle1" color="error">
+            Delete
+          </Typography>
+        </MenuItem>
+      )}
     </Popover>
   );
 }

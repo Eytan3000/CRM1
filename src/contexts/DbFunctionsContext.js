@@ -63,7 +63,6 @@ export function DbFunctionsProvider({ children }) {
       console.log(err);
     }
   }
-  console.log(stageState);
 
   async function loadLead(LeadId) {
     try {

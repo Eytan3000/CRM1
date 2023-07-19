@@ -202,11 +202,6 @@
       "dateCreated": "15.07.2023",
       "notes": [
         {
-          "noteId": 1,
-          "noteDate": "15th July 2023 , 2:35 PM",
-          "noteContent": "aksdfjlakskjfdadffsdf asdf"
-        },
-        {
           "noteId": 2,
           "noteDate": "18th July 2023 , 6:42 PM",
           "noteContent": "hugo"
@@ -277,11 +272,6 @@
           "noteId": 9,
           "noteDate": "16th July 2023 , 11:19 AM",
           "noteContent": "ASDFASDF"
-        },
-        {
-          "noteId": 10,
-          "noteDate": "16th July 2023 , 11:19 AM",
-          "noteContent": "ASDFSDDD"
         }
       ],
       "id": 47

@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 
-import { deleteLeadFromDb } from '../../helpers/dbFunctions';
+import { deleteLeadFromDb, deleteStageFromDb } from '../../helpers/dbFunctions';
 import { Box, Button, Grid, Modal, Stack } from '@mui/material';
 import TitleLabel from '../auxs/TitleLabel';
 import { makeStyles } from '@material-ui/core';
@@ -69,7 +69,12 @@ function addLeadsPapersInColumn(leads, stageName) {
 
 //----------------------------------------------------
 
-function LeadRenderColumn({ stage, leads }) {
+function LeadRenderColumn({
+  stage,
+  leads,
+  setDeleteStageShow,
+  deleteStageShow,
+}) {
   const [hover, setHover] = useState(false);
   const [open, setOpen] = React.useState(false);
 
@@ -85,8 +90,15 @@ function LeadRenderColumn({ stage, leads }) {
   const handleMouseEnter = () => setHover(true);
   const handleMouseLeave = () => setHover(false);
 
+  function handleDeleteStage(stageKey) {
+    setDeleteStageShow(false);
+
+    deleteStageFromDb(stageKey);
+  }
+
   return (
     <div>
+      {/* Create lead modal */}
       <Modal
         open={open}
         onClose={handleClose}
@@ -102,9 +114,16 @@ function LeadRenderColumn({ stage, leads }) {
         onMouseLeave={handleMouseLeave}
         key={stage.id}
         className={classes.background}
-        spacing={0.5}
-        // minWidth={250}
-      >
+        spacing={0.5}>
+        {/* Delete Button */}
+        {deleteStageShow && (
+          <Button
+            variant="text"
+            color="error"
+            onClick={() => handleDeleteStage(stage.id)}>
+            Delete stage
+          </Button>
+        )}
         <TitleLabel
           variant="h6"
           className={classes.label}
