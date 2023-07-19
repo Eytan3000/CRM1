@@ -60,14 +60,7 @@ const useStyles = makeStyles((theme) => {
   };
 });
 //------------------------------------------------------
-export default function NotesStack({
-  lead,
-  notes,
-  // editKey,
-  // setEditKey,
-  setLead,
-  disabled,
-}) {
+export default function NotesStack({ notes, setLead }) {
   const classes = useStyles();
   const [noteInputValue, setNoteInputValue] = useState('');
   const [newNoteClicked, setNewNoteClicked] = useState(false);

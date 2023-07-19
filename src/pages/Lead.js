@@ -6,7 +6,7 @@ import NotesStack from '../components/leadDetails/NotesStack';
 import image from './2.jpg';
 import { updateObjectDB } from '../helpers/dbFunctions';
 import { layoutNameContext } from '../contexts/DbFunctionsContext';
-import LeadPaper from '../components/leadDetails/LeadPaperDetails';
+import LeadPaperDetails from '../components/leadDetails/LeadPaperDetails';
 import { useParams } from 'react-router-dom';
 
 //-----------------------------------------------------------------
@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => {
   };
 });
 //--------------------------------------------------------------
-function Lead({ stages }) {
+function Lead() {
   const params = useParams();
   const newId = +params.leadId; //Get string from param, turns it into number.
 
@@ -92,8 +92,7 @@ function Lead({ stages }) {
                 // minWidth: '300px',
               }
             }>
-            <LeadPaper
-              stages={stages}
+            <LeadPaperDetails
               lead={lead}
               setLead={setLead}
               editKey={editKey}
@@ -119,11 +118,7 @@ function Lead({ stages }) {
             }}>
             <NotesStack
               notes={lead.notes}
-              editKey={editKey}
-              setEditKey={(newEditKey) => setEditKey(newEditKey)}
               setLead={(newLead) => setLead(newLead)}
-              id={newId}
-              stages={stages}
             />
           </Box>
         </Grid>

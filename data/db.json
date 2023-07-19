@@ -24,7 +24,7 @@
   "leads": [
     {
       "title": "Oryan ",
-      "stage": "leadIn",
+      "stage": "More Details",
       "name": "Oryan Krief",
       "phone": "0508657999",
       "email": "",
@@ -50,6 +50,11 @@
           "noteId": 2,
           "noteDate": "18th June 2023 , 9:23 AM",
           "noteContent": "eytan"
+        },
+        {
+          "noteId": 3,
+          "noteDate": "18th July 2023 , 6:44 PM",
+          "noteContent": "Koral"
         }
       ],
       "id": 20
@@ -85,43 +90,6 @@
         }
       ],
       "id": 22
-    },
-    {
-      "title": "mom / pap ",
-      "stage": "Call in a month",
-      "name": "mom",
-      "phone": "05050505",
-      "email": "momPap@gmail.com",
-      "website": "",
-      "facebook": "",
-      "linkedin": "",
-      "otherLink": "",
-      "companyName": "pap",
-      "companyPhone": "",
-      "companyEmail": "",
-      "companyWebsite": "",
-      "companyFacebook": "",
-      "companyLinkedin": "",
-      "companyOtherLink": "",
-      "dateCreated": "18.06.2023",
-      "notes": [
-        {
-          "noteId": 1,
-          "noteDate": "18th June 2023 , 10:02 AM",
-          "noteContent": "asdf"
-        },
-        {
-          "noteId": 2,
-          "noteDate": "18th June 2023 , 10:02 AM",
-          "noteContent": "asdf"
-        },
-        {
-          "noteId": 3,
-          "noteDate": "18th June 2023 , 10:02 AM",
-          "noteContent": "asdf"
-        }
-      ],
-      "id": 23
     },
     {
       "title": "Koral",
@@ -178,6 +146,11 @@
           "noteId": 2,
           "noteDate": "16th July 2023 , 6:19 PM",
           "noteContent": "asdfasdf"
+        },
+        {
+          "noteId": 3,
+          "noteDate": "18th July 2023 , 6:44 PM",
+          "noteContent": "youtube"
         }
       ],
       "id": 28
@@ -210,34 +183,8 @@
       "id": 33
     },
     {
-      "stage": "noAnswer",
-      "name": "Moti Stein",
-      "phone": "05076577888",
-      "email": "",
-      "website": "",
-      "facebook": "",
-      "linkedin": "",
-      "otherLink": "",
-      "companyName": "Callapp",
-      "companyPhone": "",
-      "companyEmail": "",
-      "companyWebsite": "",
-      "companyFacebook": "",
-      "companyLinkedin": "",
-      "companyOtherLink": "",
-      "dateCreated": "06.07.2023",
-      "notes": [
-        {
-          "noteId": 2,
-          "noteDate": "18th July 2023 , 9:50 AM",
-          "noteContent": "asdfasdf"
-        }
-      ],
-      "id": 43
-    },
-    {
       "title": "Hugo  / Kelev",
-      "stage": "noAnswer",
+      "stage": "leadIn",
       "name": "Hugo",
       "phone": "5050505005",
       "email": "",
@@ -258,6 +205,11 @@
           "noteId": 1,
           "noteDate": "15th July 2023 , 2:35 PM",
           "noteContent": "aksdfjlakskjfdadffsdf asdf"
+        },
+        {
+          "noteId": 2,
+          "noteDate": "18th July 2023 , 6:42 PM",
+          "noteContent": "hugo"
         }
       ],
       "id": 46
@@ -402,27 +354,6 @@
       "dateCreated": "16.07.2023",
       "notes": [],
       "id": 53
-    },
-    {
-      "title": "Sdf ",
-      "stage": "asdf",
-      "name": "Sdf",
-      "phone": "",
-      "email": "",
-      "website": "",
-      "facebook": "",
-      "linkedin": "",
-      "otherLink": "",
-      "companyName": "",
-      "companyPhone": "",
-      "companyEmail": "",
-      "companyWebsite": "",
-      "companyFacebook": "",
-      "companyLinkedin": "",
-      "companyOtherLink": "",
-      "dateCreated": "16.07.2023",
-      "notes": [],
-      "id": 54
     },
     {
       "title": "Jack Nicholson  / Nicholson Ltd.",

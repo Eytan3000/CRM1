@@ -7,9 +7,10 @@ import { Box, Grid } from '@mui/material';
 import { renderContext } from '../contexts/DbFunctionsContext';
 import { useMediaQuery } from '@mui/material';
 import { layoutNameContext } from '../contexts/DbFunctionsContext';
+import SettingsIcon from '@mui/icons-material/Settings';
 //----------------------------------------------------------
 //----------------------------------------------------------
-function LeadsRender({ stagesPassUp }) {
+function LeadsRender() {
   const loadCardsContentCtx = useContext(loadCards);
   const loadStagesCtx = useContext(loadStagesContext);
   const { reRender } = useContext(renderContext);
@@ -36,7 +37,7 @@ function LeadsRender({ stagesPassUp }) {
     (async () => {
       const arr = await loadStagesCtx();
       setStages(arr);
-      stagesPassUp(arr);
+      // stagesPassUp(arr);
     })();
   }, []);
 

@@ -5,12 +5,11 @@ import SelectStage from './SelectStage';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 //---------------------------------------------------------------------------------
 //--------------------------------------------------------------
-export default function LeadPaper({
+export default function LeadPaperDetails({
   lead,
   setLead,
   editKey,
   setEditKey,
-  stages,
 }) {
   const [editClicked, setEditClicked] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -122,7 +121,6 @@ export default function LeadPaper({
                   {/* Value area */}
                   {editKey === 'stage' && key === editKey && isHovered ? (
                     <SelectStage
-                      optionsArr={stages}
                       updateLead={updateLead}
                       currentStage={value}
                       setEditKey={setEditKey}

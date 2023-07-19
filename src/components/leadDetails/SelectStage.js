@@ -1,20 +1,40 @@
 import { FormControl, MenuItem, Select } from '@material-ui/core';
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { convertCamelCaseToSpaces } from '../../helpers/helpers';
+import {
+  loadStagesContext,
+  stageStateContext,
+} from '../../contexts/DbFunctionsContext';
 //--------------------------------------------------------------
 
 export default function SelectStage({
-  optionsArr,
   updateLead,
   currentStage,
   setEditKey,
   setEditClicked,
 }) {
   const [value, setValue] = React.useState(currentStage);
+  const loadStagesCtx = useContext(loadStagesContext);
+  // const stagesCtx = useContext(stageStateContext);
+  // console.log(stagesCtx.stageState);
 
-  //   useEffect(() => {
-  //     console.log(value);
-  //   }, [value]);
+  const [optionsArr, setOptionsArr] = useState([]);
+
+  // useEffect(() => {
+  //   (async () => {
+  //     setOptionArr(stagesCtx.stageState);
+  //     console.log('useEffect');
+  //   })();
+  // }, []);
+
+  //load Stages
+  useEffect(() => {
+    (async () => {
+      const arr = await loadStagesCtx();
+      setOptionsArr(arr);
+      // stagesPassUp(arr);
+    })();
+  }, []);
 
   const handleChange = (event) => {
     setValue(event.target.value);
