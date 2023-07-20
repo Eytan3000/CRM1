@@ -133,7 +133,7 @@ export default function Layout({ children }) {
             Pipelines
           </Typography>
         </div>
-        {/* List */}
+        {/* List of Piplines */}
         <List>
           {menuItems.map((item) => (
             <ListItemButton key={item.text}>
@@ -153,7 +153,6 @@ export default function Layout({ children }) {
 
       <div className={classes.page}>
         <div className={classes.toolbar}></div>
-        {/* {children} */}
         <Outlet />
       </div>
     </div>

@@ -9,7 +9,27 @@ import { useMediaQuery } from '@mui/material';
 import { layoutNameContext } from '../contexts/DbFunctionsContext';
 import SettingsIcon from '@mui/icons-material/Settings';
 import VerticalMenuPop from '../components/auxs/VerticalMenuPop';
+
+import { initializeApp } from 'firebase/app';
+import { getDatabase, ref, set } from 'firebase/database';
+
 //----------------------------------------------------------
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: 'AIzaSyBUjDRbNol-XzWCSVEPkl6VB-15gJI4oTM',
+  authDomain: 'mycrm-a7912.firebaseapp.com',
+  databaseURL:
+    'https://mycrm-a7912-default-rtdb.europe-west1.firebasedatabase.app',
+  projectId: 'mycrm-a7912',
+  storageBucket: 'mycrm-a7912.appspot.com',
+  messagingSenderId: '921120278026',
+  appId: '1:921120278026:web:b33d9ef0a4bfcc8f7081f3',
+};
+
+// Initialize Firebase app
+const app = initializeApp(firebaseConfig);
+
 //----------------------------------------------------------
 function LeadsRender() {
   console.log('LeadsRender');
@@ -28,6 +48,28 @@ function LeadsRender() {
   const isDesktop = useMediaQuery(
     `(min-width: 900px) and (max-width: ${wrapMaxWidth}px)`
   ); // the mediaQuery is affected by the number of stages.
+
+  useEffect(() => {
+    // Function to write user data to Firebase
+    function writeUserData(userId, name, email, url) {
+      const db = getDatabase(app);
+      const reference = ref(db, 'users/' + userId);
+
+      set(reference, {
+        userName: name,
+        email: email,
+        website: url,
+      });
+    }
+
+    // Call writeUserData when the component mounts
+    writeUserData(
+      'YoelKrief',
+      'eytan krief2',
+      'Orian@gmail.com',
+      'www.kriefsound.com'
+    );
+  }, []);
 
   useEffect(() => {
     (async () => {
@@ -65,11 +107,9 @@ function LeadsRender() {
         width="100%">
         <NewLeadModal />
         <AddStagePopper setStages={setStages} />
-        {/* <SettingsIcon color="primary" style={{ marginTop: 5 }} /> */}
         <Box marginLeft="auto">
           {deleteStageShow && (
             <Button
-              // onClick={setDeleteStageShow(false)}
               onClick={() => setDeleteStageShow(false)}
               variant="outlined"
               style={{ marginRight: 10 }}>
@@ -77,8 +117,6 @@ function LeadsRender() {
             </Button>
           )}
           <IconButton
-            // key={note.noteId}
-            // size="small"
             onClick={(e) => {
               handleOpenMenu(e);
             }}>
@@ -98,9 +136,13 @@ function LeadsRender() {
         container
         rowSpacing={2}
         columnSpacing={5}
-        sx={{ flexWrap: isDesktop ? 'nowrap' : 'wrap' }}>
+        sx={{
+          flexWrap: isDesktop ? 'nowrap' : 'wrap',
+          paddingRight: '30px',
+        }}>
         {stages.map((stage) => (
           <Grid
+            id="first-grid-id"
             item
             key={stage.id}
             sm={12}
