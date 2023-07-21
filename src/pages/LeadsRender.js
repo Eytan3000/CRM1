@@ -11,7 +11,16 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import VerticalMenuPop from '../components/auxs/VerticalMenuPop';
 
 import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, set } from 'firebase/database';
+import {
+  child,
+  getDatabase,
+  onValue,
+  push,
+  ref,
+  set,
+  update,
+} from 'firebase/database';
+import { collection, deleteDoc, getFirestore } from 'firebase/firestore';
 
 //----------------------------------------------------------
 
@@ -30,6 +39,105 @@ const firebaseConfig = {
 // Initialize Firebase app
 const app = initializeApp(firebaseConfig);
 
+function initializeBoard(userId, userName, email, boards) {
+  const db = getDatabase(app);
+  const reference = ref(db, 'users/' + userId);
+
+  set(reference, {
+    userName: userName,
+    email: email,
+    boards: boards,
+  });
+}
+async function initialize2(userId, userName, email, boards) {
+  const db = getDatabase(app);
+  const reference = ref(db, 'users/' + userId);
+
+  set(reference, {
+    userName: userName,
+    email: email,
+  });
+
+  const boardKey = await addBoard(userId, 'Main Board');
+  addStage(userId, boardKey, 'LeadIn');
+}
+
+function addLead(userId, lead, pipeline, stage) {
+  const db = getDatabase();
+
+  // Get a key for a new Post.
+  const key = push(child(ref(db), 'posts')).key;
+  lead = { ...lead, id: key };
+
+  // Write the new post's data simultaneously in the posts list and the user's post list.
+  const updates = {};
+  updates[
+    `/users/${userId}/boards/${pipeline}/stages/${stage}/leads/` + lead.name
+  ] = lead;
+  // updates['/user-posts/' + uid + '/' + newLeadKey] = lead;
+
+  return update(ref(db), updates);
+}
+
+function addNote(userId, noteContent, pipeline, stage, lead) {
+  const db = getDatabase();
+
+  // Get a key for a new Post.
+  const key = push(child(ref(db), 'notes')).key;
+  const note = {
+    note: noteContent,
+    id: key,
+  };
+  const updates = {};
+
+  updates[
+    `/users/${userId}/boards/${pipeline}/stages/${stage}/leads/${lead}/notes/` +
+      key
+  ] = note;
+
+  return update(ref(db), updates);
+}
+function addStage(userId, pipeline, stage) {
+  const db = getDatabase();
+
+  // Get a key.
+  const key = push(child(ref(db), 'stage')).key;
+  // const key = stage.id;
+
+  // stage = { ...stage, id: key };
+
+  const updates = {};
+
+  updates[`/users/${userId}/boards/${pipeline}/stages/` + key] = stage;
+
+  return update(ref(db), updates);
+}
+
+function addBoard(userId, boardName) {
+  const db = getDatabase();
+
+  // Get a key.
+  const key = push(child(ref(db), 'board')).key;
+
+  const updates = {};
+
+  updates[`/users/${userId}/boards/` + key] = boardName;
+
+  return update(ref(db), updates).then(() => key);
+}
+
+function getLead(userId, pipeline, stage, leadKey) {
+  const db = getDatabase();
+  const valueRef = ref(
+    db,
+    'users/' + userId + `/boards/${pipeline}/stages/${stage}/leads/${leadKey}/`
+  );
+  onValue(valueRef, (snapshot) => {
+    const data = snapshot.val();
+    console.log(data);
+    // return data;
+  });
+}
 //----------------------------------------------------------
 function LeadsRender() {
   console.log('LeadsRender');
@@ -50,25 +158,83 @@ function LeadsRender() {
   ); // the mediaQuery is affected by the number of stages.
 
   useEffect(() => {
-    // Function to write user data to Firebase
-    function writeUserData(userId, name, email, url) {
-      const db = getDatabase(app);
-      const reference = ref(db, 'users/' + userId);
-
-      set(reference, {
-        userName: name,
-        email: email,
-        website: url,
-      });
-    }
-
-    // Call writeUserData when the component mounts
-    writeUserData(
-      'YoelKrief',
-      'eytan krief2',
-      'Orian@gmail.com',
-      'www.kriefsound.com'
-    );
+    // initializeBoard(
+    //   // userId, userName, email, boards
+    //   'Eytan_krief_ID',
+    //   'Eytan3000',
+    //   'Eytankrief@gmail.com',
+    //   {
+    //     mainPipeline: {
+    //       name: 'Main Pipeline',
+    //       stages: {
+    //         leadIn: { name: 'Lead In' },
+    //         noAnswer: { name: 'No Answer' },
+    //         callBack: { name: 'Call Back' },
+    //       },
+    //     },
+    //   }
+    // );
+    // initialize2(
+    //   // userId, userName, email, boards
+    //   'Eytan_krief_ID',
+    //   'Eytan3000',
+    //   'Eytankrief@gmail.com3',
+    //   {
+    //     mainPipeline: {
+    //       name: 'Main Pipeline',
+    //       stages: {
+    //         leadIn: { name: 'Lead In' },
+    //         noAnswer: { name: 'No Answer' },
+    //         callBack: { name: 'Call Back' },
+    //       },
+    //     },
+    //   }
+    // );
+    /////
+    // addLead(
+    //   //userId, lead, pipeline, stage
+    //   'Eytan_krief_ID',
+    //   {
+    //     name: 'newLead3',
+    //     email: 'email3',
+    //   },
+    //   'mainPipeline',
+    //   'leadIn'
+    // );
+    // addNote(
+    //   //userId, noteContent, pipeline,stage, lead
+    //   'Eytan_krief_ID',
+    //   'lorem epsum5',
+    //   'mainPipeline',
+    //   'leadIn',
+    //   'newLead2'
+    // );
+    // addStage(
+    //   //userId, pipeline, stage
+    //   'Eytan_krief_ID',
+    //   'mainPipeline',
+    //   {
+    //     id: 'callInOneMonth',
+    //     name: 'Call In a Month',
+    //   }
+    // );
+    // addStage(
+    //   //userId, pipeline, stage
+    //   'Eytan_krief_ID',
+    //   'mainPipeline',
+    //   {
+    //     id: 'new',
+    //     name: 'New',
+    //   }
+    // );
+    // getData('Eytan_krief_ID');
+    // getLead(
+    //   //userId, pipeline, stage, leadKey
+    //   'Eytan_krief_ID',
+    //   'mainPipeline',
+    //   'leadIn',
+    //   'newLead2'
+    // );
   }, []);
 
   useEffect(() => {
