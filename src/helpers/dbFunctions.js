@@ -15,7 +15,7 @@ export function deleteLeadFromDb(id) {
   });
 }
 export function deleteNoteFromDb(leadId) {
-  // You cant change specific values from within a database object, so that would a function for a real database. for now all you can do is to change the entire lead.
+  // You cant change specific values from within a database object, so that would be a function for a real database. for now all you can do is to change the entire lead.
 }
 
 export function loadStagesFromDb() {

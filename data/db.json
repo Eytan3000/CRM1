@@ -92,33 +92,6 @@
       "id": 22
     },
     {
-      "title": "Koral",
-      "stage": "callBack",
-      "name": "Koral",
-      "phone": "0547688833",
-      "email": "Koral@gmail.come",
-      "website": "https://www.kriefsound.com/",
-      "facebook": "https://www.facebook.com/",
-      "linkedin": "",
-      "otherLink": "",
-      "companyName": "",
-      "companyPhone": "",
-      "companyEmail": "",
-      "companyWebsite": "",
-      "companyFacebook": "",
-      "companyLinkedin": "",
-      "companyOtherLink": "",
-      "dateCreated": "18.06.2023",
-      "notes": [
-        {
-          "noteId": 2,
-          "noteDate": "16th July 2023 , 12:33 PM",
-          "noteContent": "asdfsdf\nadfasdfasdf "
-        }
-      ],
-      "id": 24
-    },
-    {
       "title": "Yair Petch / Kricherer Company Ltd. ",
       "stage": "Call in a month",
       "name": "Yair Petch",
@@ -386,6 +359,27 @@
       "dateCreated": "18.07.2023",
       "notes": [],
       "id": 58
+    },
+    {
+      "title": "Jennifer Lawrence  / Super Hot Ltd",
+      "stage": "callBack",
+      "name": "Jennifer Lawrence",
+      "phone": "0508746333",
+      "email": "",
+      "website": "",
+      "facebook": "",
+      "linkedin": "",
+      "otherLink": "https://www.google.com/search?gs_ssp=eJzj4tLP1TcwqjBIqSo3YPQSzErNy8tMSy1SyEksL0rNS04FAJwLCo0&q=jennifer+lawrence&rlz=1C5CHFA_enIL1004IL1004&oq=jenifer&gs_lcrp=EgZjaHJvbWUqDAgCEC4YChixAxiABDIGCAAQRRg5MgcIARAuGIAEMgwIAhAuGAoYsQMYgAQyDwgDEC4YChiDARixAxiABDIMCAQQLhgKGLEDGIAEMgwIBRAuGAoYsQMYgAQyBwgGEC4YgAQyDwgHEC4YChiDARixAxiABDIJCAgQABgKGIAEMgcICRAAGI8C0gEIMTg5NGowajeoAgCwAgA&sourceid=chrome&ie=UTF-8",
+      "companyName": "Super Hot Ltd",
+      "companyPhone": "",
+      "companyEmail": "",
+      "companyWebsite": "",
+      "companyFacebook": "",
+      "companyLinkedin": "",
+      "companyOtherLink": "",
+      "dateCreated": "22.07.2023",
+      "notes": [],
+      "id": 59
     }
   ]
 }
