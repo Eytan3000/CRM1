@@ -11,7 +11,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import VerticalMenuPop from '../components/auxs/VerticalMenuPop';
 //----------------------------------------------------------
 function LeadsRender() {
-  console.log('LeadsRender');
+  // console.log('LeadsRender');
 
   const loadCardsContentCtx = useContext(loadCards);
   const loadStagesCtx = useContext(loadStagesContext);
@@ -22,6 +22,8 @@ function LeadsRender() {
   const [stages, setStages] = useState([]);
   const [open, setOpen] = React.useState(null);
   const [deleteStageShow, setDeleteStageShow] = useState(false);
+
+  const [dndData, setDndData] = useState([]);
 
   const wrapMaxWidth = (1300 * stages.length) / 5; // when does the window stop squeezing and start pushing
   const isDesktop = useMediaQuery(
@@ -43,6 +45,18 @@ function LeadsRender() {
       setStages(arr);
     })();
   }, [deleteStageShow, reRender]);
+
+  //set dnd
+  useEffect(() => {
+    setDndData(
+      stages.map((stage) => {
+        return {
+          ...stage,
+          leads: leads.filter((lead) => lead.stage === stage.name),
+        };
+      })
+    );
+  }, [stages, leads]);
 
   const handleOpenMenu = (event) => {
     setOpen(event.currentTarget);
