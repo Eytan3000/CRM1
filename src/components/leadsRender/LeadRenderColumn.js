@@ -50,6 +50,9 @@ const useStyles = makeStyles((theme) => {
       transition: 'opacity 0.3s ease-in-out',
       opacity: 0,
     },
+    item: {
+      margin: '5px',
+    },
   };
 });
 
@@ -147,7 +150,7 @@ function LeadRenderColumn({ stage, leads, deleteStageShow, keyVal }) {
                       {(provided) => {
                         return (
                           <div
-                            // className="item"
+                            className={classes.item}
                             ref={provided.innerRef}
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}>

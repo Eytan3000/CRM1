@@ -73,7 +73,6 @@ function LeadsRender() {
     setDeleteStageShow(true);
   };
 
-  ///
   const handleDragEnd = (result) => {
     // Destructure the result to get the required properties
     const { destination, source, draggableId } = result;
