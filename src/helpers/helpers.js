@@ -32,3 +32,11 @@ export function isLink(text) {
   const urlRegex = /^(https?:\/\/)?([\w.-]+)\.([a-z]{2,})(\/\S*)?$/i;
   return urlRegex.test(text);
 }
+
+export function arrayToMap(array) {
+  const mapResult = {};
+  array.forEach((item) => {
+    mapResult[item.name] = item;
+  });
+  return mapResult;
+}

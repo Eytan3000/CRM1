@@ -9,6 +9,10 @@ import { useMediaQuery } from '@mui/material';
 import { layoutNameContext } from '../contexts/DbFunctionsContext';
 import SettingsIcon from '@mui/icons-material/Settings';
 import VerticalMenuPop from '../components/auxs/VerticalMenuPop';
+
+import _ from 'lodash';
+import { setDate } from 'date-fns';
+import { arrayToMap } from '../helpers/helpers';
 //----------------------------------------------------------
 function LeadsRender() {
   // console.log('LeadsRender');
@@ -48,15 +52,15 @@ function LeadsRender() {
 
   //set dnd
   useEffect(() => {
-    setDndData(
-      stages.map((stage) => {
-        return {
-          ...stage,
-          leads: leads.filter((lead) => lead.stage === stage.name),
-        };
-      })
-    );
+    const stagesLeadsArr = stages.map((stage) => {
+      return {
+        ...stage,
+        leads: leads.filter((lead) => lead.stage === stage.name),
+      };
+    });
+    setDndData(arrayToMap(stagesLeadsArr));
   }, [stages, leads]);
+  console.log(dndData);
 
   const handleOpenMenu = (event) => {
     setOpen(event.currentTarget);

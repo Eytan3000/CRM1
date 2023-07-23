@@ -1,24 +1,24 @@
 {
   "stages": [
     {
-      "id": 1,
+      "id": 0,
       "name": "leadIn"
     },
     {
-      "id": 2,
+      "id": 1,
       "name": "noAnswer"
     },
     {
-      "id": 3,
+      "id": 2,
       "name": "callBack"
     },
     {
       "name": "Call in a month",
-      "id": 4
+      "id": 3
     },
     {
       "name": "More Details",
-      "id": 5
+      "id": 4
     }
   ],
   "leads": [
