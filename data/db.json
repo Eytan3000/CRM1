@@ -129,8 +129,8 @@
       "id": 28
     },
     {
-      "title": "Karen Ronen / Karnina Nails ",
-      "stage": "More Details",
+      "title": "Karen Ronen",
+      "stage": "callBack",
       "name": "Karen Ronen",
       "phone": "0547670033",
       "email": "karenRonen3@gmail.com",
@@ -153,14 +153,15 @@
           "noteContent": "makes nails"
         }
       ],
-      "id": 33
+      "id": 33,
+      "company": "Karnina Nails"
     },
     {
-      "title": "Hugo  / Kelev",
-      "stage": "leadIn",
+      "title": "Hugo",
+      "stage": "noAnswer",
       "name": "Hugo",
       "phone": "5050505005",
-      "email": "",
+      "email": "hugo@gmail.com",
       "website": "",
       "facebook": "",
       "linkedin": "",
@@ -180,11 +181,12 @@
           "noteContent": "hugo"
         }
       ],
-      "id": 46
+      "id": 46,
+      "company": "Kelev Corp."
     },
     {
       "title": "Eran Tepper",
-      "stage": "noAnswer",
+      "stage": "leadIn",
       "name": "Eran Tepper",
       "phone": "06877463552",
       "email": "shmidt@gmail.com",
@@ -252,11 +254,96 @@
           "noteContent": "asdf"
         }
       ],
-      "id": 47
+      "id": 47,
+      "company": "Chicetti"
     },
     {
-      "title": "Quentin Tarantino ",
-      "stage": "leadIn",
+      "0": {
+        "id": 20,
+        "title": "Oryan Krief",
+        "stage": "More Details",
+        "phone": "0508657999",
+        "company": "Climbing LTD."
+      },
+      "1": {
+        "id": 22,
+        "title": "yoel",
+        "stage": "Yair",
+        "phone": "",
+        "company": "coockoo"
+      },
+      "2": {
+        "id": 28,
+        "title": "Yair Petch",
+        "stage": "Call in a month",
+        "phone": "0588657211",
+        "company": "Kricherer Company Ltd."
+      },
+      "3": {
+        "id": 33,
+        "title": "Karen Ronen",
+        "stage": "More Details",
+        "phone": "0547670033",
+        "company": "Karnina Nails"
+      },
+      "4": {
+        "id": 46,
+        "title": "Hugo",
+        "stage": "leadIn",
+        "phone": "5050505005",
+        "company": "Kelev Corp."
+      },
+      "5": {
+        "id": 47,
+        "title": "Eran Tepper",
+        "stage": "noAnswer",
+        "phone": "06877463552",
+        "company": "Chicetti"
+      },
+      "6": {
+        "id": 49,
+        "title": "Quentin Tarantino",
+        "stage": "noAnswer",
+        "phone": "0508659703",
+        "company": "Tarantino Prod"
+      },
+      "7": {
+        "id": 55,
+        "title": "Jack Nicholson",
+        "stage": "noAnswer",
+        "phone": "0508657032",
+        "company": "Nicholson Ltd."
+      },
+      "8": {
+        "id": 56,
+        "title": "Dustin Hoffman",
+        "stage": "callBack",
+        "phone": "0507658432",
+        "company": "Hoffman Prod"
+      },
+      "9": {
+        "id": 57,
+        "title": "Magic Johnson",
+        "stage": "callBack",
+        "phone": "0508748322",
+        "company": "Johnson Basketball"
+      },
+      "10": {
+        "id": 58,
+        "title": "Margot Robbie",
+        "stage": "noAnswer",
+        "phone": "0508976544",
+        "company": "Robbie Prod"
+      },
+      "11": {
+        "id": 59,
+        "title": "Jennifer Lawrence",
+        "stage": "callBack",
+        "phone": "0508746333",
+        "company": "Super Hot Ltd"
+      },
+      "title": "Quentin Tarantino",
+      "stage": "callBack",
       "name": "Quentin Tarantino",
       "phone": "0508659703",
       "email": "Tarantino@gmail.com",
@@ -264,7 +351,7 @@
       "facebook": "https://www.instagram.com/tarantinoxx/?hl=en",
       "linkedin": "https://www.instagram.com/tarantinoxx/?hl=en",
       "otherLink": "",
-      "companyName": "",
+      "companyName": "Tarantino Prod",
       "companyPhone": "",
       "companyEmail": "",
       "companyWebsite": "",
@@ -279,11 +366,12 @@
           "noteContent": "No answer, call back tomorrow"
         }
       ],
-      "id": 49
+      "id": 49,
+      "company": "Tarantino Prod"
     },
     {
-      "title": "Jack Nicholson  / Nicholson Ltd.",
-      "stage": "leadIn",
+      "title": "Jack Nicholson",
+      "stage": "callBack",
       "name": "Jack Nicholson",
       "phone": "0508657032",
       "email": "nicholson@gmail.com",
@@ -300,11 +388,12 @@
       "companyOtherLink": "",
       "dateCreated": "17.07.2023",
       "notes": [],
-      "id": 55
+      "id": 55,
+      "company": "Nicholson Ltd."
     },
     {
-      "title": "Dustin Hoffman  / Hoffman Prod",
-      "stage": "leadIn",
+      "title": "Dustin Hoffman",
+      "stage": "Call in a month",
       "name": "Dustin Hoffman",
       "phone": "0507658432",
       "email": "dustinH@gmaill.com",
@@ -321,10 +410,11 @@
       "companyOtherLink": "",
       "dateCreated": "17.07.2023",
       "notes": [],
-      "id": 56
+      "id": 56,
+      "company": "Hoffman Prod"
     },
     {
-      "title": "Magic Johnson  / Johnson Basketball",
+      "title": "Magic Johnson",
       "stage": "noAnswer",
       "name": "Magic Johnson",
       "phone": "0508748322",
@@ -342,10 +432,11 @@
       "companyOtherLink": "",
       "dateCreated": "17.07.2023",
       "notes": [],
-      "id": 57
+      "id": 57,
+      "company": "Johnson Basketball"
     },
     {
-      "title": "Margot Robbie  / Robbie Prod",
+      "title": "Margot Robbie",
       "stage": "leadIn",
       "name": "Margot Robbie",
       "phone": "0508976544",
@@ -363,11 +454,12 @@
       "companyOtherLink": "",
       "dateCreated": "18.07.2023",
       "notes": [],
-      "id": 58
+      "id": 58,
+      "company": "Robbie Prod"
     },
     {
-      "title": "Jennifer Lawrence  / Super Hot Ltd",
-      "stage": "callBack",
+      "title": "Jennifer Lawrence",
+      "stage": "noAnswer",
       "name": "Jennifer Lawrence",
       "phone": "0508746333",
       "email": "",
@@ -384,7 +476,8 @@
       "companyOtherLink": "",
       "dateCreated": "22.07.2023",
       "notes": [],
-      "id": 59
+      "id": 59,
+      "company": "Super Hot Ltd"
     }
   ]
 }

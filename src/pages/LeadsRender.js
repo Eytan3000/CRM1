@@ -11,15 +11,16 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import VerticalMenuPop from '../components/auxs/VerticalMenuPop';
 
 import _ from 'lodash';
-import { setDate } from 'date-fns';
 import { arrayToMap } from '../helpers/helpers';
+import { DragDropContext } from 'react-beautiful-dnd';
+import { updateObjectDB } from '../helpers/dbFunctions';
 //----------------------------------------------------------
 function LeadsRender() {
   // console.log('LeadsRender');
 
   const loadCardsContentCtx = useContext(loadCards);
   const loadStagesCtx = useContext(loadStagesContext);
-  const { reRender } = useContext(renderContext);
+  const { reRender, setRerender } = useContext(renderContext);
   const { setLayoutName } = useContext(layoutNameContext);
 
   const [leads, setLeads] = useState([]);
@@ -60,7 +61,6 @@ function LeadsRender() {
     });
     setDndData(arrayToMap(stagesLeadsArr));
   }, [stages, leads]);
-  console.log(dndData);
 
   const handleOpenMenu = (event) => {
     setOpen(event.currentTarget);
@@ -73,8 +73,52 @@ function LeadsRender() {
     setDeleteStageShow(true);
   };
 
+  ///
+  const handleDragEnd = (result) => {
+    // Destructure the result to get the required properties
+    const { destination, source, draggableId } = result;
+
+    // Check if there is a valid destination and the position has changed
+    if (
+      !destination ||
+      (destination.droppableId === source.droppableId &&
+        destination.index === source.index)
+    ) {
+      return;
+    }
+
+    // Retrieve the lead being dragged
+    const leadId = parseInt(draggableId);
+    const draggedLead = leads.find((lead) => lead.id === leadId);
+
+    //change stage of the copy of lead to the destination.
+    draggedLead.stage = stages[destination.droppableId].name;
+
+    updateObjectDB(draggedLead.id, draggedLead);
+
+    // Update the stage for the dragged lead
+    const updatedLeads = leads.map((lead) => {
+      if (lead.id === leadId) {
+        return { ...lead, stage: stages[destination.droppableId].name };
+      }
+      return lead;
+    });
+
+    setLeads(updatedLeads);
+    setStages((prevStages) => {
+      const updatedStages = [...prevStages];
+      updatedStages[source.droppableId].leads = updatedLeads.filter(
+        (lead) => lead.stage === updatedStages[source.droppableId].name
+      );
+      updatedStages[destination.droppableId].leads = updatedLeads.filter(
+        (lead) => lead.stage === updatedStages[destination.droppableId].name
+      );
+      return updatedStages;
+    });
+  };
+
   return (
-    <>
+    <DragDropContext onDragEnd={handleDragEnd}>
       <Box
         display="flex"
         justifyContent="flex-end"
@@ -115,25 +159,28 @@ function LeadsRender() {
           flexWrap: isDesktop ? 'nowrap' : 'wrap',
           paddingRight: '30px',
         }}>
-        {stages.map((stage) => (
-          <Grid
-            id="first-grid-id"
-            item
-            key={stage.id}
-            sm={12}
-            md={12 / stages.length}
-            minWidth={210}>
-            <LeadRenderColumn
-              stage={stage}
-              leads={leads}
-              setDeleteStageShow={setDeleteStageShow}
-              deleteStageShow={deleteStageShow}
-              setStages={setStages}
-            />
-          </Grid>
-        ))}
+        {_.map(dndData, (data, key) => {
+          return (
+            <Grid
+              id="first-grid-id"
+              item
+              key={key}
+              sm={12}
+              md={12 / stages.length}
+              minWidth={210}>
+              <LeadRenderColumn
+                keyVal={data.id}
+                stage={data}
+                leads={data.leads}
+                setDeleteStageShow={setDeleteStageShow}
+                deleteStageShow={deleteStageShow}
+                setStages={setStages}
+              />
+            </Grid>
+          );
+        })}
       </Grid>
-    </>
+    </DragDropContext>
   );
 }
 export default React.memo(LeadsRender);

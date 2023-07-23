@@ -8,6 +8,7 @@ import { convertCamelCaseToSpaces } from '../../helpers/helpers';
 import Create from '../../pages/Create';
 import LeadPaper from './LeadPaper';
 import { renderContext } from '../../contexts/DbFunctionsContext';
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 
 //----------------------------------------------------
 
@@ -70,13 +71,7 @@ function addLeadsPapersInColumn(leads, stageName) {
 
 //----------------------------------------------------
 
-function LeadRenderColumn({
-  stage,
-  leads,
-  setDeleteStageShow,
-  deleteStageShow,
-  setStages,
-}) {
+function LeadRenderColumn({ stage, leads, deleteStageShow, keyVal }) {
   const { setRerender } = useContext(renderContext);
 
   const [hover, setHover] = useState(false);
@@ -95,10 +90,7 @@ function LeadRenderColumn({
   const handleMouseLeave = () => setHover(false);
 
   async function handleDeleteStage(stageKey) {
-    // console.log('before awaited');
     await deleteStageFromDb(stageKey);
-    // console.log('awaited');
-    // setDeleteStageShow(false);
     setRerender((prev) => !prev);
   }
 
@@ -135,8 +127,46 @@ function LeadRenderColumn({
           className={classes.label}
           label={convertCamelCaseToSpaces(stage.name)}
         />
+        {/* {addLeadsPapersInColumn(leads, stage.name)} */}
 
-        {addLeadsPapersInColumn(leads, stage.name)}
+        <Droppable droppableId={String(stage.id)}>
+          {(provided) => {
+            return (
+              <div
+                ref={provided.innerRef}
+                {...provided.droppableProps}
+                // className="droppable-col"
+              >
+                {/* Maps through the leads of the stage */}
+                {leads.map((lead, index) => {
+                  return (
+                    <Draggable
+                      key={String(lead.id)}
+                      index={index}
+                      draggableId={String(lead.id)}>
+                      {(provided) => {
+                        return (
+                          <div
+                            // className="item"
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}>
+                            <LeadPaper
+                              keyVal={lead.id}
+                              lead={lead}
+                              handleDelete={handleDelete}
+                            />
+                          </div>
+                        );
+                      }}
+                    </Draggable>
+                  );
+                })}
+                {provided.placeholder}
+              </div>
+            );
+          }}
+        </Droppable>
 
         <Button
           className={hover ? classes.buttonShow : classes.buttonHide}
