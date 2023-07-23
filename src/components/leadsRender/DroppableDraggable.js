@@ -1,7 +1,18 @@
 import React from 'react';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
-
-export default function DroppableDraggable() {
+import LeadPaper from './LeadPaper';
+import { makeStyles } from '@material-ui/core';
+//---------------------------------------------------------
+const useStyles = makeStyles((theme) => {
+  return {
+    item: {
+      margin: '5px',
+    },
+  };
+});
+//---------------------------------------------------------
+export default function DroppableDraggable({ stage, leads, handleDelete }) {
+  const classes = useStyles();
   return (
     <Droppable droppableId={String(stage.id)}>
       {(provided) => {
