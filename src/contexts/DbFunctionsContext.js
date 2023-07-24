@@ -24,27 +24,52 @@ export function DbFunctionsProvider({ children }) {
     insertNewLead(lead);
   }
 
+  // //returns details for Cards
+  // async function loadCardsContent() {
+  //   try {
+  //     const data = await loadAllLeadsCards();
+  //     console.log(data);
+
+  //     const leadsCardArr = data.map((lead) => {
+  //       // const titleVal =
+  //       //   lead.companyName !== ''
+  //       //     ? `${lead.name} / ${lead.companyName}`
+  //       //     : lead.name;
+  //       return {
+  //         id: lead.id,
+  //         title: lead.name,
+  //         stage: lead.stage,
+  //         phone: lead.phone,
+  //         company: lead.companyName,
+  //       };
+  //     });
+
+  //     return leadsCardArr;
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
   //returns details for Cards
+  // async function loadStages() {
+  //   try {
+  //     const data = await loadStagesFromDb();
+  //     const stagesArr = data.map((stage) => {
+  //       return {
+  //         id: stage.id,
+  //         name: stage.name,
+  //       };
+  //     });
+
+  //     setStageState(stagesArr);
+  //     return stagesArr;
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
+
   async function loadCardsContent() {
     try {
       const data = await loadAllLeadsCards();
-      console.log(data);
-
-      // const leadsCardArr = data.map((lead) => {
-      //   // const titleVal =
-      //   //   lead.companyName !== ''
-      //   //     ? `${lead.name} / ${lead.companyName}`
-      //   //     : lead.name;
-      //   return {
-      //     id: lead.id,
-      //     title: lead.name,
-      //     stage: lead.stage,
-      //     phone: lead.phone,
-      //     company: lead.companyName,
-      //   };
-      // });
-
-      //-----------------------------------
       const leadsCardArr = _.map(data, (data, key) => {
         return {
           id: key,
@@ -64,10 +89,12 @@ export function DbFunctionsProvider({ children }) {
   async function loadStages() {
     try {
       const data = await loadStagesFromDb();
-      const stagesArr = data.map((stage) => {
+      console.log(data);
+
+      const stagesArr = _.map(data, (data, key) => {
         return {
-          id: stage.id,
-          name: stage.name,
+          id: key,
+          name: data.name,
         };
       });
 

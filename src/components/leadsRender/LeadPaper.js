@@ -14,7 +14,7 @@ import { deleteLeadFromDb } from '../../helpers/dbFunctions';
 
 //---------------------------------------------------------------
 
-export default function LeadPaper({ keyVal, lead, handleDelete }) {
+export default function LeadPaper({ keyVal, lead }) {
   const { setRerender } = React.useContext(renderContext);
   const navigate = useNavigate();
 
@@ -35,7 +35,6 @@ export default function LeadPaper({ keyVal, lead, handleDelete }) {
 
   const handleClickPopover = async () => {
     handleCloseMenu();
-    // handleDelete(lead.id);
     await deleteLeadFromDb(lead.id);
     setRerender((prevRerender) => !prevRerender);
   };

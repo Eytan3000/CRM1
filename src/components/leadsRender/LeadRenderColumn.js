@@ -89,11 +89,6 @@ function LeadRenderColumn({ stage, leads, deleteStageShow, keyVal }) {
   const handleMouseEnter = () => setHover(true);
   const handleMouseLeave = () => setHover(false);
 
-  const handleDelete = async (id) => {
-    // await deleteLeadFromDb(id);
-    // setRerender((prev) => !prev);
-  };
-
   async function handleDeleteStage(stageKey) {
     await deleteStageFromDb(stageKey);
     setRerender((prev) => !prev);
@@ -134,11 +129,7 @@ function LeadRenderColumn({ stage, leads, deleteStageShow, keyVal }) {
         />
         {/* {addLeadsPapersInColumn(leads, stage.name)} */}
 
-        <DroppableDraggable
-          stage={stage}
-          leads={leads}
-          handleDelete={handleDelete}
-        />
+        <DroppableDraggable stage={stage} leads={leads} />
 
         <Button
           className={hover ? classes.buttonShow : classes.buttonHide}

@@ -51,7 +51,12 @@ function AddStagePopper({ setStages }) {
   const updateStage = (newStage) => {
     updateStageToDb(newStage)
       .then((data) => {
-        setStages((prevStage) => [...prevStage, { ...data }]);
+        console.log(data);
+
+        setStages((prevStage) => [
+          ...prevStage,
+          { id: data.name, name: newStage },
+        ]);
       })
       .catch((err) => console.error(err));
   };

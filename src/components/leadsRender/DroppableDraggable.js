@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => {
   };
 });
 //---------------------------------------------------------
-export default function DroppableDraggable({ stage, leads, handleDelete }) {
+export default function DroppableDraggable({ stage, leads }) {
   const classes = useStyles();
   return (
     <Droppable droppableId={String(stage.id)}>
@@ -35,11 +35,7 @@ export default function DroppableDraggable({ stage, leads, handleDelete }) {
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}>
-                        <LeadPaper
-                          keyVal={lead.id}
-                          lead={lead}
-                          handleDelete={handleDelete}
-                        />
+                        <LeadPaper keyVal={lead.id} lead={lead} />
                       </div>
                     );
                   }}
