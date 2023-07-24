@@ -1,12 +1,43 @@
+const databaseURL =
+  'https://mycrm-a7912-default-rtdb.europe-west1.firebasedatabase.app/';
+
+const userId = 'Eytan_krief_ID';
+
 export function insertNewLead(lead) {
   fetch('http://localhost:8000/leads', {
     method: 'POST',
     headers: { 'Content-type': 'application/json' },
     body: JSON.stringify(lead),
   }).catch((err) => console.log(err));
+
+  ////--Firbase Readtime Databse--//////////////////
+  fetch(`${databaseURL}/users/${userId}/leads.json`, {
+    method: 'POST',
+    body: JSON.stringify(lead),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log('Data added successfully. Auto-generated ID:', data.name);
+    })
+    .catch((error) => {
+      console.error('Error adding data:', error);
+    });
+  //----------------------------------------------
 }
+
 export function loadAllLeadsCards() {
-  return fetch('http://localhost:8000/leads').then((res) => res.json());
+  // return fetch('http://localhost:8000/leads').then((res) => res.json());
+
+  ////--Firbase Readtime Databse--//////////////////
+  return fetch(`${databaseURL}/users/${userId}/leads.json`)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log('All lead fetched successfully', data);
+    })
+    .catch((error) => {
+      console.error('Error adding data:', error);
+    });
+  //---------------------------------------------
 }
 
 export function deleteLeadFromDb(id) {

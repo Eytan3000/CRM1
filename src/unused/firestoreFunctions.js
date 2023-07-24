@@ -18,22 +18,22 @@ import {
 //----------------------------------------------------------
 
 // Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: 'AIzaSyBUjDRbNol-XzWCSVEPkl6VB-15gJI4oTM',
-  authDomain: 'mycrm-a7912.firebaseapp.com',
-  databaseURL:
-    'https://mycrm-a7912-default-rtdb.europe-west1.firebasedatabase.app',
-  projectId: 'mycrm-a7912',
-  storageBucket: 'mycrm-a7912.appspot.com',
-  messagingSenderId: '921120278026',
-  appId: '1:921120278026:web:b33d9ef0a4bfcc8f7081f3',
-};
+// const firebaseConfig = {
+//   apiKey: 'AIzaSyBUjDRbNol-XzWCSVEPkl6VB-15gJI4oTM',
+//   authDomain: 'mycrm-a7912.firebaseapp.com',
+//   databaseURL:
+//     'https://mycrm-a7912-default-rtdb.europe-west1.firebasedatabase.app',
+//   projectId: 'mycrm-a7912',
+//   storageBucket: 'mycrm-a7912.appspot.com',
+//   messagingSenderId: '921120278026',
+//   appId: '1:921120278026:web:b33d9ef0a4bfcc8f7081f3',
+// };
 
 // Initialize Firebase app
-const app = initializeApp(firebaseConfig);
+// const app = initializeApp(firebaseConfig);
 
 //init service
-const db = getFirestore();
+// const db = getFirestore();
 
 // Emulator
 // connectFirestoreEmulator(db, '127.0.0.1', 8080);
@@ -162,62 +162,91 @@ const lead2 = {
 
 // init
 
-export async function DBinit() {
-  const colRef = collection(db, 'users');
-  const doc = await addDoc(colRef, {
-    stages: [
-      {
-        id: 0,
-        name: 'leadIn2',
-      },
-      {
-        id: 1,
-        name: 'noAnswer',
-      },
-      {
-        id: 2,
-        name: 'callBack',
-      },
-    ],
-    leads: [],
-    boards: [
-      {
-        id: 0,
-        name: 'mainPipelines',
-      },
-    ],
-  });
+// export async function DBinit() {
+//   const colRef = collection(db, 'users');
+//   const doc = await addDoc(colRef, {
+//     stages: [
+//       {
+//         id: 0,
+//         name: 'leadIn2',
+//       },
+//       {
+//         id: 1,
+//         name: 'noAnswer',
+//       },
+//       {
+//         id: 2,
+//         name: 'callBack',
+//       },
+//     ],
+//     leads: [],
+//     boards: [
+//       {
+//         id: 0,
+//         name: 'mainPipelines',
+//       },
+//     ],
+//   });
 
-  return doc.id;
-}
+//   return doc.id;
+// }
 
 // ADD -----------------------------------------------------
 
-// Add new stage
-export async function addStage(userId, stage) {
-  const document = await doc(db, 'users', userId);
-  const path = `stages`;
+// // Add new stage
+// export async function addStage(userId, stage) {
+//   const document = await doc(db, 'users', userId);
+//   const path = `stages`;
 
-  await updateDoc(document, {
-    [path]: arrayUnion(stage),
-  });
-}
+//   await updateDoc(document, {
+//     [path]: arrayUnion(stage),
+//   });
+// }
 
-// Add new stage
-export async function addLead(userId, lead) {
-  const document = await doc(db, 'users', userId);
-  const path = `leads`;
+// // Add new stage
+// export async function addLead(userId, lead) {
+//   const document = await doc(db, 'users', userId);
+//   const path = `leads`;
 
-  await updateDoc(document, {
-    [path]: arrayUnion(lead),
-  });
-}
-// Add new stage
-export async function updateLead(userId, leadIndex, leadToUpdate) {
-  const document = await doc(db, 'users', userId);
-  const path = `leads.${leadIndex}.notes`;
+//   await updateDoc(document, {
+//     [path]: arrayUnion(lead),
+//   });
+// }
+// // Update Lead
+// export async function updateLead(userId, leadIndex, leadToUpdate) {
+//   const document = await doc(db, 'users', userId);
+//   const path = `leads`;
 
-  await updateDoc(document, {
-    [path]: arrayUnion(leadToUpdate),
-  });
-}
+//   await updateDoc(document, {
+//     [path]: arrayUnion(leadToUpdate),
+//   });
+// }
+
+// /// Functions call:
+
+// const lead00 = {
+//   name: 'eytan krief',
+//   email: 'eytankrief@gmail.com',
+//   notes: [{ noteId: 0, note: 'lorem yoel 1' }],
+// };
+// const lead01 = {
+//   name: 'Yoel krief',
+//   email: 'Yoel@gmail.com',
+//   notes: [{ noteId: 0, note: 'lorem yoel 1' }],
+// };
+
+// firebase Functions Calls
+// DBinit().then((res) => console.log(res));
+
+// addStage('brqprHk8Cto4jx3F4om8', {
+//   id: 3,
+//   name: 'newOne',
+// });
+
+// addLead('brqprHk8Cto4jx3F4om8', {
+//   name: 'yoel krief',
+//   email: 'orayn@gmail.com',
+//   notes: [],
+// });
+
+// updateLead('brqprHk8Cto4jx3F4om8', 0, lead0);

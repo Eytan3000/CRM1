@@ -14,41 +14,10 @@ import _ from 'lodash';
 import { arrayToMap } from '../helpers/helpers';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { updateObjectDB } from '../helpers/dbFunctions';
-import {
-  DBinit,
-  addLead,
-  addNote,
-  addStage,
-  updateLead,
-} from '../helpers/firebaseFunctions';
+import addUser from '../helpers/RealtimeDatabseFunctions';
+
 //----------------------------------------------------------
-const lead0 = {
-  name: 'eytan krief',
-  email: 'eytankrief@gmail.com',
-  notes: [],
-};
-const lead1 = {
-  name: 'Yoel krief',
-  email: 'Yoel@gmail.com',
-  notes: [{ noteId: 0, note: 'lorem yoel 1' }],
-};
-
-// firebase Functions Calls
-// DBinit().then((res) => console.log(res));
-
-// addStage('brqprHk8Cto4jx3F4om8', {
-//   id: 3,
-//   name: 'newOne',
-// });
-
-// addLead('brqprHk8Cto4jx3F4om8', {
-//   name: 'orayn krief',
-//   email: 'orayn@gmail.com',
-//   notes: [],
-// });
-
-// updateLead('YeMGZg0pDbaBSgKUuEsp', 1, lead0);
-
+// addUser();
 //----------------------------------------------------------
 function LeadsRender() {
   // console.log('LeadsRender');

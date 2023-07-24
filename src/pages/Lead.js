@@ -53,6 +53,7 @@ const useStyles = makeStyles((theme) => {
 function Lead() {
   const params = useParams();
   const newId = +params.leadId; //Get string from param, turns it into number.
+  console.log(params);
 
   const classes = useStyles();
   const { setLayoutName } = useContext(layoutNameContext);

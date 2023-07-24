@@ -149,7 +149,7 @@
     },
     {
       "title": "Hugo",
-      "stage": "leadIn",
+      "stage": "noAnswer",
       "name": "Hugo",
       "phone": "5050505005",
       "email": "hugo@gmail.com",
@@ -322,7 +322,7 @@
     },
     {
       "title": "Magic Johnson",
-      "stage": "noAnswer",
+      "stage": "leadIn",
       "name": "Magic Johnson",
       "phone": "0508748322",
       "email": "magicjohnson@gmail.com",
@@ -363,6 +363,27 @@
       "notes": [],
       "id": 58,
       "company": "Robbie Prod"
+    },
+    {
+      "title": "Rotem Solomon  / Solomon Prod",
+      "stage": "leadIn",
+      "name": "Rotem Solomon",
+      "phone": "0508657032",
+      "email": "Solomon@gmail.com",
+      "website": "Solomon.com",
+      "facebook": "asdfasdf",
+      "linkedin": "sdfasdf",
+      "otherLink": "asdf",
+      "companyName": "Solomon Prod",
+      "companyPhone": "",
+      "companyEmail": "",
+      "companyWebsite": "",
+      "companyFacebook": "",
+      "companyLinkedin": "",
+      "companyOtherLink": "",
+      "dateCreated": "24.07.2023",
+      "notes": [],
+      "id": 60
     }
   ]
 }
