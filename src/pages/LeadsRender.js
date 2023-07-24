@@ -14,7 +14,6 @@ import _ from 'lodash';
 import { arrayToMap } from '../helpers/helpers';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { updateObjectDB } from '../helpers/dbFunctions';
-import addUser from '../helpers/RealtimeDatabseFunctions';
 
 //----------------------------------------------------------
 // addUser();
