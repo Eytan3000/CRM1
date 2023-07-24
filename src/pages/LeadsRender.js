@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import NewLeadModal from '../components/leadsRender/NewLeadModal';
 import AddStagePopper from '../components/leadsRender/AddStagePopper';
 import { loadCards, loadStagesContext } from '../contexts/DbFunctionsContext';
@@ -14,6 +14,41 @@ import _ from 'lodash';
 import { arrayToMap } from '../helpers/helpers';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { updateObjectDB } from '../helpers/dbFunctions';
+import {
+  DBinit,
+  addLead,
+  addNote,
+  addStage,
+  updateLead,
+} from '../helpers/firebaseFunctions';
+//----------------------------------------------------------
+const lead0 = {
+  name: 'eytan krief',
+  email: 'eytankrief@gmail.com',
+  notes: [],
+};
+const lead1 = {
+  name: 'Yoel krief',
+  email: 'Yoel@gmail.com',
+  notes: [{ noteId: 0, note: 'lorem yoel 1' }],
+};
+
+// firebase Functions Calls
+// DBinit().then((res) => console.log(res));
+
+// addStage('brqprHk8Cto4jx3F4om8', {
+//   id: 3,
+//   name: 'newOne',
+// });
+
+// addLead('brqprHk8Cto4jx3F4om8', {
+//   name: 'orayn krief',
+//   email: 'orayn@gmail.com',
+//   notes: [],
+// });
+
+// updateLead('YeMGZg0pDbaBSgKUuEsp', 1, lead0);
+
 //----------------------------------------------------------
 function LeadsRender() {
   // console.log('LeadsRender');
@@ -114,6 +149,8 @@ function LeadsRender() {
       );
       return updatedStages;
     });
+
+    //כרגע בשביל לשנות את הגובה של הלידים בעמודות צריך לשנות את המיקום שלהם בתוך המערך של הלידים בדאטבייס. אחרי שתפתח דאטהבייס תבנה פונקציה שעושה את זה לפי האופציות בדאטהבייס.
   };
 
   return (

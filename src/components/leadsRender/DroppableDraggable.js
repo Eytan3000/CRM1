@@ -20,8 +20,7 @@ export default function DroppableDraggable({ stage, leads, handleDelete }) {
           <div
             ref={provided.innerRef}
             {...provided.droppableProps}
-            // className="droppable-col"
-          >
+            className="droppable-col">
             {/* Maps through the leads of the stage */}
             {leads.map((lead, index) => {
               return (
