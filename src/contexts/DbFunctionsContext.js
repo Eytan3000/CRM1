@@ -98,8 +98,6 @@ export function DbFunctionsProvider({ children }) {
   async function loadStages() {
     try {
       const data = await loadStagesFromDb();
-      console.log(data);
-
       const stagesArr = _.map(data, (data, key) => {
         return {
           id: key,

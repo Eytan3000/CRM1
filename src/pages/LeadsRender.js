@@ -42,8 +42,6 @@ function LeadsRender() {
   useEffect(() => {
     (async () => {
       const arr = await loadCardsContentCtx();
-      console.log(arr);
-
       setLeads(arr);
       setLayoutName('Main Pipeline');
     })();
@@ -80,7 +78,6 @@ function LeadsRender() {
   };
 
   const handleDragEnd = (result) => {
-    // Destructure the result to get the required properties
     const { destination, source, draggableId } = result;
 
     // Check if there is a valid destination and the position has changed
@@ -91,42 +88,39 @@ function LeadsRender() {
     ) {
       return;
     }
+    const draggedLead = _.filter(
+      leads,
+      (data, key) => data.id === draggableId
+    )[0];
 
     // Retrieve the lead being dragged
-    const leadId = parseInt(draggableId);
-    const draggedLead = leads.find((lead) => lead.id === leadId);
+    const retrievedStageName = _.filter(stages, (data, key) => {
+      if (data.id === destination.droppableId) return data;
+    })[0].name;
 
-    console.log('-----------------------------');
-    console.log('draggedLead: ', draggedLead);
-
-    console.log('destination.droppableId: ', destination.droppableId);
-    console.log('stages: ', stages);
-    console.log('-----------------------------');
-
-    //change stage of the copy of lead to the destination.
-    // draggedLead.stage = stages[destination.droppableId].name;
-
-    updateObjectDB(draggedLead.id, draggedLead);
+    draggedLead.stage = retrievedStageName;
+    updateObjectDB(draggableId, draggedLead);
 
     // Update the stage for the dragged lead
     const updatedLeads = leads.map((lead) => {
-      if (lead.id === leadId) {
-        return { ...lead, stage: stages[destination.droppableId].name };
+      if (lead.id === draggableId) {
+        return { ...lead, stage: retrievedStageName };
       }
       return lead;
     });
 
     setLeads(updatedLeads);
-    setStages((prevStages) => {
-      const updatedStages = [...prevStages];
-      updatedStages[source.droppableId].leads = updatedLeads.filter(
-        (lead) => lead.stage === updatedStages[source.droppableId].name
-      );
-      updatedStages[destination.droppableId].leads = updatedLeads.filter(
-        (lead) => lead.stage === updatedStages[destination.droppableId].name
-      );
-      return updatedStages;
-    });
+
+    // setStages((prevStages) => {
+    //   const updatedStages = [...prevStages];
+    //   updatedStages[source.droppableId].leads = updatedLeads.filter(
+    //     (lead) => lead.stage === updatedStages[source.droppableId].name
+    //   );
+    //   updatedStages[destination.droppableId].leads = updatedLeads.filter(
+    //     (lead) => lead.stage === updatedStages[destination.droppableId].name
+    //   );
+    //   return updatedStages;
+    // });
 
     //כרגע בשביל לשנות את הגובה של הלידים בעמודות צריך לשנות את המיקום שלהם בתוך המערך של הלידים בדאטבייס. אחרי שתפתח דאטהבייס תבנה פונקציה שעושה את זה לפי האופציות בדאטהבייס.
   };

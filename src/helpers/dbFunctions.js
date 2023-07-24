@@ -104,9 +104,6 @@ export function deleteStageFromDb(id) {
   });
 }
 export const updateObjectDB = async (objectId, updatedData) => {
-  console.log('objectId: ', objectId);
-  console.log('updatedData: ', updatedData);
-
   try {
     const response = await fetch(
       `${databaseURL}/users/${userId}/leads/${objectId}.json`,
@@ -129,6 +126,24 @@ export const updateObjectDB = async (objectId, updatedData) => {
   }
 };
 
-export function deleteNoteFromDb(leadId) {
-  // You cant change specific values from within a database object, so that would be a function for a real database. for now all you can do is to change the entire lead.
+export function addNote(leadId, note) {
+  fetch(`${databaseURL}/users/${userId}/leads/${leadId}/notes.json`, {
+    method: 'POST',
+    body: JSON.stringify(note),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log('note added successfully. Auto-generated ID:', data.name);
+    })
+    .catch((error) => {
+      console.error('Error adding data:', error);
+    });
+}
+export function deleteNoteFromDb(leadId, noteId) {
+  return fetch(
+    `${databaseURL}/users/${userId}/leads/${leadId}/notes/${noteId}.json`,
+    {
+      method: 'DELETE',
+    }
+  );
 }
