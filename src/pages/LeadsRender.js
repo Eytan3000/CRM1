@@ -96,8 +96,15 @@ function LeadsRender() {
     const leadId = parseInt(draggableId);
     const draggedLead = leads.find((lead) => lead.id === leadId);
 
+    console.log('-----------------------------');
+    console.log('draggedLead: ', draggedLead);
+
+    console.log('destination.droppableId: ', destination.droppableId);
+    console.log('stages: ', stages);
+    console.log('-----------------------------');
+
     //change stage of the copy of lead to the destination.
-    draggedLead.stage = stages[destination.droppableId].name;
+    // draggedLead.stage = stages[destination.droppableId].name;
 
     updateObjectDB(draggedLead.id, draggedLead);
 

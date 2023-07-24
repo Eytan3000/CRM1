@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => {
 //--------------------------------------------------------------
 function Lead() {
   const params = useParams();
-  const newId = +params.leadId; //Get string from param, turns it into number.
+  const newId = params.leadId; //Get string from param (lead Id from url)
   console.log(params);
 
   const classes = useStyles();

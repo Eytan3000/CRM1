@@ -39,6 +39,25 @@ const userId = 'Eytan_krief_ID';
 //     method: 'DELETE',
 //   });
 // }
+// export const updateObjectDB = async (objectId, updatedData) => {
+//   try {
+//     const response = await fetch(`http://localhost:8000/leads/${objectId}`, {
+//       method: 'PATCH',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify(updatedData),
+//     });
+
+//     if (response.ok) {
+//       console.log('Object updated successfully');
+//     } else {
+//       console.error('Failed to update object');
+//     }
+//   } catch (error) {
+//     console.error('Error:', error);
+//   }
+// };
 //------------------------------------------
 export function insertNewLead(lead) {
   fetch(`${databaseURL}/users/${userId}/leads.json`, {
@@ -84,16 +103,21 @@ export function deleteStageFromDb(id) {
     method: 'DELETE',
   });
 }
-//-------------------------------------------
 export const updateObjectDB = async (objectId, updatedData) => {
+  console.log('objectId: ', objectId);
+  console.log('updatedData: ', updatedData);
+
   try {
-    const response = await fetch(`http://localhost:8000/leads/${objectId}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(updatedData),
-    });
+    const response = await fetch(
+      `${databaseURL}/users/${userId}/leads/${objectId}.json`,
+      {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedData),
+      }
+    );
 
     if (response.ok) {
       console.log('Object updated successfully');

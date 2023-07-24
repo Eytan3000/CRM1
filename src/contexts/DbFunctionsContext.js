@@ -66,7 +66,16 @@ export function DbFunctionsProvider({ children }) {
   //     console.log(err);
   //   }
   // }
-
+  // async function loadLead(LeadId) {
+  //   try {
+  //     const data = await loadAllLeadsCards();
+  //     const lead = data.find((lead) => lead.id === LeadId); //returns only the lead with the right id.
+  //     return lead;
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
+  //--------------------------------------------------
   async function loadCardsContent() {
     try {
       const data = await loadAllLeadsCards();
@@ -104,12 +113,10 @@ export function DbFunctionsProvider({ children }) {
       console.log(err);
     }
   }
-
   async function loadLead(LeadId) {
     try {
       const data = await loadAllLeadsCards();
-      const lead = data.find((lead) => lead.id === LeadId); //returns only the lead with the right id.
-      return lead;
+      return data[LeadId];
     } catch (err) {
       console.log(err);
     }
