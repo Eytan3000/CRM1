@@ -42,6 +42,8 @@ function LeadsRender() {
   useEffect(() => {
     (async () => {
       const arr = await loadCardsContentCtx();
+      console.log(arr);
+
       setLeads(arr);
       setLayoutName('Main Pipeline');
     })();

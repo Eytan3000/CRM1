@@ -8,6 +8,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { renderContext } from '../../contexts/DbFunctionsContext';
 import { useNavigate } from 'react-router-dom';
 import VerticalMenuPop from '../auxs/VerticalMenuPop';
+import { deleteLeadFromDb } from '../../helpers/dbFunctions';
 
 //---------------------------------------------------------------
 
@@ -32,9 +33,10 @@ export default function LeadPaper({ keyVal, lead, handleDelete }) {
     setOpen(null);
   };
 
-  const handleClickPopover = () => {
+  const handleClickPopover = async () => {
     handleCloseMenu();
-    handleDelete(lead.id);
+    // handleDelete(lead.id);
+    await deleteLeadFromDb(lead.id);
     setRerender((prevRerender) => !prevRerender);
   };
 

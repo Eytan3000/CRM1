@@ -3,22 +3,14 @@ const databaseURL =
 
 const userId = 'Eytan_krief_ID';
 
-// export function insertNewLead_JsonServer_(lead) {
-//   fetch('http://localhost:8000/leads', {
-//     method: 'POST',
-//     headers: { 'Content-type': 'application/json' },
-//     body: JSON.stringify(lead),
-//   }).catch((err) => console.log(err));
-// }
-// export function loadAllLeadsCards_JsonServer_() {
-//   return fetch('http://localhost:8000/leads').then((res) => res.json());
-// }
-// export function deleteLeadFromDb_JsonServer_(id) {
-//   fetch('http://localhost:8000/leads/' + id, {
-//     method: 'DELETE',
-//   });
-// }
 export function insertNewLead(lead) {
+  fetch('http://localhost:8000/leads', {
+    method: 'POST',
+    headers: { 'Content-type': 'application/json' },
+    body: JSON.stringify(lead),
+  }).catch((err) => console.log(err));
+
+  ////--Firbase Readtime Databse--//////////////////
   fetch(`${databaseURL}/users/${userId}/leads.json`, {
     method: 'POST',
     body: JSON.stringify(lead),
@@ -30,21 +22,26 @@ export function insertNewLead(lead) {
     .catch((error) => {
       console.error('Error adding data:', error);
     });
+  //----------------------------------------------
 }
+
 export function loadAllLeadsCards() {
+  // return fetch('http://localhost:8000/leads').then((res) => res.json());
+
+  ////--Firbase Readtime Databse--//////////////////
   return fetch(`${databaseURL}/users/${userId}/leads.json`)
     .then((response) => response.json())
     .catch((error) => {
       console.error('Error adding data:', error);
     });
+  //---------------------------------------------
 }
+
 export function deleteLeadFromDb(id) {
-  return fetch(`${databaseURL}/users/${userId}/leads/${id}.json`, {
+  fetch('http://localhost:8000/leads/' + id, {
     method: 'DELETE',
   });
 }
-
-//-------------------------------------------
 export function deleteNoteFromDb(leadId) {
   // You cant change specific values from within a database object, so that would be a function for a real database. for now all you can do is to change the entire lead.
 }

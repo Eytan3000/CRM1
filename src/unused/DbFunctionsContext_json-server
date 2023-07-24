@@ -24,36 +24,27 @@ export function DbFunctionsProvider({ children }) {
     insertNewLead(lead);
   }
 
-  //returns details for Cards
+  //returns title and phone for Cards
   async function loadCardsContent() {
     try {
       const data = await loadAllLeadsCards();
       console.log(data);
 
-      // const leadsCardArr = data.map((lead) => {
-      //   // const titleVal =
-      //   //   lead.companyName !== ''
-      //   //     ? `${lead.name} / ${lead.companyName}`
-      //   //     : lead.name;
-      //   return {
-      //     id: lead.id,
-      //     title: lead.name,
-      //     stage: lead.stage,
-      //     phone: lead.phone,
-      //     company: lead.companyName,
-      //   };
-      // });
-
-      //-----------------------------------
-      const leadsCardArr = _.map(data, (data, key) => {
+      const leadsCardArr = data.map((lead) => {
+        // const titleVal =
+        //   lead.companyName !== ''
+        //     ? `${lead.name} / ${lead.companyName}`
+        //     : lead.name;
         return {
-          id: key,
-          title: data.name,
-          stage: data.stage,
-          phone: data.phone,
-          company: data.companyName,
+          id: lead.id,
+          title: lead.name,
+          stage: lead.stage,
+          phone: lead.phone,
+          company: lead.companyName,
         };
       });
+
+      return leadsCardArr;
 
       return leadsCardArr;
     } catch (err) {

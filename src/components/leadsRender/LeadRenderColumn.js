@@ -57,21 +57,17 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-const handleDelete = (id) => {
-  deleteLeadFromDb(id);
-};
-
-function addLeadsPapersInColumn(leads, stageName) {
-  const leadIns = leads.map((lead) => {
-    if (lead.stage === stageName)
-      return (
-        <div key={lead.id}>
-          <LeadPaper keyVal={lead.id} lead={lead} handleDelete={handleDelete} />
-        </div>
-      );
-  });
-  return leadIns;
-}
+// function addLeadsPapersInColumn(leads, stageName) {
+//   const leadIns = leads.map((lead) => {
+//     if (lead.stage === stageName)
+//       return (
+//         <div key={lead.id}>
+//           <LeadPaper keyVal={lead.id} lead={lead} handleDelete={handleDelete} />
+//         </div>
+//       );
+//   });
+//   return leadIns;
+// }
 
 //----------------------------------------------------
 
@@ -92,6 +88,11 @@ function LeadRenderColumn({ stage, leads, deleteStageShow, keyVal }) {
 
   const handleMouseEnter = () => setHover(true);
   const handleMouseLeave = () => setHover(false);
+
+  const handleDelete = async (id) => {
+    // await deleteLeadFromDb(id);
+    // setRerender((prev) => !prev);
+  };
 
   async function handleDeleteStage(stageKey) {
     await deleteStageFromDb(stageKey);

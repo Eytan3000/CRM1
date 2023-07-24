@@ -363,27 +363,6 @@
       "notes": [],
       "id": 58,
       "company": "Robbie Prod"
-    },
-    {
-      "title": "Rotem Solomon  / Solomon Prod",
-      "stage": "leadIn",
-      "name": "Rotem Solomon",
-      "phone": "0508657032",
-      "email": "Solomon@gmail.com",
-      "website": "Solomon.com",
-      "facebook": "asdfasdf",
-      "linkedin": "sdfasdf",
-      "otherLink": "asdf",
-      "companyName": "Solomon Prod",
-      "companyPhone": "",
-      "companyEmail": "",
-      "companyWebsite": "",
-      "companyFacebook": "",
-      "companyLinkedin": "",
-      "companyOtherLink": "",
-      "dateCreated": "24.07.2023",
-      "notes": [],
-      "id": 60
     }
   ]
 }
