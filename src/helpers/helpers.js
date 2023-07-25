@@ -44,28 +44,6 @@ export function arrayToMap(array) {
 }
 
 export function formatLeadData(leadData) {
-  // return {
-  //   title: leadData.title,
-  //   stage: leadData.stage,
-  //   name: leadData.name,
-  //   phone: leadData.phone,
-  //   email: leadData.email,
-  //   website: leadData.website,
-  //   facebook: leadData.facebook,
-  //   linkedin: leadData.linkedin,
-  //   otherLink: leadData.otherLink,
-  //   companyName: leadData.companyName,
-  //   companyPhone: leadData.companyPhone,
-  //   companyEmail: leadData.companyEmail,
-  //   companyWebsite: leadData.companyWebsite,
-  //   companyFacebook: leadData.companyFacebook,
-  //   companyLinkedin: leadData.companyLinkedin,
-  //   companyOtherLink: leadData.companyOtherLink,
-  //   dateCreated: leadData.dateCreated,
-  //   notes: leadData.notes,
-  //   id: leadData.id,
-  // };
-
   return {
     title: leadData.title,
     stage: leadData.stage,
@@ -76,18 +54,40 @@ export function formatLeadData(leadData) {
     facebook: leadData.facebook,
     linkedin: leadData.linkedin,
     otherLink: leadData.otherLink,
-    company: {
-      name: leadData.companyName,
-      phone: leadData.companyPhone,
-      email: leadData.companyEmail,
-      website: leadData.companyWebsite,
-      facebook: leadData.companyFacebook,
-      linkedin: leadData.companyLinkedin,
-      otherLink: leadData.companyOtherLink,
-    },
+    companyName: leadData.companyName,
+    companyPhone: leadData.companyPhone,
+    companyEmail: leadData.companyEmail,
+    companyWebsite: leadData.companyWebsite,
+    companyFacebook: leadData.companyFacebook,
+    companyLinkedin: leadData.companyLinkedin,
+    companyOtherLink: leadData.companyOtherLink,
     dateCreated: leadData.dateCreated,
+    notes: leadData.notes,
     id: leadData.id,
   };
+
+  // return {
+  //   title: leadData.title,
+  //   stage: leadData.stage,
+  //   name: leadData.name,
+  //   phone: leadData.phone,
+  //   email: leadData.email,
+  //   website: leadData.website,
+  //   facebook: leadData.facebook,
+  //   linkedin: leadData.linkedin,
+  //   otherLink: leadData.otherLink,
+  //   company: {
+  //     name: leadData.companyName,
+  //     phone: leadData.companyPhone,
+  //     email: leadData.companyEmail,
+  //     website: leadData.companyWebsite,
+  //     facebook: leadData.companyFacebook,
+  //     linkedin: leadData.companyLinkedin,
+  //     otherLink: leadData.companyOtherLink,
+  //   },
+  //   dateCreated: leadData.dateCreated,
+  //   id: leadData.id,
+  // };
 
   // _.forEach(rearrangedLead, (data, key) => {
   //   console.log(`${key}:${data}`);

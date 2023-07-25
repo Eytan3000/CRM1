@@ -101,7 +101,7 @@ export default function LeadPaperDetails({
       <PersonLabel />
 
       {Object.entries(lead).map(([key, value]) => {
-        if (key !== 'notes' && key !== 'company')
+        if (key !== 'notes')
           return (
             <Grid
               key={`${key}_${value}`}
@@ -197,35 +197,6 @@ export default function LeadPaperDetails({
                 </Box>
               </Grid>
             </Grid>
-          );
-        else if (key === 'company')
-          return (
-            <Box
-              sx={{
-                // width: 300,
-                // height: 300,
-                border: '0.5px solid grey',
-                backgroundColor: 'primary.dark',
-                '&:hover': {
-                  backgroundColor: 'primary.main',
-                  opacity: [0.9, 0.8, 0.7],
-                },
-              }}>
-              <Container
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  paddingLeft: '12px',
-                }}>
-                <BusinessIcon sx={{ color: '#6b6cff', padding: '0.5em' }} />
-                <Typography
-                  padding={1}
-                  // gutterBottom
-                  variant="h6">
-                  Company
-                </Typography>
-              </Container>
-            </Box>
           );
       })}
     </Fragment>
