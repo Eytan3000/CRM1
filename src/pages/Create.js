@@ -74,7 +74,6 @@ function Create({ onClose, stage }) {
         companyLinkedin: linkedinC,
         companyOtherLink: otherLinkC,
         dateCreated: format(new Date(), 'dd.MM.Y'),
-        // notes: [],
       });
       setRerender((prevRerender) => !prevRerender);
       onClose();

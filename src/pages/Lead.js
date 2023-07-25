@@ -65,14 +65,16 @@ function Lead() {
   useEffect(() => {
     (async () => {
       const leadAwait = await loadLeadCtx(newId);
+      console.log(leadAwait);
+
       setLead(leadAwait);
       setLayoutName(leadAwait.title);
     })();
   }, [newId]);
 
-  useEffect(() => {
-    updateObjectDB(newId, lead);
-  }, [lead]);
+  // useEffect(() => {
+  //   updateObjectDB(newId, lead);
+  // }, [lead]);
 
   return (
     <Box style={{ background: '#f5f7faff', paddingRight: '10px' }}>
@@ -119,6 +121,7 @@ function Lead() {
             }}>
             <NotesStack
               notes={lead.notes}
+              lead={lead}
               setLead={(newLead) => setLead(newLead)}
             />
           </Box>

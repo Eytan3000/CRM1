@@ -127,7 +127,7 @@ export const updateObjectDB = async (objectId, updatedData) => {
 };
 
 export function addNote(leadId, note) {
-  fetch(`${databaseURL}/users/${userId}/leads/${leadId}/notes.json`, {
+  return fetch(`${databaseURL}/users/${userId}/leads/${leadId}/notes.json`, {
     method: 'POST',
     body: JSON.stringify(note),
   })
@@ -139,6 +139,8 @@ export function addNote(leadId, note) {
       console.error('Error adding data:', error);
     });
 }
+// addNote('-Na7UXJu_dm18gsujyy6', { date: '27.7.23', content: 'lorem5' });
+
 export function deleteNoteFromDb(leadId, noteId) {
   return fetch(
     `${databaseURL}/users/${userId}/leads/${leadId}/notes/${noteId}.json`,
@@ -146,4 +148,12 @@ export function deleteNoteFromDb(leadId, noteId) {
       method: 'DELETE',
     }
   );
+}
+
+export function loadLead(leadId) {
+  return fetch(`${databaseURL}/users/${userId}/leads/${leadId}.json`)
+    .then((response) => response.json())
+    .catch((error) => {
+      console.error('Error adding data:', error);
+    });
 }

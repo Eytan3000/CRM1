@@ -13,7 +13,8 @@ import { format } from 'date-fns';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { renderContext } from '../../contexts/DbFunctionsContext';
 import VerticalMenuPop from '../auxs/VerticalMenuPop';
-
+import _ from 'lodash';
+import { addNote, deleteNoteFromDb, loadLead } from '../../helpers/dbFunctions';
 //------------------------------------------------------
 const useStyles = makeStyles((theme) => {
   return {
@@ -60,7 +61,7 @@ const useStyles = makeStyles((theme) => {
   };
 });
 //------------------------------------------------------
-export default function NotesStack({ notes, setLead }) {
+export default function NotesStack({ notes, setLead, lead }) {
   const classes = useStyles();
   const [noteInputValue, setNoteInputValue] = useState('');
   const [newNoteClicked, setNewNoteClicked] = useState(false);
@@ -80,21 +81,27 @@ export default function NotesStack({ notes, setLead }) {
     setOpen(null);
   };
 
-  function deleteNoteFromLead() {
-    const modifiedNotesArr = notes.filter(
-      (note) => note.noteId !== noteIdState
-    );
-    setLead((prevLead) => ({
-      ...prevLead,
-      notes: modifiedNotesArr,
-    }));
-    setNoteIdState(null);
+  async function deleteNoteFromLead(leadId, noteId) {
+    // const modifiedNotesArr = _.filter(
+    //   notes,
+    //   (data, key) => key !== noteIdState
+    // );
+    // setLead((prevLead) => ({
+    //   ...prevLead,
+    //   notes: modifiedNotesArr,
+    // }));
+    // setNoteIdState(null);
+
+    await deleteNoteFromDb(leadId, noteId);
   }
 
-  const handleClickDelete = () => {
+  const handleClickDelete = async () => {
     handleCloseMenu();
-    deleteNoteFromLead();
-    setRerender((prevRerender) => !prevRerender);
+    await deleteNoteFromLead(lead.id, noteIdState);
+    // setRerender((prevRerender) => !prevRerender);
+
+    const updatedLead = await loadLead(lead.id);
+    setLead(updatedLead);
   };
 
   const handleClickEdit = () => {
@@ -102,207 +109,197 @@ export default function NotesStack({ notes, setLead }) {
     setEditKey(noteIdState);
   };
 
-  if (!notes) {
-    // Handle the case when lead is empty or undefined
-    return <div>Loading...</div>; // Display a loading indicator or any other message
-  } else {
-    const updateNoteContent = (keyToUpdate, valueToUpdate) => {
-      setLead((prevLead) => ({
-        ...prevLead,
-        notes: prevLead.notes.map((note) => {
-          if (note.noteId === keyToUpdate) {
-            return {
-              ...note,
-              noteContent: valueToUpdate,
-            };
-          }
-          return note;
-        }),
-      }));
+  //----New notes--------
+  const updateNewNoteContent = async (valueToUpdate) => {
+    const newNote = {
+      date: `${format(new Date(), 'do MMMM Y')} , ${format(
+        new Date(),
+        'h:mm a'
+      )}`,
+      content: valueToUpdate,
     };
-
-    const updateNewNoteContent = (valueToUpdate) => {
-      setLead((prevLead) => ({
-        ...prevLead,
-        notes: [
-          ...prevLead.notes,
-          {
-            noteId: prevLead.notes.length + 1,
-            noteDate: `${format(new Date(), 'do MMMM Y')} , ${format(
-              new Date(),
-              'h:mm a'
-            )}`,
-            noteContent: valueToUpdate,
-          },
-        ],
-      }));
-    };
-
-    const handleNoteKeyDown = (event) => {
-      if (event.key === 'Enter' && !event.shiftKey) {
-        event.preventDefault();
-        updateNoteContent(editKey, event.target.value);
-        setEditKey(-1);
-      }
-      if (event.key === 'Escape') setEditKey(-1);
-    };
-
-    const handleNewNoteKeyDown = (event) => {
-      if (
-        event.key === 'Enter' &&
-        !event.shiftKey &&
-        event.target.value.trim() !== ''
-      ) {
-        event.preventDefault();
-        updateNewNoteContent(event.target.value);
-        setNoteInputValue('');
-        setNewNoteClicked(false);
-      }
-    };
-
-    const handleNewNoteFocus = () => {
-      setNewNoteClicked(true);
-    };
-
-    const handleNewNoteBlur = () => {
+    await addNote(lead.id, newNote);
+    const updatedLead = await loadLead(lead.id);
+    setLead(updatedLead);
+  };
+  const handleNewNoteKeyDown = (event) => {
+    if (
+      event.key === 'Enter' &&
+      !event.shiftKey &&
+      event.target.value.trim() !== ''
+    ) {
+      event.preventDefault();
+      updateNewNoteContent(event.target.value);
+      setNoteInputValue('');
       setNewNoteClicked(false);
-    };
+    }
+  };
+  const handleNewNoteFocus = () => {
+    setNewNoteClicked(true);
+  };
 
-    return (
-      <Container
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          width: '60%',
-          // minWidth: '700px',
-          padding: '15px',
-        }}>
-        <TextField
-          autoFocus={newNoteClicked} // problem with clicking twice, resolve by setting to true after it's clicked for the first time.
-          elevation={0}
-          onKeyDown={handleNewNoteKeyDown}
-          onChange={(e) => setNoteInputValue(e.target.value)}
-          onFocus={handleNewNoteFocus}
-          onBlur={handleNewNoteBlur}
-          multiline={newNoteClicked}
-          minRows={4}
-          value={noteInputValue}
-          placeholder="Take a note..."
-          variant="outlined"
-          className={classes.textField}
-          fullWidth
-        />
-        {notes.length > 0 ? (
-          <Stack
-            width="100%"
-            direction="column-reverse"
-            justifyContent="flex-end"
-            alignItems="center"
-            spacing={1}>
-            {notes.map((note) => {
-              return (
-                <Grid
-                  key={note.noteId}
-                  container
-                  direction="row"
-                  justifyContent="space-between"
-                  alignItems="flex-start">
-                  {note.noteId === editKey ? (
-                    <TextField
-                      // key={note.noteId}
-                      multiline
-                      minRows={4}
-                      defaultValue={note.noteContent}
-                      fullWidth
-                      onKeyDown={handleNoteKeyDown}
-                      elevation={0}
-                      variant="outlined"
-                      className={classes.textField}
-                    />
-                  ) : (
-                    <Paper
-                      elevation={0}
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        minHeight: 120,
-                        border: '1px solid #d0d4e3',
-                      }}>
-                      <Grid
-                        style={{ padding: '5px 10px 5px 10px' }}
-                        // xs={12}
-                        // sm
-                        container>
-                        <Grid item xs container direction="column" spacing={1}>
-                          <Grid item xs>
-                            <Typography
-                              style={{ fontSize: '0.8em', color: 'gray' }}
-                              variant="body1">
-                              {note.noteDate}
-                            </Typography>
-                          </Grid>
-                          <Grid item>
-                            <Typography variant="body2">
-                              {note.noteContent}
-                            </Typography>
-                          </Grid>
+  const handleNewNoteBlur = () => {
+    setNewNoteClicked(false);
+  };
+
+  //----Existing notes--------
+  const updateNoteContent = (keyToUpdate, valueToUpdate) => {
+    setLead((prevLead) => ({
+      ...prevLead,
+      notes: prevLead.notes.map((note) => {
+        if (note.noteId === keyToUpdate) {
+          return {
+            ...note,
+            noteContent: valueToUpdate,
+          };
+        }
+        return note;
+      }),
+    }));
+  };
+  const handleNoteKeyDown = (event) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      updateNoteContent(editKey, event.target.value);
+      setEditKey(-1);
+    }
+    if (event.key === 'Escape') setEditKey(-1);
+  };
+
+  return (
+    <Container
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        width: '60%',
+        // minWidth: '700px',
+        padding: '15px',
+      }}>
+      <TextField
+        autoFocus={newNoteClicked} // problem with clicking twice, resolve by setting to true after it's clicked for the first time.
+        elevation={0}
+        onKeyDown={handleNewNoteKeyDown}
+        onChange={(e) => setNoteInputValue(e.target.value)}
+        onFocus={handleNewNoteFocus}
+        onBlur={handleNewNoteBlur}
+        multiline={newNoteClicked}
+        minRows={4}
+        value={noteInputValue}
+        placeholder="Take a note..."
+        variant="outlined"
+        className={classes.textField}
+        fullWidth
+      />
+      {notes ? (
+        <Stack
+          width="100%"
+          direction="column-reverse"
+          justifyContent="flex-end"
+          alignItems="center"
+          spacing={1}>
+          {_.map(notes, (data, key) => {
+            return (
+              <Grid
+                key={key}
+                container
+                direction="row"
+                justifyContent="space-between"
+                alignItems="flex-start">
+                {key === editKey ? (
+                  <TextField
+                    // key={note.noteId}
+                    multiline
+                    minRows={4}
+                    defaultValue={data.content}
+                    fullWidth
+                    onKeyDown={handleNoteKeyDown}
+                    elevation={0}
+                    variant="outlined"
+                    className={classes.textField}
+                  />
+                ) : (
+                  <Paper
+                    elevation={0}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      minHeight: 120,
+                      border: '1px solid #d0d4e3',
+                    }}>
+                    <Grid
+                      style={{ padding: '5px 10px 5px 10px' }}
+                      // xs={12}
+                      // sm
+                      container>
+                      <Grid item xs container direction="column" spacing={1}>
+                        <Grid item xs>
+                          <Typography
+                            style={{ fontSize: '0.8em', color: 'gray' }}
+                            variant="body1">
+                            {data.date}
+                          </Typography>
                         </Grid>
                         <Grid item>
-                          <Typography variant="subtitle1" component="div">
-                            <IconButton
-                              key={note.noteId}
-                              size="small"
-                              onClick={(e) => {
-                                handleOpenMenu(e, note.noteId);
-                              }}>
-                              <MoreVertIcon fontSize="0.5em" />
-                            </IconButton>
+                          <Typography variant="body2">
+                            {data.content}
                           </Typography>
                         </Grid>
                       </Grid>
-                    </Paper>
-                  )}
-                </Grid>
-              );
-            })}
-            <VerticalMenuPop
-              edit={true}
-              del={true}
-              open={open}
-              handleCloseMenu={() => handleCloseMenu()}
-              handleClickDelete={() => handleClickDelete()}
-              handleClickEdit={() => handleClickEdit()}
-            />
-          </Stack>
-        ) : (
-          <Fragment>
-            <img
-              src="https://cdn.monday.com/images/pulse-page-empty-state.svg"
-              alt="Image Description"
-              width="400"
-              height="500"
-              className={classes.img}
-            />
+                      <Grid item>
+                        <Typography variant="subtitle1" component="div">
+                          <IconButton
+                            key={key}
+                            size="small"
+                            onClick={(e) => {
+                              handleOpenMenu(e, key);
+                            }}>
+                            <MoreVertIcon fontSize="0.5em" />
+                          </IconButton>
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                  </Paper>
+                )}
+              </Grid>
+            );
+          })}
+          <VerticalMenuPop
+            edit={true}
+            del={true}
+            open={open}
+            handleCloseMenu={() => handleCloseMenu()}
+            handleClickDelete={() => handleClickDelete()}
+            handleClickEdit={() => handleClickEdit()}
+          />
+        </Stack>
+      ) : (
+        <Fragment>
+          <img
+            src="https://cdn.monday.com/images/pulse-page-empty-state.svg"
+            alt="Image Description"
+            width="400"
+            height="500"
+            className={classes.img}
+          />
 
-            <Typography
-              padding={1}
-              variant="h5"
-              // textAlign={'center'}
-              // marginTop={20}
-            >
-              No updates yet for this lead
-            </Typography>
-            <Typography
-              padding={1}
-              variant="subtitle1"
-              style={{ textAlign: 'center' }}>
-              You can start by describing how your interaction with this person
-              went and when to follow up on him
-            </Typography>
-          </Fragment>
-        )}
-      </Container>
-    );
-  }
+          <Typography
+            padding={1}
+            variant="h5"
+            style={{ textAlign: 'center' }}
+            // marginTop={20}
+          >
+            No updates yet for this lead
+          </Typography>
+          <Typography
+            padding={1}
+            variant="subtitle1"
+            style={{ textAlign: 'center' }}>
+            You can start by describing how your interaction with this person
+            went and when to follow up on him
+          </Typography>
+        </Fragment>
+      )}
+    </Container>
+  );
 }
