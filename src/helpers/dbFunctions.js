@@ -1,3 +1,5 @@
+import { formatLeadData } from './helpers';
+
 const databaseURL =
   'https://mycrm-a7912-default-rtdb.europe-west1.firebasedatabase.app/';
 
@@ -150,9 +152,17 @@ export function deleteNoteFromDb(leadId, noteId) {
   );
 }
 
+// export function loadLead(leadId) {
+//   return fetch(`${databaseURL}/users/${userId}/leads/${leadId}.json`)
+//     .then((response) => response.json())
+//     .catch((error) => {
+//       console.error('Error adding data:', error);
+//     });
+// }
 export function loadLead(leadId) {
   return fetch(`${databaseURL}/users/${userId}/leads/${leadId}.json`)
     .then((response) => response.json())
+    .then((data) => formatLeadData(data))
     .catch((error) => {
       console.error('Error adding data:', error);
     });

@@ -4,7 +4,7 @@ import { loadLeadContext } from '../contexts/DbFunctionsContext';
 import { Box } from '@mui/material';
 import NotesStack from '../components/leadDetails/NotesStack';
 import image from './2.jpg';
-import { updateObjectDB } from '../helpers/dbFunctions';
+import { loadLead, updateObjectDB } from '../helpers/dbFunctions';
 import { layoutNameContext } from '../contexts/DbFunctionsContext';
 import LeadPaperDetails from '../components/leadDetails/LeadPaperDetails';
 import { useParams } from 'react-router-dom';
@@ -64,8 +64,8 @@ function Lead() {
   // Find lead in database and set it to page
   useEffect(() => {
     (async () => {
-      const leadAwait = await loadLeadCtx(newId);
-      console.log(leadAwait);
+      // const leadAwait = await loadLeadCtx(newId);
+      const leadAwait = await loadLead(newId);
 
       setLead(leadAwait);
       setLayoutName(leadAwait.title);

@@ -3,7 +3,47 @@ import React, { Fragment, useState } from 'react';
 import { convertCamelCaseToSpaces, isLink } from '../../helpers/helpers';
 import SelectStage from './SelectStage';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import BusinessIcon from '@mui/icons-material/Business';
 //---------------------------------------------------------------------------------
+
+function PersonLabel() {
+  return (
+    <Container
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        paddingLeft: '12px',
+      }}>
+      <AccountCircleIcon sx={{ color: '#6b6cff', padding: '0.5em' }} />
+      <Typography
+        padding={1}
+        // gutterBottom
+        variant="h6">
+        Person
+      </Typography>
+    </Container>
+  );
+}
+function Keys({ keyVal }) {
+  return (
+    <Grid key={keyVal} item xs={true}>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'flex-end',
+        }}>
+        <Typography
+          // paddingTop={2}
+          // gutterBottom
+          variant="caption"
+          fontSize={14}
+          component="div">
+          {convertCamelCaseToSpaces(keyVal)}
+        </Typography>
+      </Box>
+    </Grid>
+  );
+}
 //--------------------------------------------------------------
 export default function LeadPaperDetails({
   lead,
@@ -58,23 +98,10 @@ export default function LeadPaperDetails({
   return (
     <Fragment>
       {/* Person label */}
-      <Container
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          paddingLeft: '12px',
-        }}>
-        <AccountCircleIcon sx={{ color: '#6b6cff', padding: '0.5em' }} />
-        <Typography
-          padding={1}
-          // gutterBottom
-          variant="h6">
-          Person
-        </Typography>
-      </Container>
+      <PersonLabel />
 
       {Object.entries(lead).map(([key, value]) => {
-        if (key !== 'notes')
+        if (key !== 'notes' && key !== 'company')
           return (
             <Grid
               key={`${key}_${value}`}
@@ -84,22 +111,7 @@ export default function LeadPaperDetails({
               // flexGrow={1}
               style={{ padding: '6px', width: '100%' }}
               wrap="nowrap">
-              <Grid key={key} item xs={true}>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'flex-end',
-                  }}>
-                  <Typography
-                    // paddingTop={2}
-                    // gutterBottom
-                    variant="caption"
-                    fontSize={14}
-                    component="div">
-                    {convertCamelCaseToSpaces(key)}
-                  </Typography>
-                </Box>
-              </Grid>
+              <Keys keyVal={key} />
 
               <Grid key={value} item xs={true} style={{ minWidth: '200px' }}>
                 {/* Blue hover box */}
@@ -185,6 +197,35 @@ export default function LeadPaperDetails({
                 </Box>
               </Grid>
             </Grid>
+          );
+        else if (key === 'company')
+          return (
+            <Box
+              sx={{
+                // width: 300,
+                // height: 300,
+                border: '0.5px solid grey',
+                backgroundColor: 'primary.dark',
+                '&:hover': {
+                  backgroundColor: 'primary.main',
+                  opacity: [0.9, 0.8, 0.7],
+                },
+              }}>
+              <Container
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  paddingLeft: '12px',
+                }}>
+                <BusinessIcon sx={{ color: '#6b6cff', padding: '0.5em' }} />
+                <Typography
+                  padding={1}
+                  // gutterBottom
+                  variant="h6">
+                  Company
+                </Typography>
+              </Container>
+            </Box>
           );
       })}
     </Fragment>
