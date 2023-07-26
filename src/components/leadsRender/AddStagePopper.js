@@ -1,9 +1,12 @@
 import React, { Fragment, useRef, useState } from 'react';
 import {
+  Box,
   Button,
+  Container,
   IconButton,
   InputAdornment,
   Popover,
+  TextField,
   makeStyles,
 } from '@material-ui/core';
 import InputFieldText from '../auxs/InputFieldText';
@@ -24,8 +27,8 @@ const useStyles = makeStyles((theme) => {
       marginBottom: '4px',
     },
     customCard: {
-      height: '1px',
-      background: '#F00B0B',
+      // height: '1px',
+      // background: '#F00B0B',
     },
   };
 });
@@ -37,6 +40,7 @@ function AddStagePopper({ stages, setStages }) {
   const [isHovered, setIsHovered] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [isError, setIsError] = React.useState(false);
 
   const buttonRef = useRef(null);
 
@@ -52,17 +56,9 @@ function AddStagePopper({ stages, setStages }) {
   // console.log(stages);
   const updateStage = (newStage) => {
     const camelCaseNewStage = toCamelCase(newStage);
-    //check for duplicates:
-    const stageExists = stages.some(
-      (stage) => stage.name === camelCaseNewStage
-    );
-
-    if (stageExists) return;
 
     updateStageToDb(camelCaseNewStage)
       .then((data) => {
-        console.log(data);
-
         setStages((prevStage) => [
           ...prevStage,
           { id: data.name, name: newStage },
@@ -74,6 +70,20 @@ function AddStagePopper({ stages, setStages }) {
   const handleKeyDown = (event) => {
     if (event.key === 'Enter' && !event.shiftKey) {
       event.preventDefault();
+      //
+      const newStage = event.target.value.trim();
+      const camelCaseNewStage = toCamelCase(newStage);
+      //check for duplicates:
+      const stageExists = stages.some(
+        (stage) => stage.name === camelCaseNewStage
+      );
+
+      if (stageExists) {
+        setIsError(true);
+        return;
+      }
+      setIsError(false);
+      //
 
       if (inputValue.trim().length !== 0) {
         updateStage(event.target.value.trim());
@@ -96,6 +106,11 @@ function AddStagePopper({ stages, setStages }) {
     setIsHovered(false);
   };
 
+  function handleChacge(event) {
+    setIsError(false);
+    setInputValue(event.target.value);
+  }
+
   return (
     <Fragment>
       <Button
@@ -116,7 +131,7 @@ function AddStagePopper({ stages, setStages }) {
           vertical: 'bottom',
           horizontal: 'left',
         }}>
-        <InputFieldText
+        {/* <InputFieldText
           onKeyDown={handleKeyDown}
           className={classes.customCard}
           fullWidth
@@ -126,6 +141,36 @@ function AddStagePopper({ stages, setStages }) {
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           onChange={(event) => setInputValue(event.target.value)}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="start">
+                {isHovered || inputValue !== '' ? (
+                  <IconButton aria-label="Edit" size="small">
+                    <EditIcon />
+                  </IconButton>
+                ) : null}
+              </InputAdornment>
+            ),
+          }}
+        /> */}
+
+        <TextField
+          // style={{ marginTop: 20, marginBottom: 20, display: 'block' }}
+          // style={{ marginTop: 2 }}
+          variant="outlined"
+          onKeyDown={handleKeyDown}
+          className={classes.customCard}
+          fullWidth
+          error={isError}
+          key={id}
+          // label="Stage Name"
+          placeholder="Stage Name"
+          helperText={isError && 'Stage already exists'}
+          // value={popupValue}
+          // defaultValue="Enter stage name"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onChange={handleChacge}
           InputProps={{
             endAdornment: (
               <InputAdornment position="start">
