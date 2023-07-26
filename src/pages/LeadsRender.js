@@ -19,7 +19,7 @@ import { updateObjectDB } from '../helpers/dbFunctions';
 // addUser();
 //----------------------------------------------------------
 function LeadsRender() {
-  // console.log('LeadsRender');
+  console.log('LeadsRender');
 
   const loadCardsContentCtx = useContext(loadCards);
   const loadStagesCtx = useContext(loadStagesContext);
@@ -30,8 +30,6 @@ function LeadsRender() {
   const [stages, setStages] = useState([]);
   const [open, setOpen] = React.useState(null);
   const [deleteStageShow, setDeleteStageShow] = useState(false);
-
-  // const [dndData, setDndData] = useState([]);
   const { dndData, setDndData } = useContext(dndDataContext);
 
   const wrapMaxWidth = (1300 * stages.length) / 5; // when does the window stop squeezing and start pushing

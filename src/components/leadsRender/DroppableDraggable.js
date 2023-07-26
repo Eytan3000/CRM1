@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => {
   };
 });
 //---------------------------------------------------------
-export default function DroppableDraggable({ stage, leads }) {
+function DroppableDraggable({ stage, leads }) {
   const classes = useStyles();
   return (
     <Droppable droppableId={String(stage.id)}>
@@ -49,3 +49,4 @@ export default function DroppableDraggable({ stage, leads }) {
     </Droppable>
   );
 }
+export default React.memo(DroppableDraggable);

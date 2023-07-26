@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useCallback, useContext, useRef, useState } from 'react';
 
 import { deleteLeadFromDb, deleteStageFromDb } from '../../helpers/dbFunctions';
 import { Box, Button, Grid, Modal, Stack } from '@mui/material';
