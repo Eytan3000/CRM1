@@ -71,9 +71,9 @@ function Lead() {
     })();
   }, [newId]);
 
-  // useEffect(() => {
-  //   updateObjectDB(newId, lead);
-  // }, [lead]);
+  useEffect(() => {
+    updateObjectDB(newId, lead);
+  }, [lead]);
 
   return (
     <Box style={{ background: '#f5f7faff', paddingRight: '10px' }}>
