@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import { Container, Grid, Paper, makeStyles } from '@material-ui/core';
 import { loadLeadContext } from '../contexts/DbFunctionsContext';
 import { Box } from '@mui/material';
@@ -53,7 +53,6 @@ const useStyles = makeStyles((theme) => {
 function Lead() {
   const params = useParams();
   const newId = params.leadId; //Get string from param (lead Id from url)
-  console.log(params);
 
   const classes = useStyles();
   const { setLayoutName } = useContext(layoutNameContext);

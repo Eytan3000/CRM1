@@ -4,7 +4,7 @@ import AddStagePopper from '../components/leadsRender/AddStagePopper';
 import { loadCards, loadStagesContext } from '../contexts/DbFunctionsContext';
 import LeadRenderColumn from '../components/leadsRender/LeadRenderColumn';
 import { Box, Button, Grid, IconButton } from '@mui/material';
-import { renderContext } from '../contexts/DbFunctionsContext';
+import { renderContext, dndDataContext } from '../contexts/DbFunctionsContext';
 import { useMediaQuery } from '@mui/material';
 import { layoutNameContext } from '../contexts/DbFunctionsContext';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -31,7 +31,8 @@ function LeadsRender() {
   const [open, setOpen] = React.useState(null);
   const [deleteStageShow, setDeleteStageShow] = useState(false);
 
-  const [dndData, setDndData] = useState([]);
+  // const [dndData, setDndData] = useState([]);
+  const { dndData, setDndData } = useContext(dndDataContext);
 
   const wrapMaxWidth = (1300 * stages.length) / 5; // when does the window stop squeezing and start pushing
   const isDesktop = useMediaQuery(

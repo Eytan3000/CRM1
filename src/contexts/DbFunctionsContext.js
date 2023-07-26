@@ -13,12 +13,15 @@ export const loadLeadContext = React.createContext();
 export const renderContext = React.createContext();
 export const layoutNameContext = React.createContext();
 export const stageStateContext = React.createContext();
+export const dndDataContext = React.createContext();
 
 export function DbFunctionsProvider({ children }) {
   // const [leadsCards, setLeadsCards] = useState([]);
   const [reRender, setRerender] = useState(true);
   const [layoutName, setLayoutName] = useState('Main Pipeline');
   const [stageState, setStageState] = useState([]);
+
+  const [dndData, setDndData] = useState([]);
 
   function addLeadToDB(lead) {
     insertNewLead(lead);
@@ -128,7 +131,9 @@ export function DbFunctionsProvider({ children }) {
             <renderContext.Provider value={{ reRender, setRerender }}>
               <layoutNameContext.Provider value={{ layoutName, setLayoutName }}>
                 <stageStateContext.Provider value={{ stageState }}>
-                  {children}
+                  <dndDataContext.Provider value={{ dndData, setDndData }}>
+                    {children}
+                  </dndDataContext.Provider>
                 </stageStateContext.Provider>
               </layoutNameContext.Provider>
             </renderContext.Provider>

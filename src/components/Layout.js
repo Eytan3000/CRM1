@@ -18,8 +18,10 @@ import {
 } from '@mui/material';
 import React, { Fragment, useContext, useState } from 'react';
 import { layoutNameContext } from '../contexts/DbFunctionsContext';
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 import AlignHorizontalLeftIcon from '@mui/icons-material/AlignHorizontalLeft';
+import { renderContext, dndDataContext } from '../contexts/DbFunctionsContext';
+import _ from 'lodash';
 //----------------------------------------------------------------
 const drawerWidth = 240;
 
@@ -72,7 +74,12 @@ export default function Layout({ children }) {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const params = useParams();
+
   const [isClicked, setIsClicked] = useState(false);
+  const { dndData, setDndData } = useContext(dndDataContext);
+
+  let currentStage = '';
 
   const handleNameClick = () => {
     setIsClicked(true);
@@ -91,35 +98,29 @@ export default function Layout({ children }) {
     navigate(`/lead/${leadId}`);
   };
 
+  function findStage() {
+    _.forEach(dndData, (data, key) => {
+      data.leads.forEach((lead) =>
+        lead.id === params.leadId ? (currentStage = key) : null
+      );
+    });
+    return currentStage;
+  }
+  function leadsInStage() {
+    let leadsInStage = [];
+    _.forEach(dndData, (data, key) => {
+      if (key === findStage()) {
+        data.leads.forEach((lead) => leadsInStage.push(lead));
+      }
+    });
+    return leadsInStage;
+  }
+
   const menuItems = [
     {
       text: layoutName,
       icon: <AlignVerticalTopOutlinedIcon color="primary" />,
       path: '/',
-    },
-  ];
-
-  const leadsInStage = [
-    {
-      id: '-Na65qMDA33ZygFvLdUS',
-      title: 'Rotem Solomon',
-      stage: 'noAnswer',
-      phone: '0508657032',
-      company: 'Solomon Prod',
-    },
-    {
-      id: '-Na7TyziinkPbgQWEbLz',
-      title: 'Karnina Nails',
-      stage: 'noAnswer',
-      phone: '0547670033',
-      company: 'Karnina Nails',
-    },
-    {
-      id: '-Na7UXJu_dm18gsujyy6',
-      title: 'Quentin Tarantino',
-      stage: 'noAnswer',
-      phone: '0508659703',
-      company: 'Tarantino Prod',
     },
   ];
 
@@ -166,60 +167,53 @@ export default function Layout({ children }) {
         {/* List of Piplines, changes dinamically based on url  */}
 
         <List>
-          {/* {location.pathname === '/' ? } */}
-
-          {/* if url is '/' */}
-          {/*<Typography
-            variant="body2"
-            color="primary"
-            style={{ textAlign: 'center' }}>
-            Boards
-          </Typography>
-           {menuItems.map((item) => (
-            <ListItemButton key={item.text}>
-              <ListItem
-                key={item.text}
-                onClick={() => navigate(item.path)}
-                className={
-                  location.pathname === item.path ? classes.active : null
-                }>
-                <ListItemIcon>{item.icon}</ListItemIcon>
-                <ListItemText primary={item.text} />
-              </ListItem>
-            </ListItemButton>
-          ))} */}
-          {/* If url is .../leads/.... then: */}
-
-          {/* 
-          get dndData from context
-          get lead stage from lead
-          get all leads in stage
-          map thour leads:
-          */}
-
-          {/* <Typography
-            variant="body2"
-            color="primary"
-            style={{ textAlign: 'center' }}>
-            Lead Stage
-          </Typography>
-          {leadsInStage.map((item) => (
-            <ListItemButton key={item.id}>
-              <ListItem
-                key={item.id}
-                onClick={handleLeadClick}
-
-                // className={
-                //   location.pathname === item.path ? classes.active : null
-                // } -- here you need to check if current url ends with the id.
-              >
-                <ListItemIcon>
-                  <AlignHorizontalLeftIcon color="primary" />
-                </ListItemIcon>
-                <ListItemText primary={item.title} />
-              </ListItem>
-            </ListItemButton>
-          ))} */}
+          {/* If url is '/', show boards */}
+          {location.pathname === '/' && (
+            <>
+              {menuItems.map((item) => (
+                <ListItemButton key={item.text}>
+                  <ListItem
+                    key={item.text}
+                    onClick={() => navigate(item.path)}
+                    className={
+                      location.pathname === item.path ? classes.active : null
+                    }>
+                    <ListItemIcon>{item.icon}</ListItemIcon>
+                    <ListItemText primary={item.text} />
+                  </ListItem>
+                </ListItemButton>
+              ))}
+            </>
+          )}
+          {/* If url is '.../leads/....' then show all leads in lead's stage */}
+          {location.pathname.startsWith('/lead/') && (
+            <>
+              <Typography
+                variant="body2"
+                // color="primary"
+                color="secondary"
+                // style={{ textAlign: 'center' }}
+                style={{ paddingLeft: 35 }}>
+                {findStage()}
+              </Typography>
+              {leadsInStage().map((item) => (
+                <ListItemButton key={item.id}>
+                  <ListItem
+                    key={item.id}
+                    onClick={() => handleLeadClick(item.id)}
+                    // -- here you need to check if current url ends with the id.
+                    className={
+                      params.leadId === item.id ? classes.active : null
+                    }>
+                    <ListItemIcon>
+                      <AlignHorizontalLeftIcon color="primary" />
+                    </ListItemIcon>
+                    <ListItemText primary={item.title} />
+                  </ListItem>
+                </ListItemButton>
+              ))}
+            </>
+          )}
         </List>
       </Drawer>
 
