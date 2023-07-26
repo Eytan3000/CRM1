@@ -16,12 +16,19 @@ import {
   ListItemText,
   Typography,
 } from '@mui/material';
-import React, { Fragment, useContext, useState } from 'react';
+import React, {
+  Fragment,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { layoutNameContext } from '../contexts/DbFunctionsContext';
 import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 import AlignHorizontalLeftIcon from '@mui/icons-material/AlignHorizontalLeft';
 import { renderContext, dndDataContext } from '../contexts/DbFunctionsContext';
 import _ from 'lodash';
+
 //----------------------------------------------------------------
 const drawerWidth = 240;
 
@@ -69,15 +76,25 @@ const useStyles = makeStyles((theme) => {
 //----------------------------------------------------------------
 export default function Layout({ children }) {
   const { layoutName, setLayoutName } = useContext(layoutNameContext);
+  const { dndData, setDndData } = useContext(dndDataContext);
 
   const classes = useStyles();
   const navigate = useNavigate();
   const location = useLocation();
-
   const params = useParams();
 
+  const chosenElementRef = useRef(null);
+
   const [isClicked, setIsClicked] = useState(false);
-  const { dndData, setDndData } = useContext(dndDataContext);
+
+  useEffect(() => {
+    if (chosenElementRef.current) {
+      chosenElementRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+      });
+    }
+  }, [location.pathname]);
 
   let currentStage = '';
 
@@ -201,7 +218,7 @@ export default function Layout({ children }) {
                   <ListItem
                     key={item.id}
                     onClick={() => handleLeadClick(item.id)}
-                    // -- here you need to check if current url ends with the id.
+                    ref={params.leadId === item.id ? chosenElementRef : null}
                     className={
                       params.leadId === item.id ? classes.active : null
                     }>
