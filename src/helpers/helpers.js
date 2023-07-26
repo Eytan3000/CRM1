@@ -5,6 +5,25 @@ export function convertCamelCaseToSpaces(str) {
   return result.charAt(0).toUpperCase() + result.slice(1);
 }
 
+export function toCamelCase(inputString) {
+  // Split the inputString into an array of words
+  const words = inputString.trim().split(/\s+/);
+
+  // Convert the first word to lowercase and the rest to uppercase
+  const camelCaseWords = words.map((word, index) => {
+    if (index === 0) {
+      return word.toLowerCase();
+    } else {
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    }
+  });
+
+  // Join the words back into a single string
+  const camelCaseString = camelCaseWords.join('');
+
+  return camelCaseString;
+}
+
 export function formatPhoneNumber(phoneNumber) {
   let formattedNumber = phoneNumber;
   if (phoneNumber.length === 10) {
@@ -65,31 +84,17 @@ export function formatLeadData(leadData) {
     notes: leadData.notes,
     id: leadData.id,
   };
+}
 
-  // return {
-  //   title: leadData.title,
-  //   stage: leadData.stage,
-  //   name: leadData.name,
-  //   phone: leadData.phone,
-  //   email: leadData.email,
-  //   website: leadData.website,
-  //   facebook: leadData.facebook,
-  //   linkedin: leadData.linkedin,
-  //   otherLink: leadData.otherLink,
-  //   company: {
-  //     name: leadData.companyName,
-  //     phone: leadData.companyPhone,
-  //     email: leadData.companyEmail,
-  //     website: leadData.companyWebsite,
-  //     facebook: leadData.companyFacebook,
-  //     linkedin: leadData.companyLinkedin,
-  //     otherLink: leadData.companyOtherLink,
-  //   },
-  //   dateCreated: leadData.dateCreated,
-  //   id: leadData.id,
-  // };
+export function countNestedObjects(obj) {
+  let count = 0;
 
-  // _.forEach(rearrangedLead, (data, key) => {
-  //   console.log(`${key}:${data}`);
-  // });
+  _.forIn(obj, (value) => {
+    if (_.isPlainObject(value)) {
+      count++; // Increment count if the property is a plain object
+      count += countNestedObjects(value); // Continue recursively to check nested objects within this property
+    }
+  });
+
+  return count;
 }

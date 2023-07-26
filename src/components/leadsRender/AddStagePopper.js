@@ -10,6 +10,7 @@ import InputFieldText from '../auxs/InputFieldText';
 
 import EditIcon from '@mui/icons-material/Edit';
 import { updateStageToDb } from '../../helpers/dbFunctions';
+import { toCamelCase } from '../../helpers/helpers';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-function AddStagePopper({ setStages }) {
+function AddStagePopper({ stages, setStages }) {
   const classes = useStyles();
 
   const [popupValue, setPopupValue] = React.useState('');
@@ -48,8 +49,17 @@ function AddStagePopper({ setStages }) {
     setAnchorEl(null);
   };
 
+  // console.log(stages);
   const updateStage = (newStage) => {
-    updateStageToDb(newStage)
+    const camelCaseNewStage = toCamelCase(newStage);
+    //check for duplicates:
+    const stageExists = stages.some(
+      (stage) => stage.name === camelCaseNewStage
+    );
+
+    if (stageExists) return;
+
+    updateStageToDb(camelCaseNewStage)
       .then((data) => {
         console.log(data);
 

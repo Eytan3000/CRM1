@@ -133,7 +133,7 @@ function LeadsRender() {
         paddingBottom={2}
         width="100%">
         <NewLeadModal />
-        <AddStagePopper setStages={setStages} />
+        <AddStagePopper stages={stages} setStages={setStages} />
         <Box marginLeft="auto">
           {deleteStageShow && (
             <Button

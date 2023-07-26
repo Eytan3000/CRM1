@@ -28,6 +28,8 @@ import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 import AlignHorizontalLeftIcon from '@mui/icons-material/AlignHorizontalLeft';
 import { renderContext, dndDataContext } from '../contexts/DbFunctionsContext';
 import _ from 'lodash';
+import { countNestedObjects } from '../helpers/helpers';
+import { loadAllLeadsCards } from '../helpers/dbFunctions';
 
 //----------------------------------------------------------------
 const drawerWidth = 240;
@@ -77,6 +79,7 @@ const useStyles = makeStyles((theme) => {
 export default function Layout({ children }) {
   const { layoutName, setLayoutName } = useContext(layoutNameContext);
   const { dndData, setDndData } = useContext(dndDataContext);
+  // const [fetchedLeads, setFetchedLeads] = useState(null);
 
   const classes = useStyles();
   const navigate = useNavigate();
@@ -123,6 +126,22 @@ export default function Layout({ children }) {
     });
     return currentStage;
   }
+
+  // async function leadsInStageFetchFromDb() {
+  //   const leads = await loadAllLeadsCards();
+
+  //   let currentStage = '';
+  //   _.forEach(leads, (data, key) =>
+  //     key === params.leadId ? (currentStage = data.stage) : null
+  //   );
+
+  //   const leadsInCurrentStage = _.filter(
+  //     leads,
+  //     (data, key) => data.stage === currentStage
+  //   );
+  //   setFetchedLeads(leadsInCurrentStage);
+  // }
+
   function leadsInStage() {
     let leadsInStage = [];
     _.forEach(dndData, (data, key) => {
@@ -213,22 +232,49 @@ export default function Layout({ children }) {
                 style={{ paddingLeft: 35 }}>
                 {findStage()}
               </Typography>
-              {leadsInStage().map((item) => (
-                <ListItemButton key={item.id}>
-                  <ListItem
-                    key={item.id}
-                    onClick={() => handleLeadClick(item.id)}
-                    ref={params.leadId === item.id ? chosenElementRef : null}
-                    className={
-                      params.leadId === item.id ? classes.active : null
-                    }>
-                    <ListItemIcon>
-                      <AlignHorizontalLeftIcon color="primary" />
-                    </ListItemIcon>
-                    <ListItemText primary={item.title} />
-                  </ListItem>
-                </ListItemButton>
-              ))}
+              {/* check if dndData exists */}
+              {countNestedObjects(dndData) > 0
+                ? leadsInStage().map((item) => (
+                    <ListItemButton key={item.id}>
+                      <ListItem
+                        key={item.id}
+                        onClick={() => handleLeadClick(item.id)}
+                        ref={
+                          params.leadId === item.id ? chosenElementRef : null
+                        }
+                        className={
+                          params.leadId === item.id ? classes.active : null
+                        }>
+                        <ListItemIcon>
+                          <AlignHorizontalLeftIcon color="primary" />
+                        </ListItemIcon>
+                        <ListItemText primary={item.title} />
+                      </ListItem>
+                    </ListItemButton>
+                  ))
+                : // if dndData is empty, you need to fetch leads in stage from db
+                  // async () => {
+                  //   await leadsInStageFetchFromDb();
+                  //   return fetchedLeads.map((item) => (
+                  //     <ListItemButton key={item.id}>
+                  //       <ListItem
+                  //         key={item.id}
+                  //         onClick={() => handleLeadClick(item.id)}
+                  //         ref={
+                  //           params.leadId === item.id ? chosenElementRef : null
+                  //         }
+                  //         className={
+                  //           params.leadId === item.id ? classes.active : null
+                  //         }>
+                  //         <ListItemIcon>
+                  //           <AlignHorizontalLeftIcon color="primary" />
+                  //         </ListItemIcon>
+                  //         <ListItemText primary={item.title} />
+                  //       </ListItem>
+                  //     </ListItemButton>
+                  //   ));
+                  // }
+                  null}
             </>
           )}
         </List>
