@@ -20,7 +20,6 @@ export function DbFunctionsProvider({ children }) {
   const [reRender, setRerender] = useState(true);
   const [layoutName, setLayoutName] = useState('Main Pipeline');
   const [stageState, setStageState] = useState([]);
-
   const [dndData, setDndData] = useState([]);
 
   function addLeadToDB(lead) {
@@ -79,6 +78,7 @@ export function DbFunctionsProvider({ children }) {
   //   }
   // }
   //--------------------------------------------------
+
   async function loadCardsContent() {
     try {
       const data = await loadAllLeadsCards();
