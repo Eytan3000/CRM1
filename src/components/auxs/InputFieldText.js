@@ -1,5 +1,4 @@
 import { TextField, makeStyles } from '@material-ui/core';
-// import React, { useState } from 'react';
 
 const useStyles = makeStyles({
   field: {
@@ -26,11 +25,8 @@ export default function InputFieldText({
   InputProps,
 }) {
   const classes = useStyles();
-  //   const [title, setTitle] = useState('');
-  // const [titleError, setTitleError] = useState(false);
 
   return (
-    // <form noValidate autoComplete="off" onSubmit={handleSubmit}>
     <TextField
       onKeyDown={onKeyDown}
       onChange={onChange}
@@ -48,6 +44,5 @@ export default function InputFieldText({
       onMouseLeave={onMouseLeave}
       InputProps={InputProps}
     />
-    // </form>
   );
 }

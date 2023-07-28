@@ -1,15 +1,12 @@
 import React, { Fragment, useRef, useState } from 'react';
 import {
-  Box,
   Button,
-  Container,
   IconButton,
   InputAdornment,
   Popover,
   TextField,
   makeStyles,
 } from '@material-ui/core';
-import InputFieldText from '../auxs/InputFieldText';
 
 import EditIcon from '@mui/icons-material/Edit';
 import { updateStageToDb } from '../../helpers/dbFunctions';
@@ -53,7 +50,6 @@ function AddStagePopper({ stages, setStages }) {
     setAnchorEl(null);
   };
 
-  // console.log(stages);
   const updateStage = (newStage) => {
     const camelCaseNewStage = toCamelCase(newStage);
 
@@ -114,9 +110,7 @@ function AddStagePopper({ stages, setStages }) {
   return (
     <Fragment>
       <Button
-        // color="primary"
         size="medium"
-        // variant="text"
         ref={buttonRef}
         variant="contained"
         onClick={handlePopperClick}>
@@ -131,43 +125,15 @@ function AddStagePopper({ stages, setStages }) {
           vertical: 'bottom',
           horizontal: 'left',
         }}>
-        {/* <InputFieldText
-          onKeyDown={handleKeyDown}
-          className={classes.customCard}
-          fullWidth
-          key={id}
-          label="Stage Name"
-          value={popupValue}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          onChange={(event) => setInputValue(event.target.value)}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="start">
-                {isHovered || inputValue !== '' ? (
-                  <IconButton aria-label="Edit" size="small">
-                    <EditIcon />
-                  </IconButton>
-                ) : null}
-              </InputAdornment>
-            ),
-          }}
-        /> */}
-
         <TextField
-          // style={{ marginTop: 20, marginBottom: 20, display: 'block' }}
-          // style={{ marginTop: 2 }}
           variant="outlined"
           onKeyDown={handleKeyDown}
           className={classes.customCard}
           fullWidth
           error={isError}
           key={id}
-          // label="Stage Name"
           placeholder="Stage Name"
           helperText={isError && 'Stage already exists'}
-          // value={popupValue}
-          // defaultValue="Enter stage name"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           onChange={handleChacge}

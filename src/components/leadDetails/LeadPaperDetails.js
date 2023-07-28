@@ -3,7 +3,6 @@ import React, { Fragment, useState } from 'react';
 import { convertCamelCaseToSpaces, isLink } from '../../helpers/helpers';
 import SelectStage from './SelectStage';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import BusinessIcon from '@mui/icons-material/Business';
 //---------------------------------------------------------------------------------
 
 function PersonLabel() {
@@ -32,12 +31,7 @@ function Keys({ keyVal }) {
           display: 'flex',
           justifyContent: 'flex-end',
         }}>
-        <Typography
-          // paddingTop={2}
-          // gutterBottom
-          variant="caption"
-          fontSize={14}
-          component="div">
+        <Typography variant="caption" fontSize={14} component="div">
           {convertCamelCaseToSpaces(keyVal)}
         </Typography>
       </Box>
@@ -107,8 +101,6 @@ export default function LeadPaperDetails({
               key={`${key}_${value}`}
               container
               spacing={2}
-              // item
-              // flexGrow={1}
               style={{ padding: '6px', width: '100%' }}
               wrap="nowrap">
               <Keys keyVal={key} />

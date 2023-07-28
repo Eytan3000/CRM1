@@ -6,7 +6,6 @@ import {
   Avatar,
   TextField,
 } from '@material-ui/core';
-// import { AddCircleOutline, SubjectOutlined } from '@mui/icons-material';
 import AlignVerticalTopOutlinedIcon from '@mui/icons-material/AlignVerticalTopOutlined';
 import {
   List,
@@ -26,10 +25,9 @@ import React, {
 import { layoutNameContext } from '../contexts/DbFunctionsContext';
 import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 import AlignHorizontalLeftIcon from '@mui/icons-material/AlignHorizontalLeft';
-import { renderContext, dndDataContext } from '../contexts/DbFunctionsContext';
+import { dndDataContext } from '../contexts/DbFunctionsContext';
 import _ from 'lodash';
 import { countNestedObjects } from '../helpers/helpers';
-import { loadAllLeadsCards } from '../helpers/dbFunctions';
 
 //----------------------------------------------------------------
 const drawerWidth = 240;
@@ -79,7 +77,6 @@ const useStyles = makeStyles((theme) => {
 export default function Layout({ children }) {
   const { layoutName, setLayoutName } = useContext(layoutNameContext);
   const { dndData, setDndData } = useContext(dndDataContext);
-  // const [fetchedLeads, setFetchedLeads] = useState(null);
 
   const classes = useStyles();
   const navigate = useNavigate();
@@ -126,21 +123,6 @@ export default function Layout({ children }) {
     });
     return currentStage;
   }
-
-  // async function leadsInStageFetchFromDb() {
-  //   const leads = await loadAllLeadsCards();
-
-  //   let currentStage = '';
-  //   _.forEach(leads, (data, key) =>
-  //     key === params.leadId ? (currentStage = data.stage) : null
-  //   );
-
-  //   const leadsInCurrentStage = _.filter(
-  //     leads,
-  //     (data, key) => data.stage === currentStage
-  //   );
-  //   setFetchedLeads(leadsInCurrentStage);
-  // }
 
   function leadsInStage() {
     let leadsInStage = [];

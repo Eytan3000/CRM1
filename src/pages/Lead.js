@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState, useRef } from 'react';
-import { Container, Grid, Paper, makeStyles } from '@material-ui/core';
+import React, { useContext, useEffect, useState } from 'react';
+import { Container, Grid, makeStyles } from '@material-ui/core';
 import { loadLeadContext } from '../contexts/DbFunctionsContext';
 import { Box } from '@mui/material';
 import NotesStack from '../components/leadDetails/NotesStack';
-import image from './2.jpg';
+// import image from './2.jpg';
 import { loadLead, updateObjectDB } from '../helpers/dbFunctions';
 import { layoutNameContext } from '../contexts/DbFunctionsContext';
 import LeadPaperDetails from '../components/leadDetails/LeadPaperDetails';

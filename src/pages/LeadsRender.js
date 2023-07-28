@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import NewLeadModal from '../components/leadsRender/NewLeadModal';
 import AddStagePopper from '../components/leadsRender/AddStagePopper';
 import { loadCards, loadStagesContext } from '../contexts/DbFunctionsContext';
