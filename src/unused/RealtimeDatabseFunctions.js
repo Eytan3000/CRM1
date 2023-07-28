@@ -1,13 +1,4 @@
-const firebaseConfig = {
-  apiKey: 'AIzaSyBUjDRbNol-XzWCSVEPkl6VB-15gJI4oTM',
-  authDomain: 'mycrm-a7912.firebaseapp.com',
-  databaseURL:
-    'https://mycrm-a7912-default-rtdb.europe-west1.firebasedatabase.app',
-  projectId: 'mycrm-a7912',
-  storageBucket: 'mycrm-a7912.appspot.com',
-  messagingSenderId: '921120278026',
-  appId: '1:921120278026:web:b33d9ef0a4bfcc8f7081f3',
-};
+const firebaseConfig = {};
 
 // Replace "your_database_url" with the URL of your Firebase Realtime Database
 const databaseURL =
