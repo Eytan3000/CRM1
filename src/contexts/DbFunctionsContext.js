@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
   insertNewLead,
   loadAllLeadsCards,
   loadStagesFromDb,
 } from '../helpers/dbFunctions';
 import _ from 'lodash';
+import { auth } from '../firebase';
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+} from 'firebase/auth';
+//------------------------------------------------
 
 export const addLeadToDBContext = React.createContext();
 export const loadCards = React.createContext();
@@ -15,6 +21,12 @@ export const layoutNameContext = React.createContext();
 export const stageStateContext = React.createContext();
 export const dndDataContext = React.createContext();
 
+const AuthContext = React.createContext();
+export function useAuth() {
+  return useContext(AuthContext);
+}
+
+//------------------------------------------------
 export function DbFunctionsProvider({ children }) {
   // const [leadsCards, setLeadsCards] = useState([]);
   const [reRender, setRerender] = useState(true);
@@ -22,6 +34,27 @@ export function DbFunctionsProvider({ children }) {
   const [stageState, setStageState] = useState([]);
   const [dndData, setDndData] = useState([]);
 
+  // ---Authentication sign in-----
+  const [currentUser, setCurrentUser] = useState();
+
+  // signin user
+  function signup(email, password) {
+    return createUserWithEmailAndPassword(auth, email, password);
+  }
+
+  //sets user to state when auth state changes (when a user logs in or logs out)
+  useEffect(() => {
+    const unsubscribed = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+    });
+    return unsubscribed;
+  }, []);
+  //auth context value
+  const value = {
+    currentUser,
+    signup,
+  };
+  //------------------------------
   function addLeadToDB(lead) {
     insertNewLead(lead);
   }
@@ -79,7 +112,10 @@ export function DbFunctionsProvider({ children }) {
               <layoutNameContext.Provider value={{ layoutName, setLayoutName }}>
                 <stageStateContext.Provider value={{ stageState }}>
                   <dndDataContext.Provider value={{ dndData, setDndData }}>
-                    {children}
+                    <AuthContext.Provider value={value}>
+                      {children}
+                    </AuthContext.Provider>
+                    ;
                   </dndDataContext.Provider>
                 </stageStateContext.Provider>
               </layoutNameContext.Provider>

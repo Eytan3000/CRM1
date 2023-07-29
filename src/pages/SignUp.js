@@ -1,17 +1,9 @@
 import React, { Fragment } from 'react';
 import LoginForm from '../components/auth/LoginForm';
-import {
-  AppBar,
-  Button,
-  Container,
-  Divider,
-  Stack,
-  Toolbar,
-  Typography,
-} from '@mui/material';
+import { AppBar, Container, Divider, Toolbar, Typography } from '@mui/material';
 import { makeStyles } from '@material-ui/core';
-import { Link } from 'react-router-dom';
-import SigninForm from '../components/auth/SigninForm';
+import { useNavigate } from 'react-router-dom';
+import SignUnForm from '../components/auth/SignUnForm';
 //--------------------------------------------------
 const useStyles = makeStyles((theme) => {
   return {
@@ -35,9 +27,9 @@ const useStyles = makeStyles((theme) => {
 
 //--------------------------------------------------
 
-export default function Login() {
+export default function SignUp() {
   const classes = useStyles();
-
+  const navigate = useNavigate();
   return (
     <>
       {/* App bar */}
@@ -46,7 +38,7 @@ export default function Login() {
           <Typography
             className={classes.title}
             variant="h5"
-            // onClick={() => navigate('/')}
+            onClick={() => navigate('/crm/')}
             style={{ cursor: 'pointer', color: 'black' }}>
             Logo
           </Typography>
@@ -55,10 +47,10 @@ export default function Login() {
 
       <Container maxWidth="sm" className={classes.container}>
         <Typography variant="h4" gutterBottom>
-          Sign in
+          Sign up
         </Typography>
 
-        <SigninForm />
+        <SignUnForm />
 
         <Divider sx={{ my: 3 }}>
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>

@@ -1,39 +1,51 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-// @mui
-// import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox } from '@mui/material';
+import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import LoadingButton from '@mui/lab/LoadingButton';
-// components
 // import Iconify from '../../../components/iconify';
-import {
-  Checkbox,
-  IconButton,
-  InputAdornment,
-  Stack,
-  TextField,
-} from '@mui/material';
-import { Typography } from '@material-ui/core';
-// import { Checkbox, IconButton, InputAdornment } from '@material-ui/core';
+import { IconButton, InputAdornment, Stack, TextField } from '@mui/material';
+import { useAuth } from '../../contexts/DbFunctionsContext';
 
-// ----------------------------------------------------------------------
+// -------------------------------------------------------
 
-export default function SigninForm() {
+export default function SignUnForm() {
   const navigate = useNavigate();
-
   const [showPassword, setShowPassword] = useState(false);
+  const { signup } = useAuth(); //auth context
+
+  const [error, setError] = useState();
+  const [loading, setLoading] = useState(false);
+
+  const passwordRef = useRef();
+  const emailRef = useRef();
 
   const handleClick = () => {
     navigate('/dashboard', { replace: true });
   };
 
+  async function handleSubmit(e) {
+    console.log('handle');
+
+    e.preventDefault();
+
+    try {
+      setError('');
+      setLoading(true);
+      await signup(emailRef.current.value, passwordRef.current.value);
+    } catch {
+      setError('Failed to create an account');
+    }
+    setLoading(false);
+  }
+
   return (
-    <>
+    <form onSubmit={handleSubmit}>
       <Stack spacing={3}>
-        <TextField name="email" label="Email address" />
+        <TextField name="email" label="Email address" inputRef={emailRef} />
 
         <TextField
           name="password"
           label="Password"
+          inputRef={passwordRef}
           type={showPassword ? 'text' : 'password'}
           InputProps={{
             endAdornment: (
@@ -58,8 +70,8 @@ export default function SigninForm() {
         type="submit"
         variant="contained"
         onClick={handleClick}>
-        Login
+        Continue
       </LoadingButton>
-    </>
+    </form>
   );
 }
