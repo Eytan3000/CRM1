@@ -100,7 +100,6 @@ export default function Layout({ children }) {
 
   const handleNameClick = () => {
     setIsClicked(true);
-    console.log('clicked');
   };
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
@@ -112,7 +111,7 @@ export default function Layout({ children }) {
 
   const handleLeadClick = (leadId) => {
     // Navigate only when clicked, not during drag
-    navigate(`/lead/${leadId}`);
+    navigate(`/crm/lead/${leadId}`);
   };
 
   function findStage() {
@@ -138,7 +137,7 @@ export default function Layout({ children }) {
     {
       text: layoutName,
       icon: <AlignVerticalTopOutlinedIcon color="primary" />,
-      path: '/',
+      path: '/crm/',
     },
   ];
 
@@ -177,7 +176,7 @@ export default function Layout({ children }) {
           <Typography
             className={classes.title}
             variant="h5"
-            onClick={() => navigate('/')}
+            onClick={() => navigate('/crm/')}
             style={{ cursor: 'pointer' }}>
             Logo
           </Typography>
@@ -185,8 +184,8 @@ export default function Layout({ children }) {
         {/* List of Piplines, changes dinamically based on url  */}
 
         <List>
-          {/* If url is '/', show boards */}
-          {location.pathname === '/' && (
+          {/* If url is '/crm/', show boards */}
+          {location.pathname === '/crm/' && (
             <>
               {menuItems.map((item) => (
                 <ListItemButton key={item.text}>
@@ -204,7 +203,7 @@ export default function Layout({ children }) {
             </>
           )}
           {/* If url is '.../leads/....' then show all leads in lead's stage */}
-          {location.pathname.startsWith('/lead/') && (
+          {location.pathname.startsWith('/crm/lead/') && (
             <>
               <Typography
                 variant="body2"
@@ -262,6 +261,7 @@ export default function Layout({ children }) {
         </List>
       </Drawer>
 
+      {/* crm content */}
       <div className={classes.page}>
         <div className={classes.toolbar}></div>
         <Outlet />

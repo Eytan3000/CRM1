@@ -5,8 +5,10 @@ import { purple } from '@material-ui/core/colors';
 import Layout from './components/Layout';
 import Lead from './pages/Lead';
 import LeadsRender from './pages/LeadsRender';
+import Login from './pages/Login';
 import { DbFunctionsProvider } from './contexts/DbFunctionsContext';
 import ErrorPage from './pages/ErrorPage';
+import LoginForm from './components/auth/LoginForm';
 
 //-------------------------------------------------
 
@@ -32,6 +34,17 @@ function App() {
   const router = createBrowserRouter([
     {
       path: '/',
+      // element: <Layout />,
+      // errorElement: <ErrorPage />,
+      children: [
+        {
+          path: '/:login',
+          element: <Login />,
+        },
+      ],
+    },
+    {
+      path: '/crm/',
       element: <Layout />,
       errorElement: <ErrorPage />,
       children: [
