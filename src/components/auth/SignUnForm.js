@@ -1,8 +1,15 @@
 import { useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import LoadingButton from '@mui/lab/LoadingButton';
 // import Iconify from '../../../components/iconify';
-import { IconButton, InputAdornment, Stack, TextField } from '@mui/material';
+import {
+  Alert,
+  IconButton,
+  InputAdornment,
+  Stack,
+  TextField,
+  Typography,
+} from '@mui/material';
 import { useAuth } from '../../contexts/DbFunctionsContext';
 
 // -------------------------------------------------------
@@ -18,10 +25,6 @@ export default function SignUnForm() {
   const passwordRef = useRef();
   const emailRef = useRef();
 
-  const handleClick = () => {
-    navigate('/dashboard', { replace: true });
-  };
-
   async function handleSubmit(e) {
     console.log('handle');
 
@@ -31,6 +34,7 @@ export default function SignUnForm() {
       setError('');
       setLoading(true);
       await signup(emailRef.current.value, passwordRef.current.value);
+      navigate('/dashboard', { replace: true });
     } catch {
       setError('Failed to create an account');
     }
@@ -63,13 +67,25 @@ export default function SignUnForm() {
         />
       </Stack>
 
+      <Typography variant="subtitle2" sx={{ my: 2, marginTop: 3, paddingX: 1 }}>
+        already have an account? <Link to="/signup"> Log in</Link>
+      </Typography>
+
+      {error && (
+        <Alert severity="error" style={{ marginBottom: '10px' }}>
+          {error}
+        </Alert>
+      )}
+
       <LoadingButton
-        style={{ marginTop: '40px' }}
+        style={{ marginTop: '0px' }}
         fullWidth
         size="large"
         type="submit"
         variant="contained"
-        onClick={handleClick}>
+        disabled={loading}
+        // onClick={handleClick}
+      >
         Continue
       </LoadingButton>
     </form>

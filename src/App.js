@@ -7,7 +7,12 @@ import Lead from './pages/Lead';
 import LeadsRender from './pages/LeadsRender';
 import { DbFunctionsProvider } from './contexts/DbFunctionsContext';
 import ErrorPage from './pages/ErrorPage';
+
 import SignUp from './pages/SignUp';
+import Login from './pages/Login';
+import HomePage from './pages/HomePage';
+import PrivateRoute from './components/auth/PrivateRoute';
+import Dashboard from './pages/Dashboard';
 
 //-------------------------------------------------
 
@@ -33,18 +38,38 @@ function App() {
   const router = createBrowserRouter([
     {
       path: '/',
-      // element: <Layout />,
+      // element: <HomePage />,
       // errorElement: <ErrorPage />,
       children: [
         {
-          path: '/:login',
+          path: '',
+          element: <HomePage />,
+        },
+        {
+          path: 'signup',
           element: <SignUp />,
+        },
+        {
+          path: 'login',
+          element: <Login />,
+        },
+        {
+          path: 'dashboard',
+          element: (
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          ),
         },
       ],
     },
     {
       path: '/crm/',
-      element: <Layout />,
+      element: (
+        <PrivateRoute>
+          <Layout />
+        </PrivateRoute>
+      ),
       errorElement: <ErrorPage />,
       children: [
         {

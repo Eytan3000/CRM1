@@ -9,6 +9,7 @@ import { auth } from '../firebase';
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  signInWithEmailAndPassword,
 } from 'firebase/auth';
 //------------------------------------------------
 
@@ -41,6 +42,9 @@ export function DbFunctionsProvider({ children }) {
   function signup(email, password) {
     return createUserWithEmailAndPassword(auth, email, password);
   }
+  function login(email, password) {
+    return signInWithEmailAndPassword(auth, email, password);
+  }
 
   //sets user to state when auth state changes (when a user logs in or logs out)
   useEffect(() => {
@@ -53,6 +57,7 @@ export function DbFunctionsProvider({ children }) {
   const value = {
     currentUser,
     signup,
+    login,
   };
   //------------------------------
   function addLeadToDB(lead) {

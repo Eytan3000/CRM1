@@ -5,13 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import LoadingButton from '@mui/lab/LoadingButton';
 // components
 // import Iconify from '../../../components/iconify';
-import {
-  Checkbox,
-  IconButton,
-  InputAdornment,
-  Stack,
-  TextField,
-} from '@mui/material';
+import { IconButton, InputAdornment, Stack, TextField } from '@mui/material';
 import { Typography } from '@material-ui/core';
 // import { Checkbox, IconButton, InputAdornment } from '@material-ui/core';
 
@@ -22,9 +16,21 @@ export default function LoginForm() {
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleClick = () => {
-    navigate('/dashboard', { replace: true });
-  };
+  async function handleSubmit(e) {
+    console.log('handle');
+
+    e.preventDefault();
+
+    try {
+      setError('');
+      setLoading(true);
+      await signup(emailRef.current.value, passwordRef.current.value);
+      navigate('/crm', { replace: true });
+    } catch {
+      setError('Failed to create an account');
+    }
+    setLoading(false);
+  }
 
   return (
     <>
@@ -55,11 +61,12 @@ export default function LoginForm() {
         direction="row"
         alignItems="center"
         justifyContent="space-between"
-        sx={{ my: 2, marginTop: 5 }}>
-        {/* <Checkbox name="remember" label="Remember me" /> */}
-        {/* <Link variant="subtitle2" underline="hover"> */}
-        <Link underline="hover">
-          <Typography variant="subtitle1">Forgot password?</Typography>
+        sx={{ my: 2, marginTop: 3, paddingX: 2 }}>
+        <Link>
+          <Typography variant="subtitle2">Forgot password?</Typography>
+        </Link>
+        <Link to="/signup">
+          <Typography variant="subtitle2">Creat an account</Typography>
         </Link>
       </Stack>
 
