@@ -26,14 +26,13 @@ export default function SignUnForm() {
   const emailRef = useRef();
 
   async function handleSubmit(e) {
-    console.log('handle');
-
     e.preventDefault();
 
     try {
       setError('');
       setLoading(true);
       await signup(emailRef.current.value, passwordRef.current.value);
+
       navigate('/dashboard', { replace: true });
     } catch {
       setError('Failed to create an account');

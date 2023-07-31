@@ -26,8 +26,6 @@ export default function LoginForm() {
   const emailRef = useRef();
 
   async function handleSubmit(e) {
-    console.log('handle');
-
     e.preventDefault();
 
     try {
@@ -78,7 +76,7 @@ export default function LoginForm() {
         <Typography
           variant="subtitle2"
           sx={{ my: 2, marginTop: 3, paddingX: 1 }}>
-          <Link to="/ForgotPassword"> Forgot password?</Link>
+          <Link to="/forgot-password"> Forgot password?</Link>
         </Typography>
       </Stack>
       {error && (

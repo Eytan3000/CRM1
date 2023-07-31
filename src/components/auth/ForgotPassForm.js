@@ -25,8 +25,6 @@ export default function ForgotPassForm() {
   const emailRef = useRef();
 
   async function handleSubmit(e) {
-    console.log('handle');
-
     e.preventDefault();
 
     try {

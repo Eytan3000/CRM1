@@ -48,16 +48,10 @@ export default function UpdateProfile() {
 
       <Container maxWidth="sm" className={classes.container}>
         <Typography variant="h4" gutterBottom>
-          Sign up
+          Update Profile
         </Typography>
 
         <UpdateProfileForm />
-
-        <Divider sx={{ my: 3 }}>
-          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-            OR
-          </Typography>
-        </Divider>
       </Container>
     </>
   );

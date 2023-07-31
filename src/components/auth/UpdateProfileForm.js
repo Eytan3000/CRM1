@@ -17,7 +17,7 @@ import { useAuth } from '../../contexts/DbFunctionsContext';
 export default function UpdateProfileForm() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const { signup } = useAuth(); //auth context
+  const { currentUser, updateEmailCtx, updatePasswordCtx } = useAuth(); //auth context
 
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
@@ -25,50 +25,50 @@ export default function UpdateProfileForm() {
   const passwordRef = useRef();
   const emailRef = useRef();
 
-  async function handleSubmit(e) {
-    console.log('handle');
-
+  function handleSubmit(e) {
     e.preventDefault();
 
-    try {
-      setError('');
-      setLoading(true);
-      await signup(emailRef.current.value, passwordRef.current.value);
-      navigate('/dashboard', { replace: true });
-    } catch {
-      setError('Failed to create an account');
+    const promises = [];
+    setLoading(true);
+    setError('');
+
+    if (emailRef.current.value !== currentUser.email) {
+      promises.push(updateEmailCtx(emailRef.current.value));
     }
-    setLoading(false);
+    if (passwordRef.current.value) {
+      promises.push(updatePasswordCtx(passwordRef.current.value));
+    }
+    Promise.all(promises)
+      .then(() => {
+        navigate('/');
+      })
+      .catch(() => setError('Failed to update account.'))
+      .finally(() => {
+        setLoading(false);
+      });
   }
 
   return (
     <form onSubmit={handleSubmit}>
       <Stack spacing={3}>
-        <TextField name="email" label="Email address" inputRef={emailRef} />
+        <TextField
+          name="email"
+          label="Email address"
+          inputRef={emailRef}
+          defaultValue={currentUser.email}
+        />
 
         <TextField
           name="password"
           label="Password"
           inputRef={passwordRef}
           type={showPassword ? 'text' : 'password'}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton
-                  onClick={() => setShowPassword(!showPassword)}
-                  edge="end">
-                  {/* <Iconify
-                    icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'}
-                  /> */}
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
+          helperText="Leave blank to keep the same password"
         />
       </Stack>
 
       <Typography variant="subtitle2" sx={{ my: 2, marginTop: 3, paddingX: 1 }}>
-        already have an account? <Link to="/login"> Log in</Link>
+        <Link to="/dashboard">Cancel</Link>
       </Typography>
 
       {error && (
@@ -86,7 +86,7 @@ export default function UpdateProfileForm() {
         disabled={loading}
         // onClick={handleClick}
       >
-        Continue
+        Update
       </LoadingButton>
     </form>
   );

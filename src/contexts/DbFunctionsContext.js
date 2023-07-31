@@ -12,6 +12,8 @@ import {
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
+  updateEmail,
+  updatePassword,
 } from 'firebase/auth';
 //------------------------------------------------
 
@@ -55,6 +57,12 @@ export function DbFunctionsProvider({ children }) {
   function resetPassword(email) {
     return sendPasswordResetEmail(auth, email);
   }
+  function updateEmailCtx(email) {
+    return updateEmail(auth.currentUser, email);
+  }
+  function updatePasswordCtx(password) {
+    return updatePassword(currentUser, password);
+  }
 
   //sets user to state when auth state changes (when a user logs in or logs out)
   useEffect(() => {
@@ -71,6 +79,8 @@ export function DbFunctionsProvider({ children }) {
     login,
     logout,
     resetPassword,
+    updateEmailCtx,
+    updatePasswordCtx,
   };
   //------------------------------
   function addLeadToDB(lead) {

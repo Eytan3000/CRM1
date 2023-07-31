@@ -23,7 +23,7 @@ export default function Dashboard() {
   return (
     <>
       <h1>Dashboard</h1>
-      <Link>Update Profile</Link>
+      <Link to="/update-profile">Update Profile</Link>
       <br />
       <Button onClick={handleLogout}>Log Out</Button>
       {error && (
