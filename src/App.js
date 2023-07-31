@@ -8,13 +8,14 @@ import LeadsRender from './pages/LeadsRender';
 import { DbFunctionsProvider } from './contexts/DbFunctionsContext';
 import ErrorPage from './pages/ErrorPage';
 
-import SignUp from './pages/SignUp';
-import Login from './pages/Login';
 import HomePage from './pages/HomePage';
 import PrivateRoute from './components/auth/PrivateRoute';
 import Dashboard from './pages/Dashboard';
-import ForgotPassword from './pages/ForgotPassword';
-import UpdateProfile from './pages/UpdateProfile';
+import ProfileLayout from './components/ProfileLayout';
+import LoginForm from './components/auth/LoginForm';
+import SignUnForm from './components/auth/SignUnForm';
+import ForgotPassForm from './components/auth/ForgotPassForm';
+import UpdateProfileForm from './components/auth/UpdateProfileForm';
 
 //-------------------------------------------------
 
@@ -40,7 +41,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: '/',
-      // element: <HomePage />,
+      element: <ProfileLayout />,
       // errorElement: <ErrorPage />,
       children: [
         {
@@ -49,11 +50,11 @@ function App() {
         },
         {
           path: 'signup',
-          element: <SignUp />,
+          element: <SignUnForm />,
         },
         {
           path: 'login',
-          element: <Login />,
+          element: <LoginForm />,
         },
         {
           path: 'dashboard',
@@ -65,13 +66,13 @@ function App() {
         },
         {
           path: 'Forgot-password',
-          element: <ForgotPassword />,
+          element: <ForgotPassForm />,
         },
         {
           path: 'update-profile',
           element: (
             <PrivateRoute>
-              <UpdateProfile />
+              <UpdateProfileForm />
             </PrivateRoute>
           ),
         },

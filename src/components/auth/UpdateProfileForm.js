@@ -49,45 +49,53 @@ export default function UpdateProfileForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Stack spacing={3}>
-        <TextField
-          name="email"
-          label="Email address"
-          inputRef={emailRef}
-          defaultValue={currentUser.email}
-        />
-
-        <TextField
-          name="password"
-          label="Password"
-          inputRef={passwordRef}
-          type={showPassword ? 'text' : 'password'}
-          helperText="Leave blank to keep the same password"
-        />
-      </Stack>
-
-      <Typography variant="subtitle2" sx={{ my: 2, marginTop: 3, paddingX: 1 }}>
-        <Link to="/dashboard">Cancel</Link>
+    <>
+      <Typography variant="h4" gutterBottom>
+        Update Profile
       </Typography>
 
-      {error && (
-        <Alert severity="error" style={{ marginBottom: '10px' }}>
-          {error}
-        </Alert>
-      )}
+      <form onSubmit={handleSubmit}>
+        <Stack spacing={3}>
+          <TextField
+            name="email"
+            label="Email address"
+            inputRef={emailRef}
+            defaultValue={currentUser.email}
+          />
 
-      <LoadingButton
-        style={{ marginTop: '0px' }}
-        fullWidth
-        size="large"
-        type="submit"
-        variant="contained"
-        disabled={loading}
-        // onClick={handleClick}
-      >
-        Update
-      </LoadingButton>
-    </form>
+          <TextField
+            name="password"
+            label="Password"
+            inputRef={passwordRef}
+            type={showPassword ? 'text' : 'password'}
+            helperText="Leave blank to keep the same password"
+          />
+        </Stack>
+
+        <Typography
+          variant="subtitle2"
+          sx={{ my: 2, marginTop: 3, paddingX: 1 }}>
+          <Link to="/dashboard">Cancel</Link>
+        </Typography>
+
+        {error && (
+          <Alert severity="error" style={{ marginBottom: '10px' }}>
+            {error}
+          </Alert>
+        )}
+
+        <LoadingButton
+          style={{ marginTop: '0px' }}
+          fullWidth
+          size="large"
+          type="submit"
+          variant="contained"
+          disabled={loading}
+          // onClick={handleClick}
+        >
+          Update
+        </LoadingButton>
+      </form>
+    </>
   );
 }

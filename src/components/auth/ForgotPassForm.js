@@ -41,40 +41,43 @@ export default function ForgotPassForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Stack spacing={3}>
-        <TextField name="email" label="Email address" inputRef={emailRef} />
-      </Stack>
-
-      <Stack direction="flex" justifyContent="space-between" paddingX={1}>
-        <Typography
-          variant="subtitle2"
-          sx={{ my: 2, marginTop: 3, paddingX: 1 }}>
-          <Link to="/login"> Login</Link>
-        </Typography>
-        <Typography
-          variant="subtitle2"
-          sx={{ my: 2, marginTop: 3, paddingX: 1 }}>
-          <Link to="/signup"> Sign up</Link>
-        </Typography>
-      </Stack>
-      {error && (
-        <Alert severity="error" style={{ marginBottom: '10px' }}>
-          {error}
-        </Alert>
-      )}
-      {message && <Alert severity="info">{message}</Alert>}
-      <LoadingButton
-        style={{ marginTop: '10px' }}
-        fullWidth
-        size="large"
-        type="submit"
-        variant="contained"
-        disabled={loading}
-        // onClick={handleClick}
-      >
+    <>
+      <Typography variant="h4" gutterBottom>
         Reset Password
-      </LoadingButton>
-    </form>
+      </Typography>
+      <form onSubmit={handleSubmit}>
+        <Stack spacing={3}>
+          <TextField name="email" label="Email address" inputRef={emailRef} />
+        </Stack>
+
+        <Stack direction="flex" justifyContent="space-between" paddingX={1}>
+          <Typography
+            variant="subtitle2"
+            sx={{ my: 2, marginTop: 3, paddingX: 1 }}>
+            <Link to="/login"> Login</Link>
+          </Typography>
+          <Typography
+            variant="subtitle2"
+            sx={{ my: 2, marginTop: 3, paddingX: 1 }}>
+            <Link to="/signup"> Sign up</Link>
+          </Typography>
+        </Stack>
+        {error && (
+          <Alert severity="error" style={{ marginBottom: '10px' }}>
+            {error}
+          </Alert>
+        )}
+        {message && <Alert severity="info">{message}</Alert>}
+        <LoadingButton
+          style={{ marginTop: '10px' }}
+          fullWidth
+          size="large"
+          type="submit"
+          variant="contained"
+          disabled={loading}>
+          Reset Password
+        </LoadingButton>
+      </form>
+    </>
   );
 }

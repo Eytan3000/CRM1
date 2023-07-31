@@ -4,6 +4,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 // import Iconify from '../../../components/iconify';
 import {
   Alert,
+  Divider,
   IconButton,
   InputAdornment,
   Stack,
@@ -11,6 +12,7 @@ import {
   Typography,
 } from '@mui/material';
 import { useAuth } from '../../contexts/DbFunctionsContext';
+import { Container } from '@material-ui/core';
 
 // -------------------------------------------------------
 
@@ -42,60 +44,70 @@ export default function LoginForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Stack spacing={3}>
-        <TextField name="email" label="Email address" inputRef={emailRef} />
+    <>
+      <Typography variant="h4" gutterBottom>
+        Log In
+      </Typography>
+      <form onSubmit={handleSubmit}>
+        <Stack spacing={3}>
+          <TextField name="email" label="Email address" inputRef={emailRef} />
 
-        <TextField
-          name="password"
-          label="Password"
-          inputRef={passwordRef}
-          type={showPassword ? 'text' : 'password'}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton
-                  onClick={() => setShowPassword(!showPassword)}
-                  edge="end">
-                  {/* <Iconify
+          <TextField
+            name="password"
+            label="Password"
+            inputRef={passwordRef}
+            type={showPassword ? 'text' : 'password'}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    onClick={() => setShowPassword(!showPassword)}
+                    edge="end">
+                    {/* <Iconify
                     icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'}
                   /> */}
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-        />
-      </Stack>
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
+        </Stack>
 
-      <Stack direction="flex" justifyContent="space-between">
-        <Typography
-          variant="subtitle2"
-          sx={{ my: 2, marginTop: 3, paddingX: 1 }}>
-          Don't have an account? <Link to="/signup"> Sign up</Link>
-        </Typography>
-        <Typography
-          variant="subtitle2"
-          sx={{ my: 2, marginTop: 3, paddingX: 1 }}>
-          <Link to="/forgot-password"> Forgot password?</Link>
-        </Typography>
-      </Stack>
-      {error && (
-        <Alert severity="error" style={{ marginBottom: '10px' }}>
-          {error}
-        </Alert>
-      )}
+        <Stack direction="flex" justifyContent="space-between">
+          <Typography
+            variant="subtitle2"
+            sx={{ my: 2, marginTop: 3, paddingX: 1 }}>
+            Don't have an account? <Link to="/signup"> Sign up</Link>
+          </Typography>
+          <Typography
+            variant="subtitle2"
+            sx={{ my: 2, marginTop: 3, paddingX: 1 }}>
+            <Link to="/forgot-password"> Forgot password?</Link>
+          </Typography>
+        </Stack>
+        {error && (
+          <Alert severity="error" style={{ marginBottom: '10px' }}>
+            {error}
+          </Alert>
+        )}
 
-      <LoadingButton
-        style={{ marginTop: '0px' }}
-        fullWidth
-        size="large"
-        type="submit"
-        variant="contained"
-        disabled={loading}
-        // onClick={handleClick}
-      >
-        Log In
-      </LoadingButton>
-    </form>
+        <LoadingButton
+          style={{ marginTop: '0px' }}
+          fullWidth
+          size="large"
+          type="submit"
+          variant="contained"
+          disabled={loading}
+          // onClick={handleClick}
+        >
+          Log In
+        </LoadingButton>
+      </form>
+      <Divider sx={{ my: 3 }}>
+        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+          OR
+        </Typography>
+      </Divider>
+    </>
   );
 }

@@ -9,6 +9,7 @@ import {
   Stack,
   TextField,
   Typography,
+  Divider,
 } from '@mui/material';
 import { useAuth } from '../../contexts/DbFunctionsContext';
 import { addNewUser } from '../../helpers/dbFunctions';
@@ -46,52 +47,64 @@ export default function SignUnForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Stack spacing={3}>
-        <TextField name="email" label="Email address" inputRef={emailRef} />
+    <>
+      <Typography variant="h4" gutterBottom>
+        Sign up
+      </Typography>
+      <form onSubmit={handleSubmit}>
+        <Stack spacing={3}>
+          <TextField name="email" label="Email address" inputRef={emailRef} />
 
-        <TextField
-          name="password"
-          label="Password"
-          inputRef={passwordRef}
-          type={showPassword ? 'text' : 'password'}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton
-                  onClick={() => setShowPassword(!showPassword)}
-                  edge="end">
-                  {/* <Iconify
+          <TextField
+            name="password"
+            label="Password"
+            inputRef={passwordRef}
+            type={showPassword ? 'text' : 'password'}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    onClick={() => setShowPassword(!showPassword)}
+                    edge="end">
+                    {/* <Iconify
                     icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'}
                   /> */}
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-        />
-      </Stack>
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
+        </Stack>
 
-      <Typography variant="subtitle2" sx={{ my: 2, marginTop: 3, paddingX: 1 }}>
-        already have an account? <Link to="/login"> Log in</Link>
-      </Typography>
+        <Typography
+          variant="subtitle2"
+          sx={{ my: 2, marginTop: 3, paddingX: 1 }}>
+          already have an account? <Link to="/login"> Log in</Link>
+        </Typography>
 
-      {error && (
-        <Alert severity="error" style={{ marginBottom: '10px' }}>
-          {error}
-        </Alert>
-      )}
+        {error && (
+          <Alert severity="error" style={{ marginBottom: '10px' }}>
+            {error}
+          </Alert>
+        )}
 
-      <LoadingButton
-        style={{ marginTop: '0px' }}
-        fullWidth
-        size="large"
-        type="submit"
-        variant="contained"
-        disabled={loading}
-        // onClick={handleClick}
-      >
-        Continue
-      </LoadingButton>
-    </form>
+        <LoadingButton
+          style={{ marginTop: '0px' }}
+          fullWidth
+          size="large"
+          type="submit"
+          variant="contained"
+          disabled={loading}
+          // onClick={handleClick}
+        >
+          Sign Up
+        </LoadingButton>
+      </form>
+      <Divider sx={{ my: 3 }}>
+        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+          OR
+        </Typography>
+      </Divider>
+    </>
   );
 }

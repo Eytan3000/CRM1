@@ -25,7 +25,9 @@ export default function Dashboard() {
       <h1>Dashboard</h1>
       <Link to="/update-profile">Update Profile</Link>
       <br />
-      <Button onClick={handleLogout}>Log Out</Button>
+      <Button variant="outlined" onClick={handleLogout}>
+        Log Out
+      </Button>
       {error && (
         <Alert variant="outlined" severity="error">
           {error}
