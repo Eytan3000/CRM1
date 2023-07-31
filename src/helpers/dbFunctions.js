@@ -3,7 +3,7 @@ import { formatLeadData } from './helpers';
 const databaseURL =
   'https://mycrm-a7912-default-rtdb.europe-west1.firebasedatabase.app/';
 
-const userId = 'Eytan_krief_ID';
+const userId = '';
 
 export function insertNewLead(lead) {
   fetch(`${databaseURL}/users/${userId}/leads.json`, {
@@ -102,4 +102,28 @@ export function loadLead(leadId) {
     .catch((error) => {
       console.error('Error adding data:', error);
     });
+}
+//-------------------
+export async function addNewUser(uid, email) {
+  const newUserDetails = {
+    email,
+    stages: {},
+  };
+
+  await fetch(`${databaseURL}/users/${uid}.json`, {
+    method: 'PUT',
+    body: JSON.stringify(newUserDetails),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log('User added successfully. Auto-generated user ID:', uid);
+    })
+    .catch((error) => {
+      console.error('Error adding data:', error);
+    });
+
+  await updateStageToDb('leadIn');
+  await updateStageToDb('noAnswer');
+  await updateStageToDb('callBack');
+  updateStageToDb('emailSent');
 }

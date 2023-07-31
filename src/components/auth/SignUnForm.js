@@ -11,13 +11,14 @@ import {
   Typography,
 } from '@mui/material';
 import { useAuth } from '../../contexts/DbFunctionsContext';
+import { addNewUser } from '../../helpers/dbFunctions';
 
 // -------------------------------------------------------
 
 export default function SignUnForm() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const { signup } = useAuth(); //auth context
+  const { currentUser, signup } = useAuth(); //auth context
 
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
@@ -31,7 +32,11 @@ export default function SignUnForm() {
     try {
       setError('');
       setLoading(true);
-      await signup(emailRef.current.value, passwordRef.current.value);
+      const UserCredentialImpl = await signup(
+        emailRef.current.value,
+        passwordRef.current.value
+      );
+      addNewUser(UserCredentialImpl.user.uid, emailRef.current.value);
 
       navigate('/dashboard', { replace: true });
     } catch {
