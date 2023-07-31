@@ -28,6 +28,7 @@ import AlignHorizontalLeftIcon from '@mui/icons-material/AlignHorizontalLeft';
 import { dndDataContext } from '../contexts/DbFunctionsContext';
 import _ from 'lodash';
 import { countNestedObjects } from '../helpers/helpers';
+import { fetchLeadByStage } from '../helpers/dbFunctions';
 
 //----------------------------------------------------------------
 const drawerWidth = 240;
@@ -103,7 +104,7 @@ export default function Layout({ children }) {
   };
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
-      setLayoutName(event.target.value); //Need to change this to database query
+      // setLayoutName(event.target.value); //Need to change this to database query
       setIsClicked(false);
     }
     if (event.key === 'Enter') setIsClicked(false);
@@ -133,11 +134,21 @@ export default function Layout({ children }) {
     return leadsInStage;
   }
 
+  async function fetchLeadsFromBackend(userId, stage) {
+    try {
+      const leadsArr = await fetchLeadByStage(userId, stage);
+      return leadsArr;
+    } catch (error) {
+      console.error('Error fetching leads:', error);
+      return [];
+    }
+  }
+
   const menuItems = [
     {
       text: layoutName,
       icon: <AlignVerticalTopOutlinedIcon color="primary" />,
-      path: '/crm/',
+      path: '/crm',
     },
   ];
 
@@ -176,7 +187,7 @@ export default function Layout({ children }) {
           <Typography
             className={classes.title}
             variant="h5"
-            onClick={() => navigate('/crm/')}
+            onClick={() => navigate('/crm')}
             style={{ cursor: 'pointer' }}>
             Logo
           </Typography>
@@ -185,7 +196,7 @@ export default function Layout({ children }) {
 
         <List>
           {/* If url is '/crm/', show boards */}
-          {location.pathname === '/crm/' && (
+          {location.pathname === '/crm' && (
             <>
               {menuItems.map((item) => (
                 <ListItemButton key={item.text}>
@@ -234,28 +245,33 @@ export default function Layout({ children }) {
                     </ListItemButton>
                   ))
                 : // if dndData is empty, you need to fetch leads in stage from db
-                  // async () => {
-                  //   await leadsInStageFetchFromDb();
-                  //   return fetchedLeads.map((item) => (
-                  //     <ListItemButton key={item.id}>
-                  //       <ListItem
-                  //         key={item.id}
-                  //         onClick={() => handleLeadClick(item.id)}
-                  //         ref={
-                  //           params.leadId === item.id ? chosenElementRef : null
-                  //         }
-                  //         className={
-                  //           params.leadId === item.id ? classes.active : null
-                  //         }>
-                  //         <ListItemIcon>
-                  //           <AlignHorizontalLeftIcon color="primary" />
-                  //         </ListItemIcon>
-                  //         <ListItemText primary={item.title} />
-                  //       </ListItem>
-                  //     </ListItemButton>
-                  //   ));
-                  // }
-                  null}
+                  async () => {
+                    const leadsArr = await fetchLeadsFromBackend(
+                      'Eytan_krief_ID',
+                      'leadIn'
+                    );
+                    return leadsArr.map(
+                      (item) =>
+                        // <ListItemButton key={item.id}>
+                        //   <ListItem
+                        //     key={item.id}
+                        //     onClick={() => handleLeadClick(item.id)}
+                        //     ref={
+                        //       params.leadId === item.id ? chosenElementRef : null
+                        //     }
+                        //     className={
+                        //       params.leadId === item.id ? classes.active : null
+                        //     }>
+                        //     <ListItemIcon>
+                        //       <AlignHorizontalLeftIcon color="primary" />
+                        //     </ListItemIcon>
+                        //     <ListItemText primary={item.title} />
+                        //   </ListItem>
+                        // </ListItemButton>
+
+                        null
+                    );
+                  }}
             </>
           )}
         </List>

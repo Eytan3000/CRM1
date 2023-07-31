@@ -23,7 +23,6 @@ import { updateObjectDB } from '../helpers/dbFunctions';
 // addUser();
 //----------------------------------------------------------
 function LeadsRender() {
-  console.log('LeadsRender');
   const { currentUser } = useAuth();
   const loadCardsContentCtx = useContext(loadCards);
   const loadStagesCtx = useContext(loadStagesContext);

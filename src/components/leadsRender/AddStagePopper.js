@@ -10,7 +10,7 @@ import {
 
 import EditIcon from '@mui/icons-material/Edit';
 import { updateStageToDb } from '../../helpers/dbFunctions';
-import { toCamelCase } from '../../helpers/helpers';
+import { hasNoLetters, toCamelCase } from '../../helpers/helpers';
 import { useAuth } from '../../contexts/DbFunctionsContext';
 
 const useStyles = makeStyles((theme) => {
@@ -39,6 +39,7 @@ function AddStagePopper({ stages, setStages }) {
   const [inputValue, setInputValue] = useState('');
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [isError, setIsError] = React.useState(false);
+  const [errorMessage, setErrorMessage] = React.useState('');
 
   const buttonRef = useRef(null);
 
@@ -50,7 +51,6 @@ function AddStagePopper({ stages, setStages }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  console.log(currentUser.uid);
 
   const updateStage = (newStage) => {
     const camelCaseNewStage = toCamelCase(newStage);
@@ -78,8 +78,20 @@ function AddStagePopper({ stages, setStages }) {
 
       if (stageExists) {
         setIsError(true);
+        setErrorMessage('Stage already exists');
         return;
       }
+      if (hasNoLetters(newStage)) {
+        setIsError(true);
+        setErrorMessage('Must contain letters');
+        return;
+      }
+      if (newStage.length > 10) {
+        setIsError(true);
+        setErrorMessage('Must contain less that 10 characters');
+        return;
+      }
+
       setIsError(false);
       //
 
@@ -135,7 +147,7 @@ function AddStagePopper({ stages, setStages }) {
           error={isError}
           key={id}
           placeholder="Stage Name"
-          helperText={isError && 'Stage already exists'}
+          helperText={isError && errorMessage}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           onChange={handleChacge}

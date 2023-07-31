@@ -34,7 +34,6 @@ export default function LoginForm() {
       setError('');
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
-      console.log('logged');
 
       navigate('/crm', { replace: true });
     } catch {

@@ -1,5 +1,5 @@
 import { formatLeadData } from './helpers';
-
+import _ from 'lodash';
 const databaseURL =
   'https://mycrm-a7912-default-rtdb.europe-west1.firebasedatabase.app/';
 
@@ -78,7 +78,7 @@ export function addNote(uid, leadId, note) {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log('note added successfully. Auto-generated ID:', data.name);
+      console.log('note added successfully.'); //Auto-generated ID:', data.name
     })
     .catch((error) => {
       console.error('Error adding data:', error);
@@ -102,7 +102,6 @@ export function loadLead(uid, leadId) {
       console.error('Error adding data:', error);
     });
 }
-//-------------------
 export async function addNewUser(uid, email) {
   const newUserDetails = {
     email,
@@ -114,7 +113,7 @@ export async function addNewUser(uid, email) {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log('User added successfully. Auto-generated user ID:', uid);
+      console.log('User added successfully.'); //Auto-generated user ID:', uid
     })
     .catch((error) => {
       console.error('Error adding data:', error);
@@ -125,3 +124,14 @@ export async function addNewUser(uid, email) {
   await updateStageToDb(uid, 'callBack');
   updateStageToDb(uid, 'emailSent');
 }
+
+//returns an array of leads in stage
+export async function fetchLeadByStage(uid, stage) {
+  const data = await fetch(`${databaseURL}/users/${uid}/leads.json`);
+  const allLeads = await data.json();
+
+  const leadsInStage = _.filter(allLeads, (data, key) => data.stage === stage);
+  return leadsInStage;
+  // console.log(leadsInStage);
+}
+// fetchLeadByStage(userId, 'leadIn');

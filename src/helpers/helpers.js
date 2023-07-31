@@ -98,3 +98,11 @@ export function countNestedObjects(obj) {
 
   return count;
 }
+
+export function hasNoLetters(str) {
+  // Regular expression to check for any letter characters
+  const letterRegex = /[A-Za-z]/;
+
+  // Use test() method to check if the string contains any letter characters
+  return !letterRegex.test(str);
+}

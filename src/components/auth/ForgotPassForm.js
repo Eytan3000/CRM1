@@ -32,7 +32,6 @@ export default function ForgotPassForm() {
       setError('');
       setLoading(true);
       await resetPassword(emailRef.current.value);
-      console.log('logged');
       setMessage('Check your inbox for further instructions');
     } catch {
       setError('Failed to reset password');

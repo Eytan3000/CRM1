@@ -42,7 +42,6 @@ export function DbFunctionsProvider({ children }) {
 
   // ---Authentication sign in-----
   const [currentUser, setCurrentUser] = useState();
-  console.log(currentUser);
   // signin user
   function signup(email, password) {
     return createUserWithEmailAndPassword(auth, email, password);
