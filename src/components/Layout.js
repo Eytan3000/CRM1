@@ -22,14 +22,20 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { layoutNameContext } from '../contexts/DbFunctionsContext';
-import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { layoutNameContext, useAuth } from '../contexts/DbFunctionsContext';
+import {
+  Link,
+  Outlet,
+  useLocation,
+  useNavigate,
+  useParams,
+} from 'react-router-dom';
 import AlignHorizontalLeftIcon from '@mui/icons-material/AlignHorizontalLeft';
 import { dndDataContext } from '../contexts/DbFunctionsContext';
 import _ from 'lodash';
 import { countNestedObjects } from '../helpers/helpers';
-import { fetchLeadByStage } from '../helpers/dbFunctions';
-
+import { fetchLeadByStage, loadLead } from '../helpers/dbFunctions';
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 //----------------------------------------------------------------
 const drawerWidth = 240;
 
@@ -75,14 +81,16 @@ const useStyles = makeStyles((theme) => {
   };
 });
 //----------------------------------------------------------------
-export default function Layout({ children }) {
+export default function Layout() {
   const { layoutName, setLayoutName } = useContext(layoutNameContext);
   const { dndData, setDndData } = useContext(dndDataContext);
-
+  const { currentUser } = useAuth();
   const classes = useStyles();
   const navigate = useNavigate();
   const location = useLocation();
   const params = useParams();
+  const [leadArr, setLeadsArr] = useState('');
+  const [currentStageState, setCurrentStageState] = useState('');
 
   const chosenElementRef = useRef(null);
 
@@ -96,6 +104,34 @@ export default function Layout({ children }) {
       });
     }
   }, [location.pathname]);
+
+  // fetch state of current lead
+  useEffect(() => {
+    async function setCurrentStageFunc() {
+      try {
+        const currentLead = await loadLead(currentUser.uid, params.leadId);
+        setCurrentStageState(currentLead.stage);
+      } catch (error) {
+        console.error('Error fetching leads:', error);
+        return [];
+      }
+    }
+    setCurrentStageFunc();
+  }, []);
+
+  // fetch other leads in current state
+  useEffect(() => {
+    async function fetchLeadsFromBackend(userId, stage) {
+      try {
+        const leadsArr = await fetchLeadByStage(userId, stage);
+        setLeadsArr(leadsArr);
+      } catch (error) {
+        console.error('Error fetching leads:', error);
+        return [];
+      }
+    }
+    fetchLeadsFromBackend(currentUser.uid, currentStageState);
+  }, [currentStageState]);
 
   let currentStage = '';
 
@@ -132,16 +168,6 @@ export default function Layout({ children }) {
       }
     });
     return leadsInStage;
-  }
-
-  async function fetchLeadsFromBackend(userId, stage) {
-    try {
-      const leadsArr = await fetchLeadByStage(userId, stage);
-      return leadsArr;
-    } catch (error) {
-      console.error('Error fetching leads:', error);
-      return [];
-    }
   }
 
   const menuItems = [
@@ -218,13 +244,14 @@ export default function Layout({ children }) {
             <>
               <Typography
                 variant="body2"
-                // color="primary"
-                color="secondary"
+                color="primary"
+                // color="secondary"
                 // style={{ textAlign: 'center' }}
-                style={{ paddingLeft: 35 }}>
-                {findStage()}
+                style={{ paddingLeft: 20 }}>
+                {/* {findStage()} */}
+                <Link to="/crm">Back</Link>
               </Typography>
-              {/* check if dndData exists */}
+              {/* check if dndData exists - This loads faster */}
               {countNestedObjects(dndData) > 0
                 ? leadsInStage().map((item) => (
                     <ListItemButton key={item.id}>
@@ -244,34 +271,26 @@ export default function Layout({ children }) {
                       </ListItem>
                     </ListItemButton>
                   ))
-                : // if dndData is empty, you need to fetch leads in stage from db
-                  async () => {
-                    const leadsArr = await fetchLeadsFromBackend(
-                      'Eytan_krief_ID',
-                      'leadIn'
-                    );
-                    return leadsArr.map(
-                      (item) =>
-                        // <ListItemButton key={item.id}>
-                        //   <ListItem
-                        //     key={item.id}
-                        //     onClick={() => handleLeadClick(item.id)}
-                        //     ref={
-                        //       params.leadId === item.id ? chosenElementRef : null
-                        //     }
-                        //     className={
-                        //       params.leadId === item.id ? classes.active : null
-                        //     }>
-                        //     <ListItemIcon>
-                        //       <AlignHorizontalLeftIcon color="primary" />
-                        //     </ListItemIcon>
-                        //     <ListItemText primary={item.title} />
-                        //   </ListItem>
-                        // </ListItemButton>
-
-                        null
-                    );
-                  }}
+                : // if dndData is empty, fetch leads in stage from db (2 last useEffect hooks)
+                  leadArr &&
+                  leadArr.map((item) => (
+                    <ListItemButton key={item.id}>
+                      <ListItem
+                        key={item.id}
+                        onClick={() => handleLeadClick(item.id)}
+                        ref={
+                          params.leadId === item.id ? chosenElementRef : null
+                        }
+                        className={
+                          params.leadId === item.id ? classes.active : null
+                        }>
+                        <ListItemIcon>
+                          <AlignHorizontalLeftIcon color="primary" />
+                        </ListItemIcon>
+                        <ListItemText primary={item.title} />
+                      </ListItem>
+                    </ListItemButton>
+                  ))}
             </>
           )}
         </List>
