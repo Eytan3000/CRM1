@@ -9,7 +9,9 @@ import { auth } from '../firebase';
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
+  signOut,
 } from 'firebase/auth';
 //------------------------------------------------
 
@@ -34,22 +36,31 @@ export function DbFunctionsProvider({ children }) {
   const [layoutName, setLayoutName] = useState('Main Pipeline');
   const [stageState, setStageState] = useState([]);
   const [dndData, setDndData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   // ---Authentication sign in-----
   const [currentUser, setCurrentUser] = useState();
-
+  console.log(currentUser);
   // signin user
   function signup(email, password) {
     return createUserWithEmailAndPassword(auth, email, password);
   }
+  // login user
   function login(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
+  }
+  function logout(email, password) {
+    return signOut(auth, email, password);
+  }
+  function resetPassword(email) {
+    return sendPasswordResetEmail(auth, email);
   }
 
   //sets user to state when auth state changes (when a user logs in or logs out)
   useEffect(() => {
     const unsubscribed = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
+      setLoading(false);
     });
     return unsubscribed;
   }, []);
@@ -58,6 +69,8 @@ export function DbFunctionsProvider({ children }) {
     currentUser,
     signup,
     login,
+    logout,
+    resetPassword,
   };
   //------------------------------
   function addLeadToDB(lead) {
@@ -118,7 +131,7 @@ export function DbFunctionsProvider({ children }) {
                 <stageStateContext.Provider value={{ stageState }}>
                   <dndDataContext.Provider value={{ dndData, setDndData }}>
                     <AuthContext.Provider value={value}>
-                      {children}
+                      {!loading && children}
                     </AuthContext.Provider>
                     ;
                   </dndDataContext.Provider>

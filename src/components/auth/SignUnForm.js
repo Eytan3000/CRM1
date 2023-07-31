@@ -68,7 +68,7 @@ export default function SignUnForm() {
       </Stack>
 
       <Typography variant="subtitle2" sx={{ my: 2, marginTop: 3, paddingX: 1 }}>
-        already have an account? <Link to="/signup"> Log in</Link>
+        already have an account? <Link to="/login"> Log in</Link>
       </Typography>
 
       {error && (

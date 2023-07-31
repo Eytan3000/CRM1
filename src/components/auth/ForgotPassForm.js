@@ -14,15 +14,14 @@ import { useAuth } from '../../contexts/DbFunctionsContext';
 
 // -------------------------------------------------------
 
-export default function LoginForm() {
+export default function ForgotPassForm() {
   const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);
-  const { login } = useAuth(); //auth context
+  const { resetPassword } = useAuth(); //auth context
 
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState('');
 
-  const passwordRef = useRef();
   const emailRef = useRef();
 
   async function handleSubmit(e) {
@@ -31,14 +30,14 @@ export default function LoginForm() {
     e.preventDefault();
 
     try {
+      setMessage('');
       setError('');
       setLoading(true);
-      await login(emailRef.current.value, passwordRef.current.value);
+      await resetPassword(emailRef.current.value);
       console.log('logged');
-
-      navigate('/crm', { replace: true });
+      setMessage('Check your inbox for further instructions');
     } catch {
-      setError('Failed to sign in');
+      setError('Failed to reset password');
     }
     setLoading(false);
   }
@@ -47,38 +46,18 @@ export default function LoginForm() {
     <form onSubmit={handleSubmit}>
       <Stack spacing={3}>
         <TextField name="email" label="Email address" inputRef={emailRef} />
-
-        <TextField
-          name="password"
-          label="Password"
-          inputRef={passwordRef}
-          type={showPassword ? 'text' : 'password'}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton
-                  onClick={() => setShowPassword(!showPassword)}
-                  edge="end">
-                  {/* <Iconify
-                    icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'}
-                  /> */}
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-        />
       </Stack>
 
-      <Stack direction="flex" justifyContent="space-between">
+      <Stack direction="flex" justifyContent="space-between" paddingX={1}>
         <Typography
           variant="subtitle2"
           sx={{ my: 2, marginTop: 3, paddingX: 1 }}>
-          Don't have an account? <Link to="/signup"> Sign up</Link>
+          <Link to="/login"> Login</Link>
         </Typography>
         <Typography
           variant="subtitle2"
           sx={{ my: 2, marginTop: 3, paddingX: 1 }}>
-          <Link to="/ForgotPassword"> Forgot password?</Link>
+          <Link to="/signup"> Sign up</Link>
         </Typography>
       </Stack>
       {error && (
@@ -86,9 +65,9 @@ export default function LoginForm() {
           {error}
         </Alert>
       )}
-
+      {message && <Alert severity="info">{message}</Alert>}
       <LoadingButton
-        style={{ marginTop: '0px' }}
+        style={{ marginTop: '10px' }}
         fullWidth
         size="large"
         type="submit"
@@ -96,7 +75,7 @@ export default function LoginForm() {
         disabled={loading}
         // onClick={handleClick}
       >
-        Log In
+        Reset Password
       </LoadingButton>
     </form>
   );

@@ -13,6 +13,8 @@ import Login from './pages/Login';
 import HomePage from './pages/HomePage';
 import PrivateRoute from './components/auth/PrivateRoute';
 import Dashboard from './pages/Dashboard';
+import ForgotPassword from './pages/ForgotPassword';
+import UpdateProfile from './pages/UpdateProfile';
 
 //-------------------------------------------------
 
@@ -58,6 +60,18 @@ function App() {
           element: (
             <PrivateRoute>
               <Dashboard />
+            </PrivateRoute>
+          ),
+        },
+        {
+          path: 'Forgot-password',
+          element: <ForgotPassword />,
+        },
+        {
+          path: 'update-profile',
+          element: (
+            <PrivateRoute>
+              <UpdateProfile />
             </PrivateRoute>
           ),
         },

@@ -14,10 +14,10 @@ import { useAuth } from '../../contexts/DbFunctionsContext';
 
 // -------------------------------------------------------
 
-export default function LoginForm() {
+export default function UpdateProfileForm() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const { login } = useAuth(); //auth context
+  const { signup } = useAuth(); //auth context
 
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
@@ -33,12 +33,10 @@ export default function LoginForm() {
     try {
       setError('');
       setLoading(true);
-      await login(emailRef.current.value, passwordRef.current.value);
-      console.log('logged');
-
-      navigate('/crm', { replace: true });
+      await signup(emailRef.current.value, passwordRef.current.value);
+      navigate('/dashboard', { replace: true });
     } catch {
-      setError('Failed to sign in');
+      setError('Failed to create an account');
     }
     setLoading(false);
   }
@@ -69,18 +67,10 @@ export default function LoginForm() {
         />
       </Stack>
 
-      <Stack direction="flex" justifyContent="space-between">
-        <Typography
-          variant="subtitle2"
-          sx={{ my: 2, marginTop: 3, paddingX: 1 }}>
-          Don't have an account? <Link to="/signup"> Sign up</Link>
-        </Typography>
-        <Typography
-          variant="subtitle2"
-          sx={{ my: 2, marginTop: 3, paddingX: 1 }}>
-          <Link to="/ForgotPassword"> Forgot password?</Link>
-        </Typography>
-      </Stack>
+      <Typography variant="subtitle2" sx={{ my: 2, marginTop: 3, paddingX: 1 }}>
+        already have an account? <Link to="/login"> Log in</Link>
+      </Typography>
+
       {error && (
         <Alert severity="error" style={{ marginBottom: '10px' }}>
           {error}
@@ -96,7 +86,7 @@ export default function LoginForm() {
         disabled={loading}
         // onClick={handleClick}
       >
-        Log In
+        Continue
       </LoadingButton>
     </form>
   );

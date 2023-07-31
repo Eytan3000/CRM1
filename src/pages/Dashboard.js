@@ -2,6 +2,7 @@ import { Button } from '@material-ui/core';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/DbFunctionsContext';
+import { Alert } from '@mui/material';
 
 export default function Dashboard() {
   const [error, setError] = useState('');
@@ -13,7 +14,7 @@ export default function Dashboard() {
 
     try {
       await logout();
-      //   navigate('/login', { replace: true });
+      navigate('/login', { replace: true });
     } catch {
       setError('Failed to logout');
     }
@@ -25,6 +26,13 @@ export default function Dashboard() {
       <Link>Update Profile</Link>
       <br />
       <Button onClick={handleLogout}>Log Out</Button>
+      {error && (
+        <Alert variant="outlined" severity="error">
+          {error}
+        </Alert>
+      )}
+      <br />
+      <Link to="/crm">CRM</Link>
     </>
   );
 }

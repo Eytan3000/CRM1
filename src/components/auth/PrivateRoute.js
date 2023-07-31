@@ -5,6 +5,7 @@ import { useAuth } from '../../contexts/DbFunctionsContext';
 
 export default function PrivateRoute({ children }) {
   const { currentUser } = useAuth();
+  console.log(currentUser);
 
   return currentUser ? children : <Navigate to="/login" />;
 }
