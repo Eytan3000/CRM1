@@ -84,12 +84,12 @@ export function DbFunctionsProvider({ children }) {
   };
   //------------------------------
   function addLeadToDB(lead) {
-    insertNewLead(lead);
+    insertNewLead(currentUser.uid, lead);
   }
 
   async function loadCardsContent() {
     try {
-      const data = await loadAllLeadsCards();
+      const data = await loadAllLeadsCards(currentUser.uid);
       const leadsCardArr = _.map(data, (data, key) => {
         return {
           id: key,
@@ -108,7 +108,7 @@ export function DbFunctionsProvider({ children }) {
 
   async function loadStages() {
     try {
-      const data = await loadStagesFromDb();
+      const data = await loadStagesFromDb(currentUser.uid);
       const stagesArr = _.map(data, (data, key) => {
         return {
           id: key,
@@ -122,9 +122,9 @@ export function DbFunctionsProvider({ children }) {
       console.log(err);
     }
   }
-  async function loadLead(LeadId) {
+  async function loadLeadCtx(LeadId) {
     try {
-      const data = await loadAllLeadsCards();
+      const data = await loadAllLeadsCards(currentUser.uid);
       return data[LeadId];
     } catch (err) {
       console.log(err);
@@ -135,7 +135,7 @@ export function DbFunctionsProvider({ children }) {
     <addLeadToDBContext.Provider value={addLeadToDB}>
       <loadCards.Provider value={loadCardsContent}>
         <loadStagesContext.Provider value={loadStages}>
-          <loadLeadContext.Provider value={loadLead}>
+          <loadLeadContext.Provider value={loadLeadCtx}>
             <renderContext.Provider value={{ reRender, setRerender }}>
               <layoutNameContext.Provider value={{ layoutName, setLayoutName }}>
                 <stageStateContext.Provider value={{ stageState }}>

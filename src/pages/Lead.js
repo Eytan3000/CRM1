@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Container, Grid, makeStyles } from '@material-ui/core';
-import { loadLeadContext } from '../contexts/DbFunctionsContext';
+import { loadLeadContext, useAuth } from '../contexts/DbFunctionsContext';
 import { Box } from '@mui/material';
 import NotesStack from '../components/leadDetails/NotesStack';
 // import image from './2.jpg';
@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => {
 function Lead() {
   const params = useParams();
   const newId = params.leadId; //Get string from param (lead Id from url)
-
+  const { currentUser } = useAuth();
   const classes = useStyles();
   const { setLayoutName } = useContext(layoutNameContext);
   const loadLeadCtx = useContext(loadLeadContext);
@@ -64,7 +64,7 @@ function Lead() {
   useEffect(() => {
     (async () => {
       // const leadAwait = await loadLeadCtx(newId);
-      const leadAwait = await loadLead(newId);
+      const leadAwait = await loadLead(currentUser.uid, newId);
 
       setLead(leadAwait);
       setLayoutName(leadAwait.title);
@@ -72,7 +72,7 @@ function Lead() {
   }, [newId]);
 
   useEffect(() => {
-    updateObjectDB(newId, lead);
+    updateObjectDB(currentUser.uid, newId, lead);
   }, [lead]);
 
   return (

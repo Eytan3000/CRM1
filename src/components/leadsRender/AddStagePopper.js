@@ -11,6 +11,7 @@ import {
 import EditIcon from '@mui/icons-material/Edit';
 import { updateStageToDb } from '../../helpers/dbFunctions';
 import { toCamelCase } from '../../helpers/helpers';
+import { useAuth } from '../../contexts/DbFunctionsContext';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -32,7 +33,7 @@ const useStyles = makeStyles((theme) => {
 
 function AddStagePopper({ stages, setStages }) {
   const classes = useStyles();
-
+  const { currentUser } = useAuth();
   const [popupValue, setPopupValue] = React.useState('');
   const [isHovered, setIsHovered] = useState(false);
   const [inputValue, setInputValue] = useState('');
@@ -49,11 +50,12 @@ function AddStagePopper({ stages, setStages }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  console.log(currentUser.uid);
 
   const updateStage = (newStage) => {
     const camelCaseNewStage = toCamelCase(newStage);
 
-    updateStageToDb(camelCaseNewStage)
+    updateStageToDb(currentUser.uid, camelCaseNewStage)
       .then((data) => {
         setStages((prevStage) => [
           ...prevStage,

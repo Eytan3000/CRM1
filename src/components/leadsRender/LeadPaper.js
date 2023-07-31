@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import { formatPhoneNumber } from '../../helpers/helpers';
 import { IconButton, Link } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { renderContext } from '../../contexts/DbFunctionsContext';
+import { renderContext, useAuth } from '../../contexts/DbFunctionsContext';
 import { useNavigate } from 'react-router-dom';
 import VerticalMenuPop from '../auxs/VerticalMenuPop';
 import { deleteLeadFromDb } from '../../helpers/dbFunctions';
@@ -17,6 +17,7 @@ import { deleteLeadFromDb } from '../../helpers/dbFunctions';
 export default function LeadPaper({ keyVal, lead }) {
   const { setRerender } = React.useContext(renderContext);
   const navigate = useNavigate();
+  const { currentUser } = useAuth();
 
   const handleTypographyClick = (event) => {
     // Copy phone
@@ -35,7 +36,7 @@ export default function LeadPaper({ keyVal, lead }) {
 
   const handleClickPopover = async () => {
     handleCloseMenu();
-    await deleteLeadFromDb(lead.id);
+    await deleteLeadFromDb(currentUser.uid, lead.id);
     setRerender((prevRerender) => !prevRerender);
   };
 

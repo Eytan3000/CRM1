@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core';
 import { convertCamelCaseToSpaces } from '../../helpers/helpers';
 import Create from '../../pages/Create';
 import LeadPaper from './LeadPaper';
-import { renderContext } from '../../contexts/DbFunctionsContext';
+import { renderContext, useAuth } from '../../contexts/DbFunctionsContext';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import DroppableDraggable from './DroppableDraggable';
 
@@ -73,7 +73,7 @@ const useStyles = makeStyles((theme) => {
 
 function LeadRenderColumn({ stage, leads, deleteStageShow, keyVal }) {
   const { setRerender } = useContext(renderContext);
-
+  const { currentUser } = useAuth();
   const [hover, setHover] = useState(false);
   const [open, setOpen] = React.useState(false);
 
@@ -90,7 +90,7 @@ function LeadRenderColumn({ stage, leads, deleteStageShow, keyVal }) {
   const handleMouseLeave = () => setHover(false);
 
   async function handleDeleteStage(stageKey) {
-    await deleteStageFromDb(stageKey);
+    await deleteStageFromDb(currentUser.uid, stageKey);
     setRerender((prev) => !prev);
   }
 

@@ -11,7 +11,7 @@ import React, { Fragment, useState } from 'react';
 
 import { format } from 'date-fns';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { renderContext } from '../../contexts/DbFunctionsContext';
+import { renderContext, useAuth } from '../../contexts/DbFunctionsContext';
 import VerticalMenuPop from '../auxs/VerticalMenuPop';
 import _ from 'lodash';
 import { addNote, deleteNoteFromDb, loadLead } from '../../helpers/dbFunctions';
@@ -65,10 +65,9 @@ export default function NotesStack({ notes, setLead, lead }) {
   const classes = useStyles();
   const [noteInputValue, setNoteInputValue] = useState('');
   const [newNoteClicked, setNewNoteClicked] = useState(false);
-
+  const { currentUser } = useAuth();
   const [noteIdState, setNoteIdState] = useState(null);
   const [editKey, setEditKey] = useState(null);
-
   const { setRerender } = React.useContext(renderContext);
 
   const [open, setOpen] = React.useState(null);
@@ -92,7 +91,7 @@ export default function NotesStack({ notes, setLead, lead }) {
     // }));
     // setNoteIdState(null);
 
-    await deleteNoteFromDb(leadId, noteId);
+    await deleteNoteFromDb(currentUser.uid, leadId, noteId);
   }
 
   const handleClickDelete = async () => {
@@ -100,7 +99,7 @@ export default function NotesStack({ notes, setLead, lead }) {
     await deleteNoteFromLead(lead.id, noteIdState);
     // setRerender((prevRerender) => !prevRerender);
 
-    const updatedLead = await loadLead(lead.id);
+    const updatedLead = await loadLead(currentUser.uid, lead.id);
     setLead(updatedLead);
   };
 
@@ -118,8 +117,8 @@ export default function NotesStack({ notes, setLead, lead }) {
       )}`,
       content: valueToUpdate,
     };
-    await addNote(lead.id, newNote);
-    const updatedLead = await loadLead(lead.id);
+    await addNote(currentUser.uid, lead.id, newNote);
+    const updatedLead = await loadLead(currentUser.uid, lead.id);
     setLead(updatedLead);
   };
   const handleNewNoteKeyDown = (event) => {

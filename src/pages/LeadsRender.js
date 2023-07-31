@@ -1,7 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import NewLeadModal from '../components/leadsRender/NewLeadModal';
 import AddStagePopper from '../components/leadsRender/AddStagePopper';
-import { loadCards, loadStagesContext } from '../contexts/DbFunctionsContext';
+import {
+  loadCards,
+  loadStagesContext,
+  useAuth,
+} from '../contexts/DbFunctionsContext';
 import LeadRenderColumn from '../components/leadsRender/LeadRenderColumn';
 import { Box, Button, Grid, IconButton } from '@mui/material';
 import { renderContext, dndDataContext } from '../contexts/DbFunctionsContext';
@@ -20,7 +24,7 @@ import { updateObjectDB } from '../helpers/dbFunctions';
 //----------------------------------------------------------
 function LeadsRender() {
   console.log('LeadsRender');
-
+  const { currentUser } = useAuth();
   const loadCardsContentCtx = useContext(loadCards);
   const loadStagesCtx = useContext(loadStagesContext);
   const { reRender, setRerender } = useContext(renderContext);
@@ -97,7 +101,7 @@ function LeadsRender() {
     })[0].name;
 
     draggedLead.stage = retrievedStageName;
-    updateObjectDB(draggableId, draggedLead);
+    updateObjectDB(currentUser.uid, draggableId, draggedLead);
 
     // Update the stage for the dragged lead
     const updatedLeads = leads.map((lead) => {
