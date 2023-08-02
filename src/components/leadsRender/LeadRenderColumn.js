@@ -1,14 +1,12 @@
-import React, { useCallback, useContext, useRef, useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { deleteStageFromDb } from '../../helpers/dbFunctions';
-import { Box, Button, Grid, Modal, Stack } from '@mui/material';
+import { Box, Button, Modal, Stack } from '@mui/material';
 import TitleLabel from '../auxs/TitleLabel';
 import { makeStyles } from '@material-ui/core';
 import { convertCamelCaseToSpaces } from '../../helpers/helpers';
 import Create from '../../pages/Create';
-import LeadPaper from './LeadPaper';
 import { renderContext, useAuth } from '../../contexts/DbFunctionsContext';
-import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import DroppableDraggable from './DroppableDraggable';
 
 //----------------------------------------------------

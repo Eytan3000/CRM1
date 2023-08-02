@@ -7,11 +7,11 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import { Stack, IconButton } from '@mui/material';
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useState } from 'react';
 
 import { format } from 'date-fns';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { renderContext, useAuth } from '../../contexts/DbFunctionsContext';
+import { useAuth } from '../../contexts/DbFunctionsContext';
 import VerticalMenuPop from '../auxs/VerticalMenuPop';
 import _ from 'lodash';
 import {

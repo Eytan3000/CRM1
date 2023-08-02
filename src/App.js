@@ -42,7 +42,7 @@ function App() {
     {
       path: '/',
       element: <ProfileLayout />,
-      // errorElement: <ErrorPage />,
+      errorElement: <ErrorPage />,
       children: [
         {
           path: '',

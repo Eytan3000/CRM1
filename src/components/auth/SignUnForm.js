@@ -40,7 +40,7 @@ export default function SignUnForm() {
       addNewUser(
         UserCredentialImpl.user.uid,
         emailRef.current.value,
-        currentUser.accessToken
+        UserCredentialImpl.user.accessToken
       );
 
       navigate('/dashboard', { replace: true });

@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Container, Grid, makeStyles } from '@material-ui/core';
-import { loadLeadContext, useAuth } from '../contexts/DbFunctionsContext';
+import { useAuth } from '../contexts/DbFunctionsContext';
 import { Box } from '@mui/material';
 import NotesStack from '../components/leadDetails/NotesStack';
 // import image from './2.jpg';
 import { loadLead, updateObjectDB } from '../helpers/dbFunctions';
 import { layoutNameContext } from '../contexts/DbFunctionsContext';
 import LeadPaperDetails from '../components/leadDetails/LeadPaperDetails';
-import { useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import ErrorPage from './ErrorPage';
 
 //-----------------------------------------------------------------
 const useStyles = makeStyles((theme) => {
@@ -58,7 +59,7 @@ function Lead() {
   const { setLayoutName } = useContext(layoutNameContext);
   const [lead, setLead] = useState([]);
   const [editKey, setEditKey] = useState('');
-
+  const navigate = useNavigate();
   // Find lead in database and set it to page
   useEffect(() => {
     (async () => {
@@ -67,7 +68,7 @@ function Lead() {
         newId,
         currentUser.accessToken
       );
-
+      if (!leadAwait) return navigate('/crm'); // plaster - if trying to access other link user is sent to crm (and then to login if he isen't logged in.)
       setLead(leadAwait);
       setLayoutName(leadAwait.title);
     })();
@@ -96,7 +97,6 @@ function Lead() {
                 // minWidth: '300px',
               }
             }>
-            {console.log(lead)}
             <LeadPaperDetails
               lead={lead}
               setLead={setLead}

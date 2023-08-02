@@ -90,24 +90,7 @@ export function addNote(uid, leadId, note, token) {
       console.error('Error adding data:', error);
     });
 }
-// export function updateNote(uid, leadId, noteId, token, noteContent) {
-//   console.log(uid);
-//   console.log(leadId);
-//   console.log(noteId);
-//   console.log(token);
-//   console.log(noteContent);
 
-//   return fetch(
-//     `${databaseURL}/users/${uid}/leads/${leadId}/notes/${noteId}/content.json?auth=${token}`,
-//     {
-//       method: 'PATCH',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify(noteContent),
-//     }
-//   );
-// }
 export async function updateNote(uid, leadId, noteId, token, noteContent) {
   const updatedData = { content: noteContent };
   try {

@@ -2,14 +2,7 @@ import { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import LoadingButton from '@mui/lab/LoadingButton';
 // import Iconify from '../../../components/iconify';
-import {
-  Alert,
-  IconButton,
-  InputAdornment,
-  Stack,
-  TextField,
-  Typography,
-} from '@mui/material';
+import { Alert, Stack, TextField, Typography } from '@mui/material';
 import { useAuth } from '../../contexts/DbFunctionsContext';
 
 // -------------------------------------------------------

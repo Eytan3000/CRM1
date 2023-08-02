@@ -35,7 +35,6 @@ import { dndDataContext } from '../contexts/DbFunctionsContext';
 import _ from 'lodash';
 import { countNestedObjects } from '../helpers/helpers';
 import { fetchLeadByStage, loadLead } from '../helpers/dbFunctions';
-import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 //----------------------------------------------------------------
 const drawerWidth = 240;
 

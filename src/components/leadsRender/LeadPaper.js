@@ -1,9 +1,9 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import { formatPhoneNumber } from '../../helpers/helpers';
-import { IconButton, Link } from '@mui/material';
+import { IconButton } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { renderContext, useAuth } from '../../contexts/DbFunctionsContext';
 import { useNavigate } from 'react-router-dom';

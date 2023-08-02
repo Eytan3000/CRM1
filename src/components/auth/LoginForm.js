@@ -43,7 +43,6 @@ export default function LoginForm() {
       await login(emailRef.current.value, passwordRef.current.value);
       // navigate('/crm', { replace: true });
       if (isMounted) {
-        console.log(auth);
         navigate('/crm', { replace: true });
       }
     } catch {

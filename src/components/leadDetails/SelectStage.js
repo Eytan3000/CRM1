@@ -1,10 +1,7 @@
 import { FormControl, MenuItem, Select } from '@material-ui/core';
 import React, { useContext, useEffect, useState } from 'react';
 import { convertCamelCaseToSpaces } from '../../helpers/helpers';
-import {
-  loadStagesContext,
-  stageStateContext,
-} from '../../contexts/DbFunctionsContext';
+import { loadStagesContext } from '../../contexts/DbFunctionsContext';
 //--------------------------------------------------------------
 
 export default function SelectStage({
@@ -15,8 +12,6 @@ export default function SelectStage({
 }) {
   const [value, setValue] = React.useState(currentStage);
   const loadStagesCtx = useContext(loadStagesContext);
-  // const stagesCtx = useContext(stageStateContext);
-  // console.log(stagesCtx.stageState);
 
   const [optionsArr, setOptionsArr] = useState([]);
 
