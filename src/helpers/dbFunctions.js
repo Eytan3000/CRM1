@@ -13,6 +13,8 @@ export function insertNewLead(uid, lead, token) {
     .then((response) => response.json())
     .then((data) => {
       console.log('Data added successfully. Auto-generated ID:', data.name);
+      const updatedData = { id: data.name };
+      updateObjectDB(uid, data.name, updatedData, token);
     })
     .catch((error) => {
       console.error('Error adding data:', error);
@@ -88,7 +90,48 @@ export function addNote(uid, leadId, note, token) {
       console.error('Error adding data:', error);
     });
 }
+// export function updateNote(uid, leadId, noteId, token, noteContent) {
+//   console.log(uid);
+//   console.log(leadId);
+//   console.log(noteId);
+//   console.log(token);
+//   console.log(noteContent);
 
+//   return fetch(
+//     `${databaseURL}/users/${uid}/leads/${leadId}/notes/${noteId}/content.json?auth=${token}`,
+//     {
+//       method: 'PATCH',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify(noteContent),
+//     }
+//   );
+// }
+export async function updateNote(uid, leadId, noteId, token, noteContent) {
+  const updatedData = { content: noteContent };
+  try {
+    const response = await fetch(
+      `${databaseURL}/users/${uid}/leads/${leadId}/notes/${noteId}.json?auth=${token}`,
+      {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedData),
+      }
+    );
+
+    if (response.ok) {
+      console.log('Object updated successfully');
+      // return
+    } else {
+      console.error('Failed to update object');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
 export function deleteNoteFromDb(uid, leadId, noteId, token) {
   return fetch(
     `${databaseURL}/users/${uid}/leads/${leadId}/notes/${noteId}.json?auth=${token}`,

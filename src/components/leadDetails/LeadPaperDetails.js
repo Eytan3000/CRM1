@@ -93,7 +93,7 @@ export default function LeadPaperDetails({
     <Fragment>
       {/* Person label */}
       <PersonLabel />
-
+      {console.log(lead)}
       {Object.entries(lead).map(([key, value]) => {
         if (key !== 'notes')
           return (

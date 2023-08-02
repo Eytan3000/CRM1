@@ -122,7 +122,6 @@ function LeadRenderColumn({ stage, leads, deleteStageShow, keyVal }) {
             Delete stage
           </Button>
         )}
-        {console.log(stage)}
         <TitleLabel
           variant="h6"
           className={classes.label}

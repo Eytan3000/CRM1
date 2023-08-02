@@ -68,9 +68,6 @@ export function DbFunctionsProvider({ children }) {
     const unsubscribed = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
       setLoading(false);
-      console.log('auth: ', auth);
-      console.log('user: ', user);
-      console.log('uid: ', user.uid);
     });
     return unsubscribed;
   }, []);

@@ -70,6 +70,7 @@ function Create({ onClose, stage }) {
         companyLinkedin: linkedinC,
         companyOtherLink: otherLinkC,
         dateCreated: format(new Date(), 'dd.MM.Y'),
+        // id: '',
       });
       setRerender((prevRerender) => !prevRerender);
       onClose();

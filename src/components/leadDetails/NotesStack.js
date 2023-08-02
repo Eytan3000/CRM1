@@ -7,14 +7,19 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import { Stack, IconButton } from '@mui/material';
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 
 import { format } from 'date-fns';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { renderContext, useAuth } from '../../contexts/DbFunctionsContext';
 import VerticalMenuPop from '../auxs/VerticalMenuPop';
 import _ from 'lodash';
-import { addNote, deleteNoteFromDb, loadLead } from '../../helpers/dbFunctions';
+import {
+  addNote,
+  deleteNoteFromDb,
+  loadLead,
+  updateNote,
+} from '../../helpers/dbFunctions';
 //------------------------------------------------------
 const useStyles = makeStyles((theme) => {
   return {
@@ -61,16 +66,15 @@ const useStyles = makeStyles((theme) => {
   };
 });
 //------------------------------------------------------
-export default function NotesStack({ notes, setLead, lead }) {
+export default function NotesStack({ notes, setLead, lead, newId }) {
   const classes = useStyles();
   const [noteInputValue, setNoteInputValue] = useState('');
   const [newNoteClicked, setNewNoteClicked] = useState(false);
   const { currentUser } = useAuth();
   const [noteIdState, setNoteIdState] = useState(null);
   const [editKey, setEditKey] = useState(null);
-  const { setRerender } = React.useContext(renderContext);
-
   const [open, setOpen] = React.useState(null);
+
   const handleOpenMenu = (event, noteId) => {
     // event.stopPropagation();
     setNoteIdState(noteId);
@@ -81,16 +85,6 @@ export default function NotesStack({ notes, setLead, lead }) {
   };
 
   async function deleteNoteFromLead(leadId, noteId) {
-    // const modifiedNotesArr = _.filter(
-    //   notes,
-    //   (data, key) => key !== noteIdState
-    // );
-    // setLead((prevLead) => ({
-    //   ...prevLead,
-    //   notes: modifiedNotesArr,
-    // }));
-    // setNoteIdState(null);
-
     await deleteNoteFromDb(
       currentUser.uid,
       leadId,
@@ -101,12 +95,12 @@ export default function NotesStack({ notes, setLead, lead }) {
 
   const handleClickDelete = async () => {
     handleCloseMenu();
-    await deleteNoteFromLead(lead.id, noteIdState);
+    await deleteNoteFromLead(newId, noteIdState);
     // setRerender((prevRerender) => !prevRerender);
 
     const updatedLead = await loadLead(
       currentUser.uid,
-      lead.id,
+      newId,
       currentUser.accessToken
     );
     setLead(updatedLead);
@@ -126,10 +120,11 @@ export default function NotesStack({ notes, setLead, lead }) {
       )}`,
       content: valueToUpdate,
     };
-    await addNote(currentUser.uid, lead.id, newNote, currentUser.accessToken);
+
+    await addNote(currentUser.uid, newId, newNote, currentUser.accessToken);
     const updatedLead = await loadLead(
       currentUser.uid,
-      lead.id,
+      newId,
       currentUser.accessToken
     );
     setLead(updatedLead);
@@ -155,20 +150,28 @@ export default function NotesStack({ notes, setLead, lead }) {
   };
 
   //----Existing notes--------
-  const updateNoteContent = (keyToUpdate, valueToUpdate) => {
-    setLead((prevLead) => ({
-      ...prevLead,
-      notes: prevLead.notes.map((note) => {
-        if (note.noteId === keyToUpdate) {
-          return {
-            ...note,
-            noteContent: valueToUpdate,
-          };
-        }
-        return note;
-      }),
-    }));
+
+  const updateNoteContent = async (keyToUpdate, valueToUpdate) => {
+    try {
+      // uid, leadId, noteId, token, noteContent
+      await updateNote(
+        currentUser.uid,
+        newId,
+        keyToUpdate,
+        currentUser.accessToken,
+        valueToUpdate
+      );
+      const lead = await loadLead(
+        currentUser.uid,
+        newId,
+        currentUser.accessToken
+      );
+      setLead(lead);
+    } catch (error) {
+      console.error('Error updating note:', error);
+    }
   };
+
   const handleNoteKeyDown = (event) => {
     if (event.key === 'Enter' && !event.shiftKey) {
       event.preventDefault();

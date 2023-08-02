@@ -56,14 +56,12 @@ function Lead() {
   const { currentUser } = useAuth();
   const classes = useStyles();
   const { setLayoutName } = useContext(layoutNameContext);
-  const loadLeadCtx = useContext(loadLeadContext);
   const [lead, setLead] = useState([]);
   const [editKey, setEditKey] = useState('');
 
   // Find lead in database and set it to page
   useEffect(() => {
     (async () => {
-      // const leadAwait = await loadLeadCtx(newId);
       const leadAwait = await loadLead(
         currentUser.uid,
         newId,
@@ -98,6 +96,7 @@ function Lead() {
                 // minWidth: '300px',
               }
             }>
+            {console.log(lead)}
             <LeadPaperDetails
               lead={lead}
               setLead={setLead}
@@ -126,6 +125,7 @@ function Lead() {
               notes={lead.notes}
               lead={lead}
               setLead={(newLead) => setLead(newLead)}
+              newId={newId}
             />
           </Box>
         </Grid>
