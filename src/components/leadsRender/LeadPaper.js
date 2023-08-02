@@ -36,7 +36,7 @@ export default function LeadPaper({ keyVal, lead }) {
 
   const handleClickPopover = async () => {
     handleCloseMenu();
-    await deleteLeadFromDb(currentUser.uid, lead.id);
+    await deleteLeadFromDb(currentUser.uid, lead.id, currentUser.accessToken);
     setRerender((prevRerender) => !prevRerender);
   };
 

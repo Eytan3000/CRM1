@@ -102,7 +102,12 @@ function LeadsRender() {
     })[0].name;
 
     draggedLead.stage = retrievedStageName;
-    updateObjectDB(currentUser.uid, draggableId, draggedLead);
+    updateObjectDB(
+      currentUser.uid,
+      draggableId,
+      draggedLead,
+      currentUser.accessToken
+    );
 
     // Update the stage for the dragged lead
     const updatedLeads = leads.map((lead) => {

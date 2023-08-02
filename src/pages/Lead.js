@@ -64,7 +64,11 @@ function Lead() {
   useEffect(() => {
     (async () => {
       // const leadAwait = await loadLeadCtx(newId);
-      const leadAwait = await loadLead(currentUser.uid, newId);
+      const leadAwait = await loadLead(
+        currentUser.uid,
+        newId,
+        currentUser.accessToken
+      );
 
       setLead(leadAwait);
       setLayoutName(leadAwait.title);
@@ -72,7 +76,7 @@ function Lead() {
   }, [newId]);
 
   useEffect(() => {
-    updateObjectDB(currentUser.uid, newId, lead);
+    updateObjectDB(currentUser.uid, newId, lead, currentUser.accessToken);
   }, [lead]);
 
   return (

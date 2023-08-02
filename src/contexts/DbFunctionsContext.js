@@ -86,12 +86,15 @@ export function DbFunctionsProvider({ children }) {
   };
   //------------------------------
   function addLeadToDB(lead) {
-    insertNewLead(currentUser.uid, lead);
+    insertNewLead(currentUser.uid, lead, currentUser.accessToken);
   }
 
   async function loadCardsContent() {
     try {
-      const data = await loadAllLeadsCards(currentUser.uid);
+      const data = await loadAllLeadsCards(
+        currentUser.uid,
+        currentUser.accessToken
+      );
       const leadsCardArr = _.map(data, (data, key) => {
         return {
           id: key,
@@ -110,7 +113,10 @@ export function DbFunctionsProvider({ children }) {
 
   async function loadStages() {
     try {
-      const data = await loadStagesFromDb(currentUser.uid);
+      const data = await loadStagesFromDb(
+        currentUser.uid,
+        currentUser.accessToken
+      );
       const stagesArr = _.map(data, (data, key) => {
         return {
           id: key,
@@ -126,7 +132,10 @@ export function DbFunctionsProvider({ children }) {
   }
   async function loadLeadCtx(LeadId) {
     try {
-      const data = await loadAllLeadsCards(currentUser.uid);
+      const data = await loadAllLeadsCards(
+        currentUser.uid,
+        currentUser.accessToken
+      );
       return data[LeadId];
     } catch (err) {
       console.log(err);

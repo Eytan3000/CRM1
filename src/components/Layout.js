@@ -109,7 +109,11 @@ export default function Layout() {
   useEffect(() => {
     async function setCurrentStageFunc() {
       try {
-        const currentLead = await loadLead(currentUser.uid, params.leadId);
+        const currentLead = await loadLead(
+          currentUser.uid,
+          params.leadId,
+          currentUser.accessToken
+        );
         setCurrentStageState(currentLead.stage);
       } catch (error) {
         console.error('Error fetching leads:', error);
@@ -123,7 +127,11 @@ export default function Layout() {
   useEffect(() => {
     async function fetchLeadsFromBackend(userId, stage) {
       try {
-        const leadsArr = await fetchLeadByStage(userId, stage);
+        const leadsArr = await fetchLeadByStage(
+          userId,
+          stage,
+          currentUser.accessToken
+        );
         setLeadsArr(leadsArr);
       } catch (error) {
         console.error('Error fetching leads:', error);

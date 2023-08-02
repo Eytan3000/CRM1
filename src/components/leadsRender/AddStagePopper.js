@@ -55,7 +55,7 @@ function AddStagePopper({ stages, setStages }) {
   const updateStage = (newStage) => {
     const camelCaseNewStage = toCamelCase(newStage);
 
-    updateStageToDb(currentUser.uid, camelCaseNewStage)
+    updateStageToDb(currentUser.uid, camelCaseNewStage, currentUser.accessToken)
       .then((data) => {
         setStages((prevStage) => [
           ...prevStage,

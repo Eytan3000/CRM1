@@ -91,7 +91,12 @@ export default function NotesStack({ notes, setLead, lead }) {
     // }));
     // setNoteIdState(null);
 
-    await deleteNoteFromDb(currentUser.uid, leadId, noteId);
+    await deleteNoteFromDb(
+      currentUser.uid,
+      leadId,
+      noteId,
+      currentUser.accessToken
+    );
   }
 
   const handleClickDelete = async () => {
@@ -99,7 +104,11 @@ export default function NotesStack({ notes, setLead, lead }) {
     await deleteNoteFromLead(lead.id, noteIdState);
     // setRerender((prevRerender) => !prevRerender);
 
-    const updatedLead = await loadLead(currentUser.uid, lead.id);
+    const updatedLead = await loadLead(
+      currentUser.uid,
+      lead.id,
+      currentUser.accessToken
+    );
     setLead(updatedLead);
   };
 
@@ -117,8 +126,12 @@ export default function NotesStack({ notes, setLead, lead }) {
       )}`,
       content: valueToUpdate,
     };
-    await addNote(currentUser.uid, lead.id, newNote);
-    const updatedLead = await loadLead(currentUser.uid, lead.id);
+    await addNote(currentUser.uid, lead.id, newNote, currentUser.accessToken);
+    const updatedLead = await loadLead(
+      currentUser.uid,
+      lead.id,
+      currentUser.accessToken
+    );
     setLead(updatedLead);
   };
   const handleNewNoteKeyDown = (event) => {

@@ -5,8 +5,8 @@ const databaseURL =
 
 const userId = 'Eytan_krief_ID';
 
-export function insertNewLead(uid, lead) {
-  fetch(`${databaseURL}/users/${uid}/leads.json`, {
+export function insertNewLead(uid, lead, token) {
+  fetch(`${databaseURL}/users/${uid}/leads.json?auth=${token}`, {
     method: 'POST',
     body: JSON.stringify(lead),
   })
@@ -18,29 +18,26 @@ export function insertNewLead(uid, lead) {
       console.error('Error adding data:', error);
     });
 }
-export function loadAllLeadsCards(uid) {
-  return fetch(`${databaseURL}/users/${uid}/leads.json`)
+export function loadAllLeadsCards(uid, token) {
+  return fetch(`${databaseURL}/users/${uid}/leads.json?auth=${token}`)
     .then((response) => response.json())
     .catch((error) => {
       console.error('Error adding data:', error);
     });
 }
-export function deleteLeadFromDb(uid, id) {
-  return fetch(`${databaseURL}/users/${uid}/leads/${id}.json`, {
+export function deleteLeadFromDb(uid, id, token) {
+  return fetch(`${databaseURL}/users/${uid}/leads/${id}.json?auth=${token}`, {
     method: 'DELETE',
   });
 }
-export function loadStagesFromDb(uid) {
-  return fetch(`${databaseURL}/users/${uid}/stages.json`).then((res) =>
-    res.json()
+export function loadStagesFromDb(uid, token) {
+  return fetch(`${databaseURL}/users/${uid}/stages.json?auth=${token}`).then(
+    (res) => res.json()
   );
 }
-// loadStagesFromDb('EiNoAvcXxeTg1kZtooWPzlwzxSB3').then((data) =>
-//   console.log(data)
-// );
 
-export function updateStageToDb(uid, newStage) {
-  return fetch(`${databaseURL}/users/${uid}/stages.json`, {
+export function updateStageToDb(uid, newStage, token) {
+  return fetch(`${databaseURL}/users/${uid}/stages.json?auth=${token}`, {
     method: 'POST',
     headers: { 'Content-type': 'application/json' },
     body: JSON.stringify({
@@ -48,15 +45,15 @@ export function updateStageToDb(uid, newStage) {
     }),
   }).then((res) => res.json());
 }
-export function deleteStageFromDb(uid, id) {
-  return fetch(`${databaseURL}/users/${uid}/stages/${id}.json`, {
+export function deleteStageFromDb(uid, id, token) {
+  return fetch(`${databaseURL}/users/${uid}/stages/${id}.json?auth=${token}`, {
     method: 'DELETE',
   });
 }
-export const updateObjectDB = async (uid, objectId, updatedData) => {
+export const updateObjectDB = async (uid, objectId, updatedData, token) => {
   try {
     const response = await fetch(
-      `${databaseURL}/users/${uid}/leads/${objectId}.json`,
+      `${databaseURL}/users/${uid}/leads/${objectId}.json?auth=${token}`,
       {
         method: 'PATCH',
         headers: {
@@ -75,11 +72,14 @@ export const updateObjectDB = async (uid, objectId, updatedData) => {
     console.error('Error:', error);
   }
 };
-export function addNote(uid, leadId, note) {
-  return fetch(`${databaseURL}/users/${uid}/leads/${leadId}/notes.json`, {
-    method: 'POST',
-    body: JSON.stringify(note),
-  })
+export function addNote(uid, leadId, note, token) {
+  return fetch(
+    `${databaseURL}/users/${uid}/leads/${leadId}/notes.json?auth=${token}`,
+    {
+      method: 'POST',
+      body: JSON.stringify(note),
+    }
+  )
     .then((response) => response.json())
     .then((data) => {
       console.log('note added successfully.'); //Auto-generated ID:', data.name
@@ -89,29 +89,29 @@ export function addNote(uid, leadId, note) {
     });
 }
 
-export function deleteNoteFromDb(uid, leadId, noteId) {
+export function deleteNoteFromDb(uid, leadId, noteId, token) {
   return fetch(
-    `${databaseURL}/users/${uid}/leads/${leadId}/notes/${noteId}.json`,
+    `${databaseURL}/users/${uid}/leads/${leadId}/notes/${noteId}.json?auth=${token}`,
     {
       method: 'DELETE',
     }
   );
 }
 
-export function loadLead(uid, leadId) {
-  return fetch(`${databaseURL}/users/${uid}/leads/${leadId}.json`)
+export function loadLead(uid, leadId, token) {
+  return fetch(`${databaseURL}/users/${uid}/leads/${leadId}.json?auth=${token}`)
     .then((response) => response.json())
     .then((data) => formatLeadData(data))
     .catch((error) => {
       console.error('Error adding data:', error);
     });
 }
-export async function addNewUser(uid, email) {
+export async function addNewUser(uid, email, token) {
   const newUserDetails = {
     email,
   };
 
-  await fetch(`${databaseURL}/users/${uid}.json`, {
+  await fetch(`${databaseURL}/users/${uid}.json?auth=${token}`, {
     method: 'PUT',
     body: JSON.stringify(newUserDetails),
   })
@@ -123,19 +123,19 @@ export async function addNewUser(uid, email) {
       console.error('Error adding data:', error);
     });
 
-  await updateStageToDb(uid, 'leadIn');
-  await updateStageToDb(uid, 'noAnswer');
-  await updateStageToDb(uid, 'callBack');
-  updateStageToDb(uid, 'emailSent');
+  await updateStageToDb(uid, 'leadIn', token);
+  await updateStageToDb(uid, 'noAnswer', token);
+  await updateStageToDb(uid, 'callBack', token);
+  updateStageToDb(uid, 'emailSent', token);
 }
 
 //returns an array of leads in stage
-export async function fetchLeadByStage(uid, stage) {
-  const data = await fetch(`${databaseURL}/users/${uid}/leads.json`);
+export async function fetchLeadByStage(uid, stage, token) {
+  const data = await fetch(
+    `${databaseURL}/users/${uid}/leads.json?auth=${token}`
+  );
   const allLeads = await data.json();
 
   const leadsInStage = _.filter(allLeads, (data, key) => data.stage === stage);
   return leadsInStage;
-  // console.log(leadsInStage);
 }
-// fetchLeadByStage(userId, 'leadIn');

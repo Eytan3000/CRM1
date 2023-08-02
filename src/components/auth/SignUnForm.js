@@ -37,7 +37,11 @@ export default function SignUnForm() {
         emailRef.current.value,
         passwordRef.current.value
       );
-      addNewUser(UserCredentialImpl.user.uid, emailRef.current.value);
+      addNewUser(
+        UserCredentialImpl.user.uid,
+        emailRef.current.value,
+        currentUser.accessToken
+      );
 
       navigate('/dashboard', { replace: true });
     } catch {

@@ -1,6 +1,6 @@
 import React, { useCallback, useContext, useRef, useState } from 'react';
 
-import { deleteLeadFromDb, deleteStageFromDb } from '../../helpers/dbFunctions';
+import { deleteStageFromDb } from '../../helpers/dbFunctions';
 import { Box, Button, Grid, Modal, Stack } from '@mui/material';
 import TitleLabel from '../auxs/TitleLabel';
 import { makeStyles } from '@material-ui/core';
@@ -90,7 +90,7 @@ function LeadRenderColumn({ stage, leads, deleteStageShow, keyVal }) {
   const handleMouseLeave = () => setHover(false);
 
   async function handleDeleteStage(stageKey) {
-    await deleteStageFromDb(currentUser.uid, stageKey);
+    await deleteStageFromDb(currentUser.uid, stageKey, currentUser.accessToken);
     setRerender((prev) => !prev);
   }
 
