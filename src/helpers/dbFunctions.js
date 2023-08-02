@@ -1,7 +1,7 @@
 import { formatLeadData } from './helpers';
 import _ from 'lodash';
 const databaseURL =
-  'https://mycrm-a7912-default-rtdb.europe-west1.firebasedatabase.app/';
+  'https://mycrm-a7912-default-rtdb.europe-west1.firebasedatabase.app';
 
 const userId = 'Eytan_krief_ID';
 
@@ -35,6 +35,10 @@ export function loadStagesFromDb(uid) {
     res.json()
   );
 }
+// loadStagesFromDb('EiNoAvcXxeTg1kZtooWPzlwzxSB3').then((data) =>
+//   console.log(data)
+// );
+
 export function updateStageToDb(uid, newStage) {
   return fetch(`${databaseURL}/users/${uid}/stages.json`, {
     method: 'POST',

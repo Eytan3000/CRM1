@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import LoadingButton from '@mui/lab/LoadingButton';
 // import Iconify from '../../../components/iconify';
@@ -12,7 +12,8 @@ import {
   Typography,
 } from '@mui/material';
 import { useAuth } from '../../contexts/DbFunctionsContext';
-import { Container } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
+import { auth } from '../../firebase';
 
 // -------------------------------------------------------
 
@@ -23,9 +24,15 @@ export default function LoginForm() {
 
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
+  const [isMounted, setIsMounted] = useState(false); // New state variable
 
   const passwordRef = useRef();
   const emailRef = useRef();
+
+  useEffect(() => {
+    setIsMounted(true); // Component is mounted
+    return () => setIsMounted(false); // Component is unmounted
+  }, []);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -34,8 +41,11 @@ export default function LoginForm() {
       setError('');
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
-
-      navigate('/crm', { replace: true });
+      // navigate('/crm', { replace: true });
+      if (isMounted) {
+        console.log(auth);
+        navigate('/crm', { replace: true });
+      }
     } catch {
       setError('Failed to sign in');
     }
@@ -72,7 +82,7 @@ export default function LoginForm() {
           />
         </Stack>
 
-        <Stack direction="flex" justifyContent="space-between">
+        <Grid container direction="row" justifyContent="space-between">
           <Typography
             variant="subtitle2"
             sx={{ my: 2, marginTop: 3, paddingX: 1 }}>
@@ -83,7 +93,7 @@ export default function LoginForm() {
             sx={{ my: 2, marginTop: 3, paddingX: 1 }}>
             <Link to="/forgot-password"> Forgot password?</Link>
           </Typography>
-        </Stack>
+        </Grid>
         {error && (
           <Alert severity="error" style={{ marginBottom: '10px' }}>
             {error}

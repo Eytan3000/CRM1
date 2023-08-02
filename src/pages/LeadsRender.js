@@ -24,6 +24,8 @@ import { updateObjectDB } from '../helpers/dbFunctions';
 //----------------------------------------------------------
 function LeadsRender() {
   const { currentUser } = useAuth();
+  console.log(currentUser.uid);
+
   const loadCardsContentCtx = useContext(loadCards);
   const loadStagesCtx = useContext(loadStagesContext);
   const { reRender, setRerender } = useContext(renderContext);
