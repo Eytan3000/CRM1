@@ -12,8 +12,9 @@ import {
   Typography,
 } from '@mui/material';
 import { useAuth } from '../../contexts/DbFunctionsContext';
-import { Grid } from '@material-ui/core';
+import { Container, Grid } from '@material-ui/core';
 import { auth } from '../../firebase';
+import { Height } from '@mui/icons-material';
 
 // -------------------------------------------------------
 
@@ -52,7 +53,7 @@ export default function LoginForm() {
   }
 
   return (
-    <>
+    <Container style={{ maxWidth: 600, marginBottom: 100 }}>
       <Typography variant="h4" gutterBottom>
         Log In
       </Typography>
@@ -111,11 +112,11 @@ export default function LoginForm() {
           Log In
         </LoadingButton>
       </form>
-      <Divider sx={{ my: 3 }}>
+      {/* <Divider sx={{ my: 3 }}>
         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
           OR
         </Typography>
-      </Divider>
-    </>
+      </Divider> */}
+    </Container>
   );
 }

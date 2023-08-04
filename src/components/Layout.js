@@ -3,7 +3,6 @@ import {
   makeStyles,
   AppBar,
   Toolbar,
-  Avatar,
   TextField,
 } from '@material-ui/core';
 import AlignVerticalTopOutlinedIcon from '@mui/icons-material/AlignVerticalTopOutlined';
@@ -33,8 +32,14 @@ import {
 import AlignHorizontalLeftIcon from '@mui/icons-material/AlignHorizontalLeft';
 import { dndDataContext } from '../contexts/DbFunctionsContext';
 import _ from 'lodash';
-import { countNestedObjects } from '../helpers/helpers';
+import {
+  capitalizeWords,
+  countNestedObjects,
+  removeAfterAtSymbol,
+} from '../helpers/helpers';
 import { fetchLeadByStage, loadLead } from '../helpers/dbFunctions';
+import { Avatar } from '@mui/joy';
+import AppBarMenu from './AppBarMenu';
 //----------------------------------------------------------------
 const drawerWidth = 240;
 
@@ -185,6 +190,10 @@ export default function Layout() {
     },
   ];
 
+  // function h() {
+  //   setMenuIsClicked(true);
+  // }
+
   return (
     <div className={classes.root}>
       {/* App bar */}
@@ -192,7 +201,6 @@ export default function Layout() {
         <Toolbar>
           {!isClicked ? (
             <Typography className={classes.date} onClick={handleNameClick}>
-              {/* Today is the {format(new Date(), 'do MMMM Y')} */}
               {menuItems[0].text}
             </Typography>
           ) : (
@@ -206,10 +214,17 @@ export default function Layout() {
               />
             </Fragment>
           )}
-          <Typography>Eytan</Typography>
-          <Avatar src="/Mario.png" className={classes.avatar} />
+          <Typography marginRight={2}>
+            {capitalizeWords(removeAfterAtSymbol(currentUser.email))}
+          </Typography>
+          {/* <Avatar src="/Mario.png" className={classes.avatar} /> */}
+          <Avatar variant="outlined" color="primary">
+            {currentUser.email[0].toUpperCase()}
+          </Avatar>
+          <AppBarMenu />
         </Toolbar>
       </AppBar>
+
       {/* Side draw */}
       <Drawer
         className={classes.drawer}

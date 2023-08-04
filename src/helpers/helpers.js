@@ -106,3 +106,11 @@ export function hasNoLetters(str) {
   // Use test() method to check if the string contains any letter characters
   return !letterRegex.test(str);
 }
+
+export function removeAfterAtSymbol(str) {
+  const atIndex = str.indexOf('@');
+  if (atIndex !== -1) {
+    return str.substring(0, atIndex);
+  }
+  return str;
+}

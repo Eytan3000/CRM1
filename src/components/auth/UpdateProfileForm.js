@@ -4,6 +4,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 // import Iconify from '../../../components/iconify';
 import { Alert, Stack, TextField, Typography } from '@mui/material';
 import { useAuth } from '../../contexts/DbFunctionsContext';
+import { Container } from '@material-ui/core';
 
 // -------------------------------------------------------
 
@@ -42,7 +43,7 @@ export default function UpdateProfileForm() {
   }
 
   return (
-    <>
+    <Container style={{ maxWidth: 600, marginBottom: 100 }}>
       <Typography variant="h4" gutterBottom>
         Update Profile
       </Typography>
@@ -68,7 +69,7 @@ export default function UpdateProfileForm() {
         <Typography
           variant="subtitle2"
           sx={{ my: 2, marginTop: 3, paddingX: 1 }}>
-          <Link to="/dashboard">Cancel</Link>
+          <Link to={navigate(-1)}>Cancel</Link>
         </Typography>
 
         {error && (
@@ -89,6 +90,6 @@ export default function UpdateProfileForm() {
           Update
         </LoadingButton>
       </form>
-    </>
+    </Container>
   );
 }

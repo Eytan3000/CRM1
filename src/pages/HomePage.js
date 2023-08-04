@@ -7,6 +7,7 @@ import { Box, Card, CardContent } from '@mui/joy';
 import DashNoDrawer from '../images/DashNoDrawer.png';
 import FeaturesCards from '../components/homePage/FeaturesCards';
 import FAQ from '../components/homePage/FAQ';
+import Testimonials from '../components/homePage/Testimonials';
 //----------------------------------------------------
 const useStyles = makeStyles((theme) => ({
   // ...existing styles
@@ -87,7 +88,7 @@ export default function HomePage() {
         <img className={classes.image} src={DashNoDrawer} alt="Dashboard" />
       </Container>
 
-      {/* --------------------------------------------------------- */}
+      {/* --features-------------------------------------------------- */}
 
       <Typography
         style={{ color: '#2d3748', marginTop: 100 }}
@@ -99,7 +100,7 @@ export default function HomePage() {
 
       <FeaturesCards />
 
-      {/* --------------------------------------------------------- */}
+      {/* --FAQ------------------------------------------------------ */}
       <Typography
         style={{ color: '#2d3748', marginTop: 100 }}
         variant="h3"
@@ -110,7 +111,7 @@ export default function HomePage() {
 
       <FAQ />
 
-      {/* --------------------------------------------------------- */}
+      {/* --Testimonials------------------------------------------------ */}
       <Typography
         style={{ color: '#2d3748', marginTop: 100 }}
         variant="h3"
@@ -127,7 +128,41 @@ export default function HomePage() {
         color="">
         See what our clients have to say about us
       </Typography>
-      {/* <Testimonials /> */}
+
+      <Testimonials />
+
+      {/* --footer--------------------------------------------------- */}
+      <Box display="flex" justifyContent="center" marginBottom={20}>
+        <Button
+          style={{
+            textTransform: 'none',
+            marginRight: '20px',
+          }}
+          onClick={() => {
+            navigaet('/signup');
+          }}
+          variant="solid"
+          size="lg">
+          Get Started - it's free!
+        </Button>
+      </Box>
+      <Typography
+        style={{ color: '#646e73' }}
+        variant="body1"
+        align="center"
+        gutterBottom
+        color="">
+        © freeCRM. 2023. All rights reserved
+      </Typography>
+      <Typography
+        style={{ color: '#646e73' }}
+        variant="body2"
+        align="center"
+        gutterBottom
+        color="">
+        we may use cookies for storing information to help provide you with a
+        better, faster and safer experience and for marketing purposes.{' '}
+      </Typography>
     </>
   );
 }

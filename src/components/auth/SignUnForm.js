@@ -13,6 +13,7 @@ import {
 } from '@mui/material';
 import { useAuth } from '../../contexts/DbFunctionsContext';
 import { addNewUser } from '../../helpers/dbFunctions';
+import { Container } from '@material-ui/core';
 
 // -------------------------------------------------------
 
@@ -51,7 +52,7 @@ export default function SignUnForm() {
   }
 
   return (
-    <>
+    <Container style={{ maxWidth: 600, marginBottom: 100 }}>
       <Typography variant="h4" gutterBottom>
         Sign up
       </Typography>
@@ -104,11 +105,11 @@ export default function SignUnForm() {
           Sign Up
         </LoadingButton>
       </form>
-      <Divider sx={{ my: 3 }}>
+      {/* <Divider sx={{ my: 3 }}>
         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
           OR
         </Typography>
-      </Divider>
-    </>
+      </Divider> */}
+    </Container>
   );
 }

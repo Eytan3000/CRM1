@@ -4,6 +4,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 // import Iconify from '../../../components/iconify';
 import {
   Alert,
+  Container,
   IconButton,
   InputAdornment,
   Stack,
@@ -40,7 +41,7 @@ export default function ForgotPassForm() {
   }
 
   return (
-    <>
+    <Container style={{ maxWidth: 600, marginBottom: 100 }}>
       <Typography variant="h4" gutterBottom>
         Reset Password
       </Typography>
@@ -77,6 +78,6 @@ export default function ForgotPassForm() {
           Reset Password
         </LoadingButton>
       </form>
-    </>
+    </Container>
   );
 }
