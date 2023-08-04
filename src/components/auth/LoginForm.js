@@ -13,8 +13,6 @@ import {
 } from '@mui/material';
 import { useAuth } from '../../contexts/DbFunctionsContext';
 import { Container, Grid } from '@material-ui/core';
-import { auth } from '../../firebase';
-import { Height } from '@mui/icons-material';
 
 // -------------------------------------------------------
 
