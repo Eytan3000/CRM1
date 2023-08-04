@@ -10,7 +10,7 @@ import ErrorPage from './pages/ErrorPage';
 
 import HomePage from './pages/HomePage';
 import PrivateRoute from './components/auth/PrivateRoute';
-import Dashboard from './pages/Dashboard';
+
 import ProfileLayout from './components/ProfileLayout';
 import LoginForm from './components/auth/LoginForm';
 import SignUnForm from './components/auth/SignUnForm';
@@ -56,14 +56,7 @@ function App() {
           path: 'login',
           element: <LoginForm />,
         },
-        {
-          path: 'dashboard',
-          element: (
-            <PrivateRoute>
-              <Dashboard />
-            </PrivateRoute>
-          ),
-        },
+
         {
           path: 'Forgot-password',
           element: <ForgotPassForm />,

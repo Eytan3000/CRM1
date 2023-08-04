@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-
 import { deleteStageFromDb } from '../../helpers/dbFunctions';
 import { Box, Button, Modal, Stack } from '@mui/material';
 import TitleLabel from '../auxs/TitleLabel';
@@ -37,6 +36,7 @@ const useStyles = makeStyles((theme) => {
     label: {
       fontWeight: 'bold',
       // marginBottom: '2px',
+      paddingLeft: 10,
     },
     customCard: {
       height: '1px',
@@ -54,18 +54,6 @@ const useStyles = makeStyles((theme) => {
     },
   };
 });
-
-// function addLeadsPapersInColumn(leads, stageName) {
-//   const leadIns = leads.map((lead) => {
-//     if (lead.stage === stageName)
-//       return (
-//         <div key={lead.id}>
-//           <LeadPaper keyVal={lead.id} lead={lead} handleDelete={handleDelete} />
-//         </div>
-//       );
-//   });
-//   return leadIns;
-// }
 
 //----------------------------------------------------
 
@@ -125,7 +113,6 @@ function LeadRenderColumn({ stage, leads, deleteStageShow, keyVal }) {
           className={classes.label}
           label={convertCamelCaseToSpaces(stage.name)}
         />
-        {/* {addLeadsPapersInColumn(leads, stage.name)} */}
 
         <DroppableDraggable stage={stage} leads={leads} />
 

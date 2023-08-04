@@ -44,7 +44,7 @@ export default function SignUnForm() {
         UserCredentialImpl.user.accessToken
       );
 
-      navigate('/dashboard', { replace: true });
+      navigate('/crm', { replace: true });
     } catch {
       setError('Failed to create an account');
     }

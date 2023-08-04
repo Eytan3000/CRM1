@@ -1,7 +1,7 @@
 import { Container, makeStyles } from '@material-ui/core';
 import Button from '@mui/joy/Button';
 import { Typography } from '@mui/joy';
-import { AppBar, Toolbar } from '@mui/material';
+import { AppBar, Box, Toolbar } from '@mui/material';
 import React from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 //---------------------------------------------------------
@@ -47,9 +47,20 @@ export default function ProfileLayout() {
             style={{ cursor: 'pointer', color: 'black', marginRight: '700px' }}>
             freeCRM
           </Typography>
-          <Button onClick={() => navigate('/login')} variant="plain">
-            Login
-          </Button>
+          <Box>
+            <Button onClick={() => navigate('/login')} variant="plain">
+              Login
+            </Button>
+            <Button onClick={() => navigate('/signup')} variant="plain">
+              Sign up
+            </Button>
+            <Button
+              onClick={() => navigate('/crm')}
+              variant="outlined"
+              style={{ marginLeft: 20 }}>
+              Go to console
+            </Button>
+          </Box>
         </Toolbar>
       </AppBar>
 

@@ -1,3 +1,4 @@
+import { Typography as JoyTypography } from '@mui/joy';
 import {
   Drawer,
   makeStyles,
@@ -214,13 +215,10 @@ export default function Layout() {
               />
             </Fragment>
           )}
-          <Typography marginRight={2}>
+          <Typography>
             {capitalizeWords(removeAfterAtSymbol(currentUser.email))}
           </Typography>
-          {/* <Avatar src="/Mario.png" className={classes.avatar} /> */}
-          <Avatar variant="outlined" color="primary">
-            {currentUser.email[0].toUpperCase()}
-          </Avatar>
+
           <AppBarMenu />
         </Toolbar>
       </AppBar>
@@ -232,13 +230,20 @@ export default function Layout() {
         anchor="left"
         classes={{ paper: classes.drawerPaper }}>
         <div>
-          <Typography
+          {/* <Typography
             className={classes.title}
             variant="h5"
             onClick={() => navigate('/crm')}
             style={{ cursor: 'pointer' }}>
             Logo
-          </Typography>
+          </Typography> */}
+          <JoyTypography
+            className={classes.title}
+            level="h4"
+            onClick={() => navigate('')}
+            style={{ cursor: 'pointer', color: 'black', marginRight: '700px' }}>
+            freeCRM
+          </JoyTypography>
         </div>
         {/* List of Piplines, changes dinamically based on url  */}
 

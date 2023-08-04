@@ -12,9 +12,12 @@ import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import { useAuth } from '../contexts/DbFunctionsContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function AccountMenu() {
-  const { currentUser } = useAuth();
+  const { currentUser, logout } = useAuth();
+  const navigate = useNavigate();
+  const [error, setError] = React.useState('');
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -23,23 +26,40 @@ export default function AccountMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  function handleProfileClick() {
+    setAnchorEl(null);
+    navigate('/update-profile');
+  }
+  async function handleLogout() {
+    setAnchorEl(null);
+    setError('');
+    try {
+      await logout();
+      navigate('/login', { replace: true });
+    } catch {
+      setError('Failed to logout');
+    }
+  }
+
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-        <Tooltip title="Account settings">
-          <IconButton
-            onClick={handleClick}
-            size="small"
-            sx={{ ml: 2 }}
-            aria-controls={open ? 'account-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}>
-            {/* <Avatar sx={{ width: 32, height: 32 }}>M</Avatar> */}
-            <Avatar variant="outlined" color="primary">
-              {currentUser.email[0].toUpperCase()}
-            </Avatar>
-          </IconButton>
-        </Tooltip>
+        {/* <Tooltip title="Account settings"> */}
+        <IconButton
+          color="primary"
+          onClick={handleClick}
+          size="small"
+          sx={{ ml: 2 }}
+          aria-controls={open ? 'account-menu' : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? 'true' : undefined}>
+          {/* <Avatar sx={{ width: 32, height: 32 }}>M</Avatar> */}
+          <Avatar variant="outlined">
+            {currentUser.email[0].toUpperCase()}
+          </Avatar>
+        </IconButton>
+        {/* </Tooltip> */}
       </Box>
       <Menu
         anchorEl={anchorEl}
@@ -75,7 +95,7 @@ export default function AccountMenu() {
         }}
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}>
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handleProfileClick}>
           <Avatar /> Profile
         </MenuItem>
         {/* <MenuItem onClick={handleClose}>
@@ -94,13 +114,18 @@ export default function AccountMenu() {
           </ListItemIcon>
           Settings
         </MenuItem> */}
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handleLogout}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
           Logout
         </MenuItem>
       </Menu>
+      {/* {error && (
+        <Alert variant="outlined" severity="error">
+          {error}
+        </Alert>
+      )} */}
     </React.Fragment>
   );
 }

@@ -34,7 +34,7 @@ export default function UpdateProfileForm() {
     }
     Promise.all(promises)
       .then(() => {
-        navigate('/');
+        navigate('/crm');
       })
       .catch(() => setError('Failed to update account.'))
       .finally(() => {
@@ -69,7 +69,7 @@ export default function UpdateProfileForm() {
         <Typography
           variant="subtitle2"
           sx={{ my: 2, marginTop: 3, paddingX: 1 }}>
-          <Link to={navigate(-1)}>Cancel</Link>
+          <Link to="/crm">Cancel</Link>
         </Typography>
 
         {error && (
