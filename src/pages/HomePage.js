@@ -5,6 +5,8 @@ import Button from '@mui/joy/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import { Box, Card, CardContent } from '@mui/joy';
 import DashNoDrawer from '../images/DashNoDrawer.png';
+import FeaturesCards from '../components/homePage/FeaturesCards';
+import FAQ from '../components/homePage/FAQ';
 //----------------------------------------------------
 const useStyles = makeStyles((theme) => ({
   // ...existing styles
@@ -54,6 +56,7 @@ export default function HomePage() {
         color="">
         A CRM designed by freelancers, for freelancers.{' '}
       </Typography>
+
       <Box
         sx={{
           display: 'flex',
@@ -79,6 +82,7 @@ export default function HomePage() {
           Learn more
         </Button>
       </Box>
+
       <Container style={{ textAlign: 'center' }}>
         <img className={classes.image} src={DashNoDrawer} alt="Dashboard" />
       </Container>
@@ -93,41 +97,37 @@ export default function HomePage() {
         Top features{' '}
       </Typography>
 
-      <Box
-        sx={{
-          margin: 5,
-          // width: '100%',
-          maxWidth: 600,
-          display: 'flex',
-          // textAlign: 'center',
-          // gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
-          gap: 2,
-          justifyContent: 'center',
-        }}>
-        <Card style={{ padding: 50 }}>
-          <CardContent>
-            <Typography variant="h6" style={{ textDecoration: 'underline' }}>
-              Visual sales pipeline
-            </Typography>
-            <Typography>
-              See your entire sales process at a glance. Update deals by
-              dragging and dropping them into place.
-            </Typography>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent>
-            <Typography level="title-md">Plain card (default)</Typography>
-            <Typography>Description of the card.</Typography>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent>
-            <Typography level="title-md">Plain card (default)</Typography>
-            <Typography>Description of the card.</Typography>
-          </CardContent>
-        </Card>
-      </Box>
+      <FeaturesCards />
+
+      {/* --------------------------------------------------------- */}
+      <Typography
+        style={{ color: '#2d3748', marginTop: 100 }}
+        variant="h3"
+        align="center"
+        gutterBottom>
+        FAQ{' '}
+      </Typography>
+
+      <FAQ />
+
+      {/* --------------------------------------------------------- */}
+      <Typography
+        style={{ color: '#2d3748', marginTop: 100 }}
+        variant="h3"
+        align="center"
+        gutterBottom>
+        Testimonials
+      </Typography>
+
+      <Typography
+        style={{ color: '#646e73' }}
+        variant="h6"
+        align="center"
+        gutterBottom
+        color="">
+        See what our clients have to say about us
+      </Typography>
+      {/* <Testimonials /> */}
     </>
   );
 }
