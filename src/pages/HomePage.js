@@ -26,22 +26,6 @@ export default function HomePage() {
   const navigaet = useNavigate();
   return (
     <>
-      {/* <Typography
-        style={{ color: '#2d3748' }}
-        level="h1"
-        fontSize={60}
-        align="center"
-        gutterBottom>
-        The CRM platform to grow your business
-      </Typography>
-      <Typography
-        style={{ color: '#646e73' }}
-        level="h4"
-        align="center"
-        gutterBottom
-        color="">
-        A CRM designed by freelancers, for freelancers.{' '}
-      </Typography> */}
       <Typography
         style={{ color: '#2d3748' }}
         variant="h1"
@@ -160,8 +144,8 @@ export default function HomePage() {
         align="center"
         gutterBottom
         color="">
-        we may use cookies for storing information to help provide you with a
-        better, faster and safer experience and for marketing purposes.{' '}
+        We may use cookies for storing information to provide a better, faster
+        and safer experience and for marketing purposes.{' '}
       </Typography>
     </>
   );

@@ -4,6 +4,7 @@ import { Typography } from '@mui/joy';
 import { AppBar, Box, Toolbar } from '@mui/material';
 import React from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
+import HomeAppBar from './homePage/HomeAppBar';
 //---------------------------------------------------------
 
 const useStyles = makeStyles((theme) => {

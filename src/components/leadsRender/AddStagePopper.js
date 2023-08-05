@@ -86,9 +86,9 @@ function AddStagePopper({ stages, setStages }) {
         setErrorMessage('Must contain letters');
         return;
       }
-      if (newStage.length > 10) {
+      if (newStage.length > 20) {
         setIsError(true);
-        setErrorMessage('Must contain less that 10 characters');
+        setErrorMessage('Must contain less that 20 characters');
         return;
       }
 

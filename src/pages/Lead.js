@@ -3,12 +3,11 @@ import { Container, Grid, makeStyles } from '@material-ui/core';
 import { useAuth } from '../contexts/DbFunctionsContext';
 import { Box } from '@mui/material';
 import NotesStack from '../components/leadDetails/NotesStack';
-// import image from './2.jpg';
+
 import { loadLead, updateObjectDB } from '../helpers/dbFunctions';
 import { layoutNameContext } from '../contexts/DbFunctionsContext';
 import LeadPaperDetails from '../components/leadDetails/LeadPaperDetails';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
-import ErrorPage from './ErrorPage';
+import { useNavigate, useParams } from 'react-router-dom';
 
 //-----------------------------------------------------------------
 const useStyles = makeStyles((theme) => {
@@ -33,10 +32,6 @@ const useStyles = makeStyles((theme) => {
       padding: theme.spacing(3),
       display: 'flex',
       flexFlow: 'column',
-      // justifyContent: 'felx-start',
-      // maxWidth: '100%',
-      // margin: '0 auto',
-      // flexDirection: 'column',
       height: '100%',
       alignItems: 'center',
       minWidth: '100%',
@@ -133,5 +128,4 @@ function Lead() {
     </Box>
   );
 }
-// export default Lead;
 export default React.memo(Lead);

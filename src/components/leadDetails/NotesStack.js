@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core';
 import { Stack, IconButton } from '@mui/material';
 import React, { Fragment, useState } from 'react';
-
+import Notes_Tinyfied from '../../images/Notes_Tinyfied.jpg';
 import { format } from 'date-fns';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useAuth } from '../../contexts/DbFunctionsContext';
@@ -290,14 +290,19 @@ export default function NotesStack({ notes, setLead, lead, newId }) {
         </Stack>
       ) : (
         <Fragment>
-          <img
+          {/* <img
             src="https://cdn.monday.com/images/pulse-page-empty-state.svg"
             alt="Image Description"
             width="400"
             height="500"
             className={classes.img}
+          /> */}
+          <img
+            src={Notes_Tinyfied}
+            alt="Notes image"
+            width="400"
+            height="500"
           />
-
           <Typography
             padding={1}
             variant="h5"
