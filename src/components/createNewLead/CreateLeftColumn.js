@@ -1,5 +1,7 @@
 import React from 'react';
 import InputFieldText from '../auxs/InputFieldText';
+import { TextField } from '@material-ui/core';
+import { Stack } from '@mui/material';
 
 export default function LeftColumn({
   setName,
@@ -19,43 +21,95 @@ export default function LeftColumn({
   };
 
   return (
-    <div>
-      <InputFieldText
+    // <div>
+    //   <InputFieldText
+    //     onChange={setName}
+    //     label="Name"
+    //     onKeyDown={handleKeyDown}
+    //   />
+
+    //   <InputFieldText
+    //     onChange={setPhone}
+    //     label="Phone"
+    //     onKeyDown={handleKeyDown}
+    //   />
+    //   <InputFieldText
+    //     onChange={setEmail}
+    //     label="Email"
+    //     onKeyDown={handleKeyDown}
+    //   />
+    //   <InputFieldText
+    //     onChange={setWebsite}
+    //     label="Website"
+    //     onKeyDown={handleKeyDown}
+    //   />
+    //   <InputFieldText
+    //     onChange={setFacebook}
+    //     label="Facebook"
+    //     onKeyDown={handleKeyDown}
+    //   />
+    //   <InputFieldText
+    //     onChange={setLinkedin}
+    //     label="Linkedin"
+    //     onKeyDown={handleKeyDown}
+    //   />
+    //   <InputFieldText
+    //     onChange={setOtherLink}
+    //     label="Other link"
+    //     onKeyDown={handleKeyDown}
+    //   />
+    // </div>
+    <Stack spacing={2} marginY={3}>
+      <TextField
+        variant="outlined"
         onChange={setName}
         label="Name"
         onKeyDown={handleKeyDown}
+        id="LeadPersonName"
       />
 
-      <InputFieldText
+      <TextField
+        variant="outlined"
         onChange={setPhone}
         label="Phone"
         onKeyDown={handleKeyDown}
+        id="LeadPersonPhone"
       />
-      <InputFieldText
+      <TextField
+        variant="outlined"
         onChange={setEmail}
         label="Email"
         onKeyDown={handleKeyDown}
+        id="LeadPersonEmail"
       />
-      <InputFieldText
+      <TextField
+        variant="outlined"
         onChange={setWebsite}
         label="Website"
         onKeyDown={handleKeyDown}
+        id="LeadPersonWebsite"
       />
-      <InputFieldText
+      <TextField
+        variant="outlined"
         onChange={setFacebook}
         label="Facebook"
         onKeyDown={handleKeyDown}
+        id="LeadPersonFacebook"
       />
-      <InputFieldText
+      <TextField
+        variant="outlined"
         onChange={setLinkedin}
         label="Linkedin"
         onKeyDown={handleKeyDown}
+        id="LeadPersonLinkedin"
       />
-      <InputFieldText
+      <TextField
+        variant="outlined"
         onChange={setOtherLink}
         label="Other link"
         onKeyDown={handleKeyDown}
+        id="LeadPersonOtherLink"
       />
-    </div>
+    </Stack>
   );
 }

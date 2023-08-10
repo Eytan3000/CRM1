@@ -1,5 +1,7 @@
 import React from 'react';
 import InputFieldText from '../auxs/InputFieldText';
+import { TextField } from '@material-ui/core';
+import { Stack } from '@mui/material';
 
 export default function RightColumn({
   setName,
@@ -19,48 +21,105 @@ export default function RightColumn({
     }
   };
   return (
-    <div>
-      <InputFieldText
+    // <div>
+    //   <InputFieldText
+    //     onChange={setName}
+    //     label="Company - Name"
+    //     onKeyDown={handleKeyDown}
+    //   />
+    //   <InputFieldText
+    //     onChange={setPhone}
+    //     label="Company - Phone"
+    //     disabled={setIsDisabled}
+    //     onKeyDown={handleKeyDown}
+    //   />
+    //   <InputFieldText
+    //     onChange={setEmail}
+    //     label="Company - Email"
+    //     disabled={setIsDisabled}
+    //     onKeyDown={handleKeyDown}
+    //   />
+    //   <InputFieldText
+    //     onChange={setWebsite}
+    //     label="Company - Website"
+    //     disabled={setIsDisabled}
+    //     onKeyDown={handleKeyDown}
+    //   />
+    //   <InputFieldText
+    //     onChange={setFacebook}
+    //     label="Company - Facebook"
+    //     disabled={setIsDisabled}
+    //     onKeyDown={handleKeyDown}
+    //   />
+    //   <InputFieldText
+    //     onChange={setLinkedin}
+    //     label="Company - Linkedin"
+    //     disabled={setIsDisabled}
+    //     onKeyDown={handleKeyDown}
+    //   />
+    //   <InputFieldText
+    //     onChange={setOtherLink}
+    //     label="Company - Other link"
+    //     disabled={setIsDisabled}
+    //     onKeyDown={handleKeyDown}
+    //   />
+    // </div>
+<Stack spacing={2} marginY={3}>
+      <TextField
+      variant='outlined'
         onChange={setName}
         label="Company - Name"
         onKeyDown={handleKeyDown}
+        id="LeadCompanyName"
       />
-      <InputFieldText
+      <TextField
+      variant='outlined'
         onChange={setPhone}
         label="Company - Phone"
         disabled={setIsDisabled}
         onKeyDown={handleKeyDown}
+        id="LeadCompanyPhone"
       />
-      <InputFieldText
+      <TextField
+      variant='outlined'
         onChange={setEmail}
         label="Company - Email"
         disabled={setIsDisabled}
         onKeyDown={handleKeyDown}
+        id="LeadCompanyEmail"
       />
-      <InputFieldText
+      <TextField
+      variant='outlined'
         onChange={setWebsite}
         label="Company - Website"
         disabled={setIsDisabled}
         onKeyDown={handleKeyDown}
+        id="LeadCompanyWebsite"
       />
-      <InputFieldText
+      <TextField
+      variant='outlined'
         onChange={setFacebook}
         label="Company - Facebook"
         disabled={setIsDisabled}
         onKeyDown={handleKeyDown}
+        id="LeadCompanyFacebook"
       />
-      <InputFieldText
+      <TextField
+      variant='outlined'
         onChange={setLinkedin}
         label="Company - Linkedin"
         disabled={setIsDisabled}
         onKeyDown={handleKeyDown}
+        id="LeadCompanyLinkedin"
       />
-      <InputFieldText
+      <TextField
+      variant='outlined'
         onChange={setOtherLink}
         label="Company - Other link"
         disabled={setIsDisabled}
         onKeyDown={handleKeyDown}
+        id="LeadCompanyOtherLink"
       />
-    </div>
+    </Stack>
   );
 }
